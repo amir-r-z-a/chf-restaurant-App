@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -13,15 +14,17 @@ class _SignupScreenState extends State<SignupScreen> {
       body: Container(
         child: Column(
           children: [
-            Text("Sign up"),
+            Container(
+                margin: EdgeInsets.fromLTRB(30, 50, 0, 0),
+                child: Text(
+                  "Sign up",
+                  style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),
+                )),
             Form(
                 key: _formkey,
                 child: ListView(
-                  children: [
-                    TextFormField()
-                  ],
-                )
-            )
+                  children: [TextFormField()],
+                ))
           ],
         ),
       ),

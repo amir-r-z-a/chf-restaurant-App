@@ -1,3 +1,4 @@
+import 'package:chfrestaurant/screens/signupScreen.dart';
 import 'package:chfrestaurant/screens/splashScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SplashScreen(),
+      home: SignupScreen(),
     );
   }
 }
