@@ -9,7 +9,17 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   var _formkey = GlobalKey<FormState>();
-
+  int selectedRadio ;
+  setSelectedRadio(int val){
+    setState(() {
+      selectedRadio=val;
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    selectedRadio=0;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +71,58 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     MyTextFormField(
                       "Address",
                       hint: "your Address",
+                    ),
+                    Row(
+                      children: [
+                        ButtonBar(
+                          children: [
+                            Radio(
+                              value: 2,
+                              groupValue: selectedRadio,
+                              activeColor: Colors.pink,
+                              onChanged: (val){
+                                print("Radio $val");
+                                setSelectedRadio(val);
+                              },
+                            ),
+                            Radio(
+                              value: 3,
+                              groupValue: selectedRadio,
+                              activeColor: Colors.pink,
+                              onChanged: (val){
+                                print("Radio $val");
+                                setSelectedRadio(val);
+                              },
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        ButtonBar(
+                          children: [
+                            Radio(
+                              value: 0,
+                              groupValue: selectedRadio,
+                              activeColor: Colors.pink,
+                              onChanged: (val){
+                                print("Radio $val");
+                                setSelectedRadio(val);
+                              },
+                            ),
+                            Radio(
+                              value: 1,
+                              groupValue: selectedRadio,
+                              activeColor: Colors.pink,
+                              onChanged: (val){
+                                print("Radio $val");
+                                setSelectedRadio(val);
+                              },
+                            )
+                          ],
+                        )
+                      ],
                     )
                   ],
                 ),
