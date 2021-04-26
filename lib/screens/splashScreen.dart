@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 class SplashScreen extends StatefulWidget {
   @override
@@ -18,6 +19,13 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Expanded(
+                  //flex: ,
+                  child: Container(
+                    margin: EdgeInsets.only(top: 60),
+                      child: Text("Chamir",style: TextStyle(fontFamily:'Regular' , fontSize: 50,color: Color(0xff1e2a78) ))
+                  )
+              ),
+              Expanded(
                 flex: 2,
                 child: Container(
                   child: Column(
@@ -26,12 +34,12 @@ class _SplashScreenState extends State<SplashScreen> {
                       CircleAvatar(
                         radius: 50,
                         backgroundColor: Colors.blue,
-                        child: Icon(Icons.title,size: 60,color: Color(0xff1e2a78),),
+                        child: Icon(Icons.fastfood_outlined,size: 60,color: Color(0xff1e2a78),),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 30),
                       ),
-                      Text("TO DO",style: TextStyle(fontFamily:'Regular' , fontSize: 25,color: Color(0xfffc5c9c) ),)
+                      Text("CHF",style: TextStyle(fontFamily:'Regular' , fontSize: 25,color: Color(0xff1e2a78) ),)
                     ],
                   ),
                 ),
@@ -46,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       backgroundColor: Color(0xff1e2a78),
                     ),
                     Padding(padding: EdgeInsets.only(top: 20)),
-                    Text("Manage Your Tasks Here",style: TextStyle(fontFamily:'Regular' , fontSize: 20),)
+                    Text("Find Your Meals Here",style: TextStyle(fontFamily:'Regular' , fontSize: 20),)
                   ],
                 ),
               )
