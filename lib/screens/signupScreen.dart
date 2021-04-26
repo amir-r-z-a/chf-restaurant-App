@@ -73,39 +73,51 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         "Address",
                         hint: "your Address",
                       ),
-                      Row(
-                        children: [
-                          Text("Fast Food"),
-                          ButtonBar(
-                            children: [
-                              Radio(
-                                value: 2,
-                                groupValue: selectedRadio,
-                                activeColor: Colors.pink,
-                                onChanged: (val){
-                                  print("Radio $val");
-                                  setSelectedRadio(val);
-                                },
-                              ),
-                              Radio(
-                                value: 3,
-                                groupValue: selectedRadio,
-                                activeColor: Colors.pink,
-                                onChanged: (val){
-                                  print("Radio $val");
-                                  setSelectedRadio(val);
-                                },
-                              )
-                            ],
-                          )
-                        ],
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(padding: EdgeInsets.all(10)),
+                            Text("Fast Food"),
+                            Padding(padding: EdgeInsets.all(10)),
+                            ButtonBar(
+                              children: [
+                                Radio(
+                                  value: 2,
+                                  groupValue: selectedRadio,
+                                  activeColor: Colors.pink,
+                                  onChanged: (val){
+                                    print("Radio $val");
+                                    setSelectedRadio(val);
+                                  },
+                                ),
+                                Text("Iranian Food"),
+                                // Padding(padding: EdgeInsets.all(10)),
+                                Radio(
+                                  value: 3,
+                                  groupValue: selectedRadio,
+                                  activeColor: Colors.pink,
+                                  onChanged: (val){
+                                    print("Radio $val");
+                                    setSelectedRadio(val);
+                                  },
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          Padding(padding: EdgeInsets.all(10)),
+                          Text("Fast Food"),
+                          Padding(padding: EdgeInsets.all(10)),
                           ButtonBar(
                             children: [
                               Radio(
-                                value: 0,
+                                value: 1,
                                 groupValue: selectedRadio,
                                 activeColor: Colors.pink,
                                 onChanged: (val){
@@ -113,8 +125,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   setSelectedRadio(val);
                                 },
                               ),
+                              Text("Iranian Food"),
+                              // Padding(padding: EdgeInsets.all(10)),
                               Radio(
-                                value: 1,
+                                value: 0,
                                 groupValue: selectedRadio,
                                 activeColor: Colors.pink,
                                 onChanged: (val){
