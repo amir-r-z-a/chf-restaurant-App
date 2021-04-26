@@ -25,6 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
                 margin: EdgeInsets.fromLTRB(25, 50, 0, 0),
@@ -74,6 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     Row(
                       children: [
+                        Text("Fast Food"),
                         ButtonBar(
                           children: [
                             Radio(
