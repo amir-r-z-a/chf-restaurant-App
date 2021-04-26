@@ -23,9 +23,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 )),
             Form(
                 key: _formkey,
-                child: ListView(
-                  children: [TextFormField()],
-                ))
+                child: Column(
+                  children: [
+                    TextFormField()
+                  ],
+                ),
+            )
           ],
         ),
       ),
