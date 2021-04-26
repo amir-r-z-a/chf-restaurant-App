@@ -1,5 +1,5 @@
 import 'package:chfrestaurant/screens/signupScreen.dart';
-import 'package:chfrestaurant/screens/splashScreen.dart';
+import 'package:chfrestaurant/screens/SplashScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,4 +19,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
