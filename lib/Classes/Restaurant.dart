@@ -3,6 +3,7 @@
 import 'package:chfrestaurant/Classes/ClientComment.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Order.dart';
+import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
 // import 'package:flutter/cupertino.dart';
 
 class Restaurant {
@@ -10,7 +11,7 @@ class Restaurant {
   String _phoneNumber;
   String _password;
   String _address;
-  String _type;
+  RestaurantTypes _type;
   List<Food> _foods;
   double _workingRadius = 10;
   double _point;
@@ -48,9 +49,10 @@ class Restaurant {
     _address = value;
   }
 
-  String get type => _type;
 
-  set type(String value) {
+  RestaurantTypes get type => _type;
+
+  set type(RestaurantTypes value) {
     _type = value;
   }
 
