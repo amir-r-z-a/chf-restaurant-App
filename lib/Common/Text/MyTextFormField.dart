@@ -32,8 +32,8 @@ class MyTextFormField extends StatelessWidget {
         //else print(no)
       },
       validator: (String value) {
-        print(value);
-        print(Accounts.foundPhoneNumber(value));
+        // print(value);
+        // print(Accounts.foundPhoneNumber(value));
         if (value == null || value.isEmpty) {
           return "Please enter something";
         } else if (regex == 'PN' && Accounts.foundPhoneNumber(value)) {
