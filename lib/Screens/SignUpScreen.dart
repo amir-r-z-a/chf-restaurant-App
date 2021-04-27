@@ -72,9 +72,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                         obscureText: _isObscure,
                         decoration: InputDecoration(
-                          focusedBorder:OutlineInputBorder(
-                            borderSide: const BorderSide(color: Color.fromRGBO(248, 95, 106, 1), width: 2.0)
-                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Color.fromRGBO(248, 95, 106, 1),
+                                  width: 2.0)),
                           errorStyle: TextStyle(
                             color: Color.fromRGBO(248, 95, 106, 1),
                           ),
@@ -244,14 +245,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           print("saved");
                           Navigator.pushNamed(context, "/SignInScreen");
                           // print(selectedRadio) ;
+                          print('Your len is:');
                           print(Accounts.getLength());
-                          print(Accounts.accounts[2].name);
-                          print(Accounts.accounts[2].phoneNumber);
-                          print(Accounts.accounts[2].password);
-                          print(Accounts.accounts[2].address);
-                          print(Accounts.accounts[2].type);
+                          print(Accounts.accounts[0].name);
+                          print(Accounts.accounts[0].phoneNumber);
+                          print(Accounts.accounts[0].password);
+                          print(Accounts.accounts[0].address);
+                          print(Accounts.accounts[0].type);
+
+                          print(Accounts.accounts[1].name);
+                          print(Accounts.accounts[1].phoneNumber);
+                          print(Accounts.accounts[1].password);
+                          print(Accounts.accounts[1].address);
+                          print(Accounts.accounts[1].type);
                           //null kardan oona
                           //navigate kardan
+                          //deraz tar kardan dokme continue
+                          //ovordan dokme ha posht text
+                          //zadan class text baraye type
+                          //padding select
+                          //regex password va phoneNumber
+                          //border ha
+                          //agar kasi ba phoneNumber tekrari signUp konad error dahad
                         });
                       }
                     },
