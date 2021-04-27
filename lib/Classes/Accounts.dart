@@ -1,15 +1,19 @@
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 
 class Accounts {
-  List<Restaurant> _accounts;
+  static List<Restaurant> _accounts = List.empty(growable: true);
 
-  void addAccount(Restaurant restaurant) {
+  static void addAccount(Restaurant restaurant) {
     _accounts.add(restaurant);
   }
 
-  List<Restaurant> get accounts => _accounts;
+  static int getLength() {
+    return _accounts.length;
+  }
 
-  set accounts(List<Restaurant> value) {
+  static List<Restaurant> get accounts => _accounts;
+
+  static set accounts(List<Restaurant> value) {
     _accounts = value;
   }
 }
