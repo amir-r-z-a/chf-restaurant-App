@@ -1,4 +1,5 @@
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
+import 'package:chfrestaurant/Common/Text/TitleText.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   var _formkey = GlobalKey<FormState>();
   int selectedRadio;
-
+  bool _isObscure = true ;
   setSelectedRadio(int val) {
     setState(() {
       selectedRadio = val;
@@ -34,7 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Row(
                     children: [
                       Text(
-                        "Sign up",
+                        "Sign Up",
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold),
                       ),
@@ -52,7 +53,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       Padding(padding: EdgeInsets.all(15)),
                       TextFormField(
+                        obscureText: _isObscure,
                         decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed:() {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            },
+                            icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
+                          ),
                           labelText: "Password",
                           labelStyle: TextStyle(
                               fontSize: 14,
@@ -76,14 +86,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hint: "your Address",
                       ),
                       Container(
-                          margin: EdgeInsets.fromLTRB(0, 20,130, 0),
-                          child: Text(
-                            "Choose your restaurant type  :",
-                            style: TextStyle(
-                                color: Color.fromRGBO(248, 95, 106, 1),
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          )),
+                          margin: EdgeInsets.fromLTRB(0, 20,166, 0),
+                          child: TitleText("Select your restaurant type : ",)
+                      ),
                       Container(
                         margin: EdgeInsets.only(top: 10),
                         child: Row(
@@ -120,7 +125,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: 30),
+                        margin: EdgeInsets.only(right: 10),
                         child: Row(
                           //mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -165,7 +170,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     if(_formkey.currentState.validate()){
                       setState(() {
                         _formkey.currentState.save();
-
                       });
                     }
                 },
