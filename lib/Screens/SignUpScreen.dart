@@ -202,7 +202,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Padding(padding: EdgeInsets.only(right: 10)),
                     GestureDetector(
                       onTap: () {
-                        print("sign in taped");
+                        Navigator.pushNamed(context, "/SignInScreen");
                       },
                       child: TitleText(
                         'Sign In',
@@ -242,6 +242,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               MyTextFormField.address,
                               MyTextFormField.type));
                           print("saved");
+                          Navigator.pushNamed(context, "/SignInScreen");
                           // print(selectedRadio) ;
                           print(Accounts.getLength());
                           print(Accounts.accounts[2].name);
