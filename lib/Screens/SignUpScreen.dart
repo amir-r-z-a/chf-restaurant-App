@@ -1,6 +1,7 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
+import 'package:chfrestaurant/Common/Text/GrayText.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:chfrestaurant/Common/Text/TitleText.dart';
 import 'package:chfrestaurant/Common/Text/WhiteText.dart';
@@ -55,7 +56,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       MyTextFormField(
                         "Name",
-                        hint: "your name",
+                        hint: "Your name",
                         index: 1,
                       ),
                       Padding(padding: EdgeInsets.all(15)),
@@ -71,7 +72,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                         obscureText: _isObscure,
                         decoration: InputDecoration(
+                          errorStyle: TextStyle(
+                            color: Color.fromRGBO(248, 95, 106, 1),
+                          ),
                           suffixIcon: IconButton(
+                            color: Color.fromRGBO(248, 95, 106, 1),
                             onPressed: () {
                               setState(() {
                                 _isObscure = !_isObscure;
@@ -86,7 +91,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                               color: Color.fromRGBO(248, 95, 106, 1)),
-                          hintText: "your password ",
+                          hintText: "Your password ",
                           hintStyle: TextStyle(
                             fontSize: 16,
                             color: Color.fromRGBO(209, 214, 219, 1),
@@ -97,12 +102,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       MyTextFormField(
                         "Phone number",
                         index: 2,
-                        hint: "your Phone number",
+                        hint: "Your Phone number",
                       ),
                       Padding(padding: EdgeInsets.all(15)),
                       MyTextFormField(
                         "Address",
-                        hint: "your Address",
+                        hint: "Your Address",
                         index: 3,
                       ),
                       Container(
@@ -164,7 +169,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     setSelectedRadio(val);
                                   },
                                 ),
-                                Text("Other Types"),
+                                Text("Other"),
                                 Padding(padding: EdgeInsets.only(right: 0)),
                                 // Padding(padding: EdgeInsets.all(10)),
                                 Radio(
@@ -190,18 +195,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Have an Account ?"),
-                    Padding(padding: EdgeInsets.only(right: 20)),
+                    GrayText("Have an Account ?", 0xff989eb1, 16),
+                    Padding(padding: EdgeInsets.only(right: 10)),
                     GestureDetector(
                       onTap: () {
                         print("sign in taped");
                       },
-                      child: Text(
-                        "Sign In",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: Color.fromRGBO(248, 95, 106, 1)),
+                      child: TitleText(
+                        'Sign In',
+                        fontSize: 16,
                       ),
                     ),
                   ],
@@ -244,6 +246,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           print(Accounts.accounts[2].password);
                           print(Accounts.accounts[2].address);
                           print(Accounts.accounts[2].type);
+
+                          //null kardan oona
+                          //error style password
+                          //navigate kardan
+                          //if oon passworde
                         });
                       }
                     },

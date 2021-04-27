@@ -7,7 +7,8 @@ class MyTextFormField extends StatelessWidget {
   static String password;
   static String phoneNumber;
   static String address;
-  static RestaurantTypes type ;
+  static RestaurantTypes type;
+
   String label;
   String hint;
   String regex;
@@ -44,7 +45,9 @@ class MyTextFormField extends StatelessWidget {
         return null;
       },
       decoration: InputDecoration(
-        errorStyle: TextStyle(color: Color.fromRGBO(248, 95, 106, 1)),
+        errorStyle: TextStyle(
+          color: Color.fromRGBO(248, 95, 106, 1),
+        ),
         labelText: label,
         labelStyle: TextStyle(
             fontSize: 14,

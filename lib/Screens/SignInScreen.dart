@@ -47,6 +47,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   obscureText: _isObscure,
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
+                      color: Color.fromRGBO(248, 95, 106, 1),
                       onPressed: () {
                         setState(() {
                           _isObscure = !_isObscure;
@@ -60,7 +61,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Color.fromRGBO(248, 95, 106, 1)),
-                    hintText: "your password ",
+                    hintText: "Your password ",
                     hintStyle: TextStyle(
                       fontSize: 16,
                       color: Color.fromRGBO(209, 214, 219, 1),
