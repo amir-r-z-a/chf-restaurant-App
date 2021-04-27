@@ -1,4 +1,6 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Classes/Restaurant.dart';
+import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:chfrestaurant/Common/Text/TitleText.dart';
 import 'package:chfrestaurant/Common/Text/WhiteText.dart';
@@ -14,7 +16,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   var _formkey = GlobalKey<FormState>();
   int selectedRadio;
   bool _isObscure = true;
-
   setSelectedRadio(int val) {
     setState(() {
       selectedRadio = val;
@@ -58,6 +59,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       Padding(padding: EdgeInsets.all(15)),
                       TextFormField(
+                        onSaved: (String value) {
+                          MyTextFormField.password=value;
+                        } ,
                         validator: (String value) {
                           if (value.isEmpty || value == null) {
                             return "Please enter something";
@@ -216,7 +220,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       if (_formkey.currentState.validate()) {
                         setState(() {
                           _formkey.currentState.save();
+                          if(selectedRadio==0){
+                            MyTextFormField.type = RestaurantTypes.Other ;
+                          }
+                          else  if(selectedRadio==1){
+                            MyTextFormField.type = RestaurantTypes.Cafe ;
+                          }
+                          else  if(selectedRadio==2){
+                            MyTextFormField.type = RestaurantTypes.FastFood ;
+                          }
+                          else  if(selectedRadio==3){
+                            MyTextFormField.type = RestaurantTypes.IranianRestaurant ;
+                          }
+                         Accounts.addAccount(Restaurant(MyTextFormField.name,MyTextFormField.phoneNumber,MyTextFormField.password,MyTextFormField.address,MyTextFormField.type));
                           print("saved");
+                          print(selectedRadio) ;
                         });
                       }
                     },
