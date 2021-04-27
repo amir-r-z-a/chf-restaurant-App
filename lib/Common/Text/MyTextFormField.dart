@@ -1,3 +1,4 @@
+import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:flutter/material.dart';
 
 class MyTextFormField extends StatelessWidget {
@@ -7,10 +8,30 @@ class MyTextFormField extends StatelessWidget {
   static String address;
   String label;
   String hint;
-  String valid;
+  String regex;
+  int indexAccount;
   int index;
 
-  MyTextFormField(this.index, this.label, {this.hint, this.valid});
+  MyTextFormField(this.label, {this.index, this.hint, this.regex});
+
+  bool foundName(String input) {
+    for (int i = 0; i < Accounts.getLength(); i++) {
+      if (Accounts.accounts[i].name == input) {
+        indexAccount = i;
+        return false;
+      }
+    }
+    return true;
+  }
+
+  bool foundPassword(String input) {
+    for (int i = 0; i < Accounts.getLength(); i++) {
+      if (Accounts.accounts[i].password == input) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +50,16 @@ class MyTextFormField extends StatelessWidget {
         }
       },
       validator: (String value) {
-        if (valid == null && (value == null || value.isEmpty)) {
+        print(value);
+        print(foundName(value));
+        if (value == null || value.isEmpty) {
           return "Please enter something";
-        } else if (false /*value != valid*/) {
-          return "Your enter is incorrect";
+        } else if (regex == 'N' && foundName(value)) {
+          return "Your name is not found";
+        } else if (regex == 'P' && foundPassword(value)) {
+          return "Your password is not correct";
+        } else if (false /*regex != null*/) {
+          return "Your enter is not correct";
         }
         return null;
       },
