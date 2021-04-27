@@ -1,3 +1,4 @@
+import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:chfrestaurant/Common/Text/TitleText.dart';
 import 'package:chfrestaurant/Common/Text/WhiteText.dart';
@@ -8,10 +9,12 @@ class SignUpScreen extends StatefulWidget {
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
+
 class _SignUpScreenState extends State<SignUpScreen> {
   var _formkey = GlobalKey<FormState>();
   int selectedRadio;
-  bool _isObscure = true ;
+  bool _isObscure = true;
+
   setSelectedRadio(int val) {
     setState(() {
       selectedRadio = val;
@@ -51,18 +54,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       MyTextFormField(
                         "Name",
                         hint: "your name",
+                        index: 1,
                       ),
                       Padding(padding: EdgeInsets.all(15)),
                       TextFormField(
+                        validator: (String value) {
+                          if (value.isEmpty || value == null) {
+                            return "Please enter something";
+                          }
+                          return null;
+                        },
                         obscureText: _isObscure,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
-                            onPressed:() {
+                            onPressed: () {
                               setState(() {
                                 _isObscure = !_isObscure;
                               });
                             },
-                            icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
+                            icon: Icon(_isObscure
+                                ? Icons.visibility
+                                : Icons.visibility_off),
                           ),
                           labelText: "Password",
                           labelStyle: TextStyle(
@@ -79,17 +91,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Padding(padding: EdgeInsets.all(15)),
                       MyTextFormField(
                         "Phone number",
+                        index: 2,
                         hint: "your Phone number",
                       ),
                       Padding(padding: EdgeInsets.all(15)),
                       MyTextFormField(
                         "Address",
                         hint: "your Address",
+                        index: 3,
                       ),
                       Container(
-                          margin: EdgeInsets.fromLTRB(0, 20,166, 0),
-                          child: TitleText("Select your restaurant type : ",)
-                      ),
+                          margin: EdgeInsets.fromLTRB(0, 20, 166, 0),
+                          child: TitleText(
+                            "Select your restaurant type : ",
+                          )),
                       Container(
                         margin: EdgeInsets.only(top: 10),
                         child: Row(
@@ -166,28 +181,51 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 50),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(width: 200, height: 50),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Color.fromRGBO(248, 95, 106, 1),
-                    ),
-                      child: WhiteText("Continue"),
-                    onPressed: (){
-                        if(_formkey.currentState.validate()){
-                          setState(() {
-                            _formkey.currentState.save();
-                          });
-                        }
-                    },
+                margin: EdgeInsets.only(bottom: 20),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                    Text("Have an Account ?"),
+                Padding(padding: EdgeInsets.only(right: 20)),
+                GestureDetector(
+                  onTap: (){
+                    print("sign in taped");
+                  },
+                  child: Text(
+                    "Sign In",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                        color: Color.fromRGBO(248, 95, 106, 1)),
                   ),
                 ),
-              )
             ],
           ),
         ),
+        Container(
+          margin: EdgeInsets.only(bottom: 50),
+          child: ConstrainedBox(
+            constraints: BoxConstraints.tightFor(width: 200, height: 50),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Color.fromRGBO(248, 95, 106, 1),
+              ),
+              child: WhiteText("Continue"),
+              onPressed: () {
+                if (_formkey.currentState.validate()) {
+                  setState(() {
+                    _formkey.currentState.save();
+                    print("saved");
+                  });
+                }
+              },
+            ),
+          ),
+        )
+        ],
       ),
+    ),)
+    ,
     );
   }
 }
