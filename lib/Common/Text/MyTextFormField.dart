@@ -10,12 +10,11 @@ class MyTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: Color.fromRGBO(248, 95, 106, 1) ,
+      cursorColor: Color.fromRGBO(248, 95, 106, 1),
       onSaved: (String value) {
         this.str = value;
       },
-      decoration:
-      InputDecoration(
+      decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(
             fontSize: 14,
