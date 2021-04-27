@@ -1,3 +1,4 @@
+import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Common/Text/GrayText.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:chfrestaurant/Common/Text/SignInUpText.dart';
@@ -13,6 +14,7 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   var key1 = GlobalKey<FormState>();
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class _SignInScreenState extends State<SignInScreen> {
         key: key1,
         child: Container(
           child: ListView(
-              padding: EdgeInsets.fromLTRB(50, 180, 50, 100),
+              padding: EdgeInsets.fromLTRB(50, 175, 50, 100),
               children: [
                 SignInUpText("Sign In"),
                 Padding(padding: EdgeInsets.all(10)),
@@ -30,27 +32,59 @@ class _SignInScreenState extends State<SignInScreen> {
                 MyTextFormField(
                   "Phone number",
                   hint: "example: 0912XXXXXXX",
-                  regex: 'N',
+                  regex: 'PN',
                 ),
                 Padding(padding: EdgeInsets.all(10)),
-                MyTextFormField(
-                  "Password",
-                  regex: 'P',
+                TextFormField(
+                  validator: (String value) {
+                    if (value.isEmpty || value == null) {
+                      return "Please enter something";
+                    } else if (Accounts.foundPassword(value)) {
+                      return "Your password is not correct";
+                    }
+                    return null;
+                  },
+                  obscureText: _isObscure,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
+                      icon: Icon(
+                          _isObscure ? Icons.visibility : Icons.visibility_off),
+                    ),
+                    labelText: "Password",
+                    labelStyle: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(248, 95, 106, 1)),
+                    hintText: "your password ",
+                    hintStyle: TextStyle(
+                      fontSize: 16,
+                      color: Color.fromRGBO(209, 214, 219, 1),
+                    ),
+                    errorStyle:
+                        TextStyle(color: Color.fromRGBO(248, 95, 106, 1)),
+                  ),
                 ),
                 Padding(padding: EdgeInsets.all(10)),
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(248, 95, 106, 1)),
-                    onPressed: () {
-                      if (key1.currentState.validate()) {
-                        key1.currentState.save();
-                        print("done");
-                        print(MyTextFormField.name);
-                        print(MyTextFormField.password);
-                        print("Welcome to Chamir food");
-                      }
-                    },
-                    child: WhiteText('Sign In')),
+                  style: ElevatedButton.styleFrom(
+                      primary: Color.fromRGBO(248, 95, 106, 1)),
+                  onPressed: () {
+                    if (key1.currentState.validate()) {
+                      key1.currentState.save();
+                      print("done");
+                      print(Accounts.currentAccount);
+                      print(MyTextFormField.name);
+                      print(MyTextFormField.password);
+                      print("Welcome to Chamir food");
+                    }
+                  },
+                  child: WhiteText('Sign In'),
+                ),
                 Padding(padding: EdgeInsets.all(20)),
                 GestureDetector(
                   onTap: () {
