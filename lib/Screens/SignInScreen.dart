@@ -90,6 +90,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 GestureDetector(
                   onTap: () {
                     print("tap");
+                    Navigator.pushNamed(context, '/SignUpScreen');
                   },
                   child: Center(child: TitleText('Sign Up')),
                 ),
