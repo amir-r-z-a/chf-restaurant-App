@@ -249,11 +249,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           print(Accounts.accounts[2].password);
                           print(Accounts.accounts[2].address);
                           print(Accounts.accounts[2].type);
-
                           //null kardan oona
-                          //error style password
                           //navigate kardan
-                          //if oon passworde
                         });
                       }
                     },
