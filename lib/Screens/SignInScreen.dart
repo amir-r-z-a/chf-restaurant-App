@@ -92,7 +92,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     print("tap");
                     Navigator.pushNamed(context, '/SignUpScreen');
                   },
-                  child: Center(child: TitleText('Sign Up')),
+                  child: Center(
+                      child: TitleText(
+                    'Sign Up',
+                    fontSize: 18,
+                  )),
                 ),
               ]),
         ),
