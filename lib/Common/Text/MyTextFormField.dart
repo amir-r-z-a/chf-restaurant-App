@@ -1,4 +1,5 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
 import 'package:flutter/material.dart';
 
 class MyTextFormField extends StatelessWidget {
@@ -6,7 +7,7 @@ class MyTextFormField extends StatelessWidget {
   static String password;
   static String phoneNumber;
   static String address;
-  static String type;
+  static RestaurantTypes type ;
   String label;
   String hint;
   String regex;
