@@ -76,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hint: "your Address",
                       ),
                       Container(
-                          margin: EdgeInsets.only(top: 20),
+                          margin: EdgeInsets.fromLTRB(0, 20,130, 0),
                           child: Text(
                             "Choose your restaurant type  :",
                             style: TextStyle(
@@ -87,7 +87,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Container(
                         margin: EdgeInsets.only(top: 10),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          //mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(padding: EdgeInsets.only(right: 10)),
                             Text("Fast Food"),
@@ -122,7 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Container(
                         margin: EdgeInsets.only(left: 30),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          //mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(padding: EdgeInsets.only(right: 10)),
                             Text("Cafe"),
@@ -158,6 +158,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                 ),
+              ),
+              ElevatedButton(
+                  child: Text(""),
+                onPressed: (){
+                    if(_formkey.currentState.validate()){
+                      setState(() {
+                        _formkey.currentState.save();
+
+                      });
+                    }
+                },
               )
             ],
           ),
