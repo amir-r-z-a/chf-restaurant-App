@@ -6,10 +6,10 @@ import 'package:chfrestaurant/Screens/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  Accounts.addAccount(
-      Restaurant('name1', 'phoneNumber1', 'password1', 'addres1', RestaurantTypes.Cafe));
-  Accounts.addAccount(
-      Restaurant('name2', 'phoneNumber2', 'password2', 'addres2', RestaurantTypes.Other));
+  Accounts.addAccount(Restaurant(
+      'name1', 'phoneNumber1', 'password1', 'addres1', RestaurantTypes.Cafe));
+  Accounts.addAccount(Restaurant(
+      'name2', 'phoneNumber2', 'password2', 'addres2', RestaurantTypes.Other));
   runApp(MyApp());
 }
 
