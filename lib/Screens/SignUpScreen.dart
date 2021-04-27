@@ -1,5 +1,6 @@
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:chfrestaurant/Common/Text/TitleText.dart';
+import 'package:chfrestaurant/Common/Text/WhiteText.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             children: [
               Container(
-                  margin: EdgeInsets.fromLTRB(25, 50, 0, 0),
+                  margin: EdgeInsets.fromLTRB(25, 30, 0, 0),
                   child: Row(
                     children: [
                       Text(
@@ -164,15 +165,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
               ),
-              ElevatedButton(
-                  child: Text(""),
-                onPressed: (){
-                    if(_formkey.currentState.validate()){
-                      setState(() {
-                        _formkey.currentState.save();
-                      });
-                    }
-                },
+              Container(
+                margin: EdgeInsets.only(bottom: 50),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints.tightFor(width: 200, height: 50),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromRGBO(248, 95, 106, 1),
+                    ),
+                      child: WhiteText("Continue"),
+                    onPressed: (){
+                        if(_formkey.currentState.validate()){
+                          setState(() {
+                            _formkey.currentState.save();
+                          });
+                        }
+                    },
+                  ),
+                ),
               )
             ],
           ),
