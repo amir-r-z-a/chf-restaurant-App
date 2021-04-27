@@ -72,6 +72,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                         obscureText: _isObscure,
                         decoration: InputDecoration(
+                          focusedBorder:OutlineInputBorder(
+                            borderSide: const BorderSide(color: Color.fromRGBO(248, 95, 106, 1), width: 2.0)
+                          ),
                           errorStyle: TextStyle(
                             color: Color.fromRGBO(248, 95, 106, 1),
                           ),
