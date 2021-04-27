@@ -1,8 +1,13 @@
-import 'package:chfrestaurant/screens/SignUpScreen.dart';
-import 'package:chfrestaurant/screens/SplashScreen.dart';
+import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Classes/Restaurant.dart';
+import 'package:chfrestaurant/Screens/SignInScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  Accounts.addAccount(
+      Restaurant('name1', 'phoneNumber1', 'password1', 'addres1', 'type1'));
+  Accounts.addAccount(
+      Restaurant('name2', 'phoneNumber2', 'password2', 'addres2', 'type2'));
   runApp(MyApp());
 }
 
@@ -15,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SignUpScreen(),
+      home: SignInScreen(),
     );
   }
 }
