@@ -6,32 +6,13 @@ class MyTextFormField extends StatelessWidget {
   static String password;
   static String phoneNumber;
   static String address;
+  static String type;
   String label;
   String hint;
   String regex;
-  int indexAccount;
   int index;
 
   MyTextFormField(this.label, {this.index, this.hint, this.regex});
-
-  bool foundName(String input) {
-    for (int i = 0; i < Accounts.getLength(); i++) {
-      if (Accounts.accounts[i].name == input) {
-        indexAccount = i;
-        return false;
-      }
-    }
-    return true;
-  }
-
-  bool foundPassword(String input) {
-    for (int i = 0; i < Accounts.getLength(); i++) {
-      if (Accounts.accounts[i].password == input) {
-        return false;
-      }
-    }
-    return true;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,22 +23,20 @@ class MyTextFormField extends StatelessWidget {
         if (index == 1) {
           name = value;
         } else if (index == 2) {
-          password = value;
-        } else if (index == 3) {
           phoneNumber = value;
-        } else {
+        } else
+        /*if(index==3)*/ {
           address = value;
         }
+        //else print(no)
       },
       validator: (String value) {
         print(value);
-        print(foundName(value));
+        print(Accounts.foundPhoneNumber(value));
         if (value == null || value.isEmpty) {
           return "Please enter something";
-        } else if (regex == 'N' && foundName(value)) {
+        } else if (regex == 'PN' && Accounts.foundPhoneNumber(value)) {
           return "Your name is not found";
-        } else if (regex == 'P' && foundPassword(value)) {
-          return "Your password is not correct";
         } else if (false /*regex != null*/) {
           return "Your enter is not correct";
         }
