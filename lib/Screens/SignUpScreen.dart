@@ -183,49 +183,49 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Container(
                 margin: EdgeInsets.only(bottom: 20),
                 child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
                     Text("Have an Account ?"),
-                Padding(padding: EdgeInsets.only(right: 20)),
-                GestureDetector(
-                  onTap: (){
-                    print("sign in taped");
-                  },
-                  child: Text(
-                    "Sign In",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                        color: Color.fromRGBO(248, 95, 106, 1)),
+                    Padding(padding: EdgeInsets.only(right: 20)),
+                    GestureDetector(
+                      onTap: () {
+                        print("sign in taped");
+                      },
+                      child: Text(
+                        "Sign In",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Color.fromRGBO(248, 95, 106, 1)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 50),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints.tightFor(width: 200, height: 50),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromRGBO(248, 95, 106, 1),
+                    ),
+                    child: WhiteText("Continue"),
+                    onPressed: () {
+                      if (_formkey.currentState.validate()) {
+                        setState(() {
+                          _formkey.currentState.save();
+                          print("saved");
+                        });
+                      }
+                    },
                   ),
                 ),
+              )
             ],
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(bottom: 50),
-          child: ConstrainedBox(
-            constraints: BoxConstraints.tightFor(width: 200, height: 50),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromRGBO(248, 95, 106, 1),
-              ),
-              child: WhiteText("Continue"),
-              onPressed: () {
-                if (_formkey.currentState.validate()) {
-                  setState(() {
-                    _formkey.currentState.save();
-                    print("saved");
-                  });
-                }
-              },
-            ),
-          ),
-        )
-        ],
       ),
-    ),)
-    ,
     );
   }
 }
