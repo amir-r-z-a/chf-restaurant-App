@@ -22,7 +22,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SignUpScreen(),
+      routes: {
+        '/SignInScreen': (context) => SignInScreen(),
+        '/SignUpScreen': (context) => SignUpScreen()
+      },
+      home: SignInScreen(),
     );
   }
 }
