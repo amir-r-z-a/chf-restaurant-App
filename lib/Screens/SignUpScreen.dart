@@ -64,6 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                           return null;
                         },
+
                         obscureText: _isObscure,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
