@@ -216,7 +216,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Container(
                 margin: EdgeInsets.only(bottom: 50),
                 child: ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(width: 200, height: 50),
+                  constraints: BoxConstraints.tightFor(width: 320, height: 50),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Color.fromRGBO(248, 95, 106, 1),
@@ -258,8 +258,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           print(Accounts.accounts[1].password);
                           print(Accounts.accounts[1].address);
                           print(Accounts.accounts[1].type);
-                          //null kardan oona
-                          //navigate kardan
                           //deraz tar kardan dokme continue
                           //ovordan dokme ha posht text
                           //zadan class text baraye type
