@@ -17,7 +17,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   var _formkey = GlobalKey<FormState>();
   int selectedRadio;
   bool _isObscure = true;
-
+  RegExp regPhoneNumber = new RegExp(r'^09[0|1|2|3][0-9]{8}$',
+      caseSensitive: false, multiLine: false);
+  RegExp regPassword =
+      new RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$",
+          multiLine: false);
   setSelectedRadio(int val) {
     setState(() {
       selectedRadio = val;
@@ -64,12 +68,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onSaved: (String value) {
                           MyTextFormField.password = value;
                         },
-                        validator: (String value) {
-                          if (value.isEmpty || value == null) {
-                            return "Please enter something";
-                          }
-                          return null;
-                        },
+                          validator: (String entereddate) {
+                            if (entereddate.isEmpty || entereddate == null) {
+                              return "you must fill this box";
+                            }
+                            if (!(regPassword.hasMatch(entereddate))) {
+                              return 'your password should contain at least one number and one letter';
+                            }
+                            return null;
+                          },
                         obscureText: _isObscure,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -178,7 +185,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     setSelectedRadio(val);
                                   },
                                 ),
-
                                 Text("Other"),
                               ],
                             )
