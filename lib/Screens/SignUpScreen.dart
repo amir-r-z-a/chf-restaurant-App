@@ -124,9 +124,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Row(
                           //mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Padding(padding: EdgeInsets.only(right: 10)),
-                            Text("Fast Food"),
-                            Padding(padding: EdgeInsets.only(right: 10)),
                             ButtonBar(
                               children: [
                                 Radio(
@@ -138,8 +135,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     setSelectedRadio(val);
                                   },
                                 ),
-                                Text("Iranian Food"),
-                                // Padding(padding: EdgeInsets.all(10)),
+                                Text("Fast Food"),
                                 Radio(
                                   value: 3,
                                   groupValue: selectedRadio,
@@ -148,7 +144,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     print("Radio $val");
                                     setSelectedRadio(val);
                                   },
-                                )
+                                ),
+                                Text("Iranian Food"),
                               ],
                             )
                           ],
@@ -159,9 +156,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Row(
                           //mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Padding(padding: EdgeInsets.only(right: 10)),
-                            Text("Cafe"),
-                            Padding(padding: EdgeInsets.only(right: 25)),
                             ButtonBar(
                               children: [
                                 Radio(
@@ -173,9 +167,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     setSelectedRadio(val);
                                   },
                                 ),
-                                Text("Other"),
-                                Padding(padding: EdgeInsets.only(right: 0)),
-                                // Padding(padding: EdgeInsets.all(10)),
+                                Text("Cafe"),
+                                Padding(padding: EdgeInsets.only(left: 25)),
                                 Radio(
                                   value: 0,
                                   groupValue: selectedRadio,
@@ -184,7 +177,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     print("Radio $val");
                                     setSelectedRadio(val);
                                   },
-                                )
+                                ),
+
+                                Text("Other"),
                               ],
                             )
                           ],
