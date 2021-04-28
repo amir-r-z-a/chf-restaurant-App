@@ -73,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               return "you must fill this box";
                             }
                             if (!(regPassword.hasMatch(entereddate))) {
-                              return 'your password should contain at least one number and one letter';
+                              return 'Your password should contain at least one number and one letter';
                             }
                             return null;
                           },
