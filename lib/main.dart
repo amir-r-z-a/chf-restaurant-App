@@ -1,4 +1,5 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
 import 'package:chfrestaurant/Screens/SignInScreen.dart';
@@ -22,11 +23,13 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "ChFood",
+      theme: ThemeData(primaryColor: const Color.fromRGBO(248, 95, 106, 1)),
       routes: {
         '/SignInScreen': (context) => SignInScreen(),
         '/SignUpScreen': (context) => SignUpScreen()
       },
-      home: SignInScreen(),
+      home: /*foodTile()*/ SignInScreen(),
     );
   }
 }
