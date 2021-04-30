@@ -19,7 +19,6 @@ class MyTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      // style: ,
       cursorColor: Color.fromRGBO(248, 95, 106, 1),
       onSaved: (String value) {
         if (index == 1) {
@@ -37,10 +36,14 @@ class MyTextFormField extends StatelessWidget {
         // print(Accounts.foundPhoneNumber(value));
         if (value == null || value.isEmpty) {
           return "Please enter something";
-        } else if (regex == 'PN' && Accounts.foundPhoneNumber(value)) {
-          return "Your name is not found";
-        } else if (false /*regex != null*/) {
-          return "Your enter is not correct";
+        } else if (regex == 'PNSignIn' && Accounts.foundPhoneNumber(value)) {
+          return "Your phone number is not found";
+        } else if (regex == 'PNSignUp') {
+          if (Accounts.validPhoneNumber(value)) {
+            return 'Your phone number is not valid';
+          } else if (Accounts.alreadyPhoneNumber(value)) {
+            return 'Your phone number is already registered';
+          }
         }
         return null;
       },
