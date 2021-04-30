@@ -15,19 +15,36 @@ class Accounts {
   static bool foundPhoneNumber(String input) {
     for (int i = 0; i < getLength(); i++) {
       if (accounts[i].phoneNumber == input) {
+        currentAccount = i;
         return false;
       }
     }
     return true;
   }
 
-  static bool foundPassword(String input) {
+  static bool validPhoneNumber(String input) {
+    RegExp regPhoneNumber = new RegExp(r'^09[0|1|2|3][0-9]{8}$',
+        caseSensitive: false, multiLine: false);
+    if (input.length != 11 || !regPhoneNumber.hasMatch(input)) {
+      return true;
+    }
+    return false;
+  }
+
+  static bool alreadyPhoneNumber(String input) {
     for (int i = 0; i < getLength(); i++) {
-      if (accounts[i].password == input) {
-        currentAccount = i;
-        return false;
+      if (accounts[i].phoneNumber == input) {
+        return true;
       }
     }
+    return false;
+  }
+
+  static bool foundPassword(String input) {
+    if (accounts[currentAccount].password == input) {
+      return false;
+    }
+    currentAccount = null;
     return true;
   }
 
