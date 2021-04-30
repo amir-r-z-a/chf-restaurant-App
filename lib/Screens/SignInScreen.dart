@@ -90,7 +90,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 Padding(padding: EdgeInsets.all(20)),
                 GestureDetector(
                   onTap: () {
-                    print("tap");
+                    // print("tap");
                     Navigator.pushNamed(context, '/SignUpScreen');
                   },
                   child: Center(
@@ -107,3 +107,5 @@ class _SignInScreenState extends State<SignInScreen> {
 }
 //hint signup yekish bozorge yekish koochik
 // porrang tar boodan bordere errorStyle password az baqie border errorStyle ha
+//ezafe kardan hint(hadaqal 6 char) be password sign in va tafkik error haye password
+//age aval pop kone bad push mishe safhe haye qabl ro pak kard joori ke emkan back nabashe(dar SignIn va SignUp)?

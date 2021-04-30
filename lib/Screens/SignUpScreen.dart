@@ -242,22 +242,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               MyTextFormField.password,
                               MyTextFormField.address,
                               MyTextFormField.type));
-                          print("saved");
                           Navigator.pushNamed(context, "/SignInScreen");
                           // print(selectedRadio) ;
+                          print('-------------------------');
+                          print("saved");
                           print('Your len is:');
                           print(Accounts.getLength());
-                          print(Accounts.accounts[0].name);
-                          print(Accounts.accounts[0].phoneNumber);
-                          print(Accounts.accounts[0].password);
-                          print(Accounts.accounts[0].address);
-                          print(Accounts.accounts[0].type);
-
-                          print(Accounts.accounts[1].name);
-                          print(Accounts.accounts[1].phoneNumber);
-                          print(Accounts.accounts[1].password);
-                          print(Accounts.accounts[1].address);
-                          print(Accounts.accounts[1].type);
+                          print('-------------------------');
+                          for (int i = 0; i < Accounts.getLength(); i++) {
+                            print('index: ');
+                            print(i);
+                            print(Accounts.accounts[i].name);
+                            print(Accounts.accounts[i].phoneNumber);
+                            print(Accounts.accounts[i].password);
+                            print(Accounts.accounts[i].address);
+                            print(Accounts.accounts[i].type);
+                            print('-------------------------');
+                          }
                           //zadan class text baraye type
                           //padding select
                           //border ha
