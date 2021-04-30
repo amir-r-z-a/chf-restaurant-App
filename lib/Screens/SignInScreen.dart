@@ -32,7 +32,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 MyTextFormField(
                   "Phone number",
                   hint: "example: 0912XXXXXXX",
-                  regex: 'PN',
+                  regex: 'PNSignIn',
                 ),
                 Padding(padding: EdgeInsets.all(10)),
                 TextFormField(
@@ -58,16 +58,18 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     labelText: "Password",
                     labelStyle: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(248, 95, 106, 1)),
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(248, 95, 106, 1),
+                    ),
                     hintText: "Your password ",
                     hintStyle: TextStyle(
                       fontSize: 16,
                       color: Color.fromRGBO(209, 214, 219, 1),
                     ),
-                    errorStyle:
-                        TextStyle(color: Color.fromRGBO(248, 95, 106, 1)),
+                    errorStyle: TextStyle(
+                      color: Color.fromRGBO(248, 95, 106, 1),
+                    ),
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(10)),
@@ -78,9 +80,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     if (key1.currentState.validate()) {
                       key1.currentState.save();
                       print("done");
+                      print('index: ');
                       print(Accounts.currentAccount);
-                      print(MyTextFormField.name);
-                      print(MyTextFormField.password);
                       print("Welcome to Chamir food");
                     }
                   },
@@ -104,3 +105,5 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 }
+//hint signup yekish bozorge yekish koochik
+// porrang tar boodan bordere errorStyle password az baqie border errorStyle ha
