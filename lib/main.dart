@@ -2,6 +2,8 @@ import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
+import 'package:chfrestaurant/Screens/MainMenuScreen.dart';
+import 'package:chfrestaurant/Screens/MenuOrder.dart';
 import 'package:chfrestaurant/Screens/SignInScreen.dart';
 import 'package:chfrestaurant/Screens/SignUpScreen.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +31,24 @@ class _MyAppState extends State<MyApp> {
         '/SignInScreen': (context) => SignInScreen(),
         '/SignUpScreen': (context) => SignUpScreen()
       },
-      home: /*foodTile()*/ SignInScreen(),
-    );
+      home:
+          /*Scaffold(
+          body: Chip(
+        avatar: CircleAvatar(
+          backgroundColor: Colors.green,
+          foregroundColor: Colors.red,
+          radius: 1,
+          child: Text('c'),
+        ),
+        label: Text('Cafe'),
+      ))*/
+          FoodTile(
+        'Egg',
+        28,
+        true,
+        desc: 'desc'
+          /*MainMenuScreen()*/
+          /*SignInScreen()*/ /*MenuOrder()*/,
+    ));
   }
 }
