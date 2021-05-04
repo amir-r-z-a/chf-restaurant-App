@@ -1,12 +1,60 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+class customListTile extends StatefulWidget {
+   IconData icon ;
+   String text ;
+  Function ontap ;
+
+   customListTile(this.icon, this.text, this.ontap);
+
+  @override
+  _customListTileState createState() => _customListTileState();
+}
+
+class _customListTileState extends State<customListTile> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+      child: InkWell(
+        splashColor: Colors.deepOrange,
+        onTap:widget.ontap,
+        child: Container(
+          height: 40,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Icon(widget.icon),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      widget.text,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  )
+                ],
+              ),
+              Icon(Icons.arrow_right),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class MainMenuScreen extends StatefulWidget {
   @override
   _MainMenuScreenState createState() => _MainMenuScreenState();
 }
+
 class _MainMenuScreenState extends State<MainMenuScreen> {
   int _currentSelected = 0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,9 +83,21 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
             ),
           ],
         ),
-        drawer: Container(
-          child: Text("here is a drawer"),
-        ),
+        drawer: Drawer(
+            child: ListView(
+          children: [
+            DrawerHeader(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                  Colors.orange,
+                  Colors.deepOrange,
+                ])),
+                child: Text('here is header')),
+            customListTile(Icons.person,'Profile',()=>{}),
+            customListTile(Icons.phone,'Contact Us',()=>{}),
+            customListTile(Icons.logout,"Log Out",()=>{}),
+          ],
+        )),
         appBar: AppBar(
           centerTitle: true,
           title: Text("Main Menu"),
@@ -68,8 +128,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                         ),
                         decoration: BoxDecoration(
                             border: Border.all(width: 1, color: Colors.pink),
-                            borderRadius:
-                                const BorderRadius.all(const Radius.circular(8))),
+                            borderRadius: const BorderRadius.all(
+                                const Radius.circular(8))),
                         width: 170,
                         height: 120,
                       ),
@@ -99,8 +159,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                         ),
                         decoration: BoxDecoration(
                             border: Border.all(width: 1, color: Colors.pink),
-                            borderRadius:
-                                const BorderRadius.all(const Radius.circular(8))),
+                            borderRadius: const BorderRadius.all(
+                                const Radius.circular(8))),
                         width: 170,
                         height: 120,
                       ),
@@ -129,8 +189,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                         ),
                         decoration: BoxDecoration(
                             border: Border.all(width: 1, color: Colors.pink),
-                            borderRadius:
-                                const BorderRadius.all(const Radius.circular(8))),
+                            borderRadius: const BorderRadius.all(
+                                const Radius.circular(8))),
                         width: 170,
                         height: 120,
                       ),
@@ -160,8 +220,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                         ),
                         decoration: BoxDecoration(
                             border: Border.all(width: 1, color: Colors.pink),
-                            borderRadius:
-                                const BorderRadius.all(const Radius.circular(8))),
+                            borderRadius: const BorderRadius.all(
+                                const Radius.circular(8))),
                         width: 170,
                         height: 120,
                       ),
