@@ -1,8 +1,6 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
-import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
-import 'package:chfrestaurant/Screens/DetailsFoodTile.dart';
 import 'package:flutter/material.dart';
 
 class OrdersMenu extends StatefulWidget {
@@ -85,27 +83,6 @@ class _OrdersMenuState extends State<OrdersMenu> {
                               true,
                               desc: MyTextFormField.foodDesc,
                             );
-                            // nazare qaza ba esm tekrari add she
-                            //ezafe kardan delete (delete all type)
-                            // dorost kardan radio ha
-                            //navigate kardan hame safhe ha(az signIn ta details)
-                            //gozashtan switch too edit va detail
-                            //estefade az MyTextFormField
-                            //edqam kardan Food va FoodTile
-                            //dorost kardan zaher TabBar va AppBar
-                            //dorost kardan class color ha va ezafe kardan entekhab theme baraye barname
-                            //ziad kardan tool button sheet
-                            //validator baraye title haye TabBar va name food
-                            //entekhab kardan status va edite an
-                            //vaqti title jadid add mishavad position avavz shavad va rooye an beravad
-                            //ezafe kardan emza be barname(Arman Amirreza)
-                            //add kardan image baraye hame ja
-                            //taqir dadane category
-                            //edit category
-                            //ezafe kardan qabeliat @gmail be MyTextFormField
-                            //ezafe kardan initialValue be MyTextFormField
-
-                            //add kardan tag(entekhab chand menu ba ham)
                             for (int i = 0;
                                 i <
                                     Accounts.accounts[Accounts.currentAccount]
@@ -120,10 +97,10 @@ class _OrdersMenuState extends State<OrdersMenu> {
                               }
                             }
                             if (flag) {
-                              print('here');
                               Accounts.accounts[Accounts.currentAccount]
                                   .addTabBarTitle(
                                       MyTextFormField.foodCategory, food);
+
                               print(Accounts.currentAccount);
                               print(Accounts.accounts.length);
                               print(Accounts.accounts[Accounts.currentAccount]
@@ -183,64 +160,23 @@ class _OrdersMenuState extends State<OrdersMenu> {
     );
   }
 }
+//entekhab kardan status dar Add Food
+//ezafe kardan delete (delete all type)
+// dorost kardan radio ha
+//navigate kardan hame safhe ha(az signIn ta details)
+//dorost kardan zaher TabBar va AppBar
+//dorost kardan class color ha va ezafe kardan entekhab theme baraye barname
+//vaqti title jadid add mishavad position avavz shavad va rooye an beravad
+//ezafe kardan emza be barname(Arman Amirreza)
+//add kardan image baraye hame ja
+//taqir dadane category yek Food
+//edite esme category
+//ezafe kardan qabeliat @gmail be MyTextFormField
+//edit haye DetailsFoodTile mesl profile dakhele drawer beshe
+//dorost kardan rang desc(toosi mesl aks proje) dar DetailsFoodTile
+//gozashtan initial baraye price dar DetailsFoodTile
+
+//add kardan tag(entekhab chand menu ba ham)
 
 //ShapeDecoration(shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(20),side:BorderSide(color: Colors.green,) ))
-
-//
-// DefaultTabController(
-// length: 10,
-// child: Scaffold(
-// appBar: AppBar(
-// bottom: TabBar(
-// indicator: BoxDecoration(
-// color: Color(0xff989eb1),
-// // boxShadow: [BoxShadow(spreadRadius: 1)], // border:,
-// borderRadius: BorderRadius.all(Radius.circular(20))),
-// isScrollable: true,
-// tabs: [
-// Icon(Icons.search),
-// FilterChip(
-// onSelected: (value) => true,
-// // backgroundColor: Color.fromRGBO(248, 95, 106, 1),
-// label: Text('Fast Food'),
-// ),
-// Chip(label: Text('Sea Food')),
-// Chip(label: Text('Cafe')),
-// Chip(label: Text('Pasta')),
-// Chip(label: Text('Steak')),
-// Chip(label: Text('Cake')),
-// Text('Breakfast'),
-// Text('Kabab'),
-// Text('Bread'),
-// // Text('Beverages'),
-// ],
-// ),
-// // actions: [Icon(Icons.search)],
-// leading: GestureDetector(
-// onTap: () {
-// print('tap add');
-// },
-// child: Icon(Icons.add)),
-// title: Text('Menu Order'),
-// centerTitle: true,
-// ),
-// body: TabBarView(
-// children:[ /*List.generate(
-//                 Accounts.accounts[Accounts.currentAccount].getFoodsLength(),
-//                 (index) => Accounts.accounts[Accounts.currentAccount].foods[index].FoodTile)*/
-//
-// // Text('0'),
-// Text('1'),
-// Text('2'),
-// Text('3'),
-// Text('4'),
-// Text('5'),
-// Text('6'),
-// Text('7'),
-// Text('8'),
-// Text('9'),
-// Text('10')
-// ],
-// ),
-// ),
-// );
+//FilterChip,RawChip
