@@ -50,27 +50,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       Text("Restaurant Name : "),
                       Text(Accounts.accounts[Accounts.currentAccount].name),
-                      GestureDetector(
-                        onTap: (){
-                          showModalBottomSheet(
-                            context:context,
-                            builder: (context){
-                              return Container(
-                                margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
-                                child: Form(
-                                  key: _formkey,
-                                  child: ListView(
-                                    children: [
-                                      _editTitleTextField()
-                                    ],
+                      SingleChildScrollView(
+                        child: GestureDetector(
+                          onTap: (){
+                            showModalBottomSheet(
+                              context:context,
+                              builder: (context){
+                                return Container(
+                                  margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                                  child: Form(
+                                    key: _formkey,
+                                    child: ListView(
+                                      children: [
+                                        TextFormField(
+                                          initialValue: Accounts.accounts[Accounts.currentAccount].name,
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
-                            }
-                          );
-                        },
-                        child: Icon(
-                            Icons.edit_rounded,
+                                );
+                              }
+                            );
+                          },
+                          child: Icon(
+                              Icons.edit_rounded,
+                          ),
                         ),
                       )
                     ],
@@ -82,34 +86,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
-  }
-  Widget _editTitleTextField() {
-    if (_isEditingText)
-      return Center(
-        child: TextField(
-          onSubmitted: (newValue){
-            setState(() {
-              initialText = newValue;
-              _isEditingText =false;
-            });
-          },
-          autofocus: true,
-          controller: _editingController,
-        ),
-      );
-    return InkWell(
-        onTap: () {
-      setState(() {
-        _isEditingText = true;
-      });
-    },
-    child: Text(
-    initialText,
-    style: TextStyle(
-    color: Colors.black,
-    fontSize: 18.0,
-    ),
-    ));
   }
 }
 
