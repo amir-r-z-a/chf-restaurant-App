@@ -156,7 +156,9 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
                 Text(
                   DetailsFoodTile.foodStatus ? 'Active' : 'Inactive',
                   style: TextStyle(
-                      color: DetailsFoodTile.foodStatus ? Colors.green : Colors.red,
+                      color: DetailsFoodTile.foodStatus
+                          ? Colors.green
+                          : Colors.red,
                       fontWeight: FontWeight.bold),
                 ),
               ],
