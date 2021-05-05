@@ -19,9 +19,6 @@ class _OrdersMenuState extends State<OrdersMenu> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromRGBO(248, 95, 106, 1),
           onPressed: () {
-            print(Accounts.accounts[Accounts.currentAccount]
-                .getTabBarTitleLength());
-
             showModalBottomSheet(
               context: context,
               builder: (context) {
@@ -161,7 +158,7 @@ class _OrdersMenuState extends State<OrdersMenu> {
   }
 }
 //agar jaii(masalan dar class order niaz be class Food bood va na FoodTile mishe ye class Food tarif kard va foodTile oon ro extend kone)
-//entekhab kardan status dar Add Food
+//entekhab kardan status dar Add Food(be soorat radio: active,inactive)
 //ezafe kardan delete (delete all type)
 // dorost kardan radio ha
 //navigate kardan hame safhe ha(az signIn ta details)

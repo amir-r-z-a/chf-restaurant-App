@@ -138,18 +138,28 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
             Text(DetailsFoodTile.desc),
             Padding(padding: EdgeInsets.all(3)),
             Text('Price: ' + DetailsFoodTile.price.toString() + '\$'),
-            Switch(
-              inactiveThumbColor: Colors.red,
-              inactiveTrackColor: Colors.red,
-              activeTrackColor: Color.fromRGBO(0, 181, 0, 1),
-              activeColor: Color.fromRGBO(0, 181, 0, 1),
-              value: DetailsFoodTile.foodStatus,
-              onChanged: (value) {
-                setState(() {
-                  DetailsFoodTile.foodStatus = !DetailsFoodTile.foodStatus;
-                });
-                widget.function();
-              },
+            Row(
+              children: [
+                Switch(
+                  inactiveThumbColor: Colors.red,
+                  inactiveTrackColor: Colors.red,
+                  activeTrackColor: Color.fromRGBO(0, 181, 0, 1),
+                  activeColor: Color.fromRGBO(0, 181, 0, 1),
+                  value: DetailsFoodTile.foodStatus,
+                  onChanged: (value) {
+                    setState(() {
+                      DetailsFoodTile.foodStatus = !DetailsFoodTile.foodStatus;
+                    });
+                    widget.function();
+                  },
+                ),
+                Text(
+                  DetailsFoodTile.foodStatus ? 'Active' : 'Inactive',
+                  style: TextStyle(
+                      color: DetailsFoodTile.foodStatus ? Colors.green : Colors.red,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           ],
         ),
