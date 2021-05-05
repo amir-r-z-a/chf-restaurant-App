@@ -2,6 +2,8 @@ import 'package:chfrestaurant/Classes/ClientComment.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Order.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
+import 'package:chfrestaurant/Screens/DetailsFoodTile.dart';
+import 'package:flutter/cupertino.dart';
 
 class Restaurant {
   String _name;
@@ -16,11 +18,10 @@ class Restaurant {
   String email;
   List<Order> _orderHistory;
   List<ClientComment> _restaurantComments;
+  Image _profileImage;
 
   Restaurant(
       this._name, this._phoneNumber, this._password, this._address, this._type);
-
-  // Image _profileImage;
 
   // Location _location;
 
@@ -39,7 +40,7 @@ class Restaurant {
   bool validFood(String input) {
     for (int i = 0; i < getTabBarTitleLength(); i++) {
       for (int j = 0; j < tabBarView[i].length; j++) {
-        if (tabBarView[i][j].name == input) {
+        if (tabBarView[i][j].name == input && DetailsFoodTile.name != input) {
           return true;
         }
       }
@@ -105,12 +106,12 @@ class Restaurant {
     _workingRadius = value;
   }
 
-// Image get profileImage => _profileImage;
-//
-// set profileImage(Image value) {
-//   _profileImage = value;
-// }
-//
+  Image get profileImage => _profileImage;
+
+  set profileImage(Image value) {
+    _profileImage = value;
+  }
+
 // Location get location => _location;
 //
 // set location(Location value) {
