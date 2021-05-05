@@ -1,13 +1,13 @@
-import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Screens/DetailsFoodTile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Food {
+class FoodTile extends StatefulWidget {
   String _name;
-  String _foodType;
   double _price;
+  String desc;
   bool _foodStatus;
+  String _foodType;
   Image _foodImage;
 
   String get name => _name;
@@ -16,11 +16,10 @@ class Food {
     _name = value;
   }
 
-  String get label => _foodType;
+  FoodTile(this._name, this._price, this._foodStatus, {this.desc});
 
-  set label(String value) {
-    _foodType = value;
-  }
+  @override
+  _FoodTileState createState() => _FoodTileState();
 
   double get price => _price;
 
@@ -34,6 +33,12 @@ class Food {
     _foodStatus = value;
   }
 
+  String get foodType => _foodType;
+
+  set foodType(String value) {
+    _foodType = value;
+  }
+
   Image get foodImage => _foodImage;
 
   set foodImage(Image value) {
@@ -41,38 +46,13 @@ class Food {
   }
 }
 
-class FoodTile extends StatefulWidget {
-  String name;
-  double price;
-  String desc;
-  bool status;
-
-  FoodTile(this.name, this.price, this.status, {this.desc});
-
-  @override
-  _FoodTileState createState() => _FoodTileState();
-}
-
 class _FoodTileState extends State<FoodTile> {
   void refreshPage() {
     setState(() {
-      for (int i = 0;
-          i < Accounts.accounts[Accounts.currentAccount].getTabBarTitleLength();
-          i++) {
-        for (int j = 0;
-            j < Accounts.accounts[Accounts.currentAccount].tabBarView[i].length;
-            j++) {
-          if (Accounts.accounts[Accounts.currentAccount].tabBarView[i][j] ==
-              DetailsFoodTile.name) {
-            Accounts.accounts[Accounts.currentAccount].tabBarView[i][j].name =
-                DetailsFoodTile.name;
-            Accounts.accounts[Accounts.currentAccount].tabBarView[i][j].name =
-                DetailsFoodTile.desc;
-            Accounts.accounts[Accounts.currentAccount].tabBarView[i][j].name =
-                DetailsFoodTile.price;
-          }
-        }
-      }
+      widget.name = DetailsFoodTile.name;
+      widget.desc = DetailsFoodTile.desc;
+      widget.price = DetailsFoodTile.price;
+      widget.foodStatus = DetailsFoodTile.foodStatus;
     });
   }
 
@@ -121,18 +101,18 @@ class _FoodTileState extends State<FoodTile> {
                       inactiveTrackColor: Colors.red,
                       activeTrackColor: Color.fromRGBO(0, 181, 0, 1),
                       activeColor: Color.fromRGBO(0, 181, 0, 1),
-                      value: widget.status,
+                      value: widget.foodStatus,
                       onChanged: (value) {
                         setState(() {
-                          widget.status = !widget.status;
+                          widget.foodStatus = !widget.foodStatus;
                         });
                       },
                     ),
                   ),
                   Text(
-                    widget.status ? 'Active' : 'Inactive',
+                    widget.foodStatus ? 'Active' : 'Inactive',
                     style: TextStyle(
-                        color: widget.status ? Colors.green : Colors.red,
+                        color: widget.foodStatus ? Colors.green : Colors.red,
                         fontWeight: FontWeight.bold),
                   )
                 ],
@@ -141,26 +121,19 @@ class _FoodTileState extends State<FoodTile> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      // DetailsFoodTile(
-                      //   name: widget.name,
-                      //   desc: widget.desc,
-                      //   price: widget.price,
-                      //   status: widget.status,
-                      // );
-
                       DetailsFoodTile.name = widget.name;
                       DetailsFoodTile.desc =
                           widget.desc != null ? widget.desc : ' ';
                       DetailsFoodTile.price = widget.price;
-                      DetailsFoodTile.status = widget.status;
-                      setState(() {});
+                      DetailsFoodTile.foodStatus = widget.foodStatus;
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => DetailsFoodTile()),
-                      ).then((res) => refreshPage());
-                      // Navigator.pushNamed(context, '/DetailsFoodTile');
-                      setState(() {});
+                          builder: (context) => DetailsFoodTile(
+                            function: refreshPage,
+                          ),
+                        ),
+                      );
                     },
                     child: Container(
                       height: 25,
