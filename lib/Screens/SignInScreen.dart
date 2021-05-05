@@ -109,3 +109,5 @@ class _SignInScreenState extends State<SignInScreen> {
 // porrang tar boodan bordere errorStyle password az baqie border errorStyle ha
 //ezafe kardan hint(hadaqal 6 char) be password sign in va tafkik error haye password
 //age aval pop kone bad push mishe safhe haye qabl ro pak kard joori ke emkan back nabashe(dar SignIn va SignUp)?
+//ja be ja kardan tartib field password va phoneNumber
+//virayesh menu be soorat rowi az chip ha bashad dar oaiin ya balaye safhe ba entekhab chand daste az menu tedad azaye an daste namayesh dade shavad
