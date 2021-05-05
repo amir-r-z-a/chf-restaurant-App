@@ -1,5 +1,6 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
+import 'package:chfrestaurant/Screens/DetailsFoodTile.dart';
 import 'package:flutter/material.dart';
 
 class MyTextFormField extends StatelessWidget {
@@ -8,28 +9,56 @@ class MyTextFormField extends StatelessWidget {
   static String phoneNumber;
   static String address;
   static RestaurantTypes type;
+  static String email;
+
+  static String foodCategory;
+  static String foodName;
+  static String foodDesc;
+  static double foodPrice;
 
   String label;
   String hint;
   String regex;
   int index;
+  String initial;
+  bool addToAccounts;
 
-  MyTextFormField(this.label, {this.index, this.hint, this.regex});
+  MyTextFormField(this.label,
+      {this.index,
+      this.hint,
+      this.regex,
+      this.initial,
+      this.addToAccounts = false});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initial,
       cursorColor: Color.fromRGBO(248, 95, 106, 1),
       onSaved: (String value) {
         if (index == 1) {
-          name = value;
+          addToAccounts
+              ? Accounts.accounts[Accounts.currentAccount].name = value
+              : name = value;
         } else if (index == 2) {
-          phoneNumber = value;
-        } else
-        /*if(index==3)*/ {
-          address = value;
+          addToAccounts
+              ? Accounts.accounts[Accounts.currentAccount].phoneNumber = value
+              : phoneNumber = value;
+        } else if (index == 3) {
+          addToAccounts
+              ? Accounts.accounts[Accounts.currentAccount].address = value
+              : address = value;
+        } else if (index == 4) {
+          foodCategory = value;
+        } else if (index == 5) {
+          foodName = value;
+        } else if (index == 6) {
+          foodPrice = double.parse(value);
+        } else if (index == 7) {
+          addToAccounts
+              ? Accounts.accounts[Accounts.currentAccount].email = value
+              : email = value;
         }
-        //else print(no)
       },
       validator: (String value) {
         // print(value);
@@ -44,6 +73,13 @@ class MyTextFormField extends StatelessWidget {
           } else if (Accounts.alreadyPhoneNumber(value)) {
             return 'Your phone number is already registered';
           }
+        } else if (regex == 'Price' && DetailsFoodTile.validPrice(value)) {
+          return 'Your price is not valid';
+        } else if (regex == 'FoodName' &&
+            Accounts.accounts[Accounts.currentAccount].validFood(value)) {
+          return 'Your food was already added in one of category';
+        } else if (regex == 'Email' && Accounts.validEmail(value)) {
+          return 'Your email is not valid';
         }
         return null;
       },
