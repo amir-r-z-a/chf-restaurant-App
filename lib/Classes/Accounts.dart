@@ -2,7 +2,9 @@ import 'package:chfrestaurant/Classes/Restaurant.dart';
 
 class Accounts {
   static List<Restaurant> _accounts = List.empty(growable: true);
-  static int _currentAccount;
+  static int _currentAccount = 0;
+
+  //edit
 
   static void addAccount(Restaurant restaurant) {
     _accounts.add(restaurant);
@@ -46,6 +48,15 @@ class Accounts {
     }
     currentAccount = null;
     return true;
+  }
+
+  static bool validEmail(String input) {
+    RegExp regEmail = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+        multiLine: false, caseSensitive: false);
+    if (!regEmail.hasMatch(input)) {
+      return true;
+    }
+    return false;
   }
 
   static List<Restaurant> get accounts => _accounts;
