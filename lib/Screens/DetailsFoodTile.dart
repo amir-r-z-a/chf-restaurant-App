@@ -1,6 +1,4 @@
-import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
-import 'package:chfrestaurant/Screens/OrdersMenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,8 +6,10 @@ class DetailsFoodTile extends StatefulWidget {
   static String name;
   static String desc;
   static double price;
-  static bool status;
-  static Function s;
+  static bool foodStatus;
+  Function function;
+
+  DetailsFoodTile({this.function});
 
   static bool validPrice(String input) {
     //^([1-9][0-9]*)|([1-9][0-9]*\\.[0-9]+)$
@@ -62,8 +62,10 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
                           hint: 'New name',
                           index: 5,
                           regex: 'FoodName',
+                          initial: DetailsFoodTile.name,
                         ),
                         TextFormField(
+                          initialValue: DetailsFoodTile.desc,
                           onSaved: (String value) =>
                               MyTextFormField.foodDesc = value,
                           decoration: InputDecoration(
@@ -102,40 +104,7 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
                                       MyTextFormField.foodDesc;
                                   DetailsFoodTile.price =
                                       MyTextFormField.foodPrice;
-                                  DetailsFoodTile.s;
-                                  // for (int i = 0;
-                                  //     i <
-                                  //         Accounts
-                                  //             .accounts[Accounts.currentAccount]
-                                  //             .getTabBarTitleLength();
-                                  //     i++) {
-                                  //   for (int j = 0;
-                                  //       j <
-                                  //           Accounts
-                                  //               .accounts[
-                                  //                   Accounts.currentAccount]
-                                  //               .tabBarView[i]
-                                  //               .length;
-                                  //       j++) {
-                                  //     if (Accounts
-                                  //             .accounts[Accounts.currentAccount]
-                                  //             .tabBarView[i][j] ==
-                                  //         DetailsFoodTile.name) {
-                                  //       Accounts
-                                  //           .accounts[Accounts.currentAccount]
-                                  //           .tabBarView[i][j]
-                                  //           .name = DetailsFoodTile.name;
-                                  //       Accounts
-                                  //           .accounts[Accounts.currentAccount]
-                                  //           .tabBarView[i][j]
-                                  //           .name = DetailsFoodTile.desc;
-                                  //       Accounts
-                                  //           .accounts[Accounts.currentAccount]
-                                  //           .tabBarView[i][j]
-                                  //           .name = DetailsFoodTile.price;
-                                  //     }
-                                  //   }
-                                  // }
+                                  widget.function();
                                   Navigator.pop(context);
                                 });
                               }
@@ -154,9 +123,7 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
       body: Center(
         child: ListView(
           padding: EdgeInsets.all(15),
-          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Padding(padding: EdgeInsets.all(10)),
             Container(
               height: 370,
               width: 370,
@@ -171,6 +138,19 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
             Text(DetailsFoodTile.desc),
             Padding(padding: EdgeInsets.all(3)),
             Text('Price: ' + DetailsFoodTile.price.toString() + '\$'),
+            Switch(
+              inactiveThumbColor: Colors.red,
+              inactiveTrackColor: Colors.red,
+              activeTrackColor: Color.fromRGBO(0, 181, 0, 1),
+              activeColor: Color.fromRGBO(0, 181, 0, 1),
+              value: DetailsFoodTile.foodStatus,
+              onChanged: (value) {
+                setState(() {
+                  DetailsFoodTile.foodStatus = !DetailsFoodTile.foodStatus;
+                });
+                widget.function();
+              },
+            ),
           ],
         ),
       ),
