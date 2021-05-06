@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class FoodTile extends StatefulWidget {
   String _name;
   String _foodType;
-  double _price;
+  String _price;
   String desc;
   bool _foodStatus;
   Image _foodImage;
@@ -21,9 +21,10 @@ class FoodTile extends StatefulWidget {
   @override
   _FoodTileState createState() => _FoodTileState();
 
-  double get price => _price;
 
-  set price(double value) {
+  String get price => _price;
+
+  set price(String value) {
     _price = value;
   }
 

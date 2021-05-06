@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class DetailsFoodTile extends StatefulWidget {
   static String name;
   static String desc;
-  static double price;
+  static String price;
   static bool foodStatus;
   Function function;
 
@@ -89,6 +89,7 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
                           hint: 'New price (example: 28.40)',
                           regex: 'Price',
                           index: 6,
+                          initial: DetailsFoodTile.price,
                         ),
                         Padding(padding: EdgeInsets.all(10)),
                         ElevatedButton(
