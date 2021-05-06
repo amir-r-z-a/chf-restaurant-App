@@ -34,6 +34,7 @@ class _OrdersMenuState extends State<OrdersMenu> {
                       'Category',
                       index: 4,
                       hint: 'Your category',
+                      regex: 'Category',
                     ),
                     MyTextFormField(
                       'Name',
@@ -80,6 +81,7 @@ class _OrdersMenuState extends State<OrdersMenu> {
                               true,
                               desc: MyTextFormField.foodDesc,
                             );
+
                             for (int i = 0;
                                 i <
                                     Accounts.accounts[Accounts.currentAccount]
@@ -157,18 +159,21 @@ class _OrdersMenuState extends State<OrdersMenu> {
     );
   }
 }
+//ezafe kardan daste bedoone category
+//row kardan profile dar drawer
+//zadan all baraye OrdersMenu
 //agar jaii(masalan dar class order niaz be class Food bood va na FoodTile mishe ye class Food tarif kard va foodTile oon ro extend kone)
 //entekhab kardan status dar Add Food(be soorat radio: active,inactive)
 //ezafe kardan delete (delete all type)
 // dorost kardan radio ha
 //navigate kardan hame safhe ha(az signIn ta details)
-//dorost kardan zaher TabBar va AppBar
+//dorost kardan zaher TabBar(fasele dashtan Tab ha az ham) va AppBar
 //dorost kardan class color ha va ezafe kardan entekhab theme baraye barname
 //vaqti title jadid add mishavad position avavz shavad va rooye an beravad
 //ezafe kardan emza be barname(Arman Amirreza)
 //add kardan image baraye hame ja
 //taqir dadane category yek Food
-//edite esme category
+//edite esme category too detailsfoodtile
 //ezafe kardan qabeliat @gmail be MyTextFormField
 //edit haye DetailsFoodTile mesl profile dakhele drawer beshe
 //dorost kardan rang desc(toosi mesl aks proje) dar DetailsFoodTile
