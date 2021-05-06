@@ -14,7 +14,7 @@ class MyTextFormField extends StatelessWidget {
   static String foodCategory;
   static String foodName;
   static String foodDesc;
-  static double foodPrice;
+  static String foodPrice;
 
   String label;
   String hint;
@@ -53,7 +53,7 @@ class MyTextFormField extends StatelessWidget {
         } else if (index == 5) {
           foodName = value;
         } else if (index == 6) {
-          foodPrice = double.parse(value);
+          foodPrice = value;
         } else if (index == 7) {
           addToAccounts
               ? Accounts.accounts[Accounts.currentAccount].email = value
