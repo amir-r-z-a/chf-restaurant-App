@@ -24,6 +24,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: GestureDetector(onTap: () {
+          Navigator.pop(context);
+          Navigator.pop(context);
+        },child: Icon(Icons.arrow_back)),
         centerTitle: true,
         title: Text("Profile"),
       ),
