@@ -18,7 +18,7 @@ void main() {
       'Cafe',
       FoodTile(
         'Tea',
-        25,
+        '25',
         true,
         desc: 'desc',
       ));
@@ -48,6 +48,7 @@ class _MyAppState extends State<MyApp> {
           '/DetailsFoodTile': (context) => DetailsFoodTile(),
           '/MainMenuScreen': (context) => MainMenuScreen(),
           '/ProfileScreen': (context) => ProfileScreen(),
+          '/OrdersMenu': (context) => OrdersMenu(),
         },
         home:
             SignInScreen() /*SignInScreen()*/ /*FoodTile(
