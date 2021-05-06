@@ -1,4 +1,5 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:flutter/material.dart';
 class ProfileScreen extends StatefulWidget {
   @override
@@ -54,26 +55,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: GestureDetector(
                           onTap: (){
                             showModalBottomSheet(
-                              context:context,
-                              builder: (context){
-                                return Container(
-                                  margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
-                                  child: Form(
-                                    key: _formkey,
-                                    child: ListView(
-                                      children: [
-                                        TextFormField(
-                                          initialValue: Accounts.accounts[Accounts.currentAccount].name,
-                                        )
-                                      ],
+                                context:context,
+                                builder: (context){
+                                  return Container(
+                                    margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                                    child: Form(
+                                      key: _formkey,
+                                      child: ListView(
+                                        children: [
+                                          MyTextFormField(
+                                            "salam" ,
+                                            index: 1,
+                                            addToAccounts: true,
+                                            initial: Accounts.accounts[Accounts.currentAccount].name,
+                                          ),
+                                          ElevatedButton(onPressed: (){
+                                            if(_formkey.currentState.validate()){
+                                              setState(() {
+                                                _formkey.currentState.save();
+                                                print(Accounts.accounts[Accounts.currentAccount].name);
+                                              }
+                                              );
+                                            }
+
+                                          },
+                                              child: Text("Save"
+                                              )
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                );
-                              }
+                                  );
+                                }
                             );
                           },
                           child: Icon(
-                              Icons.edit_rounded,
+                            Icons.edit_rounded,
                           ),
                         ),
                       )
