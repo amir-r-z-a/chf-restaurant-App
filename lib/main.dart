@@ -46,10 +46,11 @@ class _MyAppState extends State<MyApp> {
           '/SignInScreen': (context) => SignInScreen(),
           '/SignUpScreen': (context) => SignUpScreen(),
           '/DetailsFoodTile': (context) => DetailsFoodTile(),
-          '/MainMenu' : (context) => MainMenuScreen(),
+          '/MainMenuScreen': (context) => MainMenuScreen(),
+          '/ProfileScreen': (context) => ProfileScreen(),
         },
         home:
-            ProfileScreen() /*SignInScreen()*/ /*FoodTile(
+            SignInScreen() /*SignInScreen()*/ /*FoodTile(
           'Egg',
           28,
           true,
