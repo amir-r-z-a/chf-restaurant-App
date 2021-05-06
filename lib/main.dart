@@ -5,6 +5,7 @@ import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
 import 'package:chfrestaurant/Screens/DetailsFoodTile.dart';
 import 'package:chfrestaurant/Screens/MainMenuScreen.dart';
 import 'package:chfrestaurant/Screens/OrdersMenu.dart';
+import 'package:chfrestaurant/Screens/ProfileScreen.dart';
 import 'package:chfrestaurant/Screens/SignInScreen.dart';
 import 'package:chfrestaurant/Screens/SignUpScreen.dart';
 import 'package:flutter/material.dart';
@@ -45,9 +46,10 @@ class _MyAppState extends State<MyApp> {
           '/SignInScreen': (context) => SignInScreen(),
           '/SignUpScreen': (context) => SignUpScreen(),
           '/DetailsFoodTile': (context) => DetailsFoodTile(),
+          '/MainMenu' : (context) => MainMenuScreen(),
         },
         home:
-            OrdersMenu() /*SignInScreen()*/ /*FoodTile(
+            ProfileScreen() /*SignInScreen()*/ /*FoodTile(
           'Egg',
           28,
           true,

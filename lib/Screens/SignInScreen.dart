@@ -4,6 +4,7 @@ import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:chfrestaurant/Common/Text/SignInUpText.dart';
 import 'package:chfrestaurant/Common/Text/TitleText.dart';
 import 'package:chfrestaurant/Common/Text/WhiteText.dart';
+import 'package:chfrestaurant/Screens/ProfileScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -83,6 +84,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       print('index: ');
                       print(Accounts.currentAccount);
                       print("Welcome to Chamir food");
+                      Navigator.pushNamed(context, '/MainMenu');
                     }
                   },
                   child: WhiteText('Sign In'),

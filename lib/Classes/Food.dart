@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 class FoodTile extends StatefulWidget {
   String _name;
+  String _foodType;
   double _price;
   String desc;
   bool _foodStatus;
-  String _foodType;
   Image _foodImage;
 
   String get name => _name;
