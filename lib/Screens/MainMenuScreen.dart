@@ -110,28 +110,32 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                   margin: EdgeInsets.fromLTRB(30, 20, 0, 0),
                   child: Row(
                     children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 20),
-                              child: Text("Menu Edition"),
-                            ),
-                            Container(
-                              child: Icon(
-                                Icons.edit_rounded,
-                                size: 35,
+                      GestureDetector(onTap: () {
+                        Navigator.pushNamed(context, '/OrdersMenu');
+                      },
+                        child: Container(
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                child: Text("Menu Edition"),
                               ),
-                              margin: EdgeInsets.only(left: 20),
-                            ),
-                          ],
+                              Container(
+                                child: Icon(
+                                  Icons.edit_rounded,
+                                  size: 35,
+                                ),
+                                margin: EdgeInsets.only(left: 20),
+                              ),
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                              border: Border.all(width: 1, color: Colors.pink),
+                              borderRadius: const BorderRadius.all(
+                                  const Radius.circular(8))),
+                          width: 170,
+                          height: 120,
                         ),
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 1, color: Colors.pink),
-                            borderRadius: const BorderRadius.all(
-                                const Radius.circular(8))),
-                        width: 170,
-                        height: 120,
                       ),
                     ],
                   ),
