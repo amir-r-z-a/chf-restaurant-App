@@ -11,8 +11,8 @@ class Restaurant {
   String _password;
   String _address;
   RestaurantTypes _type;
-  Map _tabBarView = Map();
-  Map _tabBarTitle = Map();
+  Map _tabBarView = {0: []};
+  Map _tabBarTitle = {0: 'All'};
   double _workingRadius = 10;
   double _point;
   String email;
@@ -38,17 +38,16 @@ class Restaurant {
   }
 
   bool validFood(String input) {
-    for (int i = 0; i < getTabBarTitleLength(); i++) {
-      for (int j = 0; j < tabBarView[i].length; j++) {
-        if (tabBarView[i][j].name == input && DetailsFoodTile.name != input) {
+      for (int j = 0; j < tabBarView[0].length; j++) {
+        if (tabBarView[0][j].name == input && DetailsFoodTile.name != input) {
           return true;
         }
       }
-    }
     return false;
   }
 
   void addTabBarViewElements(FoodTile food, int i) {
+    tabBarView[0].add(food);
     tabBarView[i].add(food);
   }
 
@@ -57,6 +56,20 @@ class Restaurant {
     tabBarTitle[len] = title;
     tabBarView[len] = [];
     addTabBarViewElements(food, len);
+  }
+
+  void createAll() {
+    tabBarView[0] = [];
+    //  baqie tabBar ha ro add kone
+
+    //  method haii ke tabBarView va tabBarTitle ro peymayesh mikardan bayad az index 1 shoro konan
+  }
+
+  bool validCategory(String input) {
+    if (input == 'All' || input == 'all') {
+      return true;
+    }
+    return false;
   }
 
   //order history majmooe sefareshat active va qeir active ast behtar ast do fiel shavad
