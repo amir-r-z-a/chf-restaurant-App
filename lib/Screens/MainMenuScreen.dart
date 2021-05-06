@@ -93,7 +93,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                   Colors.deepOrange,
                 ])),
                 child: Text('here is header')),
-            customListTile(Icons.person,'Profile',()=>{}),
+            customListTile(Icons.person,'Profile',()=>{Navigator.pushNamed(context, '/ProfileScreen')}),
             customListTile(Icons.phone,'Contact Us',()=>{}),
             customListTile(Icons.logout,"Log Out",()=>{}),
           ],
