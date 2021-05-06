@@ -72,6 +72,9 @@ class MyTextFormField extends StatelessWidget {
           } else if (Accounts.alreadyPhoneNumber(value)) {
             return 'Your phone number is already registered';
           }
+        } else if (regex == 'Category' &&
+            Accounts.accounts[Accounts.currentAccount].validCategory(value)) {
+          return 'Your category could not be All';
         } else if (regex == 'Price' && DetailsFoodTile.validPrice(value)) {
           return 'Your price is not valid';
         } else if (regex == 'FoodName' &&
