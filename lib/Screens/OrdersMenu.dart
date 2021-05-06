@@ -171,7 +171,7 @@ class _OrdersMenuState extends State<OrdersMenu> {
 //ezafe kardan emza be barname(Arman Amirreza)
 //add kardan image baraye hame ja
 //taqir dadane category yek Food
-//edite esme category too detailsfoodtile
+//edite esme category too DetailsFoodTile (too onja mitoone category Food ro be yeki az category haye qabli ya category jadid taqir bede)
 //ezafe kardan qabeliat @gmail be MyTextFormField
 //edit haye DetailsFoodTile mesl profile dakhele drawer beshe
 //dorost kardan rang desc(toosi mesl aks proje) dar DetailsFoodTile
