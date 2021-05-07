@@ -1,6 +1,6 @@
 import 'package:chfrestaurant/Classes/Comment.dart';
-import 'package:chfrestaurant/Classes/Order.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
+import 'package:chfrestaurant/Classes/ClientOrderTile.dart';
 
 class Client {
   String _nam;
@@ -10,7 +10,7 @@ class Client {
   // Location _location;
   String _password;
   String _email;
-  List<Order> _clientOrders;
+  List<ClientOrderTile> _clientOrders;
   List<Restaurant> _favRestaurants;
   List<CommentTile> _clientComments;
   double _wallet;
@@ -51,9 +51,9 @@ class Client {
     _email = value;
   }
 
-  List<Order> get clientOrders => _clientOrders;
+  List<ClientOrderTile> get clientOrders => _clientOrders;
 
-  set clientOrders(List<Order> value) {
+  set clientOrders(List<ClientOrderTile> value) {
     _clientOrders = value;
   }
 
