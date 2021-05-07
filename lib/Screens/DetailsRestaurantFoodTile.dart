@@ -2,7 +2,7 @@ import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class DetailsFoodTile extends StatefulWidget {
+class DetailsRestaurantFoodTile extends StatefulWidget {
   static String name;
   static String desc;
   static String price;
@@ -10,19 +10,7 @@ class DetailsFoodTile extends StatefulWidget {
   static Function deleteFunction;
   Function function;
 
-  DetailsFoodTile({this.function});
-
-  static bool validPrice(String input) {
-    //^([1-9][0-9]*)|([1-9][0-9]*\\.[0-9]+)$
-    RegExp regPrice = new RegExp(
-        r'^((\d{1,3}|\s*){1})((\,\d{3}|\d)*)(\s*|\.(\d{2}))$',
-        caseSensitive: false,
-        multiLine: false);
-    if (!regPrice.hasMatch(input)) {
-      return true;
-    }
-    return false;
-  }
+  DetailsRestaurantFoodTile({this.function});
 
   // DetailsFoodTile({String name, double price, bool status, String desc}) {
   //   print(name);
@@ -33,10 +21,11 @@ class DetailsFoodTile extends StatefulWidget {
   // }
 
   @override
-  _DetailsFoodTileState createState() => _DetailsFoodTileState();
+  _DetailsRestaurantFoodTileState createState() =>
+      _DetailsRestaurantFoodTileState();
 }
 
-class _DetailsFoodTileState extends State<DetailsFoodTile> {
+class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
   var key1 = GlobalKey<FormState>();
 
   @override
@@ -63,10 +52,10 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
                           hint: 'New name',
                           index: 5,
                           regex: 'FoodName',
-                          initial: DetailsFoodTile.name,
+                          initial: DetailsRestaurantFoodTile.name,
                         ),
                         TextFormField(
-                          initialValue: DetailsFoodTile.desc,
+                          initialValue: DetailsRestaurantFoodTile.desc,
                           onSaved: (String value) =>
                               MyTextFormField.foodDesc = value,
                           decoration: InputDecoration(
@@ -90,7 +79,7 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
                           hint: 'New price (example: 28.40)',
                           regex: 'Price',
                           index: 6,
-                          initial: DetailsFoodTile.price,
+                          initial: DetailsRestaurantFoodTile.price,
                         ),
                         Padding(padding: EdgeInsets.all(10)),
                         ElevatedButton(
@@ -100,11 +89,11 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
                               if (key1.currentState.validate()) {
                                 setState(() {
                                   key1.currentState.save();
-                                  DetailsFoodTile.name =
+                                  DetailsRestaurantFoodTile.name =
                                       MyTextFormField.foodName;
-                                  DetailsFoodTile.desc =
+                                  DetailsRestaurantFoodTile.desc =
                                       MyTextFormField.foodDesc;
-                                  DetailsFoodTile.price =
+                                  DetailsRestaurantFoodTile.price =
                                       MyTextFormField.foodPrice;
                                   widget.function();
                                   Navigator.pop(context);
@@ -134,12 +123,12 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
             ),
             Padding(padding: EdgeInsets.all(10)),
             Text(
-              DetailsFoodTile.name,
+              DetailsRestaurantFoodTile.name,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
             ),
-            Text(DetailsFoodTile.desc),
+            Text(DetailsRestaurantFoodTile.desc),
             Padding(padding: EdgeInsets.all(3)),
-            Text('Price: ' + DetailsFoodTile.price.toString() + '\$'),
+            Text('Price: ' + DetailsRestaurantFoodTile.price.toString() + '\$'),
             Row(
               children: [
                 Switch(
@@ -147,18 +136,19 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
                   inactiveTrackColor: Colors.red,
                   activeTrackColor: Color.fromRGBO(0, 181, 0, 1),
                   activeColor: Color.fromRGBO(0, 181, 0, 1),
-                  value: DetailsFoodTile.foodStatus,
+                  value: DetailsRestaurantFoodTile.foodStatus,
                   onChanged: (value) {
                     setState(() {
-                      DetailsFoodTile.foodStatus = !DetailsFoodTile.foodStatus;
+                      DetailsRestaurantFoodTile.foodStatus =
+                          !DetailsRestaurantFoodTile.foodStatus;
                     });
                     widget.function();
                   },
                 ),
                 Text(
-                  DetailsFoodTile.foodStatus ? 'Active' : 'Inactive',
+                  DetailsRestaurantFoodTile.foodStatus ? 'Active' : 'Inactive',
                   style: TextStyle(
-                      color: DetailsFoodTile.foodStatus
+                      color: DetailsRestaurantFoodTile.foodStatus
                           ? Colors.green
                           : Colors.red,
                       fontWeight: FontWeight.bold),
@@ -167,7 +157,7 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
             ),
             GestureDetector(
               onTap: () {
-                return DetailsFoodTile.deleteFunction(true);
+                return DetailsRestaurantFoodTile.deleteFunction(true);
               },
               child: Container(
                 height: 25,
