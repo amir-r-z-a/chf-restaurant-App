@@ -1,4 +1,4 @@
-import 'package:chfrestaurant/Classes/ClientComment.dart';
+import 'package:chfrestaurant/Classes/Comment.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Order.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
@@ -11,13 +11,14 @@ class Restaurant {
   String _password;
   String _address;
   RestaurantTypes _type;
-  Map _tabBarView = {0: []};
   Map _tabBarTitle = {0: 'All'};
+  Map _tabBarView = {0: []};
+  List listOfFood = [];
   double _workingRadius = 10;
   double _point;
   String email;
   List<Order> _orderHistory;
-  List<ClientComment> _restaurantComments;
+  Map _restaurantComments = {0: []};
   Image _profileImage;
 
   Restaurant(
@@ -43,6 +44,7 @@ class Restaurant {
   }
 
   void addTabBarViewElements(FoodTile food, int i) {
+    listOfFood.add(food.name);
     tabBarView[0].add(food);
     tabBarView[i].add(food);
   }
@@ -67,6 +69,7 @@ class Restaurant {
     int len = getTabBarTitleLength();
     tabBarTitle[len] = title;
     tabBarView[len] = [];
+    restaurantComments[len] = [];
     addTabBarViewElements(food, len);
   }
 
@@ -86,6 +89,11 @@ class Restaurant {
       }
     }
     return '-1';
+  }
+
+  void addComments(CommentTile comment, int i) {
+    restaurantComments[0].add(comment);
+    restaurantComments[i].add(comment);
   }
 
   //order history majmooe sefareshat active va qeir active ast behtar ast do fiel shavad
@@ -165,9 +173,9 @@ class Restaurant {
     _tabBarTitle = value;
   }
 
-  List<ClientComment> get restaurantComments => _restaurantComments;
+  Map get restaurantComments => _restaurantComments;
 
-  set restaurantComments(List<ClientComment> value) {
+  set restaurantComments(Map value) {
     _restaurantComments = value;
   }
 }
