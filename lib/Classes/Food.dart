@@ -3,6 +3,38 @@ import 'package:chfrestaurant/Screens/DetailsFoodTile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+class Food{
+  String _name;
+  String _foodType;
+  String _price;
+  String desc;
+  bool _foodStatus;
+
+  String get name => _name;
+
+  set name(String value) {
+    _name = value;
+  }
+
+  String get foodType => _foodType;
+
+  set foodType(String value) {
+    _foodType = value;
+  }
+
+  String get price => _price;
+
+  set price(String value) {
+    _price = value;
+  }
+
+  bool get foodStatus => _foodStatus;
+
+  set foodStatus(bool value) {
+    _foodStatus = value;
+  }
+}
+
 class FoodTile extends StatefulWidget {
   String _name;
   String _foodType;
@@ -81,6 +113,7 @@ class _FoodTileState extends State<FoodTile> {
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
                       onPressed: () {
