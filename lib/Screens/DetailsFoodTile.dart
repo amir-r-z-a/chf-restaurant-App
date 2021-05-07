@@ -7,6 +7,7 @@ class DetailsFoodTile extends StatefulWidget {
   static String desc;
   static String price;
   static bool foodStatus;
+  static Function deleteFunction;
   Function function;
 
   DetailsFoodTile({this.function});
@@ -163,6 +164,26 @@ class _DetailsFoodTileState extends State<DetailsFoodTile> {
                       fontWeight: FontWeight.bold),
                 ),
               ],
+            ),
+            GestureDetector(
+              onTap: () {
+                return DetailsFoodTile.deleteFunction(true);
+              },
+              child: Container(
+                height: 25,
+                width: 70,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  border: Border.all(width: 0.7, color: Colors.black),
+                ),
+                child: Center(
+                  child: Text(
+                    'Delete',
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
             ),
           ],
         ),

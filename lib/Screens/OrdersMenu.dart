@@ -11,6 +11,10 @@ class OrdersMenu extends StatefulWidget {
 class _OrdersMenuState extends State<OrdersMenu> {
   var key1 = GlobalKey<FormState>();
 
+  void refreshPage() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -131,8 +135,12 @@ class _OrdersMenuState extends State<OrdersMenu> {
             indicatorColor: Colors.white,
             tabs: List.generate(
               Accounts.accounts[Accounts.currentAccount].getTabBarTitleLength(),
-              (index) => Text(Accounts
-                  .accounts[Accounts.currentAccount].tabBarTitle[index]),
+              (index) {
+                FoodTile.function = refreshPage;
+                return Text(
+                  Accounts.accounts[Accounts.currentAccount].tabBarTitle[index],
+                );
+              },
             ),
           ),
           actions: <Widget>[
@@ -159,6 +167,12 @@ class _OrdersMenuState extends State<OrdersMenu> {
     );
   }
 }
+//agar name FoodTile dar alertDialog ja nashavad out of the bounds mikhorad
+//desc dar FoodTile faqat yek khat namayesh dahad vagarna out of the bounds mikhorad
+//padding az bala baraye OrdersMenu(fasele dashtan TabBar va FoodTile aval)
+//vaqti rooye axe Food click mikone alertDialog baz she va ax tooye oon bashe
+//vaqti Food ro delete mikone behesh bege aya motmaeni? (ba hamoon widgete AlertDialog)
+//dar DetailsFoodTile karbar mitoone axe Food ro taqir bede
 //responsive kardan panele asli(MainMenuScreen)
 //ezafe kardan daste bedoone category
 //row kardan profile dar drawer
@@ -176,6 +190,7 @@ class _OrdersMenuState extends State<OrdersMenu> {
 //ezafe kardan qabeliat @gmail be MyTextFormField
 //edit haye DetailsFoodTile mesl profile dakhele drawer beshe
 //dorost kardan rang desc(toosi mesl aks proje) dar DetailsFoodTile
+//buttonSheep ha va dokme ha ba builder responsive shavad (mesl todolist)
 
 //add kardan tag(entekhab chand menu ba ham)
 
