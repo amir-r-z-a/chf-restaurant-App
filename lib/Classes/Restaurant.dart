@@ -1,7 +1,7 @@
 import 'package:chfrestaurant/Classes/Comment.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
-import 'package:chfrestaurant/Classes/Order.dart';
 import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
+import 'package:chfrestaurant/Classes/RestaurantOrderTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,7 +19,7 @@ class Restaurant {
   double _workingRadius = 10;
   double _point;
   String email;
-  List<Order> _orderHistory;
+  List<RestaurantOrderTile> _orderHistory;
   Map _restaurantComments = {0: []};
   Image _profileImage;
 
@@ -180,9 +180,9 @@ class Restaurant {
     _point = value;
   }
 
-  List<Order> get orderHistory => _orderHistory;
+  List<RestaurantOrderTile> get orderHistory => _orderHistory;
 
-  set orderHistory(List<Order> value) {
+  set orderHistory(List<RestaurantOrderTile> value) {
     _orderHistory = value;
   }
 
