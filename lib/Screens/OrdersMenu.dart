@@ -1,5 +1,5 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
-import 'package:chfrestaurant/Classes/Food.dart';
+import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:flutter/material.dart';
 
@@ -79,7 +79,7 @@ class _OrdersMenuState extends State<OrdersMenu> {
                           if (key1.currentState.validate()) {
                             bool flag = true;
                             key1.currentState.save();
-                            FoodTile food = FoodTile(
+                            RestaurantFoodTile food = RestaurantFoodTile(
                               MyTextFormField.foodName,
                               MyTextFormField.foodPrice,
                               true,
@@ -109,7 +109,7 @@ class _OrdersMenuState extends State<OrdersMenu> {
                               print(Accounts.accounts[Accounts.currentAccount]
                                   .tabBarTitle);
                               print(Accounts.accounts[Accounts.currentAccount]
-                                  .tabBarView);
+                                  .restaurantTabBarView);
                             }
                             setState(() {});
                             Navigator.pop(context);
@@ -136,7 +136,7 @@ class _OrdersMenuState extends State<OrdersMenu> {
             tabs: List.generate(
               Accounts.accounts[Accounts.currentAccount].getTabBarTitleLength(),
               (index) {
-                FoodTile.function = refreshPage;
+                RestaurantFoodTile.function = refreshPage;
                 return Text(
                   Accounts.accounts[Accounts.currentAccount].tabBarTitle[index],
                 );
@@ -156,10 +156,10 @@ class _OrdersMenuState extends State<OrdersMenu> {
               (i) {
             return ListView(
               children: List.generate(
-                  Accounts
-                      .accounts[Accounts.currentAccount].tabBarView[i].length,
-                  (j) => Accounts
-                      .accounts[Accounts.currentAccount].tabBarView[i][j]),
+                  Accounts.accounts[Accounts.currentAccount]
+                      .restaurantTabBarView[i].length,
+                  (j) => Accounts.accounts[Accounts.currentAccount]
+                      .restaurantTabBarView[i][j]),
             );
           }),
         ),
@@ -193,6 +193,7 @@ class _OrdersMenuState extends State<OrdersMenu> {
 //buttonSheep ha va dokme ha ba builder responsive shavad (mesl todolist)
 //zire har qaza comment haye marboot be an qaza amade bashad(har comment yek field String nameFood dashte bashad va har Food ye List az comment ha dashte bashad vaqti commenti be Restaurant add mishavad be List comment haye Food niz add shavad)
 //agar price ra 22.4 vared kard be soorat zemni 22.40 tabdil shavad
+//client betavanad be khode resturant(na food) comment befrestad
 
 //add kardan tag(entekhab chand menu ba ham)
 
