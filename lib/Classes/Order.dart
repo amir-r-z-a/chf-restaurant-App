@@ -7,6 +7,8 @@ class Order {
   Restaurant _destinationRestaurant;
   Date _orderDate;
   bool _orderStatus;
+  String _clientPhoneNumber;
+  String _clientAddress;
 
   List<Food> get foods => _foods;
 
@@ -30,5 +32,17 @@ class Order {
 
   set orderStatus(bool value) {
     _orderStatus = value;
+  }
+
+  String get clientPhoneNumber => _clientPhoneNumber;
+
+  set clientPhoneNumber(String value) {
+    _clientPhoneNumber = value;
+  }
+
+  String get clientAddress => _clientAddress;
+
+  set clientAddress(String value) {
+    _clientAddress = value;
   }
 }
