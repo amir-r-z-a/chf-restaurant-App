@@ -1,6 +1,4 @@
-import 'dart:html';
-
-import 'package:chfrestaurant/Classes/ClientComment.dart';
+import 'package:chfrestaurant/Classes/Comment.dart';
 import 'package:chfrestaurant/Classes/Order.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 
@@ -8,12 +6,13 @@ class Client {
   String _nam;
   String _lastName;
   String _phoneNumber;
-  Location _location;
+
+  // Location _location;
   String _password;
   String _email;
   List<Order> _clientOrders;
   List<Restaurant> _favRestaurants;
-  List<ClientComment> _clientComments;
+  List<CommentTile> _clientComments;
   double _wallet;
 
   String get nam => _nam;
@@ -34,11 +33,11 @@ class Client {
     _phoneNumber = value;
   }
 
-  Location get location => _location;
-
-  set location(Location value) {
-    _location = value;
-  }
+  // Location get location => _location;
+  //
+  // set location(Location value) {
+  //   _location = value;
+  // }
 
   String get password => _password;
 
@@ -64,9 +63,9 @@ class Client {
     _favRestaurants = value;
   }
 
-  List<ClientComment> get clientComments => _clientComments;
+  List<CommentTile> get clientComments => _clientComments;
 
-  set clientComments(List<ClientComment> value) {
+  set clientComments(List<CommentTile> value) {
     _clientComments = value;
   }
 
