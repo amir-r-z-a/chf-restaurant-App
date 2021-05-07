@@ -30,25 +30,37 @@ class Restaurant {
   }
 
   int getAllFoodsLength() {
-    int counter = 0;
-    for (int i = 0; i < getTabBarTitleLength(); i++) {
-      counter += tabBarView[i].length;
-    }
-    return counter;
+    return tabBarView[0].length;
   }
 
   bool validFood(String input) {
-      for (int j = 0; j < tabBarView[0].length; j++) {
-        if (tabBarView[0][j].name == input && DetailsFoodTile.name != input) {
-          return true;
-        }
+    for (int j = 0; j < tabBarView[0].length; j++) {
+      if (tabBarView[0][j].name == input && DetailsFoodTile.name != input) {
+        return true;
       }
+    }
     return false;
   }
 
   void addTabBarViewElements(FoodTile food, int i) {
     tabBarView[0].add(food);
     tabBarView[i].add(food);
+  }
+
+  void deleteTabBarViewElements(String input) {
+    for (int i = 0; i < getAllFoodsLength(); i++) {
+      if (tabBarView[0][i].name == input) {
+        tabBarView[0].removeAt(i);
+        break;
+      }
+    }
+    for (int i = 0; i < getTabBarTitleLength(); i++) {
+      for (int j = 0; j < tabBarView[i].length; j++) {
+        if (tabBarView[i][j].name == input) {
+          tabBarView[i].removeAt(j);
+        }
+      }
+    }
   }
 
   void addTabBarTitle(String title, FoodTile food) {
@@ -58,18 +70,22 @@ class Restaurant {
     addTabBarViewElements(food, len);
   }
 
-  void createAll() {
-    tabBarView[0] = [];
-    //  baqie tabBar ha ro add kone
-
-    //  method haii ke tabBarView va tabBarTitle ro peymayesh mikardan bayad az index 1 shoro konan
-  }
-
   bool validCategory(String input) {
     if (input == 'All' || input == 'all') {
       return true;
     }
     return false;
+  }
+
+  String findCategory(String input) {
+    for (int i = 1; i < getTabBarTitleLength(); i++) {
+      for (int j = 0; j < tabBarView[i].length; j++) {
+        if (tabBarView[i][j].name == input) {
+          return tabBarTitle[i];
+        }
+      }
+    }
+    return '-1';
   }
 
   //order history majmooe sefareshat active va qeir active ast behtar ast do fiel shavad
