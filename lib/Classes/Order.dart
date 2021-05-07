@@ -3,14 +3,14 @@ import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 
 class Order {
-  List<FoodTile> _foods;
+  List<Food> _foods;
   Restaurant _destinationRestaurant;
   Date _orderDate;
   bool _orderStatus;
 
-  List<FoodTile> get foods => _foods;
+  List<Food> get foods => _foods;
 
-  set foods(List<FoodTile> value) {
+  set foods(List<Food> value) {
     _foods = value;
   }
 
