@@ -1,8 +1,9 @@
 import 'package:chfrestaurant/Classes/Comment.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Order.dart';
+import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
-import 'package:chfrestaurant/Screens/DetailsFoodTile.dart';
+import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
 import 'package:flutter/cupertino.dart';
 
 class Restaurant {
@@ -12,8 +13,9 @@ class Restaurant {
   String _address;
   RestaurantTypes _type;
   Map _tabBarTitle = {0: 'All'};
-  Map _tabBarView = {0: []};
-  List listOfFood = [];
+  Map _restaurantTabBarView = {0: []};
+  Map listOfFood = {0: []};
+  Map _clientTabBarView = {0: []};
   double _workingRadius = 10;
   double _point;
   String email;
@@ -31,44 +33,49 @@ class Restaurant {
   }
 
   int getAllFoodsLength() {
-    return tabBarView[0].length;
+    return restaurantTabBarView[0].length;
   }
 
   bool validFood(String input) {
-    for (int j = 0; j < tabBarView[0].length; j++) {
-      if (tabBarView[0][j].name == input && DetailsFoodTile.name != input) {
+    for (int j = 0; j < restaurantTabBarView[0].length; j++) {
+      if (restaurantTabBarView[0][j].name == input &&
+          DetailsRestaurantFoodTile.name != input) {
         return true;
       }
     }
     return false;
   }
 
-  void addTabBarViewElements(FoodTile food, int i) {
-    listOfFood.add(food.name);
-    tabBarView[0].add(food);
-    tabBarView[i].add(food);
+  void addTabBarViewElements(RestaurantFoodTile food, int i) {
+    listOfFood[0]
+        .add(Food(food.name, food.price, food.foodStatus, desc: food.desc));
+    listOfFood[i]
+        .add(Food(food.name, food.price, food.foodStatus, desc: food.desc));
+    restaurantTabBarView[0].add(food);
+    restaurantTabBarView[i].add(food);
   }
 
   void deleteTabBarViewElements(String input) {
     for (int i = 0; i < getAllFoodsLength(); i++) {
-      if (tabBarView[0][i].name == input) {
-        tabBarView[0].removeAt(i);
+      if (restaurantTabBarView[0][i].name == input) {
+        restaurantTabBarView[0].removeAt(i);
         break;
       }
     }
     for (int i = 0; i < getTabBarTitleLength(); i++) {
-      for (int j = 0; j < tabBarView[i].length; j++) {
-        if (tabBarView[i][j].name == input) {
-          tabBarView[i].removeAt(j);
+      for (int j = 0; j < restaurantTabBarView[i].length; j++) {
+        if (restaurantTabBarView[i][j].name == input) {
+          restaurantTabBarView[i].removeAt(j);
         }
       }
     }
   }
 
-  void addTabBarTitle(String title, FoodTile food) {
+  void addTabBarTitle(String title, RestaurantFoodTile food) {
     int len = getTabBarTitleLength();
     tabBarTitle[len] = title;
-    tabBarView[len] = [];
+    listOfFood[len] = [];
+    restaurantTabBarView[len] = [];
     restaurantComments[len] = [];
     addTabBarViewElements(food, len);
   }
@@ -80,10 +87,22 @@ class Restaurant {
     return false;
   }
 
+  static bool validPrice(String input) {
+    //^([1-9][0-9]*)|([1-9][0-9]*\\.[0-9]+)$
+    RegExp regPrice = new RegExp(
+        r'^((\d{1,3}|\s*){1})((\,\d{3}|\d)*)(\s*|\.(\d{2}))$',
+        caseSensitive: false,
+        multiLine: false);
+    if (!regPrice.hasMatch(input)) {
+      return true;
+    }
+    return false;
+  }
+
   String findCategory(String input) {
     for (int i = 1; i < getTabBarTitleLength(); i++) {
-      for (int j = 0; j < tabBarView[i].length; j++) {
-        if (tabBarView[i][j].name == input) {
+      for (int j = 0; j < restaurantTabBarView[i].length; j++) {
+        if (restaurantTabBarView[i][j].name == input) {
           return tabBarTitle[i];
         }
       }
@@ -131,10 +150,10 @@ class Restaurant {
     _type = value;
   }
 
-  Map get tabBarView => _tabBarView;
+  Map get restaurantTabBarView => _restaurantTabBarView;
 
-  set tabBarView(Map value) {
-    _tabBarView = value;
+  set restaurantTabBarView(Map value) {
+    _restaurantTabBarView = value;
   }
 
   double get workingRadius => _workingRadius;
@@ -177,5 +196,11 @@ class Restaurant {
 
   set restaurantComments(Map value) {
     _restaurantComments = value;
+  }
+
+  Map get clientTabBarView => _clientTabBarView;
+
+  set clientTabBarView(Map value) {
+    _clientTabBarView = value;
   }
 }
