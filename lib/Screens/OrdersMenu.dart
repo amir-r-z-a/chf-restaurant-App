@@ -191,6 +191,8 @@ class _OrdersMenuState extends State<OrdersMenu> {
 //edit haye DetailsFoodTile mesl profile dakhele drawer beshe
 //dorost kardan rang desc(toosi mesl aks proje) dar DetailsFoodTile
 //buttonSheep ha va dokme ha ba builder responsive shavad (mesl todolist)
+//zire har qaza comment haye marboot be an qaza amade bashad(har comment yek field String nameFood dashte bashad va har Food ye List az comment ha dashte bashad vaqti commenti be Restaurant add mishavad be List comment haye Food niz add shavad)
+//agar price ra 22.4 vared kard be soorat zemni 22.40 tabdil shavad
 
 //add kardan tag(entekhab chand menu ba ham)
 
