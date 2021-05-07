@@ -1,6 +1,6 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
-import 'package:chfrestaurant/Screens/DetailsFoodTile.dart';
 import 'package:flutter/material.dart';
 
 class MyTextFormField extends StatelessWidget {
@@ -75,7 +75,7 @@ class MyTextFormField extends StatelessWidget {
         } else if (regex == 'Category' &&
             Accounts.accounts[Accounts.currentAccount].validCategory(value)) {
           return 'Your category could not be All';
-        } else if (regex == 'Price' && DetailsFoodTile.validPrice(value)) {
+        } else if (regex == 'Price' && Restaurant.validPrice(value)) {
           return 'Your price is not valid';
         } else if (regex == 'FoodName' &&
             Accounts.accounts[Accounts.currentAccount].validFood(value)) {
