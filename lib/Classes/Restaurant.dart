@@ -23,10 +23,10 @@ class Restaurant {
   Map _restaurantComments = {0: []};
   Image _profileImage;
 
+  // Location _location;
+
   Restaurant(
       this._name, this._phoneNumber, this._password, this._address, this._type);
-
-  // Location _location;
 
   int getTabBarTitleLength() {
     return tabBarTitle.length;
