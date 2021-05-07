@@ -1,44 +1,47 @@
 class Date {
-  int _year;
-  int _month;
-  int _day;
-  int _hour;
-  int _minute;
-  int _second;
+  String _year;
+  String _month;
+  String _day;
+  String _hour;
+  String _minute;
+  String _second;
 
-  int get year => _year;
+  Date(this._year, this._month, this._day, this._hour, this._minute,
+      this._second);
 
-  set year(int value) {
+  String get year => _year;
+
+  set year(String value) {
     _year = value;
   }
 
-  int get month => _month;
+  String get month => _month;
 
-  int get second => _second;
+  String get second => _second;
 
-  set second(int value) {
+  set second(String value) {
     _second = value;
   }
 
-  int get minute => _minute;
+  String get minute => _minute;
 
-  set minute(int value) {
+  set minute(String value) {
     _minute = value;
   }
 
-  int get hour => _hour;
+  String get hour => _hour;
 
-  set hour(int value) {
+  set hour(String value) {
     _hour = value;
   }
 
-  int get day => _day;
+  String get day => _day;
 
-  set day(int value) {
+  set day(String value) {
     _day = value;
   }
 
-  set month(int value) {
+  set month(String value) {
     _month = value;
   }
 }
