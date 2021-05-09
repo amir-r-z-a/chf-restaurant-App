@@ -197,6 +197,8 @@ class _OrdersMenuState extends State<OrdersMenu> {
 //baraye OrderHistory ham TabBar(baraye tafkik category ha) va chip baraye tarikh(1,7,30 days ago) ezafe shavad
 // tarahi RestaurantFoodTile mesle RestaurantCommentTile beshe
 //3 field panel dar order enum shavad
+//khoondan comment haye baqie class ha
+//dorost kardan zaher TabBar commentManagements
 
 //add kardan tag(entekhab chand menu ba ham)
 
