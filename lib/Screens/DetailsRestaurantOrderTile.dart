@@ -84,20 +84,20 @@ class _DetailsRestaurantOrderTileState
                         ],
                       ),
                     )),
-                Column(
-                    children: List.generate(foods.length, (index) {
-                  return Card(
-                    child: ListTile(
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(" "),
-                          Text(" ")
-                        ],
-                      ),
-                    ),
-                  );
-                }))
+                // Column(
+                //     children: List.generate(foods.length, (index) {
+                //   return Card(
+                //     child: ListTile(
+                //       title: Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         children: [
+                //           Text(" "),
+                //           Text(" ")
+                //         ],
+                //       ),
+                //     ),
+                //   );
+                // }))
               ],
             ),
           ],
