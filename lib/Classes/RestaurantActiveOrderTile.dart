@@ -4,7 +4,7 @@ import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantActiveOrderTile extends StatefulWidget {
-  List<Food> _foods;
+  Map _foods;
   Date _orderDate;
   String _orderStatus;
 
@@ -14,6 +14,12 @@ class RestaurantActiveOrderTile extends StatefulWidget {
   String _clientName;
   String _clientLastName;
   String _id;
+
+  Map get foods => _foods;
+
+  set foods(Map value) {
+    _foods = value;
+  }
 
   // Restaurant _destinationRestaurant;
 
@@ -26,12 +32,6 @@ class RestaurantActiveOrderTile extends StatefulWidget {
   //     this._clientLastName,
   //     this._id);
 
-  List<Food> get foods => _foods;
-
-  set foods(List<Food> value) {
-    _foods = value;
-  }
-
   // Restaurant get destinationRestaurant => _destinationRestaurant;
   //
   // set destinationRestaurant(Restaurant value) {
@@ -43,7 +43,6 @@ class RestaurantActiveOrderTile extends StatefulWidget {
   set orderDate(Date value) {
     _orderDate = value;
   }
-
 
   String get orderStatus => _orderStatus;
 
@@ -87,15 +86,18 @@ class RestaurantActiveOrderTile extends StatefulWidget {
 }
 
 class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
-  List panelItems =["active","unActive","finished"];
+  List panelItems = ["active", "unActive", "finished"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: GestureDetector(
-          onTap: (){print("taped");},
+          onTap: () {
+            print("taped");
+          },
           child: SizedBox(
-            height:200,
+            height: 200,
             child: Card(
               child: ListTile(
                 title: Row(
@@ -103,11 +105,10 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
                     children: [
                       Text('Amirreza' + '  Ahmadi'),
                       Text("09185452060"),
-                    ]
-                ),
-                subtitle:Row(
+                    ]),
+                subtitle: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:[
+                    children: [
                       Column(
                         children: [
                           Text("#9956"),
@@ -121,31 +122,28 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
                             padding: EdgeInsets.all(5),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(15)
-                            ),
+                                borderRadius: BorderRadius.circular(15)),
                             child: DropdownButton(
-
                               hint: Text("Order Status "),
                               dropdownColor: Colors.grey,
-                              icon:Icon (Icons.arrow_drop_down),
+                              icon: Icon(Icons.arrow_drop_down),
                               value: widget._orderStatus,
-                              onChanged: (newValue){
+                              onChanged: (newValue) {
                                 setState(() {
-                                  widget._orderStatus=newValue;
+                                  widget._orderStatus = newValue;
                                 });
                               },
-                              items: panelItems.map((valueitem){
+                              items: panelItems.map((valueitem) {
                                 return DropdownMenuItem(
                                   value: valueitem,
                                   child: Text(valueitem),
                                 );
-                              }
-                              ).toList(),
+                              }).toList(),
                             ),
                           )
                         ],
                       )
-                    ] ),
+                    ]),
               ),
             ),
           ),
