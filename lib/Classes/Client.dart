@@ -3,7 +3,7 @@ import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Classes/ClientOrderTile.dart';
 
 class Client {
-  String _nam;
+  String _name;
   String _lastName;
   String _phoneNumber;
 
@@ -15,10 +15,10 @@ class Client {
   List<CommentTile> _clientComments;
   double _wallet;
 
-  String get nam => _nam;
+  String get name => _name;
 
-  set nam(String value) {
-    _nam = value;
+  set name(String value) {
+    _name = value;
   }
 
   String get lastName => _lastName;
