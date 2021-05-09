@@ -4,11 +4,15 @@ import 'package:chfrestaurant/Classes/Restaurant.dart';
 
 class Order {
   List<Food> _foods;
-  Restaurant _destinationRestaurant;
   Date _orderDate;
   bool _orderStatus;
   String _clientPhoneNumber;
   String _clientAddress;
+  String _clientName;
+  String _clientLastName;
+  String _id;
+
+  // Restaurant _destinationRestaurant;
 
   List<Food> get foods => _foods;
 
@@ -16,11 +20,11 @@ class Order {
     _foods = value;
   }
 
-  Restaurant get destinationRestaurant => _destinationRestaurant;
-
-  set destinationRestaurant(Restaurant value) {
-    _destinationRestaurant = value;
-  }
+  // Restaurant get destinationRestaurant => _destinationRestaurant;
+  //
+  // set destinationRestaurant(Restaurant value) {
+  //   _destinationRestaurant = value;
+  // }
 
   Date get orderDate => _orderDate;
 
@@ -44,5 +48,23 @@ class Order {
 
   set clientAddress(String value) {
     _clientAddress = value;
+  }
+
+  String get clientLastName => _clientLastName;
+
+  set clientLastName(String value) {
+    _clientLastName = value;
+  }
+
+  String get clientName => _clientName;
+
+  set clientName(String value) {
+    _clientName = value;
+  }
+
+  String get id => _id;
+
+  set id(String value) {
+    _id = value;
   }
 }
