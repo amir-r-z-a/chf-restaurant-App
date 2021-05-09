@@ -9,6 +9,20 @@ class Date {
   Date(this._year, this._month, this._day, this._hour, this._minute,
       this._second);
 
+  String dateFormatter() {
+    return year +
+        '/' +
+        day +
+        '/' +
+        month +
+        ' , ' +
+        hour +
+        ':' +
+        minute +
+        ':' +
+        second;
+  }
+
   String get year => _year;
 
   set year(String value) {
