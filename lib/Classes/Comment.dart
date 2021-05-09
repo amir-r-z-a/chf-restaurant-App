@@ -1,3 +1,4 @@
+import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Date.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ class CommentTile extends StatefulWidget {
   String foodName;
   String _point;
   Date _date;
+  String _id;
 
   CommentTile(this._question, this.foodName, this._date,
       this._clientPhoneNumber, this._destinationRestaurant);
@@ -49,6 +51,12 @@ class CommentTile extends StatefulWidget {
     _destinationRestaurant = value;
   }
 
+  String get id => _id;
+
+  set id(String value) {
+    _id = value;
+  }
+
   @override
   _CommentTileState createState() => _CommentTileState();
 }
@@ -65,17 +73,7 @@ class _CommentTileState extends State<CommentTile> {
         child: Card(
           child: ListTile(
               isThreeLine: true,
-              subtitle: Text(widget.date.year +
-                  '/' +
-                  widget.date.month +
-                  '/' +
-                  widget.date.day +
-                  ' , ' +
-                  widget.date.hour +
-                  ':' +
-                  widget.date.minute +
-                  ':' +
-                  widget.date.second +
+              subtitle: Text(widget.date.dateFormatter() +
                   '\n' +
                   // '#' +
                   widget.foodName),
