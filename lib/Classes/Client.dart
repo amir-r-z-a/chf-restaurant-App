@@ -1,4 +1,4 @@
-import 'package:chfrestaurant/Classes/Comment.dart';
+import 'package:chfrestaurant/Classes/CommentTile.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Classes/ClientOrderTile.dart';
 
