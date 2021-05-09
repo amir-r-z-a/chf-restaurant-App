@@ -1,7 +1,9 @@
 import 'package:chfrestaurant/Classes/Comment.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
+import 'package:chfrestaurant/Classes/Order.dart';
 import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
-import 'package:chfrestaurant/Classes/RestaurantOrderTile.dart';
+import 'package:chfrestaurant/Classes/RestaurantActiveOrderTile.dart';
+import 'package:chfrestaurant/Classes/RestaurantInactiveOrderTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,7 +21,8 @@ class Restaurant {
   double _workingRadius = 10;
   double _point;
   String email;
-  List<RestaurantOrderTile> _orderHistory;
+  List<RestaurantInactiveOrderTile> _ordersHistory;
+  List<RestaurantActiveOrderTile> _activeOrders;
   Map _restaurantComments = {0: []};
   Image _profileImage;
 
@@ -110,14 +113,57 @@ class Restaurant {
     return '-1';
   }
 
+  int getIndexOfCategory(String input) {
+    for (int i = 0; i < getTabBarTitleLength(); i++) {
+      if (tabBarTitle[i] == input) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
   void addComments(CommentTile comment, int i) {
     restaurantComments[0].add(comment);
     restaurantComments[i].add(comment);
   }
 
-  //order history majmooe sefareshat active va qeir active ast behtar ast do fiel shavad
-  int getOrderHistoryLength() {
-    return orderHistory.length;
+  int getIndexOfComment(String input) {
+    for (int i = 0; i < getTabBarTitleLength(); i++) {
+      for (int j = 0; j < restaurantComments[i].length; j++) {
+        if (restaurantComments[i][j].id == input) {
+          return j;
+        }
+      }
+    }
+    return -1;
+  }
+
+  int getOrdersHistoryLength() {
+    return ordersHistory.length;
+  }
+
+  int getActiveOrdersLength() {
+    return activeOrders.length;
+  }
+
+  void addOrder(RestaurantActiveOrderTile restaurantActiveOrderTile) {
+    activeOrders.add(restaurantActiveOrderTile);
+  }
+
+  void inactiveOrder(String input) {
+    for (int i = 0; i < getActiveOrdersLength(); i++) {
+      if (activeOrders[i].id == input) {
+        ordersHistory.add(RestaurantInactiveOrderTile(
+            activeOrders[i].foods,
+            activeOrders[i].orderDate,
+            activeOrders[i].clientPhoneNumber,
+            activeOrders[i].clientAddress,
+            activeOrders[i].clientName,
+            activeOrders[i].clientLastName,
+            activeOrders[i].id));
+        activeOrders.removeAt(i);
+      }
+    }
   }
 
   String get name => _name;
@@ -180,12 +226,6 @@ class Restaurant {
     _point = value;
   }
 
-  List<RestaurantOrderTile> get orderHistory => _orderHistory;
-
-  set orderHistory(List<RestaurantOrderTile> value) {
-    _orderHistory = value;
-  }
-
   Map get tabBarTitle => _tabBarTitle;
 
   set tabBarTitle(Map value) {
@@ -202,5 +242,17 @@ class Restaurant {
 
   set clientTabBarView(Map value) {
     _clientTabBarView = value;
+  }
+
+  List<RestaurantActiveOrderTile> get activeOrders => _activeOrders;
+
+  set activeOrders(List<RestaurantActiveOrderTile> value) {
+    _activeOrders = value;
+  }
+
+  List<RestaurantInactiveOrderTile> get ordersHistory => _ordersHistory;
+
+  set ordersHistory(List<RestaurantInactiveOrderTile> value) {
+    _ordersHistory = value;
   }
 }
