@@ -1,5 +1,5 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
-import 'package:chfrestaurant/Classes/Comment.dart';
+import 'package:chfrestaurant/Classes/Date.dart';
 import 'package:flutter/material.dart';
 
 class CommentsManagement extends StatefulWidget {
@@ -54,8 +54,47 @@ class _CommentsManagementState extends State<CommentsManagement> {
                   children: List.generate(
                     Accounts.accounts[Accounts.currentAccount]
                         .restaurantComments[i].length,
-                    (j) => Accounts.accounts[Accounts.currentAccount]
-                        .restaurantComments[i][j],
+                    (j) {
+                      bool flag = true;
+                      if (chipController1) {
+                        if (Accounts.accounts[Accounts.currentAccount]
+                            .restaurantComments[i][j].date
+                            .validDate(
+                                Date('2021', '3', '12', '4', '22', '23'), 1)) {
+                          return Accounts.accounts[Accounts.currentAccount]
+                              .restaurantComments[i][j];
+                        } else {
+                          flag = false;
+                        }
+                      } else if (chipController2) {
+                        if (Accounts.accounts[Accounts.currentAccount]
+                            .restaurantComments[i][j].date
+                            .validDate(
+                                Date('2021', '3', '3', '4', '22', '23'), 7)) {
+                          return Accounts.accounts[Accounts.currentAccount]
+                              .restaurantComments[i][j];
+                        } else {
+                          flag = false;
+                        }
+                      } else if (chipController3) {
+                        if (Accounts.accounts[Accounts.currentAccount]
+                            .restaurantComments[i][j].date
+                            .validDate(
+                                Date('2021', '3', '3', '4', '22', '23'), 30)) {
+                          return Accounts.accounts[Accounts.currentAccount]
+                              .restaurantComments[i][j];
+                        } else {
+                          flag = false;
+                        }
+                      } else if (flag) {
+                        return Accounts.accounts[Accounts.currentAccount]
+                            .restaurantComments[i][j];
+                      }
+                      return Container(
+                        height: 0,
+                        width: 0,
+                      );
+                    },
                   ),
                 ),
               ],
