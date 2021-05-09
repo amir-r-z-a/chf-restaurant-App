@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class RestaurantActiveOrderTile extends StatefulWidget {
   List<Food> _foods;
   Date _orderDate;
-  bool _orderStatus;
+  String _orderStatus;
 
   /*orderStatus enum shavad va dafe aval rooye dar hal amade sazi bashad*/
   String _clientPhoneNumber;
@@ -17,14 +17,14 @@ class RestaurantActiveOrderTile extends StatefulWidget {
 
   // Restaurant _destinationRestaurant;
 
-  RestaurantActiveOrderTile(
-      this._foods,
-      this._orderDate,
-      this._clientPhoneNumber,
-      this._clientAddress,
-      this._clientName,
-      this._clientLastName,
-      this._id);
+  // RestaurantActiveOrderTile(
+  //     this._foods,
+  //     this._orderDate,
+  //     this._clientPhoneNumber,
+  //     this._clientAddress,
+  //     this._clientName,
+  //     this._clientLastName,
+  //     this._id);
 
   List<Food> get foods => _foods;
 
@@ -44,9 +44,10 @@ class RestaurantActiveOrderTile extends StatefulWidget {
     _orderDate = value;
   }
 
-  bool get orderStatus => _orderStatus;
 
-  set orderStatus(bool value) {
+  String get orderStatus => _orderStatus;
+
+  set orderStatus(String value) {
     _orderStatus = value;
   }
 
@@ -86,8 +87,70 @@ class RestaurantActiveOrderTile extends StatefulWidget {
 }
 
 class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
+  List panelItems =["active","unActive","finished"];
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+        child: GestureDetector(
+          onTap: (){print("taped");},
+          child: SizedBox(
+            height:200,
+            child: Card(
+              child: ListTile(
+                title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Amirreza' + '  Ahmadi'),
+                      Text("09185452060"),
+                    ]
+                ),
+                subtitle:Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children:[
+                      Column(
+                        children: [
+                          Text("#9956"),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text("2020/05/05"),
+                          Container(
+                            margin: EdgeInsets.only(top: 70),
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(15)
+                            ),
+                            child: DropdownButton(
+
+                              hint: Text("Order Status "),
+                              dropdownColor: Colors.grey,
+                              icon:Icon (Icons.arrow_drop_down),
+                              value: widget._orderStatus,
+                              onChanged: (newValue){
+                                setState(() {
+                                  widget._orderStatus=newValue;
+                                });
+                              },
+                              items: panelItems.map((valueitem){
+                                return DropdownMenuItem(
+                                  value: valueitem,
+                                  child: Text(valueitem),
+                                );
+                              }
+                              ).toList(),
+                            ),
+                          )
+                        ],
+                      )
+                    ] ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
