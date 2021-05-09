@@ -199,6 +199,7 @@ class _OrdersMenuState extends State<OrdersMenu> {
 //3 field panel dar order enum shavad
 //khoondan comment haye baqie class ha
 //dorost kardan zaher TabBar commentManagements
+//har safhe dar CommentsManagements 3chip makhsoos be khod ra dashte bashad
 
 //add kardan tag(entekhab chand menu ba ham)
 
