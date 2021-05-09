@@ -1,6 +1,7 @@
 import 'package:chfrestaurant/Classes/Date.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
+import 'package:chfrestaurant/Screens/DetailsRestaurantOrderTile.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantActiveOrderTile extends StatefulWidget {
@@ -23,14 +24,14 @@ class RestaurantActiveOrderTile extends StatefulWidget {
 
   // Restaurant _destinationRestaurant;
 
-  // RestaurantActiveOrderTile(
-  //     this._foods,
-  //     this._orderDate,
-  //     this._clientPhoneNumber,
-  //     this._clientAddress,
-  //     this._clientName,
-  //     this._clientLastName,
-  //     this._id);
+  RestaurantActiveOrderTile(
+      this._foods,
+      this._orderDate,
+      this._clientPhoneNumber,
+      this._clientAddress,
+      this._clientName,
+      this._clientLastName,
+      this._id);
 
   // Restaurant get destinationRestaurant => _destinationRestaurant;
   //
@@ -87,14 +88,28 @@ class RestaurantActiveOrderTile extends StatefulWidget {
 
 class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
   List panelItems = ["active", "unActive", "finished"];
+  void refreshPage (){
+    setState(() {
 
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: GestureDetector(
           onTap: () {
-            print("taped");
+            DetailsRestaurantOrderTile.clientName = widget.clientName ;
+            DetailsRestaurantOrderTile.clientLastName = widget.clientLastName;
+            DetailsRestaurantOrderTile.clientAddress = widget.clientAddress;
+            DetailsRestaurantOrderTile.clientPhoneNumber = widget.clientPhoneNumber;
+            DetailsRestaurantOrderTile.foods = widget.foods;
+            DetailsRestaurantOrderTile.id = widget.id;
+            DetailsRestaurantOrderTile.orderDate= widget.orderDate;
+            DetailsRestaurantOrderTile.orderDate= widget.orderDate;
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                DetailsRestaurantOrderTile(function : refreshPage)
+            ));
           },
           child: SizedBox(
             height: 200,
@@ -103,20 +118,20 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
                 title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Amirreza' + '  Ahmadi'),
-                      Text("09185452060"),
+                      Text(widget.clientName+ "  "+ widget.clientLastName),
+                      Text(widget.clientPhoneNumber),
                     ]),
                 subtitle: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         children: [
-                          Text("#9956"),
+                          Text(widget.id),
                         ],
                       ),
                       Column(
                         children: [
-                          Text("2020/05/05"),
+                          Text(widget.orderDate.dateFormatter()),
                           Container(
                             margin: EdgeInsets.only(top: 70),
                             padding: EdgeInsets.all(5),

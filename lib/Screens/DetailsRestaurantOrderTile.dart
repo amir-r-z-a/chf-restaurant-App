@@ -1,33 +1,46 @@
+import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Classes/Date.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:flutter/material.dart';
 
 class DetailsRestaurantOrderTile extends StatefulWidget {
+  static Map foods;
+  static Date orderDate;
+  static String orderStatus;
+  static String clientPhoneNumber;
+  static String clientAddress;
+  static String clientName;
+  static String clientLastName;
+  static String id;
+  Function function ;
+  DetailsRestaurantOrderTile({this.function});
   @override
   _DetailsRestaurantOrderTileState createState() =>
       _DetailsRestaurantOrderTileState();
 }
+
 class _DetailsRestaurantOrderTileState
     extends State<DetailsRestaurantOrderTile> {
-  List foods = [
-    Food(
-      'Tea',
-      '25',
-      true,
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      desc: 'desc',
-    )
-  ];
+  // List foods = [
+  //   Food(
+  //     'Tea',
+  //     '25',
+  //     true,
+  //     desc: 'desc',
+  //   ),
+  //   Food(
+  //     'Tea',
+  //     '25',
+  //     true,
+  //     desc: 'desc',
+  //   ),
+  //   Food(
+  //     'Tea',
+  //     '25',
+  //     true,
+  //     desc: 'desc',
+  //   )
+  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,55 +55,49 @@ class _DetailsRestaurantOrderTileState
             Column(
               children: [
                 Container(
-                  height: 50,
-                  width: MediaQuery. of(context). size. width,
-                  decoration: BoxDecoration(
-                    border: Border.all()
-                  ),
+                    height: 50,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(border: Border.all()),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("amirreza ahmadi"),
-                          Text("09185452060")
+                          Text(DetailsRestaurantOrderTile.clientName+"  "+DetailsRestaurantOrderTile.clientLastName),
+                          Text(DetailsRestaurantOrderTile.clientPhoneNumber)
                         ],
                       ),
-                    )
-                ),
+                    )),
                 Container(
-                  margin: EdgeInsets.only(top: 10),
+                    margin: EdgeInsets.only(top: 10),
                     height: 100,
-                    width: MediaQuery. of(context). size. width,
-                    decoration: BoxDecoration(
-                        border: Border.all()
-                    ),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(border: Border.all()),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("address :     "),
-                          Expanded(child: Text(" lygyg y ugh i uiyi iuh iu  uyu huh i ig ighuihiuh ")),
+                          Expanded(
+                              child: Text(DetailsRestaurantOrderTile.clientAddress)),
                         ],
                       ),
-                    )
-                ),
+                    )),
                 Column(
-                    children: List.generate(foods.length, (index){
-                      return Card(
-                        child: ListTile(
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(foods[index].name),
-                              Text(foods[index].price)
-                            ],
-                          ),
-                        ),
-                      );
-                    })
-                )
+                    children: List.generate(foods.length, (index) {
+                  return Card(
+                    child: ListTile(
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(" "),
+                          Text(" ")
+                        ],
+                      ),
+                    ),
+                  );
+                }))
               ],
             ),
           ],

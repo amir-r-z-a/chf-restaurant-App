@@ -147,7 +147,7 @@ class Restaurant {
   }
 
   void addOrder(RestaurantActiveOrderTile restaurantActiveOrderTile) {
-    activeOrders.add(restaurantActiveOrderTile);
+    // activeOrders.add(restaurantActiveOrderTile);
   }
 
   void inactiveOrder(String input) {
