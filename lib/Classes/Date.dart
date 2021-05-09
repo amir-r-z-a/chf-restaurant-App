@@ -1,11 +1,10 @@
 class Date {
-  String _year;
+  String _year ;
   String _month;
   String _day;
   String _hour;
   String _minute;
   String _second;
-
   Date(this._year, this._month, this._day, this._hour, this._minute,
       this._second);
 
