@@ -194,6 +194,9 @@ class _OrdersMenuState extends State<OrdersMenu> {
 //zire har qaza comment haye marboot be an qaza amade bashad(har comment yek field String nameFood dashte bashad va har Food ye List az comment ha dashte bashad vaqti commenti be Restaurant add mishavad be List comment haye Food niz add shavad)
 //agar price ra 22.4 vared kard be soorat zemni 22.40 tabdil shavad
 //client betavanad be khode resturant(na food) comment befrestad
+//baraye OrderHistory ham TabBar(baraye tafkik category ha) va chip baraye tarikh(1,7,30 days ago) ezafe shavad
+// tarahi RestaurantFoodTile mesle RestaurantCommentTile beshe
+//3 field panel dar order enum shavad
 
 //add kardan tag(entekhab chand menu ba ham)
 
