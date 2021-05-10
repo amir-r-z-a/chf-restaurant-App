@@ -4,7 +4,8 @@ import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantInactiveOrderTile extends StatelessWidget {
-  Map _foods;
+  List _foods;
+  List _numberOfFood;
   Date _orderDate;
   String _orderStatus = 'Finished';
   String _clientPhoneNumber;
@@ -17,6 +18,7 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
 
   RestaurantInactiveOrderTile(
       this._foods,
+      this._numberOfFood,
       this._orderDate,
       this._clientPhoneNumber,
       this._clientAddress,
@@ -24,9 +26,9 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
       this._clientLastName,
       this._id);
 
-  Map get foods => _foods;
+  List get foods => _foods;
 
-  set foods(Map value) {
+  set foods(List value) {
     _foods = value;
   }
 
@@ -77,5 +79,11 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container();
+  }
+
+  List get numberOfFood => _numberOfFood;
+
+  set numberOfFood(List value) {
+    _numberOfFood = value;
   }
 }

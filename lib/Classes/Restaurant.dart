@@ -21,8 +21,8 @@ class Restaurant {
   double _workingRadius = 10;
   double _point;
   String email;
-  List<RestaurantInactiveOrderTile> _ordersHistory;
-  List<RestaurantActiveOrderTile> _activeOrders;
+  List<RestaurantInactiveOrderTile> _ordersHistory = [];
+  List<RestaurantActiveOrderTile> _activeOrders = [];
   Map _restaurantComments = {0: []};
   Image _profileImage;
 
@@ -147,7 +147,7 @@ class Restaurant {
   }
 
   void addOrder(RestaurantActiveOrderTile restaurantActiveOrderTile) {
-    // activeOrders.add(restaurantActiveOrderTile);
+    activeOrders.add(restaurantActiveOrderTile);
   }
 
   void inactiveOrder(String input) {
@@ -155,6 +155,7 @@ class Restaurant {
       if (activeOrders[i].id == input) {
         ordersHistory.add(RestaurantInactiveOrderTile(
             activeOrders[i].foods,
+            activeOrders[i].numberOfFood,
             activeOrders[i].orderDate,
             activeOrders[i].clientPhoneNumber,
             activeOrders[i].clientAddress,
@@ -165,6 +166,15 @@ class Restaurant {
       }
     }
   }
+
+  // static int getNumberOfOrderFood(Map input) {
+  //   String str = json.encode(input);
+  //   return int.parse(String.fromCharCode(str.codeUnitAt(1)));
+  // }
+  //
+  // static String getNameOfOrderFood(Map input){
+  //   return input[Restaurant.getNumberOfOrderFood(input)];
+  // }
 
   String get name => _name;
 
