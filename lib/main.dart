@@ -6,6 +6,7 @@ import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Classes/RestaurantActiveOrderTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
+import 'package:chfrestaurant/Screens/ActiveOrdersScreen.dart';
 import 'package:chfrestaurant/Screens/CommentsManagement.dart';
 import 'package:chfrestaurant/Screens/DetailsCommentTile.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
@@ -61,21 +62,33 @@ void main() {
           '09121231212',
           '09198612878'),
       2);
-  restaurant.addOrder(RestaurantActiveOrderTile({
-    3: Food(
+  restaurant.addOrder(RestaurantActiveOrderTile([
+    Food(
       'Tea',
       '25',
       true,
       desc: 'desc',
     ),
-    4:Food(
+    Food(
       'pizza',
       '25',
       true,
       desc: 'desc',
     ),
-  }, Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan", "ghar",
+    Food(
+      'milk',
+      '25',
+      true,
+      desc: 'desc',
+    )
+  ], [
+    3,
+    4,
+    5
+  ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan", "ghar",
       "alisadr", "#12345"));
+  // print(Accounts.accounts[Accounts.currentAccount].activeOrders[0].foods);
+  // print(DetailsRestaurantOrderTile.foods.length);
   print(Accounts.currentAccount);
   print(Accounts.accounts.length);
   print(restaurant.tabBarTitle);
@@ -105,19 +118,35 @@ class _MyAppState extends State<MyApp> {
           '/MainMenuScreen': (context) => MainMenuScreen(),
           '/ProfileScreen': (context) => ProfileScreen(),
           '/OrdersMenu': (context) => OrdersMenu(),
-          '/DetailsRestaurantOrderTiles' : (context) => DetailsRestaurantOrderTile()
+          '/DetailsRestaurantOrderTiles': (context) =>
+              DetailsRestaurantOrderTile()
         },
         home:
-        RestaurantActiveOrderTile({
-          3: Food(
+            ActiveOrdersScreen() /*RestaurantActiveOrderTile([
+          Food(
             'Tea',
             '25',
             true,
             desc: 'desc',
           ),
-          4: 'pizza'
-        }, Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan", "ghar",
-            "alisadr", "#12345")
+          Food(
+            'pizza',
+            '25',
+            true,
+            desc: 'desc',
+          ),
+          Food(
+            'milk',
+            '25',
+            true,
+            desc: 'desc',
+          )
+        ], [
+          3,
+          4,
+          5
+        ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan",
+            "ghar", "alisadr", "#12345")*/
         // DetailsRestaurantOrderTile()
         // DetailsCommentTile()
         /*CommentsManagement()*/ /*OrdersMenu()*/ /*SignInScreen()*/ /*FoodTile(
