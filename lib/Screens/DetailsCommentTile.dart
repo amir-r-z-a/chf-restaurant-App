@@ -6,6 +6,7 @@ class DetailsCommentTile extends StatefulWidget {
 }
 
 class _DetailsCommentTileState extends State<DetailsCommentTile> {
+  var _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,15 +24,104 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                 children: [
                   Container(
                     margin: EdgeInsets.only(top: 10),
-                    height: (MediaQuery.of(context).size.height)-120,
+                    height: (MediaQuery.of(context).size.height) - 120,
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        border: Border.all()
-                    ),
+                    decoration: BoxDecoration(border: Border.all()),
                     child: Column(
                       children: [
-                        Row(children: [Text("Question : ")],),
-                        Row(children: [Text(" ")],)
+                        Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                              child: Row(
+                                children: [
+                                  Expanded(child: Text("Question : "))
+                                ],
+                              ),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Expanded(child: Text("This is my question : "))
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                            flex: 3,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      child: Text(
+                                          "Answer : " + "  this is my answer"))
+                                ],
+                              ),
+                            )),
+                        ElevatedButton(
+                            onPressed: () {
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (context) {
+                                  return ListView(
+                                    children: [
+                                      Form(
+                                          key: _formkey,
+                                          child: Column(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                child: TextFormField(
+                                                  maxLines: null,
+                                                  onSaved: (String value) {
+                                                    // MyTextFormField.password = value;
+                                                  },
+                                                  decoration: InputDecoration(
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color: Color
+                                                                        .fromRGBO(
+                                                                            248,
+                                                                            95,
+                                                                            106,
+                                                                            1),
+                                                                    width:
+                                                                        2.0)),
+                                                    errorStyle: TextStyle(
+                                                      color: Color.fromRGBO(
+                                                          248, 95, 106, 1),
+                                                    ),
+                                                    labelText: "Reply",
+                                                    labelStyle: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Color.fromRGBO(
+                                                            248, 95, 106, 1)),
+                                                    hintText: "Your Reply ",
+                                                    hintStyle: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Color.fromRGBO(
+                                                          209, 214, 219, 1),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              ElevatedButton(
+                                                  onPressed: () {},
+                                                  child: Text("Save"))
+                                            ],
+                                          ))
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: Text("reply : "))
                       ],
                     ),
                   ),
