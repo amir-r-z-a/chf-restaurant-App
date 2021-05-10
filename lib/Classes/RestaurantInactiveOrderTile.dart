@@ -1,6 +1,7 @@
 import 'package:chfrestaurant/Classes/Date.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
+import 'package:chfrestaurant/Screens/DetailsRestaurantOrderTile.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantInactiveOrderTile extends StatelessWidget {
@@ -78,7 +79,53 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return GestureDetector(
+      onTap: () {
+        DetailsRestaurantOrderTile.clientName = clientName;
+        DetailsRestaurantOrderTile.clientLastName =clientLastName;
+        DetailsRestaurantOrderTile.clientAddress = clientAddress;
+        DetailsRestaurantOrderTile.clientPhoneNumber = clientPhoneNumber;
+        DetailsRestaurantOrderTile.foods =foods;
+        DetailsRestaurantOrderTile.numberOfFood = numberOfFood;
+        DetailsRestaurantOrderTile.id =id;
+        DetailsRestaurantOrderTile.orderDate = orderDate;
+      },
+      child: SizedBox(
+        height: 200,
+        child: Card(
+          child: ListTile(
+            title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(clientName + "  " + clientLastName),
+                  Text(clientPhoneNumber),
+                ]),
+            subtitle: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Text(id),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(orderDate.dateFormatter()),
+                      Container(
+                        margin: EdgeInsets.only(top: 70),
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Text(orderStatus)
+                      )
+                    ],
+                  )
+                ]),
+          ),
+        ),
+      ),
+    );
   }
 
   List get numberOfFood => _numberOfFood;
