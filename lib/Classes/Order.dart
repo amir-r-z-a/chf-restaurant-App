@@ -3,7 +3,8 @@ import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 
 class Order {
-  Map _foods;
+  List _foods;
+  List _numberOfFood;
   Date _orderDate;
   bool _orderStatus;
   String _clientPhoneNumber;
@@ -12,11 +13,23 @@ class Order {
   String _clientLastName;
   String _id;
 
-  Map get foods => _foods;
+  Order(
+      this._foods,
+      this._numberOfFood,
+      this._orderDate,
+      this._clientPhoneNumber,
+      this._clientAddress,
+      this._clientName,
+      this._clientLastName,
+      this._id);
 
-  set foods(Map value) {
+  List get foods => _foods;
+
+  set foods(List value) {
     _foods = value;
-  } // Restaurant _destinationRestaurant;
+  }
+
+  // Restaurant _destinationRestaurant;
 
   // Restaurant get destinationRestaurant => _destinationRestaurant;
   //
@@ -64,5 +77,11 @@ class Order {
 
   set id(String value) {
     _id = value;
+  }
+
+  List get numberOfFood => _numberOfFood;
+
+  set numberOfFood(List value) {
+    _numberOfFood = value;
   }
 }

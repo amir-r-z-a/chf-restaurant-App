@@ -1,10 +1,12 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Date.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
+import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:flutter/material.dart';
 
 class DetailsRestaurantOrderTile extends StatefulWidget {
-  static Map foods;
+  static List foods;
+  static List numberOfFood;
   static Date orderDate;
   static String orderStatus;
   static String clientPhoneNumber;
@@ -12,8 +14,10 @@ class DetailsRestaurantOrderTile extends StatefulWidget {
   static String clientName;
   static String clientLastName;
   static String id;
-  Function function ;
+  Function function;
+
   DetailsRestaurantOrderTile({this.function});
+
   @override
   _DetailsRestaurantOrderTileState createState() =>
       _DetailsRestaurantOrderTileState();
@@ -55,19 +59,22 @@ class _DetailsRestaurantOrderTileState
             Column(
               children: [
                 Container(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(border: Border.all()),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(DetailsRestaurantOrderTile.clientName+"  "+DetailsRestaurantOrderTile.clientLastName),
-                          Text(DetailsRestaurantOrderTile.clientPhoneNumber)
-                        ],
-                      ),
-                    )),
+                  height: 50,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(border: Border.all()),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(DetailsRestaurantOrderTile.clientName +
+                            "  " +
+                            DetailsRestaurantOrderTile.clientLastName),
+                        Text(DetailsRestaurantOrderTile.clientPhoneNumber)
+                      ],
+                    ),
+                  ),
+                ),
                 Container(
                     margin: EdgeInsets.only(top: 10),
                     height: 100,
@@ -84,20 +91,23 @@ class _DetailsRestaurantOrderTileState
                         ],
                       ),
                     )),
-                // Column(
-                //     children: List.generate(foods.length, (index) {
-                //   return Card(
-                //     child: ListTile(
-                //       title: Row(
-                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //         children: [
-                //           Text(" "),
-                //           Text(" ")
-                //         ],
-                //       ),
-                //     ),
-                //   );
-                // }))
+                Column(
+                  children: List.generate(
+                    DetailsRestaurantOrderTile.foods.length,
+                    (index) => Card(
+                      child: ListTile(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(DetailsRestaurantOrderTile.numberOfFood[index]
+                                .toString()),
+                            Text(DetailsRestaurantOrderTile.foods[index].name)
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ],
