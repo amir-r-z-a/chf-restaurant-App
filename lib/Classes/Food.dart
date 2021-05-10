@@ -7,7 +7,7 @@ class Food {
   String desc;
   bool _foodStatus;
   Image _foodImage;
-  String _foodType;
+  String _category;
 
   Food(this._name, this._price, this._foodStatus, {this.desc});
 
@@ -17,10 +17,11 @@ class Food {
     _name = value;
   }
 
-  String get foodType => _foodType;
 
-  set foodType(String value) {
-    _foodType = value;
+  String get category => _category;
+
+  set category(String value) {
+    _category = value;
   }
 
   String get price => _price;

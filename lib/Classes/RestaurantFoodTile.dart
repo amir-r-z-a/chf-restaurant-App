@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class RestaurantFoodTile extends StatefulWidget {
   String _name;
-  String _foodType;
+  String _category;
   String _price;
   String desc;
   bool _foodStatus;
@@ -34,10 +34,11 @@ class RestaurantFoodTile extends StatefulWidget {
     _foodStatus = value;
   }
 
-  String get foodType => _foodType;
 
-  set foodType(String value) {
-    _foodType = value;
+  String get category => _category;
+
+  set category(String value) {
+    _category = value;
   }
 
   Image get foodImage => _foodImage;
