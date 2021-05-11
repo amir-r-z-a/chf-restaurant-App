@@ -1,7 +1,8 @@
+import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Date.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
-import 'package:chfrestaurant/Screens/DetailsRestaurantOrderTile.dart';
+import 'package:chfrestaurant/Screens/DetailsRestaurantActiveOrderTile.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantActiveOrderTile extends StatefulWidget {
@@ -16,6 +17,7 @@ class RestaurantActiveOrderTile extends StatefulWidget {
   String _clientName;
   String _clientLastName;
   String _id;
+  static Function function;
 
   RestaurantActiveOrderTile(
       this._foods,
@@ -24,8 +26,7 @@ class RestaurantActiveOrderTile extends StatefulWidget {
       this._clientPhoneNumber,
       this._clientAddress,
       this._clientName,
-      this._clientLastName,
-      this._id);
+      this._clientLastName);
 
   List get foods => _foods;
 
@@ -101,22 +102,78 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
     setState(() {});
   }
 
+  void finishedOrder() {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Finished Order'),
+          content: Container(
+            height: 100,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Padding(padding: EdgeInsets.all(1)),
+                    Text('Are you sure to finished this Order?'),
+                  ],
+                ),
+                Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Accounts.accounts[Accounts.currentAccount]
+                            .inactiveOrder(widget.id);
+                        RestaurantActiveOrderTile.function();
+                        Navigator.pop(context);
+                        // if (flag) {
+                        //   Navigator.pop(context);
+                        // }
+                      },
+                      child: Text(
+                        'OK',
+                        style: TextStyle(color: Theme.of(context).primaryColor),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'Cancel',
+                        style: TextStyle(color: Theme.of(context).primaryColor),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        DetailsRestaurantOrderTile.clientName = widget.clientName;
-        DetailsRestaurantOrderTile.clientLastName = widget.clientLastName;
-        DetailsRestaurantOrderTile.clientAddress = widget.clientAddress;
-        DetailsRestaurantOrderTile.clientPhoneNumber = widget.clientPhoneNumber;
-        DetailsRestaurantOrderTile.foods = widget.foods;
-        DetailsRestaurantOrderTile.numberOfFood = widget.numberOfFood;
-        DetailsRestaurantOrderTile.id = widget.id;
-        DetailsRestaurantOrderTile.orderDate = widget.orderDate;
+        DetailsRestaurantActiveOrderTile.clientName = widget.clientName;
+        DetailsRestaurantActiveOrderTile.clientLastName = widget.clientLastName;
+        DetailsRestaurantActiveOrderTile.clientAddress = widget.clientAddress;
+        DetailsRestaurantActiveOrderTile.clientPhoneNumber =
+            widget.clientPhoneNumber;
+        DetailsRestaurantActiveOrderTile.foods = widget.foods;
+        DetailsRestaurantActiveOrderTile.numberOfFood = widget.numberOfFood;
+        DetailsRestaurantActiveOrderTile.id = widget.id;
+        DetailsRestaurantActiveOrderTile.orderDate = widget.orderDate;
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DetailsRestaurantOrderTile(
+            builder: (context) => DetailsRestaurantActiveOrderTile(
               function: refreshPage,
             ),
           ),
@@ -133,43 +190,47 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
                   Text(widget.clientPhoneNumber),
                 ]),
             subtitle: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Text(widget.id),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(widget.orderDate.dateFormatter()),
-                      Container(
-                        margin: EdgeInsets.only(top: 70),
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(15)),
-                        child: DropdownButton(
-                          hint: Text("Order Status "),
-                          dropdownColor: Colors.grey,
-                          icon: Icon(Icons.arrow_drop_down),
-                          value: widget._orderStatus,
-                          onChanged: (newValue) {
-                            setState(() {
-                              widget._orderStatus = newValue;
-                            });
-                          },
-                          items: panelItems.map((valueitem) {
-                            return DropdownMenuItem(
-                              value: valueitem,
-                              child: Text(valueitem),
-                            );
-                          }).toList(),
-                        ),
-                      )
-                    ],
-                  )
-                ]),
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Text(widget.id),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(widget.orderDate.dateFormatter()),
+                    Container(
+                      margin: EdgeInsets.only(top: 70),
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(15)),
+                      child: DropdownButton(
+                        hint: Text("Order Status"),
+                        dropdownColor: Colors.grey,
+                        icon: Icon(Icons.arrow_drop_down),
+                        value: widget._orderStatus,
+                        onChanged: (newValue) {
+                          setState(() {
+                            widget._orderStatus = newValue;
+                            if (widget.orderStatus == 'finished') {
+                              return finishedOrder();
+                            }
+                          });
+                        },
+                        items: panelItems.map((valueitem) {
+                          return DropdownMenuItem(
+                            value: valueitem,
+                            child: Text(valueitem),
+                          );
+                        }).toList(),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
