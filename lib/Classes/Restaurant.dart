@@ -171,7 +171,8 @@ class Restaurant {
             activeOrders[i].clientAddress,
             activeOrders[i].clientName,
             activeOrders[i].clientLastName,
-            activeOrders[i].id));
+            activeOrders[i].id,
+            activeOrders[i].sumPrice));
         activeOrders.removeAt(i);
       }
     }

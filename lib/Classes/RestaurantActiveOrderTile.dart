@@ -10,6 +10,7 @@ class RestaurantActiveOrderTile extends StatefulWidget {
   List _numberOfFood;
   Date _orderDate;
   String _orderStatus;
+  int _sumPrice;
 
   /*orderStatus enum shavad va dafe aval rooye dar hal amade sazi bashad*/
   String _clientPhoneNumber;
@@ -90,6 +91,12 @@ class RestaurantActiveOrderTile extends StatefulWidget {
     _numberOfFood = value;
   }
 
+  int get sumPrice => _sumPrice;
+
+  set sumPrice(int value) {
+    _sumPrice = value;
+  }
+
   @override
   _RestaurantActiveOrderTileState createState() =>
       _RestaurantActiveOrderTileState();
@@ -100,6 +107,14 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
 
   void refreshPage() {
     setState(() {});
+  }
+
+  int sumPriceCalculator() {
+    int sum = 0;
+    for (int i = 0; i < widget.foods.length; i++) {
+      sum += widget.foods[i].price * widget.numberOfFood[i];
+    }
+    return sum;
   }
 
   void finishedOrder() {

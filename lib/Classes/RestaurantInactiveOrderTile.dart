@@ -14,6 +14,7 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
   String _clientName;
   String _clientLastName;
   String _id;
+  int sumPrice;
 
   // Restaurant _destinationRestaurant;
 
@@ -25,7 +26,8 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
       this._clientAddress,
       this._clientName,
       this._clientLastName,
-      this._id);
+      this._id,
+      this.sumPrice);
 
   List get foods => _foods;
 
