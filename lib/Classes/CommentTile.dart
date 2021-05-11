@@ -1,29 +1,25 @@
 import 'package:chfrestaurant/Classes/Date.dart';
+import 'package:chfrestaurant/Screens/DetailsCommentTile.dart';
 import 'package:flutter/material.dart';
 
 class CommentTile extends StatefulWidget {
   String _question;
-  String _answer;
+  String answer;
   String _clientPhoneNumber;
   String _destinationRestaurant;
-  String foodName;
+  String _foodName;
   String _point;
   Date _date;
   String _id;
 
-  CommentTile(this._question, this.foodName, this._date,
-      this._clientPhoneNumber, this._destinationRestaurant);
+  CommentTile(this._question, this._foodName, this._date,
+      this._clientPhoneNumber, this._destinationRestaurant,
+      {this.answer});
 
   String get question => _question;
 
   set question(String value) {
     _question = value;
-  }
-
-  String get answer => _answer;
-
-  set answer(String value) {
-    _answer = value;
   }
 
   String get clientPhoneNumber => _clientPhoneNumber;
@@ -56,6 +52,12 @@ class CommentTile extends StatefulWidget {
     _id = value;
   }
 
+  String get foodName => _foodName;
+
+  set foodName(String value) {
+    _foodName = value;
+  }
+
   @override
   _CommentTileState createState() => _CommentTileState();
 }
@@ -65,7 +67,9 @@ class _CommentTileState extends State<CommentTile> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('tab');
+        DetailsCommentTile.question = widget.question;
+        DetailsCommentTile.answer = widget.answer;
+        Navigator.pushNamed(context, '/DetailsCommentTile');
       },
       child: SizedBox(
         height: 300,
@@ -74,8 +78,9 @@ class _CommentTileState extends State<CommentTile> {
               isThreeLine: true,
               subtitle: Text(widget.date.dateFormatter() +
                   '\n' +
-                  // '#' +
-                  widget.foodName),
+                  widget.foodName +
+                  '\n' +
+                  widget.id),
               title: Text(widget.question)),
         ),
       ),
