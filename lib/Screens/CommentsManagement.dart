@@ -1,8 +1,17 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Date.dart';
+import 'package:chfrestaurant/Common/Chip/MyOffChip.dart';
+import 'package:chfrestaurant/Common/Chip/MyOnChip.dart';
 import 'package:flutter/material.dart';
 
 class CommentsManagement extends StatefulWidget {
+  // MyOnChip myOnChip1 = MyOnChip('1 days ago', 1);
+  // MyOnChip myOnChip2 = MyOnChip('7 days ago', 7);
+  // MyOnChip myOnChip3 = MyOnChip('30 days ago', 30);
+  // MyOffChip myOffChip1 = MyOffChip('1 days ago', 1);
+  // MyOffChip myOffChip2 = MyOffChip('7 days ago', 7);
+  // MyOffChip myOffChip3 = MyOffChip('30 days ago', 30);
+
   @override
   _CommentsManagementState createState() => _CommentsManagementState();
 }
