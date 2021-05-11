@@ -28,95 +28,99 @@ class _OrdersMenuState extends State<OrdersMenu> {
               builder: (context) {
                 return Form(
                   key: key1,
-                  child: ListView(padding: EdgeInsets.all(10), children: [
-                    Text(
-                      'Add Food',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
-                    ),
-                    MyTextFormField(
-                      'Category',
-                      index: 4,
-                      hint: 'Your category',
-                      regex: 'Category',
-                    ),
-                    MyTextFormField(
-                      'Name',
-                      index: 5,
-                      hint: 'Your name',
-                      regex: 'FoodName',
-                    ),
-                    TextFormField(
-                      onSaved: (String value) =>
-                          MyTextFormField.foodDesc = value,
-                      decoration: InputDecoration(
-                        errorStyle: TextStyle(
-                          color: Color.fromRGBO(248, 95, 106, 1),
-                        ),
-                        labelText: 'Desc',
-                        labelStyle: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(248, 95, 106, 1)),
-                        hintText: 'Your desc',
-                        hintStyle: TextStyle(
-                          fontSize: 16,
-                          color: Color.fromRGBO(209, 214, 219, 1),
+                  child: ListView(
+                    padding: EdgeInsets.all(10),
+                    children: [
+                      Text(
+                        'Add Food',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 28),
+                      ),
+                      MyTextFormField(
+                        'Category',
+                        index: 4,
+                        hint: 'Your category',
+                        regex: 'Category',
+                      ),
+                      MyTextFormField(
+                        'Name',
+                        index: 5,
+                        hint: 'Your name',
+                        regex: 'FoodName',
+                      ),
+                      TextFormField(
+                        onSaved: (String value) =>
+                            MyTextFormField.foodDesc = value,
+                        decoration: InputDecoration(
+                          errorStyle: TextStyle(
+                            color: Color.fromRGBO(248, 95, 106, 1),
+                          ),
+                          labelText: 'Desc',
+                          labelStyle: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromRGBO(248, 95, 106, 1)),
+                          hintText: 'Your desc',
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            color: Color.fromRGBO(209, 214, 219, 1),
+                          ),
                         ),
                       ),
-                    ),
-                    MyTextFormField(
-                      'Price',
-                      hint: 'Your price (example: 28.40)',
-                      regex: 'Price',
-                      index: 6,
-                    ),
-                    Padding(padding: EdgeInsets.all(10)),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: Theme.of(context).primaryColor),
-                        onPressed: () {
-                          if (key1.currentState.validate()) {
-                            bool flag = true;
-                            key1.currentState.save();
-                            RestaurantFoodTile food = RestaurantFoodTile(
-                              MyTextFormField.foodName,
-                              MyTextFormField.foodPrice,
-                              true,
-                              desc: MyTextFormField.foodDesc,
-                            );
+                      MyTextFormField(
+                        'Price',
+                        hint: 'Your price (example: 28.40)',
+                        regex: 'Price',
+                        index: 6,
+                      ),
+                      Padding(padding: EdgeInsets.all(10)),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Theme.of(context).primaryColor),
+                          onPressed: () {
+                            if (key1.currentState.validate()) {
+                              bool flag = true;
+                              key1.currentState.save();
+                              RestaurantFoodTile food = RestaurantFoodTile(
+                                MyTextFormField.foodName,
+                                MyTextFormField.foodPrice,
+                                true,
+                                MyTextFormField.foodCategory,
+                                desc: MyTextFormField.foodDesc,
+                              );
 
-                            for (int i = 0;
-                                i <
-                                    Accounts.accounts[Accounts.currentAccount]
-                                        .getTabBarTitleLength();
-                                i++) {
-                              if (Accounts.accounts[Accounts.currentAccount]
-                                      .tabBarTitle[i] ==
-                                  MyTextFormField.foodCategory) {
-                                Accounts.accounts[Accounts.currentAccount]
-                                    .addTabBarViewElements(food, i);
-                                flag = false;
+                              for (int i = 0;
+                                  i <
+                                      Accounts.accounts[Accounts.currentAccount]
+                                          .getTabBarTitleLength();
+                                  i++) {
+                                if (Accounts.accounts[Accounts.currentAccount]
+                                        .tabBarTitle[i] ==
+                                    MyTextFormField.foodCategory) {
+                                  Accounts.accounts[Accounts.currentAccount]
+                                      .addTabBarViewElements(food, i);
+                                  flag = false;
+                                }
                               }
-                            }
-                            if (flag) {
-                              Accounts.accounts[Accounts.currentAccount]
-                                  .addTabBarTitle(
-                                      MyTextFormField.foodCategory, food);
+                              if (flag) {
+                                Accounts.accounts[Accounts.currentAccount]
+                                    .addTabBarTitle(
+                                        MyTextFormField.foodCategory, food);
 
-                              print(Accounts.currentAccount);
-                              print(Accounts.accounts.length);
-                              print(Accounts.accounts[Accounts.currentAccount]
-                                  .tabBarTitle);
-                              print(Accounts.accounts[Accounts.currentAccount]
-                                  .restaurantTabBarView);
+                                print(Accounts.currentAccount);
+                                print(Accounts.accounts.length);
+                                print(Accounts.accounts[Accounts.currentAccount]
+                                    .tabBarTitle);
+                                print(Accounts.accounts[Accounts.currentAccount]
+                                    .restaurantTabBarView);
+                              }
+                              setState(() {});
+                              Navigator.pop(context);
                             }
-                            setState(() {});
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: Text('Add'))
-                  ]),
+                          },
+                          child: Text('Add'))
+                    ],
+                  ),
                 );
               },
             );
@@ -152,16 +156,17 @@ class _OrdersMenuState extends State<OrdersMenu> {
         ),
         body: TabBarView(
           children: List.generate(
-              Accounts.accounts[Accounts.currentAccount].getTabBarTitleLength(),
-              (i) {
-            return ListView(
-              children: List.generate(
-                  Accounts.accounts[Accounts.currentAccount]
-                      .restaurantTabBarView[i].length,
-                  (j) => Accounts.accounts[Accounts.currentAccount]
-                      .restaurantTabBarView[i][j]),
-            );
-          }),
+            Accounts.accounts[Accounts.currentAccount].getTabBarTitleLength(),
+            (i) {
+              return ListView(
+                children: List.generate(
+                    Accounts.accounts[Accounts.currentAccount]
+                        .restaurantTabBarView[i].length,
+                    (j) => Accounts.accounts[Accounts.currentAccount]
+                        .restaurantTabBarView[i][j]),
+              );
+            },
+          ),
         ),
       ),
     );

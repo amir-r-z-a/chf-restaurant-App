@@ -9,14 +9,13 @@ class Food {
   Image _foodImage;
   String _category;
 
-  Food(this._name, this._price, this._foodStatus, {this.desc});
+  Food(this._name, this._price, this._foodStatus, this._category, {this.desc});
 
   String get name => _name;
 
   set name(String value) {
     _name = value;
   }
-
 
   String get category => _category;
 

@@ -52,10 +52,12 @@ class Restaurant {
   }
 
   void addTabBarViewElements(RestaurantFoodTile food, int i) {
-    listOfFood[0]
-        .add(Food(food.name, food.price, food.foodStatus, desc: food.desc));
-    listOfFood[i]
-        .add(Food(food.name, food.price, food.foodStatus, desc: food.desc));
+    listOfFood[0].add(Food(
+        food.name, food.price, food.foodStatus, food.category,
+        desc: food.desc));
+    listOfFood[i].add(Food(
+        food.name, food.price, food.foodStatus, food.category,
+        desc: food.desc));
     restaurantTabBarView[0].add(food);
     restaurantTabBarView[i].add(food);
   }

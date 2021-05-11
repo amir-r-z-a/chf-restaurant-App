@@ -30,6 +30,7 @@ void main() {
         'Tea',
         '25',
         true,
+        'Cafe',
         desc: 'desc',
       ));
   restaurant.addTabBarTitle(
@@ -38,6 +39,7 @@ void main() {
         'Hot Dog',
         '25',
         true,
+        'Cafe',
         desc: 'desc',
       ));
   restaurant.addComments(
@@ -69,18 +71,21 @@ void main() {
       'Tea',
       '25',
       true,
+      'Cafe',
       desc: 'desc',
     ),
     Food(
       'pizza',
       '25',
       true,
+      'FastFood',
       desc: 'desc',
     ),
     Food(
       'milk',
       '25',
       true,
+      'Cafe',
       desc: 'desc',
     )
   ], [
@@ -95,18 +100,21 @@ void main() {
       'arman',
       '25',
       true,
+      'arman',
       desc: 'desc',
     ),
     Food(
       'amireza',
       '25',
       true,
+      'amireza',
       desc: 'desc',
     ),
     Food(
       'armannnnnnn',
       '25',
       true,
+      'armannnnnnn',
       desc: 'desc',
     )
   ], [
@@ -154,8 +162,8 @@ class _MyAppState extends State<MyApp> {
           '/DetailsCommentTile': (context) => DetailsCommentTile(),
         },
         home: /*ActiveOrdersScreen()*/
-        /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ CommentsManagement()
-        /*MainMenuScreen()*/ /*RestaurantActiveOrderTile([
+            /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
+            MainMenuScreen() /*RestaurantActiveOrderTile([
           Food(
             'Tea',
             '25',

@@ -17,7 +17,8 @@ class RestaurantFoodTile extends StatefulWidget {
     _name = value;
   }
 
-  RestaurantFoodTile(this._name, this._price, this._foodStatus, {this.desc});
+  RestaurantFoodTile(this._name, this._price, this._foodStatus, this._category,
+      {this.desc});
 
   @override
   _RestaurantFoodTileState createState() => _RestaurantFoodTileState();
