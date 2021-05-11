@@ -49,354 +49,334 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: Text("Profile"),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 200,
-              width: 200,
-              margin:EdgeInsets.fromLTRB(50, 0, 50, 50),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.pink),
-                 borderRadius: BorderRadius.circular(100),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 200,
+                width: 200,
+                margin:EdgeInsets.fromLTRB(50, 0, 50, 50),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.pink),
+                   borderRadius: BorderRadius.circular(100),
+                ),
               ),
-            ),
-            ElevatedButton(onPressed:(){
-              getImage() ;
-            },
-                child: Text ("pick image")),
-            Container(
-              height: 50,
-              child: InkWell(
-                onTap: (){},
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Name : "),
-                      Text(Accounts.accounts[Accounts.currentAccount].name),
-                      SingleChildScrollView(
-                        child: GestureDetector(
-                          onTap: (){
-                            showModalBottomSheet(
-                                context:context,
-                                builder: (context){
-                                  return Container(
-                                    margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
-                                    child: Form(
-                                      key: _formkey,
-                                      child: ListView(
-                                        children: [
-                                          MyTextFormField(
-                                            "Edit" ,
-                                            index: 1,
-                                            addToAccounts: true,
-                                            initial: Accounts.accounts[Accounts.currentAccount].name,
-                                          ),
-                                          ElevatedButton(onPressed: (){
-                                            if(_formkey.currentState.validate()){
-                                              setState(() {
-                                                _formkey.currentState.save();
-                                                print(Accounts.accounts[Accounts.currentAccount].name);
+              ElevatedButton(onPressed:(){
+                getImage() ;
+              },
+                  child: Text ("pick image")),
+              Container(
+                height: 50,
+                child: InkWell(
+                  onTap: (){},
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Name : "),
+                        Text(Accounts.accounts[Accounts.currentAccount].name),
+                        SingleChildScrollView(
+                          child: GestureDetector(
+                            onTap: (){
+                              showModalBottomSheet(
+                                  context:context,
+                                  builder: (context){
+                                    return Container(
+                                      margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                                      child: Form(
+                                        key: _formkey,
+                                        child: ListView(
+                                          children: [
+                                            MyTextFormField(
+                                              "Edit" ,
+                                              index: 1,
+                                              addToAccounts: true,
+                                              initial: Accounts.accounts[Accounts.currentAccount].name,
+                                            ),
+                                            ElevatedButton(onPressed: (){
+                                              if(_formkey.currentState.validate()){
+                                                setState(() {
+                                                  _formkey.currentState.save();
+                                                  print(Accounts.accounts[Accounts.currentAccount].name);
+                                                }
+                                                );
                                               }
-                                              );
-                                            }
 
-                                          },
-                                              child: Text("Save"
-                                              )
-                                          )
-                                        ],
+                                            },
+                                                child: Text("Save"
+                                                )
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }
-                            );
-                          },
-                          child: Icon(
-                            Icons.edit_rounded,
+                                    );
+                                  }
+                              );
+                            },
+                            child: Icon(
+                              Icons.edit_rounded,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              height: 50,
-              child: InkWell(
-                onTap: (){},
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Phone Number : "),
-                      Text(Accounts.accounts[Accounts.currentAccount].phoneNumber),
-                      SingleChildScrollView(
-                        child: GestureDetector(
-                          onTap: (){
-                            showModalBottomSheet(
-                                context:context,
-                                builder: (context){
-                                  return Container(
-                                    margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
-                                    child: Form(
-                                      key: _formkey,
-                                      child: ListView(
-                                        children: [
-                                          MyTextFormField(
-                                            "Edit" ,
-                                            index: 2,
-                                            addToAccounts: true,
-                                            initial: Accounts.accounts[Accounts.currentAccount].phoneNumber,
-                                          ),
-                                          ElevatedButton(onPressed: (){
-                                            if(_formkey.currentState.validate()){
-                                              setState(() {
-                                                _formkey.currentState.save();
-                                                print(Accounts.accounts[Accounts.currentAccount].phoneNumber);
-                                              }
-                                              );
-                                            }
-                                          },
-                                              child: Text("Save"
-                                              )
-                                          )
-                                        ],
+              Container(
+                height: 80,
+                child: InkWell(
+                  onTap: (){},
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Expanded(
+                            child: Form(
+                              key: _formkey,
+                              child: ListView(
+                                children: [
+                                  Column(
+                                    children: [
+                                      MyTextFormField(
+                                        "Phone number" ,
+                                        index: 2,
+                                        addToAccounts: true,
+                                        initial: Accounts.accounts[Accounts.currentAccount].phoneNumber,
                                       ),
-                                    ),
-                                  );
-                                }
-                            );
-                          },
-                          child: Icon(
-                            Icons.edit_rounded,
+                                      SizedBox(height: 300,)
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
-                      )
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              height: 50,
-              child: InkWell(
-                onTap: (){},
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Password : "),
-                      // Text(Accounts.accounts[Accounts.currentAccount].password),
-                      SingleChildScrollView(
-                        child: GestureDetector(
-                          onTap: (){
-                            showModalBottomSheet(
-                                context:context,
-                                builder: (context){
-                                  return Container(
-                                    margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
-                                    child: Form(
-                                      key: _formkey,
-                                      child: ListView(
-                                        children: [
-                                          TextFormField(
-                                            onSaved: (String value) {
-                                              MyTextFormField.password = value;
-                                            },
-                                            validator: (String entereddate) {
-                                              if (entereddate.isEmpty || entereddate == null) {
-                                                return "you must fill this box";
-                                              }
-                                              if (!(regPassword.hasMatch(entereddate))) {
-                                                return 'Your password should contain at least one number and one letter';
-                                              }
-                                              return null;
-                                            },
-                                            obscureText: _isObscure,
-                                            decoration: InputDecoration(
-                                              focusedBorder: OutlineInputBorder(
-                                                  borderSide: const BorderSide(
-                                                      color: Color.fromRGBO(248, 95, 106, 1),
-                                                      width: 2.0)),
-                                              errorStyle: TextStyle(
-                                                color: Color.fromRGBO(248, 95, 106, 1),
-                                              ),
-                                              suffixIcon: IconButton(
-                                                color: Color.fromRGBO(248, 95, 106, 1),
-                                                onPressed: () {
-                                                  setState(() {
-                                                    _isObscure = !_isObscure;
-                                                  });
-                                                },
-                                                icon: Icon(_isObscure
-                                                    ? Icons.visibility
-                                                    : Icons.visibility_off),
-                                              ),
-                                              labelText: "Password",
-                                              labelStyle: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Color.fromRGBO(248, 95, 106, 1)),
-                                              hintText: "Your password ",
-                                              hintStyle: TextStyle(
-                                                fontSize: 16,
-                                                color: Color.fromRGBO(209, 214, 219, 1),
+              Container(
+                height: 50,
+                child: InkWell(
+                  onTap: (){},
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Password : "),
+                        // Text(Accounts.accounts[Accounts.currentAccount].password),
+                        SingleChildScrollView(
+                          child: GestureDetector(
+                            onTap: (){
+                              showModalBottomSheet(
+                                  context:context,
+                                  builder: (context){
+                                    return Container(
+                                      margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                                      child: Form(
+                                        key: _formkey,
+                                        child: ListView(
+                                          children: [
+                                            TextFormField(
+                                              onSaved: (String value) {
+                                                MyTextFormField.password = value;
+                                              },
+                                              validator: (String entereddate) {
+                                                if (entereddate.isEmpty || entereddate == null) {
+                                                  return "you must fill this box";
+                                                }
+                                                if (!(regPassword.hasMatch(entereddate))) {
+                                                  return 'Your password should contain at least one number and one letter';
+                                                }
+                                                return null;
+                                              },
+                                              obscureText: _isObscure,
+                                              decoration: InputDecoration(
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderSide: const BorderSide(
+                                                        color: Color.fromRGBO(248, 95, 106, 1),
+                                                        width: 2.0)),
+                                                errorStyle: TextStyle(
+                                                  color: Color.fromRGBO(248, 95, 106, 1),
+                                                ),
+                                                suffixIcon: IconButton(
+                                                  color: Color.fromRGBO(248, 95, 106, 1),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _isObscure = !_isObscure;
+                                                    });
+                                                  },
+                                                  icon: Icon(_isObscure
+                                                      ? Icons.visibility
+                                                      : Icons.visibility_off),
+                                                ),
+                                                labelText: "Password",
+                                                labelStyle: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color.fromRGBO(248, 95, 106, 1)),
+                                                hintText: "Your password ",
+                                                hintStyle: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Color.fromRGBO(209, 214, 219, 1),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          ElevatedButton(onPressed: (){
-                                            if(_formkey.currentState.validate()){
-                                              setState(() {
-                                                _formkey.currentState.save();
-                                                print(Accounts.accounts[Accounts.currentAccount].name);
+                                            ElevatedButton(onPressed: (){
+                                              if(_formkey.currentState.validate()){
+                                                setState(() {
+                                                  _formkey.currentState.save();
+                                                  print(Accounts.accounts[Accounts.currentAccount].name);
+                                                }
+                                                );
                                               }
-                                              );
-                                            }
 
-                                          },
-                                              child: Text("Save"
-                                              )
-                                          )
-                                        ],
+                                            },
+                                                child: Text("Save"
+                                                )
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }
-                            );
-                          },
-                          child: Icon(
-                            Icons.edit_rounded,
+                                    );
+                                  }
+                              );
+                            },
+                            child: Icon(
+                              Icons.edit_rounded,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              height: 50,
-              child: InkWell(
-                onTap: (){},
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Email : "),
-                      Text(Accounts.accounts[Accounts.currentAccount].email!=null?Accounts.accounts[Accounts.currentAccount].email:" "),
-                      SingleChildScrollView(
-                        child: GestureDetector(
-                          onTap: (){
-                            showModalBottomSheet(
-                                context:context,
-                                builder: (context){
-                                  return Container(
-                                    margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
-                                    child: Form(
-                                      key: _formkey,
-                                      child: ListView(
-                                        children: [
-                                          MyTextFormField(
-                                            "Edit" ,
-                                            index: 7,
-                                            addToAccounts: true,
-                                            initial: Accounts.accounts[Accounts.currentAccount].email,
-                                          ),
-                                          ElevatedButton(onPressed: (){
-                                            if(_formkey.currentState.validate()){
-                                              setState(() {
-                                                _formkey.currentState.save();
-                                                print(Accounts.accounts[Accounts.currentAccount].email);
+              Container(
+                height: 50,
+                child: InkWell(
+                  onTap: (){},
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Email : "),
+                        Text(Accounts.accounts[Accounts.currentAccount].email!=null?Accounts.accounts[Accounts.currentAccount].email:" "),
+                        SingleChildScrollView(
+                          child: GestureDetector(
+                            onTap: (){
+                              showModalBottomSheet(
+                                  context:context,
+                                  builder: (context){
+                                    return Container(
+                                      margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                                      child: Form(
+                                        key: _formkey,
+                                        child: ListView(
+                                          children: [
+                                            MyTextFormField(
+                                              "Edit" ,
+                                              index: 7,
+                                              addToAccounts: true,
+                                              initial: Accounts.accounts[Accounts.currentAccount].email,
+                                            ),
+                                            ElevatedButton(onPressed: (){
+                                              if(_formkey.currentState.validate()){
+                                                setState(() {
+                                                  _formkey.currentState.save();
+                                                  print(Accounts.accounts[Accounts.currentAccount].email);
+                                                }
+                                                );
                                               }
-                                              );
-                                            }
-                                          },
-                                              child: Text("Save"
-                                              )
-                                          )
-                                        ],
+                                            },
+                                                child: Text("Save"
+                                                )
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }
-                            );
-                          },
-                          child: Icon(
-                            Icons.edit_rounded,
+                                    );
+                                  }
+                              );
+                            },
+                            child: Icon(
+                              Icons.edit_rounded,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              height: 50,
-              child: InkWell(
-                onTap: (){},
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Address : "),
-                      Text(Accounts.accounts[Accounts.currentAccount].email!=null?Accounts.accounts[Accounts.currentAccount].address:" "),
-                      SingleChildScrollView(
-                        child: GestureDetector(
-                          onTap: (){
-                            showModalBottomSheet(
-                                context:context,
-                                builder: (context){
-                                  return Container(
-                                    margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
-                                    child: Form(
-                                      key: _formkey,
-                                      child: ListView(
-                                        children: [
-                                          MyTextFormField(
-                                            "Edit" ,
-                                            index: 7,
-                                            addToAccounts: true,
-                                            initial: Accounts.accounts[Accounts.currentAccount].address,
-                                          ),
-                                          ElevatedButton(onPressed: (){
-                                            if(_formkey.currentState.validate()){
-                                              setState(() {
-                                                _formkey.currentState.save();
-                                                print(Accounts.accounts[Accounts.currentAccount].address);
+              Container(
+                height: 50,
+                child: InkWell(
+                  onTap: (){},
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Address : "),
+                        Text(Accounts.accounts[Accounts.currentAccount].address!=null?Accounts.accounts[Accounts.currentAccount].address:" "),
+                        SingleChildScrollView(
+                          child: GestureDetector(
+                            onTap: (){
+                              showModalBottomSheet(
+                                  context:context,
+                                  builder: (context){
+                                    return Container(
+                                      margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                                      child: Form(
+                                        key: _formkey,
+                                        child: ListView(
+                                          children: [
+                                            MyTextFormField(
+                                              "Edit" ,
+                                              index: 3,
+                                              addToAccounts: true,
+                                              initial: Accounts.accounts[Accounts.currentAccount].address,
+                                            ),
+                                            ElevatedButton(onPressed: (){
+                                              if(_formkey.currentState.validate()){
+                                                setState(() {
+                                                  _formkey.currentState.save();
+                                                  print(Accounts.accounts[Accounts.currentAccount].address);
+                                                }
+                                                );
                                               }
-                                              );
-                                            }
-                                          },
-                                              child: Text("Save"
-                                              )
-                                          )
-                                        ],
+                                            },
+                                                child: Text("Save"
+                                                )
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }
-                            );
-                          },
-                          child: Icon(
-                            Icons.edit_rounded,
+                                    );
+                                  }
+                              );
+                            },
+                            child: Icon(
+                              Icons.edit_rounded,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
