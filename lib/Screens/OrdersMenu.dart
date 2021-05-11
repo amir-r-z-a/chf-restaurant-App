@@ -200,6 +200,8 @@ class _OrdersMenuState extends State<OrdersMenu> {
 //khoondan comment haye baqie class ha
 //dorost kardan zaher TabBar commentManagements
 //har safhe dar CommentsManagements 3chip makhsoos be khod ra dashte bashad
+//safhe profile validator nadare age phone number ro be 0919oooo taqir bedim taqir mide hamchenin password ham newPassword va oldPassword nadare va regex email ham kar nemikone
+//dar commentTile be resturan dar neshan dahad ke aya answer ra por karde ya na
 
 //add kardan tag(entekhab chand menu ba ham)
 
