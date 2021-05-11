@@ -4,7 +4,7 @@ import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:flutter/material.dart';
 
-class DetailsRestaurantOrderTile extends StatefulWidget {
+class DetailsRestaurantActiveOrderTile extends StatefulWidget {
   static List foods;
   static List numberOfFood;
   static Date orderDate;
@@ -16,15 +16,15 @@ class DetailsRestaurantOrderTile extends StatefulWidget {
   static String id;
   Function function;
 
-  DetailsRestaurantOrderTile({this.function});
+  DetailsRestaurantActiveOrderTile({this.function});
 
   @override
-  _DetailsRestaurantOrderTileState createState() =>
-      _DetailsRestaurantOrderTileState();
+  _DetailsRestaurantActiveOrderTileState createState() =>
+      _DetailsRestaurantActiveOrderTileState();
 }
 
-class _DetailsRestaurantOrderTileState
-    extends State<DetailsRestaurantOrderTile> {
+class _DetailsRestaurantActiveOrderTileState
+    extends State<DetailsRestaurantActiveOrderTile> {
   // List foods = [
   //   Food(
   //     'Tea',
@@ -67,10 +67,10 @@ class _DetailsRestaurantOrderTileState
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(DetailsRestaurantOrderTile.clientName +
-                            "  " +
-                            DetailsRestaurantOrderTile.clientLastName),
-                        Text(DetailsRestaurantOrderTile.clientPhoneNumber)
+                        Text(DetailsRestaurantActiveOrderTile.clientName +
+                            " " +
+                            DetailsRestaurantActiveOrderTile.clientLastName),
+                        Text(DetailsRestaurantActiveOrderTile.clientPhoneNumber)
                       ],
                     ),
                   ),
@@ -87,21 +87,21 @@ class _DetailsRestaurantOrderTileState
                         children: [
                           Text("address :     "),
                           Expanded(
-                              child: Text(DetailsRestaurantOrderTile.clientAddress)),
+                              child: Text(DetailsRestaurantActiveOrderTile.clientAddress)),
                         ],
                       ),
                     )),
                 Column(
                   children: List.generate(
-                    DetailsRestaurantOrderTile.foods.length,
+                    DetailsRestaurantActiveOrderTile.foods.length,
                     (index) => Card(
                       child: ListTile(
                         title: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(DetailsRestaurantOrderTile.numberOfFood[index]
+                            Text(DetailsRestaurantActiveOrderTile.numberOfFood[index]
                                 .toString()),
-                            Text(DetailsRestaurantOrderTile.foods[index].name)
+                            Text(DetailsRestaurantActiveOrderTile.foods[index].name)
                           ],
                         ),
                       ),
