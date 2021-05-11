@@ -1,12 +1,23 @@
+import 'package:chfrestaurant/Classes/Date.dart';
 import 'package:flutter/material.dart';
 
 class DetailsCommentTile extends StatefulWidget {
+  static String question;
+  static String answer;
+  static String clientPhoneNumber;
+  static String destinationRestaurant;
+  static String foodName;
+  static String point;
+  static Date date;
+  static String id;
+
   @override
   _DetailsCommentTileState createState() => _DetailsCommentTileState();
 }
 
 class _DetailsCommentTileState extends State<DetailsCommentTile> {
   var _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +54,7 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              Expanded(child: Text("This is my question : "))
+                              Expanded(child: Text(DetailsCommentTile.question))
                             ],
                           ),
                         ),
@@ -54,8 +65,13 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                               child: Row(
                                 children: [
                                   Expanded(
-                                      child: Text(
-                                          "Answer : " + "  this is my answer"))
+                                    child: Row(children: [
+                                      Text("Answer : "),
+                                      Text(DetailsCommentTile.answer != null
+                                          ? DetailsCommentTile.answer
+                                          : 'You have not answered yet')
+                                    ]),
+                                  )
                                 ],
                               ),
                             )),
