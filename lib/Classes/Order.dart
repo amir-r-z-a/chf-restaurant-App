@@ -12,6 +12,8 @@ class Order {
   String _clientName;
   String _clientLastName;
   String _id;
+  int _sumPrice;
+  bool _onlinePayment;
 
   Order(
       this._foods,
@@ -21,7 +23,9 @@ class Order {
       this._clientAddress,
       this._clientName,
       this._clientLastName,
-      this._id);
+      this._id,
+      this._sumPrice,
+      this._onlinePayment);
 
   List get foods => _foods;
 
@@ -83,5 +87,17 @@ class Order {
 
   set numberOfFood(List value) {
     _numberOfFood = value;
+  }
+
+  int get sumPrice => _sumPrice;
+
+  set sumPrice(int value) {
+    _sumPrice = value;
+  }
+
+  bool get onlinePayment => _onlinePayment;
+
+  set onlinePayment(bool value) {
+    _onlinePayment = value;
   }
 }

@@ -14,7 +14,8 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
   String _clientName;
   String _clientLastName;
   String _id;
-  int sumPrice;
+  int _sumPrice;
+  bool _onlinePayment;
 
   // Restaurant _destinationRestaurant;
 
@@ -27,7 +28,8 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
       this._clientName,
       this._clientLastName,
       this._id,
-      this.sumPrice);
+      this._sumPrice,
+      this._onlinePayment);
 
   List get foods => _foods;
 
@@ -83,6 +85,18 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
 
   set numberOfFood(List value) {
     _numberOfFood = value;
+  }
+
+  bool get onlinePayment => _onlinePayment;
+
+  set onlinePayment(bool value) {
+    _onlinePayment = value;
+  }
+
+  int get sumPrice => _sumPrice;
+
+  set sumPrice(int value) {
+    _sumPrice = value;
   }
 
   @override

@@ -93,7 +93,7 @@ void main() {
     4,
     5
   ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan", "ghar",
-      "alisadr"));
+      "alisadr", false));
 
   restaurant.addOrder(RestaurantActiveOrderTile([
     Food(
@@ -122,7 +122,7 @@ void main() {
     9,
     8
   ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan",
-      "arman", "shiraz"));
+      "arman", "shiraz", true));
   // print(Accounts.accounts[Accounts.currentAccount].activeOrders[0].foods);
   // print(DetailsRestaurantOrderTile.foods.length);
   print(Accounts.currentAccount);
@@ -161,9 +161,9 @@ class _MyAppState extends State<MyApp> {
           '/CommentsManagements': (context) => CommentsManagement(),
           '/DetailsCommentTile': (context) => DetailsCommentTile(),
         },
-        home: /*ActiveOrdersScreen()*/
-            /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
-            MainMenuScreen() /*RestaurantActiveOrderTile([
+        home: SignInScreen() /*ActiveOrdersScreen()*/
+        /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
+        /*MainMenuScreen()*/ /*RestaurantActiveOrderTile([
           Food(
             'Tea',
             '25',

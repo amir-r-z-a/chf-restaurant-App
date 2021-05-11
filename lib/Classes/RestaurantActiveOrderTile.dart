@@ -11,6 +11,7 @@ class RestaurantActiveOrderTile extends StatefulWidget {
   Date _orderDate;
   String _orderStatus;
   int _sumPrice;
+  bool _onlinePayment;
 
   /*orderStatus enum shavad va dafe aval rooye dar hal amade sazi bashad*/
   String _clientPhoneNumber;
@@ -27,7 +28,8 @@ class RestaurantActiveOrderTile extends StatefulWidget {
       this._clientPhoneNumber,
       this._clientAddress,
       this._clientName,
-      this._clientLastName);
+      this._clientLastName,
+      this._onlinePayment);
 
   List get foods => _foods;
 
@@ -95,6 +97,12 @@ class RestaurantActiveOrderTile extends StatefulWidget {
 
   set sumPrice(int value) {
     _sumPrice = value;
+  }
+
+  bool get onlinePayment => _onlinePayment;
+
+  set onlinePayment(bool value) {
+    _onlinePayment = value;
   }
 
   @override
