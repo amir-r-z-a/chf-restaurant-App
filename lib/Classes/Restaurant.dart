@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:chfrestaurant/Classes/CommentTile.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Order.dart';
@@ -123,6 +125,7 @@ class Restaurant {
   }
 
   void addComments(CommentTile comment, int i) {
+    comment.id = commentsIDGenerator(comment);
     restaurantComments[0].add(comment);
     restaurantComments[i].add(comment);
   }
@@ -146,7 +149,12 @@ class Restaurant {
     return activeOrders.length;
   }
 
+  int getRestaurantCommentsLength() {
+    return restaurantComments.length;
+  }
+
   void addOrder(RestaurantActiveOrderTile restaurantActiveOrderTile) {
+    restaurantActiveOrderTile.id = ordersIDGenerator(restaurantActiveOrderTile);
     activeOrders.add(restaurantActiveOrderTile);
   }
 
@@ -165,6 +173,59 @@ class Restaurant {
         activeOrders.removeAt(i);
       }
     }
+  }
+
+  String ordersIDGenerator(
+      RestaurantActiveOrderTile restaurantActiveOrderTile) {
+    bool flag;
+    String randomID;
+    do {
+      flag = false;
+      randomID = '#' +
+          String.fromCharCode(
+              restaurantActiveOrderTile.clientName.codeUnitAt(0)) +
+          String.fromCharCode(
+              restaurantActiveOrderTile.clientLastName.codeUnitAt(0)) +
+          restaurantActiveOrderTile.clientPhoneNumber.substring(
+              restaurantActiveOrderTile.clientPhoneNumber.length - 4) +
+          '-' +
+          (Random().nextInt(8999) + 1000).toString();
+      for (int i = 0; i < getActiveOrdersLength(); i++) {
+        if (activeOrders[i].id == randomID) {
+          flag = true;
+          break;
+        }
+      }
+    } while (flag);
+    return randomID;
+  }
+
+  String commentsIDGenerator(CommentTile commentTile) {
+    bool flag;
+    String randomID;
+    do {
+      flag = false;
+      bool key = false;
+      randomID = '#' +
+          String.fromCharCode(commentTile.foodName.codeUnitAt(0)) +
+          commentTile.clientPhoneNumber
+              .substring(commentTile.clientPhoneNumber.length - 4) +
+          '-' +
+          (Random().nextInt(89) + 10).toString();
+      for (int i = 0; i < getRestaurantCommentsLength(); i++) {
+        for (int j = 0; j < restaurantComments[i].length; j++) {
+          if (restaurantComments[i][j].id == randomID) {
+            flag = true;
+            key = true;
+            break;
+          }
+          if (key) {
+            break;
+          }
+        }
+      }
+    } while (flag);
+    return randomID;
   }
 
   // static int getNumberOfOrderFood(Map input) {
