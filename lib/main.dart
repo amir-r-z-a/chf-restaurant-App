@@ -7,11 +7,13 @@ import 'package:chfrestaurant/Classes/RestaurantActiveOrderTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
 import 'package:chfrestaurant/Screens/ActiveOrdersScreen.dart';
+import 'package:chfrestaurant/Screens/CalculatorScreen.dart';
 import 'package:chfrestaurant/Screens/CommentsManagement.dart';
 import 'package:chfrestaurant/Screens/DetailsCommentTile.dart';
+import 'package:chfrestaurant/Screens/DetailsRestaurantActiveOrderTile.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
-import 'package:chfrestaurant/Screens/DetailsRestaurantOrderTile.dart';
 import 'package:chfrestaurant/Screens/MainMenuScreen.dart';
+import 'package:chfrestaurant/Screens/OrdersHistoryScreen.dart';
 import 'package:chfrestaurant/Screens/OrdersMenu.dart';
 import 'package:chfrestaurant/Screens/ProfileScreen.dart';
 import 'package:chfrestaurant/Screens/SignInScreen.dart';
@@ -86,7 +88,33 @@ void main() {
     4,
     5
   ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan", "ghar",
-      "alisadr", "#12345"));
+      "alisadr"));
+
+  restaurant.addOrder(RestaurantActiveOrderTile([
+    Food(
+      'arman',
+      '25',
+      true,
+      desc: 'desc',
+    ),
+    Food(
+      'amireza',
+      '25',
+      true,
+      desc: 'desc',
+    ),
+    Food(
+      'armannnnnnn',
+      '25',
+      true,
+      desc: 'desc',
+    )
+  ], [
+    6,
+    9,
+    8
+  ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan",
+      "arman", "shiraz"));
   // print(Accounts.accounts[Accounts.currentAccount].activeOrders[0].foods);
   // print(DetailsRestaurantOrderTile.foods.length);
   print(Accounts.currentAccount);
@@ -118,11 +146,16 @@ class _MyAppState extends State<MyApp> {
           '/MainMenuScreen': (context) => MainMenuScreen(),
           '/ProfileScreen': (context) => ProfileScreen(),
           '/OrdersMenu': (context) => OrdersMenu(),
-          '/DetailsRestaurantOrderTiles': (context) =>
-              DetailsRestaurantOrderTile()
+          '/DetailsRestaurantActiveOrderTiles': (context) =>
+              DetailsRestaurantActiveOrderTile(),
+          '/OrdersHistoryScreen': (context) => OrdersHistoryScreen(),
+          '/ActiveOrdersScreen': (context) => ActiveOrdersScreen(),
+          '/CommentsManagements': (context) => CommentsManagement(),
+          '/DetailsCommentTile': (context) => DetailsCommentTile(),
         },
-        home:
-            ActiveOrdersScreen() /*RestaurantActiveOrderTile([
+        home: /*ActiveOrdersScreen()*/
+        /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ CommentsManagement()
+        /*MainMenuScreen()*/ /*RestaurantActiveOrderTile([
           Food(
             'Tea',
             '25',
