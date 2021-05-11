@@ -20,6 +20,75 @@ import 'package:chfrestaurant/Screens/SignInScreen.dart';
 import 'package:chfrestaurant/Screens/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: "ChFood",
+        theme: ThemeData(primaryColor: const Color.fromRGBO(248, 95, 106, 1)),
+        routes: {
+          '/SignInScreen': (context) => SignInScreen(),
+          '/SignUpScreen': (context) => SignUpScreen(),
+          '/DetailsFoodTile': (context) => DetailsRestaurantFoodTile(),
+          '/MainMenuScreen': (context) => MainMenuScreen(),
+          '/ProfileScreen': (context) => ProfileScreen(),
+          '/OrdersMenu': (context) => OrdersMenu(),
+          '/DetailsRestaurantActiveOrderTiles': (context) =>
+              DetailsRestaurantActiveOrderTile(),
+          '/OrdersHistoryScreen': (context) => OrdersHistoryScreen(),
+          '/ActiveOrdersScreen': (context) => ActiveOrdersScreen(),
+          '/CommentsManagements': (context) => CommentsManagement(),
+          '/DetailsCommentTile': (context) => DetailsCommentTile(),
+        },
+        home: /*SignInScreen()*/ ActiveOrdersScreen()
+        /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
+        /*MainMenuScreen()*/ /*RestaurantActiveOrderTile([
+          Food(
+            'Tea',
+            '25',
+            true,
+            desc: 'desc',
+          ),
+          Food(
+            'pizza',
+            '25',
+            true,
+            desc: 'desc',
+          ),
+          Food(
+            'milk',
+            '25',
+            true,
+            desc: 'desc',
+          )
+        ], [
+          3,
+          4,
+          5
+        ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan",
+            "ghar", "alisadr", "#12345")*/
+        // DetailsRestaurantOrderTile()
+        // DetailsCommentTile()
+        /*CommentsManagement()*/ /*OrdersMenu()*/ /*SignInScreen()*/ /*FoodTile(
+          'Egg',
+          28,
+          true,
+          desc: 'xx',
+        )*/
+        /*DetailsRestaurantFoodTile(
+        'Egg',
+        28,
+        desc: 'xx',
+      ),*/
+        );
+  }
+}
+
 void main() {
   Restaurant restaurant = Restaurant(
       'name1', '09198612878', 'password1', 'addres1', RestaurantTypes.Cafe);
@@ -172,7 +241,6 @@ void main() {
       'Cafe',
       desc: 'desc',
     ),
-
     Food(
       'pizza',
       '25',
@@ -190,7 +258,21 @@ void main() {
   ], [
     3,
     4,
-    5,6,7,8,9,2,1,2,1,2,1,2,2,2,2
+    5,
+    6,
+    7,
+    8,
+    9,
+    2,
+    1,
+    2,
+    1,
+    2,
+    1,
+    2,
+    2,
+    2,
+    2
   ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan", "ghar",
       "alisadr", false));
 
@@ -235,70 +317,71 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: "ChFood",
-        theme: ThemeData(primaryColor: const Color.fromRGBO(248, 95, 106, 1)),
-        routes: {
-          '/SignInScreen': (context) => SignInScreen(),
-          '/SignUpScreen': (context) => SignUpScreen(),
-          '/DetailsFoodTile': (context) => DetailsRestaurantFoodTile(),
-          '/MainMenuScreen': (context) => MainMenuScreen(),
-          '/ProfileScreen': (context) => ProfileScreen(),
-          '/OrdersMenu': (context) => OrdersMenu(),
-          '/DetailsRestaurantActiveOrderTiles': (context) => DetailsRestaurantActiveOrderTile(),
-          '/OrdersHistoryScreen': (context) => OrdersHistoryScreen(),
-          '/ActiveOrdersScreen': (context) => ActiveOrdersScreen(),
-          '/CommentsManagements': (context) => CommentsManagement(),
-          '/DetailsCommentTile': (context) => DetailsCommentTile(),
-        },
-        home: /*SignInScreen()*/ ActiveOrdersScreen()
-        /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
-        /*MainMenuScreen()*/ /*RestaurantActiveOrderTile([
-          Food(
-            'Tea',
-            '25',
-            true,
-            desc: 'desc',
-          ),
-          Food(
-            'pizza',
-            '25',
-            true,
-            desc: 'desc',
-          ),
-          Food(
-            'milk',
-            '25',
-            true,
-            desc: 'desc',
-          )
-        ], [
-          3,
-          4,
-          5
-        ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan",
-            "ghar", "alisadr", "#12345")*/
-        // DetailsRestaurantOrderTile()
-        // DetailsCommentTile()
-        /*CommentsManagement()*/ /*OrdersMenu()*/ /*SignInScreen()*/ /*FoodTile(
-          'Egg',
-          28,
-          true,
-          desc: 'xx',
-        )*/
-        /*DetailsRestaurantFoodTile(
-        'Egg',
-        28,
-        desc: 'xx',
-      ),*/
-        );
-  }
-}
+// class MyApp extends StatefulWidget {
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+//
+// class _MyAppState extends State<MyApp> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//         title: "ChFood",
+//         theme: ThemeData(primaryColor: const Color.fromRGBO(248, 95, 106, 1)),
+//         routes: {
+//           '/SignInScreen': (context) => SignInScreen(),
+//           '/SignUpScreen': (context) => SignUpScreen(),
+//           '/DetailsFoodTile': (context) => DetailsRestaurantFoodTile(),
+//           '/MainMenuScreen': (context) => MainMenuScreen(),
+//           '/ProfileScreen': (context) => ProfileScreen(),
+//           '/OrdersMenu': (context) => OrdersMenu(),
+//           '/DetailsRestaurantActiveOrderTiles': (context) =>
+//               DetailsRestaurantActiveOrderTile(),
+//           '/OrdersHistoryScreen': (context) => OrdersHistoryScreen(),
+//           '/ActiveOrdersScreen': (context) => ActiveOrdersScreen(),
+//           '/CommentsManagements': (context) => CommentsManagement(),
+//           '/DetailsCommentTile': (context) => DetailsCommentTile(),
+//         },
+//         home: /*SignInScreen()*/ /*ActiveOrdersScreen()*/
+//         CalculatorScreen() /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
+//         /*MainMenuScreen()*/ /*RestaurantActiveOrderTile([
+//           Food(
+//             'Tea',
+//             '25',
+//             true,
+//             desc: 'desc',
+//           ),
+//           Food(
+//             'pizza',
+//             '25',
+//             true,
+//             desc: 'desc',
+//           ),
+//           Food(
+//             'milk',
+//             '25',
+//             true,
+//             desc: 'desc',
+//           )
+//         ], [
+//           3,
+//           4,
+//           5
+//         ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan",
+//             "ghar", "alisadr", "#12345")*/
+//         // DetailsRestaurantOrderTile()
+//         // DetailsCommentTile()
+//         /*CommentsManagement()*/ /*OrdersMenu()*/ /*SignInScreen()*/ /*FoodTile(
+//           'Egg',
+//           28,
+//           true,
+//           desc: 'xx',
+//         )*/
+//         /*DetailsRestaurantFoodTile(
+//         'Egg',
+//         28,
+//         desc: 'xx',
+//       ),*/
+//         );
+//   }
+// }
