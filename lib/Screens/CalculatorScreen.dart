@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CalculatorScreen extends StatefulWidget {
@@ -35,6 +36,121 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             ],
           ),
           Padding(padding: EdgeInsets.all(10)),
+
+          Container(
+            margin: EdgeInsets.all(10),
+            height: 350,
+            width: 200,
+            decoration: BoxDecoration(
+              border: Border.all()
+            ),
+            child: Container(
+              margin: EdgeInsets.only(top: 20),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                          margin: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                          width: 365,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 0, 0, 8),
+                            child: Text("gozaresh froosh : "),
+                          )),
+                    ],
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border(bottom: BorderSide())
+                    ),
+                    margin: EdgeInsets.fromLTRB(16, 10, 16, 0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              child: Text("Subject"),
+                            flex: 2,
+                          ),
+                          Expanded(child: Text("Count"),
+                            flex: 2,
+                          ),
+                          Expanded(child: Text("Price")),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text("Subject"),
+                            flex: 2,
+                          ),
+                          Expanded(child: Text("0"),
+                            flex: 2,
+                          ),
+                          Expanded(child: Text("0")),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border(bottom: BorderSide())
+                    ),
+                    margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text("Subject"),
+                            flex: 2,
+                          ),
+                          Expanded(child: Text("0"),
+                            flex: 2,
+                          ),
+                          Expanded(child: Text("0")),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+
+                    margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text("Subject"),
+                            flex: 2,
+                          ),
+                          Expanded(child: Text("0"),
+                            flex: 2,
+                          ),
+                          Expanded(child: Text("0")),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            height: 200,
+            width: 200,
+            decoration: BoxDecoration(
+                border: Border.all()
+            ),
+          )
         ],
       ),
     );
