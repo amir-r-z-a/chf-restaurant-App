@@ -34,7 +34,6 @@ class RestaurantFoodTile extends StatefulWidget {
     _foodStatus = value;
   }
 
-
   String get category => _category;
 
   set category(String value) {
@@ -60,68 +59,71 @@ class _RestaurantFoodTileState extends State<RestaurantFoodTile> {
 
   void deleteFunc(bool flag) {
     showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Delete Food'),
-            content: Container(
-              height: 100,
-              child: Column(children: [
-                Row(
-                  children: [
-                    Padding(padding: EdgeInsets.all(1)),
-                    Text('Are you sure to delete ' +
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Delete Food'),
+          content: Container(
+            height: 120,
+            child: Column(children: [
+              Row(
+                children: [
+                  Padding(padding: EdgeInsets.all(1)),
+                  Expanded(
+                    child: Text('Are you sure to delete ' +
                         widget.name +
                         ' in ' +
                         Accounts.accounts[Accounts.currentAccount]
                             .findCategory(widget.name) +
                         '?'),
-                  ],
-                ),
-                Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        print('--------------------------------------');
-                        print(Accounts.accounts[Accounts.currentAccount]
-                            .restaurantTabBarView);
+                  ),
+                ],
+              ),
+              Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      print('--------------------------------------');
+                      print(Accounts.accounts[Accounts.currentAccount]
+                          .restaurantTabBarView);
 
-                        Accounts.accounts[Accounts.currentAccount]
-                            .deleteTabBarViewElements(widget.name);
+                      Accounts.accounts[Accounts.currentAccount]
+                          .deleteTabBarViewElements(widget.name);
 
-                        print(Accounts.accounts[Accounts.currentAccount]
-                            .restaurantTabBarView);
-                        print('--------------------------------------');
+                      print(Accounts.accounts[Accounts.currentAccount]
+                          .restaurantTabBarView);
+                      print('--------------------------------------');
 
-                        RestaurantFoodTile.function();
+                      RestaurantFoodTile.function();
+                      Navigator.pop(context);
+                      if (flag) {
                         Navigator.pop(context);
-                        if (flag) {
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: Text(
-                        'Delete',
-                        style: TextStyle(color: Theme.of(context).primaryColor),
-                      ),
+                      }
+                    },
+                    child: Text(
+                      'Delete',
+                      style: TextStyle(color: Theme.of(context).primaryColor),
                     ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'Cancel',
-                        style: TextStyle(color: Theme.of(context).primaryColor),
-                      ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(color: Theme.of(context).primaryColor),
                     ),
-                  ],
-                )
-              ]),
-            ),
-          );
-        });
+                  ),
+                ],
+              )
+            ]),
+          ),
+        );
+      },
+    );
   }
 
   @override
