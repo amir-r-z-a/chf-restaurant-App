@@ -6,6 +6,18 @@ class Accounts {
 
   //edit
 
+  static List<Restaurant> get accounts => _accounts;
+
+  static set accounts(List<Restaurant> value) {
+    _accounts = value;
+  }
+
+  static int get currentAccount => _currentAccount;
+
+  static set currentAccount(int value) {
+    _currentAccount = value;
+  }
+
   static void addAccount(Restaurant restaurant) {
     _accounts.add(restaurant);
   }
@@ -57,17 +69,5 @@ class Accounts {
       return true;
     }
     return false;
-  }
-
-  static List<Restaurant> get accounts => _accounts;
-
-  static set accounts(List<Restaurant> value) {
-    _accounts = value;
-  }
-
-  static int get currentAccount => _currentAccount;
-
-  static set currentAccount(int value) {
-    _currentAccount = value;
   }
 }
