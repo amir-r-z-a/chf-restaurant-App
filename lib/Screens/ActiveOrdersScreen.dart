@@ -1,4 +1,5 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Classes/RestaurantActiveOrderTile.dart';
 import 'package:flutter/material.dart';
 
 class ActiveOrdersScreen extends StatefulWidget {
@@ -7,6 +8,10 @@ class ActiveOrdersScreen extends StatefulWidget {
 }
 
 class _ActiveOrdersScreenState extends State<ActiveOrdersScreen> {
+  void refreshPage() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -18,10 +23,13 @@ class _ActiveOrdersScreenState extends State<ActiveOrdersScreen> {
         ),
         body: ListView(
           children: List.generate(
-              Accounts.accounts[Accounts.currentAccount]
-                  .getActiveOrdersLength(),
-              (index) => Accounts
-                  .accounts[Accounts.currentAccount].activeOrders[index]),
+            Accounts.accounts[Accounts.currentAccount].getActiveOrdersLength(),
+            (index) {
+              RestaurantActiveOrderTile.function = refreshPage;
+              return Accounts
+                  .accounts[Accounts.currentAccount].activeOrders[index];
+            },
+          ),
         ),
       ),
     );
