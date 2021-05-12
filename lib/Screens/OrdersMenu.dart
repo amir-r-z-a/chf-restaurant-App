@@ -1,6 +1,7 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
+import 'package:chfrestaurant/Screens/DetailsRestaurantActiveOrderTile.dart';
 import 'package:flutter/material.dart';
 
 class OrdersMenu extends StatefulWidget {
@@ -207,6 +208,7 @@ class _OrdersMenuState extends State<OrdersMenu> {
 //har safhe dar CommentsManagements 3chip makhsoos be khod ra dashte bashad
 //safhe profile validator nadare age phone number ro be 0919oooo taqir bedim taqir mide hamchenin password ham newPassword va oldPassword nadare va regex email ham kar nemikone
 //dar commentTile be resturan dar neshan dahad ke aya answer ra por karde ya na
+//dar safhe DetailsRestaurantActiveOrderTile agar esm food ya qeymat ya tedad toolani shavad out of bound mikhore Expanded lazem dare dar zemn bayad 3 sotoon zir ham bashan
 
 //add kardan tag(entekhab chand menu ba ham)
 

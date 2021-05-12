@@ -171,7 +171,7 @@ class _RestaurantFoodTileState extends State<RestaurantFoodTile> {
                   Padding(padding: EdgeInsets.all(3)),
                   Text(widget.desc == null ? ' ' : widget.desc),
                   Padding(padding: EdgeInsets.all(13)),
-                  Text('Price: ' + widget.price.toString() + '\$'),
+                  Text('Price: ' + '\$' + widget.price.toString()),
                 ],
               ),
             ]),
