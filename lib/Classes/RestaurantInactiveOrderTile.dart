@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class RestaurantInactiveOrderTile extends StatelessWidget {
   List _foods;
-  List _numberOfFood;
+  List _numberOfFoods;
   Date _orderDate;
   String _orderStatus = 'Finished';
   String _clientPhoneNumber;
@@ -14,14 +14,15 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
   String _clientName;
   String _clientLastName;
   String _id;
-  int _sumPrice;
+  double _sumPrice;
+  int _sumNumberOfFoods;
   bool _onlinePayment;
 
   // Restaurant _destinationRestaurant;
 
   RestaurantInactiveOrderTile(
       this._foods,
-      this._numberOfFood,
+      this._numberOfFoods,
       this._orderDate,
       this._clientPhoneNumber,
       this._clientAddress,
@@ -29,7 +30,8 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
       this._clientLastName,
       this._id,
       this._sumPrice,
-      this._onlinePayment);
+      this._onlinePayment,
+      this._sumNumberOfFoods);
 
   List get foods => _foods;
 
@@ -81,10 +83,10 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
     _id = value;
   }
 
-  List get numberOfFood => _numberOfFood;
+  List get numberOfFoods => _numberOfFoods;
 
-  set numberOfFood(List value) {
-    _numberOfFood = value;
+  set numberOfFoods(List value) {
+    _numberOfFoods = value;
   }
 
   bool get onlinePayment => _onlinePayment;
@@ -93,10 +95,16 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
     _onlinePayment = value;
   }
 
-  int get sumPrice => _sumPrice;
+  double get sumPrice => _sumPrice;
 
-  set sumPrice(int value) {
+  set sumPrice(double value) {
     _sumPrice = value;
+  }
+
+  int get sumNumberOfFoods => _sumNumberOfFoods;
+
+  set sumNumberOfFoods(int value) {
+    _sumNumberOfFoods = value;
   }
 
   @override
@@ -108,9 +116,11 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
         DetailsRestaurantActiveOrderTile.clientAddress = clientAddress;
         DetailsRestaurantActiveOrderTile.clientPhoneNumber = clientPhoneNumber;
         DetailsRestaurantActiveOrderTile.foods = foods;
-        DetailsRestaurantActiveOrderTile.numberOfFood = numberOfFood;
+        DetailsRestaurantActiveOrderTile.numberOfFoods = numberOfFoods;
         DetailsRestaurantActiveOrderTile.id = id;
         DetailsRestaurantActiveOrderTile.orderDate = orderDate;
+        DetailsRestaurantActiveOrderTile.sumPrice = sumPrice;
+        DetailsRestaurantActiveOrderTile.sumNumberOfFoods = sumNumberOfFoods;
         Navigator.pushNamed(context, '/DetailsRestaurantActiveOrderTiles');
       },
       child: SizedBox(

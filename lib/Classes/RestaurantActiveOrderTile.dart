@@ -7,10 +7,11 @@ import 'package:flutter/material.dart';
 
 class RestaurantActiveOrderTile extends StatefulWidget {
   List _foods;
-  List _numberOfFood;
+  List _numberOfFoods;
   Date _orderDate;
   String _orderStatus;
-  int _sumPrice;
+  double _sumPrice;
+  int _sumNumberOfFoods;
   bool _onlinePayment;
 
   /*orderStatus enum shavad va dafe aval rooye dar hal amade sazi bashad*/
@@ -23,7 +24,7 @@ class RestaurantActiveOrderTile extends StatefulWidget {
 
   RestaurantActiveOrderTile(
       this._foods,
-      this._numberOfFood,
+      this._numberOfFoods,
       this._orderDate,
       this._clientPhoneNumber,
       this._clientAddress,
@@ -87,15 +88,16 @@ class RestaurantActiveOrderTile extends StatefulWidget {
     _id = value;
   }
 
-  List get numberOfFood => _numberOfFood;
 
-  set numberOfFood(List value) {
-    _numberOfFood = value;
+  List get numberOfFoods => _numberOfFoods;
+
+  set numberOfFoods(List value) {
+    _numberOfFoods = value;
   }
 
-  int get sumPrice => _sumPrice;
+  double get sumPrice => _sumPrice;
 
-  set sumPrice(int value) {
+  set sumPrice(double value) {
     _sumPrice = value;
   }
 
@@ -103,6 +105,13 @@ class RestaurantActiveOrderTile extends StatefulWidget {
 
   set onlinePayment(bool value) {
     _onlinePayment = value;
+  }
+
+
+  int get sumNumberOfFoods => _sumNumberOfFoods;
+
+  set sumNumberOfFoods(int value) {
+    _sumNumberOfFoods = value;
   }
 
   @override
@@ -115,14 +124,6 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
 
   void refreshPage() {
     setState(() {});
-  }
-
-  int sumPriceCalculator() {
-    int sum = 0;
-    for (int i = 0; i < widget.foods.length; i++) {
-      sum += widget.foods[i].price * widget.numberOfFood[i];
-    }
-    return sum;
   }
 
   void finishedOrder() {
@@ -190,9 +191,12 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
         DetailsRestaurantActiveOrderTile.clientPhoneNumber =
             widget.clientPhoneNumber;
         DetailsRestaurantActiveOrderTile.foods = widget.foods;
-        DetailsRestaurantActiveOrderTile.numberOfFood = widget.numberOfFood;
+        DetailsRestaurantActiveOrderTile.numberOfFoods = widget.numberOfFoods;
         DetailsRestaurantActiveOrderTile.id = widget.id;
         DetailsRestaurantActiveOrderTile.orderDate = widget.orderDate;
+        DetailsRestaurantActiveOrderTile.sumPrice = widget.sumPrice;
+        DetailsRestaurantActiveOrderTile.sumNumberOfFoods =
+            widget.sumNumberOfFoods;
         Navigator.push(
           context,
           MaterialPageRoute(

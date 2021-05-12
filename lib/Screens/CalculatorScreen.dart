@@ -1,3 +1,5 @@
+import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Screens/DetailsRestaurantActiveOrderTile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -36,120 +38,139 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             ],
           ),
           Padding(padding: EdgeInsets.all(10)),
-
           Container(
-            margin: EdgeInsets.all(10),
-            height: 350,
-            width: 200,
-            decoration: BoxDecoration(
-              border: Border.all()
-            ),
-            child: Container(
-              margin: EdgeInsets.only(top: 20),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                          margin: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                          width: 365,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(8, 0, 0, 8),
-                            child: Text("gozaresh froosh : "),
-                          )),
-                    ],
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide())
+              margin: EdgeInsets.all(10),
+              height: 350,
+              width: 200,
+              decoration: BoxDecoration(border: Border.all()),
+              child: Container(
+                margin: EdgeInsets.only(top: 20),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                            margin: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                            width: 365,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 0, 0, 8),
+                              child: Text("Orders Report : "),
+                            )),
+                      ],
                     ),
-                    margin: EdgeInsets.fromLTRB(16, 10, 16, 0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        children: [
-                          Expanded(
+                    Container(
+                      decoration:
+                          BoxDecoration(border: Border(bottom: BorderSide())),
+                      margin: EdgeInsets.fromLTRB(16, 10, 16, 0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            Expanded(
                               child: Text("Subject"),
-                            flex: 2,
-                          ),
-                          Expanded(child: Text("Count"),
-                            flex: 2,
-                          ),
-                          Expanded(child: Text("Price")),
-                        ],
+                              flex: 2,
+                            ),
+                            Expanded(
+                              child: Text("Count"),
+                              flex: 2,
+                            ),
+                            Expanded(child: Text("Price")),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text("Subject"),
-                            flex: 2,
-                          ),
-                          Expanded(child: Text("0"),
-                            flex: 2,
-                          ),
-                          Expanded(child: Text("0")),
-                        ],
+                    Container(
+                      margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text("Online Sell"),
+                              flex: 2,
+                            ),
+                            Expanded(
+                              child: Text(Accounts
+                                  .accounts[Accounts.currentAccount]
+                                  .sumOnlineNumberOfFoods
+                                  .toString()),
+                              flex: 2,
+                            ),
+                            Expanded(
+                              child: Text('\$' +
+                                  Accounts.accounts[Accounts.currentAccount]
+                                      .onlineSell
+                                      .toString()),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide())
-                    ),
-                    margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text("Subject"),
-                            flex: 2,
-                          ),
-                          Expanded(child: Text("0"),
-                            flex: 2,
-                          ),
-                          Expanded(child: Text("0")),
-                        ],
+                    Container(
+                      decoration:
+                          BoxDecoration(border: Border(bottom: BorderSide())),
+                      margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text("Cash Sell"),
+                              flex: 2,
+                            ),
+                            Expanded(
+                              child: Text(Accounts
+                                  .accounts[Accounts.currentAccount]
+                                  .sumCashNumberOfFoods
+                                  .toString()),
+                              flex: 2,
+                            ),
+                            Expanded(
+                              child: Text('\$' +
+                                  Accounts.accounts[Accounts.currentAccount]
+                                      .cashSell
+                                      .toString()),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-
-                    margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text("Subject"),
-                            flex: 2,
-                          ),
-                          Expanded(child: Text("0"),
-                            flex: 2,
-                          ),
-                          Expanded(child: Text("0")),
-                        ],
+                    Container(
+                      margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text("Subject"),
+                              flex: 2,
+                            ),
+                            Expanded(
+                              child: Text(Accounts
+                                  .accounts[Accounts.currentAccount]
+                                  .sumNumberOfFoods
+                                  .toString()),
+                              flex: 2,
+                            ),
+                            Expanded(
+                              child: Text('\$' +
+                                  Accounts
+                                      .accounts[Accounts.currentAccount].sumSell
+                                      .toString()),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            )
-          ),
+                  ],
+                ),
+              )),
           Container(
             margin: EdgeInsets.all(10),
             height: 200,
             width: 200,
-            decoration: BoxDecoration(
-                border: Border.all()
-            ),
+            decoration: BoxDecoration(border: Border.all()),
           )
         ],
       ),
@@ -162,14 +183,23 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       onSelected: (value) {
         setState(() {
           if (index == 1) {
+            Accounts.accounts[Accounts.currentAccount]
+                .sumNumberCalculator(input: 1);
+            Accounts.accounts[Accounts.currentAccount].calculator(input: 1);
             chipController2 = false;
             chipController3 = false;
             chipController1 = !chipController1;
           } else if (index == 2) {
+            Accounts.accounts[Accounts.currentAccount]
+                .sumNumberCalculator(input: 7);
+            Accounts.accounts[Accounts.currentAccount].calculator(input: 7);
             chipController1 = false;
             chipController3 = false;
             chipController2 = !chipController2;
           } else {
+            Accounts.accounts[Accounts.currentAccount]
+                .sumNumberCalculator(input: 30);
+            Accounts.accounts[Accounts.currentAccount].calculator(input: 30);
             chipController1 = false;
             chipController2 = false;
             chipController3 = !chipController3;
@@ -192,6 +222,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       ),
       onSelected: (value) {
         setState(() {
+          Accounts.accounts[Accounts.currentAccount].sumNumberCalculator();
+          Accounts.accounts[Accounts.currentAccount].calculator();
           if (index == 1) {
             chipController1 = !chipController1;
           } else if (index == 2) {
