@@ -113,8 +113,8 @@ class Date {
         (60 * int.parse(input.minute)) +
         (3600 * int.parse(input.hour)) +
         (24 * 3600 * int.parse(input.day));
-
     for (int j = 0; j < int.parse(month); j++) {
+      //month ha be khareji bashad
       if (j <= 6 && j >= 1) {
         x += 31 * (24 * 3600);
       } else if (j <= 11 && j >= 7) {
