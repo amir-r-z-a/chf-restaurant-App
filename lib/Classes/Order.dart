@@ -4,7 +4,7 @@ import 'package:chfrestaurant/Classes/Restaurant.dart';
 
 class Order {
   List _foods;
-  List _numberOfFood;
+  List _numberOfFoods;
   Date _orderDate;
   bool _orderStatus;
   String _clientPhoneNumber;
@@ -12,12 +12,13 @@ class Order {
   String _clientName;
   String _clientLastName;
   String _id;
-  int _sumPrice;
+  double _sumPrice;
+  int _sumNumberOfFoods;
   bool _onlinePayment;
 
   Order(
       this._foods,
-      this._numberOfFood,
+      this._numberOfFoods,
       this._orderDate,
       this._clientPhoneNumber,
       this._clientAddress,
@@ -25,7 +26,8 @@ class Order {
       this._clientLastName,
       this._id,
       this._sumPrice,
-      this._onlinePayment);
+      this._onlinePayment,
+      this._sumNumberOfFoods);
 
   List get foods => _foods;
 
@@ -83,15 +85,16 @@ class Order {
     _id = value;
   }
 
-  List get numberOfFood => _numberOfFood;
 
-  set numberOfFood(List value) {
-    _numberOfFood = value;
+  List get numberOfFoods => _numberOfFoods;
+
+  set numberOfFoods(List value) {
+    _numberOfFoods = value;
   }
 
-  int get sumPrice => _sumPrice;
+  double get sumPrice => _sumPrice;
 
-  set sumPrice(int value) {
+  set sumPrice(double value) {
     _sumPrice = value;
   }
 
@@ -99,5 +102,11 @@ class Order {
 
   set onlinePayment(bool value) {
     _onlinePayment = value;
+  }
+
+  int get sumNumberOfFoods => _sumNumberOfFoods;
+
+  set sumNumberOfFoods(int value) {
+    _sumNumberOfFoods = value;
   }
 }
