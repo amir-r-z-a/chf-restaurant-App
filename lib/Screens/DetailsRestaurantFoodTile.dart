@@ -128,7 +128,7 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
             ),
             Text(DetailsRestaurantFoodTile.desc),
             Padding(padding: EdgeInsets.all(3)),
-            Text('Price: ' + DetailsRestaurantFoodTile.price.toString() + '\$'),
+            Text('Price: ' + '\$' + DetailsRestaurantFoodTile.price.toString()),
             Row(
               children: [
                 Switch(
