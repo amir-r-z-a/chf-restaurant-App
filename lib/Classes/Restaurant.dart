@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:chfrestaurant/Classes/CommentTile.dart';
+import 'package:chfrestaurant/Classes/Date.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Order.dart';
 import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
@@ -18,15 +19,21 @@ class Restaurant {
   RestaurantTypes _type;
   Map _tabBarTitle = {0: 'All'};
   Map _restaurantTabBarView = {0: []};
-  Map listOfFood = {0: []};
+  Map _listOfFood = {0: []};
   Map _clientTabBarView = {0: []};
   double _workingRadius = 10;
   double _point;
-  String email;
+  String _email;
   List<RestaurantInactiveOrderTile> _ordersHistory = [];
   List<RestaurantActiveOrderTile> _activeOrders = [];
   Map _restaurantComments = {0: []};
   Image _profileImage;
+  double _sumSell;
+  double _onlineSell;
+  double _cashSell;
+  int _sumNumberOfFoods;
+  int _sumOnlineNumberOfFoods;
+  int _sumCashNumberOfFoods;
 
   // Location _location;
 
@@ -156,6 +163,10 @@ class Restaurant {
   }
 
   void addOrder(RestaurantActiveOrderTile restaurantActiveOrderTile) {
+    restaurantActiveOrderTile.sumPrice =
+        sumPriceCalculator(restaurantActiveOrderTile);
+    restaurantActiveOrderTile.sumNumberOfFoods =
+        sumNumberOfFoodsCalculator(restaurantActiveOrderTile);
     restaurantActiveOrderTile.id = ordersIDGenerator(restaurantActiveOrderTile);
     activeOrders.add(restaurantActiveOrderTile);
   }
@@ -165,7 +176,7 @@ class Restaurant {
       if (activeOrders[i].id == input) {
         ordersHistory.add(RestaurantInactiveOrderTile(
             activeOrders[i].foods,
-            activeOrders[i].numberOfFood,
+            activeOrders[i].numberOfFoods,
             activeOrders[i].orderDate,
             activeOrders[i].clientPhoneNumber,
             activeOrders[i].clientAddress,
@@ -173,10 +184,30 @@ class Restaurant {
             activeOrders[i].clientLastName,
             activeOrders[i].id,
             activeOrders[i].sumPrice,
-            activeOrders[i].onlinePayment));
+            activeOrders[i].onlinePayment,
+            activeOrders[i].sumNumberOfFoods));
         activeOrders.removeAt(i);
       }
     }
+  }
+
+  double sumPriceCalculator(
+      RestaurantActiveOrderTile restaurantActiveOrderTile) {
+    double sum = 0;
+    for (int i = 0; i < restaurantActiveOrderTile.foods.length; i++) {
+      sum += double.parse(restaurantActiveOrderTile.foods[i].price) *
+          restaurantActiveOrderTile.numberOfFoods[i];
+    }
+    return sum;
+  }
+
+  int sumNumberOfFoodsCalculator(
+      RestaurantActiveOrderTile restaurantActiveOrderTile) {
+    int sum = 0;
+    for (int i = 0; i < restaurantActiveOrderTile.numberOfFoods.length; i++) {
+      sum += restaurantActiveOrderTile.numberOfFoods[i];
+    }
+    return sum;
   }
 
   String ordersIDGenerator(
@@ -230,6 +261,90 @@ class Restaurant {
       }
     } while (flag);
     return randomID;
+  }
+
+  void calculator({int input = 0}) {
+    onlineSell = 0;
+    cashSell = 0;
+    for (int i = 0; i < getOrdersHistoryLength(); i++) {
+      if (input == 1 &&
+          ordersHistory[i]
+              .orderDate
+              .validDate(Date('2021', '3', '7', '20', '20', '20'), 1)) {
+        if (ordersHistory[i].onlinePayment) {
+          onlineSell += ordersHistory[i].sumPrice;
+        } else {
+          cashSell += ordersHistory[i].sumPrice;
+        }
+      } else if (input == 7 &&
+          ordersHistory[i]
+              .orderDate
+              .validDate(Date('2021', '3', '7', '20', '20', '20'), 7)) {
+        if (ordersHistory[i].onlinePayment) {
+          onlineSell += ordersHistory[i].sumPrice;
+        } else {
+          cashSell += ordersHistory[i].sumPrice;
+        }
+      } else if (input == 30 &&
+          ordersHistory[i]
+              .orderDate
+              .validDate(Date('2021', '3', '7', '20', '20', '20'), 30)) {
+        if (ordersHistory[i].onlinePayment) {
+          onlineSell += ordersHistory[i].sumPrice;
+        } else {
+          cashSell += ordersHistory[i].sumPrice;
+        }
+      } else if (input == 0) {
+        if (ordersHistory[i].onlinePayment) {
+          onlineSell += ordersHistory[i].sumPrice;
+        } else {
+          cashSell += ordersHistory[i].sumPrice;
+        }
+      }
+    }
+    sumSell = cashSell + onlineSell;
+  }
+
+  void sumNumberCalculator({int input = 0}) {
+    sumOnlineNumberOfFoods = 0;
+    sumCashNumberOfFoods = 0;
+    for (int i = 0; i < getOrdersHistoryLength(); i++) {
+      if (input == 1 &&
+          ordersHistory[i]
+              .orderDate
+              .validDate(Date('2021', '3', '7', '20', '20', '20'), 1)) {
+        if (ordersHistory[i].onlinePayment) {
+          sumOnlineNumberOfFoods += ordersHistory[i].sumNumberOfFoods;
+        } else {
+          sumCashNumberOfFoods += ordersHistory[i].sumNumberOfFoods;
+        }
+      } else if (input == 7 &&
+          ordersHistory[i]
+              .orderDate
+              .validDate(Date('2021', '3', '7', '20', '20', '20'), 7)) {
+        if (ordersHistory[i].onlinePayment) {
+          sumOnlineNumberOfFoods += ordersHistory[i].sumNumberOfFoods;
+        } else {
+          sumCashNumberOfFoods += ordersHistory[i].sumNumberOfFoods;
+        }
+      } else if (input == 30 &&
+          ordersHistory[i]
+              .orderDate
+              .validDate(Date('2021', '3', '7', '20', '20', '20'), 30)) {
+        if (ordersHistory[i].onlinePayment) {
+          sumOnlineNumberOfFoods += ordersHistory[i].sumNumberOfFoods;
+        } else {
+          sumCashNumberOfFoods += ordersHistory[i].sumNumberOfFoods;
+        }
+      } else if (input == 0) {
+        if (ordersHistory[i].onlinePayment) {
+          sumOnlineNumberOfFoods += ordersHistory[i].sumNumberOfFoods;
+        } else {
+          sumCashNumberOfFoods += ordersHistory[i].sumNumberOfFoods;
+        }
+      }
+    }
+    sumNumberOfFoods = sumCashNumberOfFoods + sumOnlineNumberOfFoods;
   }
 
   // static int getNumberOfOrderFood(Map input) {
@@ -329,5 +444,53 @@ class Restaurant {
 
   set ordersHistory(List<RestaurantInactiveOrderTile> value) {
     _ordersHistory = value;
+  }
+
+  String get email => _email;
+
+  set email(String value) {
+    _email = value;
+  }
+
+  Map get listOfFood => _listOfFood;
+
+  set listOfFood(Map value) {
+    _listOfFood = value;
+  }
+
+  double get cashSell => _cashSell;
+
+  set cashSell(double value) {
+    _cashSell = value;
+  }
+
+  double get onlineSell => _onlineSell;
+
+  set onlineSell(double value) {
+    _onlineSell = value;
+  }
+
+  double get sumSell => _sumSell;
+
+  set sumSell(double value) {
+    _sumSell = value;
+  }
+
+  int get sumCashNumberOfFoods => _sumCashNumberOfFoods;
+
+  set sumCashNumberOfFoods(int value) {
+    _sumCashNumberOfFoods = value;
+  }
+
+  int get sumOnlineNumberOfFoods => _sumOnlineNumberOfFoods;
+
+  set sumOnlineNumberOfFoods(int value) {
+    _sumOnlineNumberOfFoods = value;
+  }
+
+  int get sumNumberOfFoods => _sumNumberOfFoods;
+
+  set sumNumberOfFoods(int value) {
+    _sumNumberOfFoods = value;
   }
 }

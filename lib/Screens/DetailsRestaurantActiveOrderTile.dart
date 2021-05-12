@@ -6,14 +6,18 @@ import 'package:flutter/material.dart';
 
 class DetailsRestaurantActiveOrderTile extends StatefulWidget {
   static List foods;
-  static List numberOfFood;
+  static List numberOfFoods;
   static Date orderDate;
   static String orderStatus;
+
+  //orderStatus tooye DetailsRestaurantActiveOrderTile gozashte shavad
   static String clientPhoneNumber;
   static String clientAddress;
   static String clientName;
   static String clientLastName;
   static String id;
+  static double sumPrice;
+  static int sumNumberOfFoods;
   Function function;
 
   DetailsRestaurantActiveOrderTile({this.function});
@@ -25,26 +29,6 @@ class DetailsRestaurantActiveOrderTile extends StatefulWidget {
 
 class _DetailsRestaurantActiveOrderTileState
     extends State<DetailsRestaurantActiveOrderTile> {
-  // List foods = [
-  //   Food(
-  //     'Tea',
-  //     '25',
-  //     true,
-  //     desc: 'desc',
-  //   ),
-  //   Food(
-  //     'Tea',
-  //     '25',
-  //     true,
-  //     desc: 'desc',
-  //   ),
-  //   Food(
-  //     'Tea',
-  //     '25',
-  //     true,
-  //     desc: 'desc',
-  //   )
-  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +55,8 @@ class _DetailsRestaurantActiveOrderTileState
                           Text(DetailsRestaurantActiveOrderTile.clientName +
                               " " +
                               DetailsRestaurantActiveOrderTile.clientLastName),
-                          Text(DetailsRestaurantActiveOrderTile.clientPhoneNumber)
+                          Text(DetailsRestaurantActiveOrderTile
+                              .clientPhoneNumber)
                         ],
                       ),
                     ),
@@ -88,7 +73,8 @@ class _DetailsRestaurantActiveOrderTileState
                           children: [
                             Text("address :     "),
                             Expanded(
-                                child: Text(DetailsRestaurantActiveOrderTile.clientAddress)),
+                                child: Text(DetailsRestaurantActiveOrderTile
+                                    .clientAddress)),
                           ],
                         ),
                       )),
@@ -101,11 +87,7 @@ class _DetailsRestaurantActiveOrderTileState
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Name"),
-                          Text("Price"),
-                          Text("Count")
-                        ],
+                        children: [Text("Name"), Text("Price"), Text("Count")],
                       ),
                     ),
                   ),
@@ -119,9 +101,13 @@ class _DetailsRestaurantActiveOrderTileState
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(DetailsRestaurantActiveOrderTile.foods[index].name),
-                                Text("\$ "+DetailsRestaurantActiveOrderTile.foods[index].price),
-                                Text(DetailsRestaurantActiveOrderTile.numberOfFood[index]
+                                Text(DetailsRestaurantActiveOrderTile
+                                    .foods[index].name),
+                                Text("\$" +
+                                    DetailsRestaurantActiveOrderTile
+                                        .foods[index].price),
+                                Text(DetailsRestaurantActiveOrderTile
+                                    .numberOfFoods[index]
                                     .toString()),
                               ],
                             ),
@@ -140,9 +126,12 @@ class _DetailsRestaurantActiveOrderTileState
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Sum : "),
-                          Text(" \$ 59"),
-                          Text("Count")
+                          Text('Sum: '),
+                          Text('\$' +
+                              DetailsRestaurantActiveOrderTile.sumPrice
+                                  .toString()),
+                          Text(DetailsRestaurantActiveOrderTile.sumNumberOfFoods
+                              .toString())
                         ],
                       ),
                     ),

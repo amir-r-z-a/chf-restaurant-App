@@ -44,10 +44,11 @@ class _MyAppState extends State<MyApp> {
           '/ActiveOrdersScreen': (context) => ActiveOrdersScreen(),
           '/CommentsManagements': (context) => CommentsManagement(),
           '/DetailsCommentTile': (context) => DetailsCommentTile(),
+          '/CalculatorScreen': (context) => CalculatorScreen(),
         },
-        home: /*SignInScreen()*/ ActiveOrdersScreen()
-        /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
-        /*MainMenuScreen()*/ /*RestaurantActiveOrderTile([
+        home: /*SignInScreen()*/ /*ActiveOrdersScreen()*/
+            /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
+            MainMenuScreen() /*RestaurantActiveOrderTile([
           Food(
             'Tea',
             '25',
@@ -273,7 +274,7 @@ void main() {
     2,
     2,
     2
-  ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan", "ghar",
+  ], Date('2021', '3', '11', '1', '28', '29'), "09185452060", "hamadan", "ghar",
       "alisadr", false));
 
   restaurant.addOrder(RestaurantActiveOrderTile([
@@ -302,8 +303,8 @@ void main() {
     6,
     9,
     8
-  ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan",
-      "arman", "shiraz", true));
+  ], Date('2021', '3', '5', '22', '12', '2'), "09185452060", "hamadan", "arman",
+      "shiraz", true));
   // print(Accounts.accounts[Accounts.currentAccount].activeOrders[0].foods);
   // print(DetailsRestaurantOrderTile.foods.length);
   print(Accounts.currentAccount);

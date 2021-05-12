@@ -1,3 +1,4 @@
+import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -190,29 +191,38 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                   margin: EdgeInsets.fromLTRB(30, 20, 0, 0),
                   child: Row(
                     children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 20),
-                              child: Text("Hesabdari"),
-                            ),
-                            Container(
-                              child: Icon(
-                                Icons.edit_rounded,
-                                size: 35,
+                      GestureDetector(
+                        onTap: () {
+                          Accounts.accounts[Accounts.currentAccount]
+                              .calculator();
+                          Accounts.accounts[Accounts.currentAccount]
+                              .sumNumberCalculator();
+                          Navigator.pushNamed(context, '/CalculatorScreen');
+                        },
+                        child: Container(
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                child: Text("Calculator"),
                               ),
-                              margin: EdgeInsets.only(left: 20),
-                            ),
-                          ],
+                              Container(
+                                child: Icon(
+                                  Icons.edit_rounded,
+                                  size: 35,
+                                ),
+                                margin: EdgeInsets.only(left: 20),
+                              ),
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 1, color: Colors.pink),
+                            borderRadius: const BorderRadius.all(
+                                const Radius.circular(8)),
+                          ),
+                          width: 170,
+                          height: 120,
                         ),
-                        decoration: BoxDecoration(
-                          border: Border.all(width: 1, color: Colors.pink),
-                          borderRadius:
-                              const BorderRadius.all(const Radius.circular(8)),
-                        ),
-                        width: 170,
-                        height: 120,
                       ),
                     ],
                   ),
@@ -222,9 +232,10 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      GestureDetector(onTap: () {
-                        Navigator.pushNamed(context, '/CommentsManagements');
-                      },
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/CommentsManagements');
+                        },
                         child: Container(
                           child: Row(
                             children: [
