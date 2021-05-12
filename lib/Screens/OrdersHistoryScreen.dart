@@ -60,7 +60,7 @@ class _OrdersHistoryScreenState extends State<OrdersHistoryScreen> {
                     if (Accounts.accounts[Accounts.currentAccount]
                         .ordersHistory[index].orderDate
                         .validDate(
-                            Date('2021', '3', '3', '4', '22', '23'), 7)) {
+                            Date('2021', '3', '12', '4', '22', '23'), 7)) {
                       return Accounts.accounts[Accounts.currentAccount]
                           .ordersHistory[index];
                     } else {
@@ -70,7 +70,7 @@ class _OrdersHistoryScreenState extends State<OrdersHistoryScreen> {
                     if (Accounts.accounts[Accounts.currentAccount]
                         .ordersHistory[index].orderDate
                         .validDate(
-                            Date('2021', '3', '3', '4', '22', '23'), 30)) {
+                            Date('2021', '3', '12', '4', '22', '23'), 30)) {
                       return Accounts.accounts[Accounts.currentAccount]
                           .ordersHistory[index];
                     } else {

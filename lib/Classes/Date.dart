@@ -1,10 +1,12 @@
 class Date {
-  String _year ;
+  String _year;
+
   String _month;
   String _day;
   String _hour;
   String _minute;
   String _second;
+
   Date(this._year, this._month, this._day, this._hour, this._minute,
       this._second);
 
@@ -63,43 +65,76 @@ class Date {
   //   return true;
   // }
 
+  // bool validDate(Date input, int i) {
+  //   int x = int.parse(day);
+  //   for (int j = 1; j <= int.parse(input.month); j++) {
+  //     if (j <= 6 && j >= 1) {
+  //       input.day = (int.parse(input.day) + 31).toString();
+  //       x += 31;
+  //     } else if (j <= 11 && j >= 7) {
+  //       input.day = (int.parse(input.day) + 30).toString();
+  //       x += 30;
+  //     } else {
+  //       input.day = (int.parse(input.day) + 29).toString();
+  //       x += 29;
+  //     }
+  //   }
+  //   if (int.parse(input.year) == int.parse(year) &&
+  //       int.parse(input.day) - x <= i) {
+  //     if (int.parse(input.day) - x < i) {
+  //       return true;
+  //     } else if (int.parse(input.day) - x == i &&
+  //         int.parse(hour) <= int.parse(input.hour)) {
+  //       if (int.parse(hour) < int.parse(input.hour)) {
+  //         return true;
+  //       } else if (int.parse(hour) == int.parse(input.hour) &&
+  //           int.parse(minute) <= int.parse(input.minute)) {
+  //         if (int.parse(minute) < int.parse(input.minute)) {
+  //           return true;
+  //         } else if (int.parse(minute) == int.parse(input.minute) &&
+  //             int.parse(second) <= int.parse(input.second)) {
+  //           return true;
+  //         }
+  //         return false;
+  //       }
+  //       return false;
+  //     }
+  //     return false;
+  //   }
+  //   return false;
+  // }
+
   bool validDate(Date input, int i) {
-    int x = int.parse(day);
+    int x = int.parse(second) +
+        (60 * int.parse(minute)) +
+        (3600 * int.parse(hour)) +
+        (24 * 3600 * int.parse(day));
+    int y = int.parse(input.second) +
+        (60 * int.parse(input.minute)) +
+        (3600 * int.parse(input.hour)) +
+        (24 * 3600 * int.parse(input.day));
+
+    for (int j = 0; j < int.parse(month); j++) {
+      if (j <= 6 && j >= 1) {
+        x += 31 * (24 * 3600);
+      } else if (j <= 11 && j >= 7) {
+        x += 30 * (24 * 3600);
+      } else {
+        x += 29 * (24 * 3600);
+      }
+    }
     for (int j = 1; j <= int.parse(input.month); j++) {
       if (j <= 6 && j >= 1) {
-        input.day = (int.parse(input.day) + 31).toString();
-        x += 31;
+        y += 31 * (24 * 3600);
       } else if (j <= 11 && j >= 7) {
-        input.day = (int.parse(input.day) + 30).toString();
-        x += 30;
+        y += 30 * (24 * 3600);
       } else {
-        input.day = (int.parse(input.day) + 29).toString();
-        x += 29;
+        y += 29 * (24 * 3600);
       }
     }
-    if (int.parse(input.year) == int.parse(year) &&
-        int.parse(input.day) - x <= i) {
-      if (int.parse(input.day) - x < i) {
-        return true;
-      } else if (int.parse(input.day) - x == i &&
-          int.parse(hour) <= int.parse(input.hour)) {
-        if (int.parse(hour) < int.parse(input.hour)) {
-          return true;
-        } else if (int.parse(hour) == int.parse(input.hour) &&
-            int.parse(minute) <= int.parse(input.minute)) {
-          if (int.parse(minute) < int.parse(input.minute)) {
-            return true;
-          } else if (int.parse(minute) == int.parse(input.minute) &&
-              int.parse(second) <= int.parse(input.second)) {
-            return true;
-          }
-          return false;
-        }
-        return false;
-      }
-      return false;
-    }
-    return false;
+    x += 365 * (24 * 3600 * int.parse(year));
+    y += 365 * (24 * 3600 * int.parse(input.year));
+    return (y - x) <= (24 * 3600 * i);
   }
 
   String get year => _year;

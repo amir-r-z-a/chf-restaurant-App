@@ -79,7 +79,7 @@ class _CommentsManagementState extends State<CommentsManagement> {
                         if (Accounts.accounts[Accounts.currentAccount]
                             .restaurantComments[i][j].date
                             .validDate(
-                                Date('2021', '3', '3', '4', '22', '23'), 7)) {
+                                Date('2021', '3', '12', '4', '22', '23'), 7)) {
                           return Accounts.accounts[Accounts.currentAccount]
                               .restaurantComments[i][j];
                         } else {
@@ -89,7 +89,7 @@ class _CommentsManagementState extends State<CommentsManagement> {
                         if (Accounts.accounts[Accounts.currentAccount]
                             .restaurantComments[i][j].date
                             .validDate(
-                                Date('2021', '3', '3', '4', '22', '23'), 30)) {
+                                Date('2021', '3', '12', '4', '22', '23'), 30)) {
                           return Accounts.accounts[Accounts.currentAccount]
                               .restaurantComments[i][j];
                         } else {

@@ -270,7 +270,7 @@ class Restaurant {
       if (input == 1 &&
           ordersHistory[i]
               .orderDate
-              .validDate(Date('2021', '3', '7', '20', '20', '20'), 1)) {
+              .validDate(Date('2021', '3', '12', '4', '22', '23'), 1)) {
         if (ordersHistory[i].onlinePayment) {
           onlineSell += ordersHistory[i].sumPrice;
         } else {
@@ -279,7 +279,7 @@ class Restaurant {
       } else if (input == 7 &&
           ordersHistory[i]
               .orderDate
-              .validDate(Date('2021', '3', '7', '20', '20', '20'), 7)) {
+              .validDate(Date('2021', '3', '12', '4', '22', '23'), 7)) {
         if (ordersHistory[i].onlinePayment) {
           onlineSell += ordersHistory[i].sumPrice;
         } else {
@@ -288,7 +288,7 @@ class Restaurant {
       } else if (input == 30 &&
           ordersHistory[i]
               .orderDate
-              .validDate(Date('2021', '3', '7', '20', '20', '20'), 30)) {
+              .validDate(Date('2021', '3', '12', '4', '22', '23'), 30)) {
         if (ordersHistory[i].onlinePayment) {
           onlineSell += ordersHistory[i].sumPrice;
         } else {
@@ -312,7 +312,7 @@ class Restaurant {
       if (input == 1 &&
           ordersHistory[i]
               .orderDate
-              .validDate(Date('2021', '3', '7', '20', '20', '20'), 1)) {
+              .validDate(Date('2021', '3', '12', '4', '22', '23'), 1)) {
         if (ordersHistory[i].onlinePayment) {
           sumOnlineNumberOfFoods += ordersHistory[i].sumNumberOfFoods;
         } else {
@@ -321,7 +321,7 @@ class Restaurant {
       } else if (input == 7 &&
           ordersHistory[i]
               .orderDate
-              .validDate(Date('2021', '3', '7', '20', '20', '20'), 7)) {
+              .validDate(Date('2021', '3', '12', '4', '22', '23'), 7)) {
         if (ordersHistory[i].onlinePayment) {
           sumOnlineNumberOfFoods += ordersHistory[i].sumNumberOfFoods;
         } else {
@@ -330,7 +330,7 @@ class Restaurant {
       } else if (input == 30 &&
           ordersHistory[i]
               .orderDate
-              .validDate(Date('2021', '3', '7', '20', '20', '20'), 30)) {
+              .validDate(Date('2021', '3', '12', '4', '22', '23'), 30)) {
         if (ordersHistory[i].onlinePayment) {
           sumOnlineNumberOfFoods += ordersHistory[i].sumNumberOfFoods;
         } else {
