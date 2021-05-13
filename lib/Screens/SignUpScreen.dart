@@ -62,6 +62,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         index: 1,
                       ),
                       Padding(padding: EdgeInsets.all(15)),
+                      MyTextFormField(
+                        "Phone number",
+                        index: 2,
+                        hint: "Your Phone number",
+                        regex: 'PNSignUp',
+                      ),
+                      Padding(padding: EdgeInsets.all(15)),
                       TextFormField(
                         onSaved: (String value) {
                           MyTextFormField.password = value;
@@ -109,22 +116,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       Padding(padding: EdgeInsets.all(15)),
                       MyTextFormField(
-                        "Phone number",
-                        index: 2,
-                        hint: "Your Phone number",
-                        regex: 'PNSignUp',
-                      ),
-                      Padding(padding: EdgeInsets.all(15)),
-                      MyTextFormField(
                         "Address",
                         hint: "Your Address",
                         index: 3,
                       ),
+                      Padding(padding: EdgeInsets.all(15)),
+                      MyTextFormField('Radius of works'),
+                      // Padding(padding: EdgeInsets.all(15)),
+                      //TimePicker for open and close
+                      Padding(padding: EdgeInsets.all(10)),
                       Container(
-                          margin: EdgeInsets.fromLTRB(0, 20, 166, 0),
-                          child: TitleText(
-                            "Select your restaurant type : ",
-                          )),
+                        margin: EdgeInsets.fromLTRB(0, 20, 166, 0),
+                        child: TitleText(
+                          "Select your restaurant type : ",
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.all(5)),
                       Container(
                         margin: EdgeInsets.only(top: 10),
                         child: Row(
@@ -260,9 +267,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             print('-------------------------');
                           }
                           //zadan class text baraye type
-                          //padding select
                           //border ha
-                          //chand taii shodan menu ha
                         });
                       }
                     },
