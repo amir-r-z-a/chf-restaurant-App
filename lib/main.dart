@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "ChFood",
+        title: "CHFood",
         theme: ThemeData(primaryColor: const Color.fromRGBO(248, 95, 106, 1)),
         routes: {
           '/SignInScreen': (context) => SignInScreen(),
@@ -48,9 +48,9 @@ class _MyAppState extends State<MyApp> {
           '/DetailsCommentTile': (context) => DetailsCommentTile(),
           '/CalculatorScreen': (context) => CalculatorScreen(),
         },
-        home: /*SignInScreen()*/ /*ActiveOrdersScreen()*/
+        home: SignInScreen() /*ActiveOrdersScreen()*/
             /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
-            MainMenuScreen() /*RestaurantActiveOrderTile([
+            /*MainMenuScreen()*/ /*RestaurantActiveOrderTile([
           Food(
             'Tea',
             '25',
