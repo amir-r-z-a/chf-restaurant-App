@@ -139,15 +139,20 @@ class Restaurant {
     restaurantComments[i].add(comment);
   }
 
-  int getIndexOfComment(String input) {
+  List getIndexOfComment(String input) {
     for (int i = 0; i < getTabBarTitleLength(); i++) {
       for (int j = 0; j < restaurantComments[i].length; j++) {
         if (restaurantComments[i][j].id == input) {
-          return j;
+          return [i, j];
         }
       }
     }
-    return -1;
+    return [-1, -1];
+  }
+
+  void editCommentsAnswer(String id, String reply) {
+    restaurantComments[getIndexOfComment(id)[0]][getIndexOfComment(id)[1]]
+        .answer = reply;
   }
 
   int getOrdersHistoryLength() {

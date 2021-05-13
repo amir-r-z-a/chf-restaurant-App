@@ -1,4 +1,6 @@
+import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Date.dart';
+import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:flutter/material.dart';
 
 class DetailsCommentTile extends StatefulWidget {
@@ -83,55 +85,42 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                                   return ListView(
                                     children: [
                                       Form(
-                                          key: _formkey,
-                                          child: Column(
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(10.0),
-                                                child: TextFormField(
-                                                  maxLines: null,
-                                                  onSaved: (String value) {
-                                                    // MyTextFormField.password = value;
-                                                  },
-                                                  decoration: InputDecoration(
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                                    color: Color
-                                                                        .fromRGBO(
-                                                                            248,
-                                                                            95,
-                                                                            106,
-                                                                            1),
-                                                                    width:
-                                                                        2.0)),
-                                                    errorStyle: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          248, 95, 106, 1),
-                                                    ),
-                                                    labelText: "Reply",
-                                                    labelStyle: TextStyle(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Color.fromRGBO(
-                                                            248, 95, 106, 1)),
-                                                    hintText: "Your Reply ",
-                                                    hintStyle: TextStyle(
-                                                      fontSize: 16,
-                                                      color: Color.fromRGBO(
-                                                          209, 214, 219, 1),
-                                                    ),
-                                                  ),
-                                                ),
+                                        key: _formkey,
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: MyTextFormField(
+                                                'Reply',
+                                                index: 8,
                                               ),
-                                              ElevatedButton(
-                                                  onPressed: () {},
-                                                  child: Text("Save"))
-                                            ],
-                                          ))
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (_formkey.currentState
+                                                      .validate()) {
+                                                    _formkey.currentState
+                                                        .save();
+                                                    Accounts.accounts[Accounts
+                                                            .currentAccount]
+                                                        .editCommentsAnswer(
+                                                            DetailsCommentTile
+                                                                .id,
+                                                            MyTextFormField
+                                                                .reply);
+                                                    DetailsCommentTile.answer =
+                                                        MyTextFormField.reply;
+                                                    Navigator.pop(context);
+                                                  }
+                                                });
+                                              },
+                                              child: Text("Save"),
+                                            )
+                                          ],
+                                        ),
+                                      )
                                     ],
                                   );
                                 },
@@ -150,3 +139,41 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
     );
   }
 }
+
+//TextFormField(
+//                                                   maxLines: null,
+//                                                   onSaved: (String value) {
+//                                                     // MyTextFormField.password = value;
+//                                                   },
+//                                                   decoration: InputDecoration(
+//                                                     focusedBorder:
+//                                                         OutlineInputBorder(
+//                                                             borderSide:
+//                                                                 const BorderSide(
+//                                                                     color: Color
+//                                                                         .fromRGBO(
+//                                                                             248,
+//                                                                             95,
+//                                                                             106,
+//                                                                             1),
+//                                                                     width:
+//                                                                         2.0)),
+//                                                     errorStyle: TextStyle(
+//                                                       color: Color.fromRGBO(
+//                                                           248, 95, 106, 1),
+//                                                     ),
+//                                                     labelText: "Reply",
+//                                                     labelStyle: TextStyle(
+//                                                         fontSize: 14,
+//                                                         fontWeight:
+//                                                             FontWeight.bold,
+//                                                         color: Color.fromRGBO(
+//                                                             248, 95, 106, 1)),
+//                                                     hintText: "Your Reply ",
+//                                                     hintStyle: TextStyle(
+//                                                       fontSize: 16,
+//                                                       color: Color.fromRGBO(
+//                                                           209, 214, 219, 1),
+//                                                     ),
+//                                                   ),
+//                                                 ),

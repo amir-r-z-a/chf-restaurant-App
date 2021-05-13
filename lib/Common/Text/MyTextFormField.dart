@@ -16,6 +16,8 @@ class MyTextFormField extends StatelessWidget {
   static String foodDesc;
   static String foodPrice;
 
+  static String reply;
+
   String label;
   String hint;
   String regex;
@@ -58,6 +60,8 @@ class MyTextFormField extends StatelessWidget {
           addToAccounts
               ? Accounts.accounts[Accounts.currentAccount].email = value
               : email = value;
+        } else if (index == 8) {
+          reply = value;
         }
       },
       validator: (String value) {

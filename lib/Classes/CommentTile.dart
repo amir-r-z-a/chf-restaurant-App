@@ -69,6 +69,7 @@ class _CommentTileState extends State<CommentTile> {
       onTap: () {
         DetailsCommentTile.question = widget.question;
         DetailsCommentTile.answer = widget.answer;
+        DetailsCommentTile.id = widget.id;
         Navigator.pushNamed(context, '/DetailsCommentTile');
       },
       child: SizedBox(
