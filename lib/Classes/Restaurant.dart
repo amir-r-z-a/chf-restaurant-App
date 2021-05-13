@@ -386,6 +386,7 @@ class Restaurant {
         }
       }
     } while (flag);
+    discountCode[discount].add(randomCode);
     return randomCode;
   }
 
