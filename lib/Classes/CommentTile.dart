@@ -1,3 +1,4 @@
+import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Date.dart';
 import 'package:chfrestaurant/Screens/DetailsCommentTile.dart';
 import 'package:flutter/material.dart';
@@ -63,6 +64,10 @@ class CommentTile extends StatefulWidget {
 }
 
 class _CommentTileState extends State<CommentTile> {
+  void refreshPage() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -70,19 +75,37 @@ class _CommentTileState extends State<CommentTile> {
         DetailsCommentTile.question = widget.question;
         DetailsCommentTile.answer = widget.answer;
         DetailsCommentTile.id = widget.id;
+        DetailsCommentTile.function = refreshPage;
         Navigator.pushNamed(context, '/DetailsCommentTile');
       },
       child: SizedBox(
         height: 300,
         child: Card(
           child: ListTile(
-              isThreeLine: true,
-              subtitle: Text(widget.date.dateFormatter() +
-                  '\n' +
-                  widget.foodName +
-                  '\n' +
-                  widget.id),
-              title: Text(widget.question)),
+            isThreeLine: true,
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(widget.date.dateFormatter() +
+                    '\n' +
+                    widget.foodName +
+                    '\n' +
+                    widget.id +
+                    '\n\n\n\n\n\n'),
+                Text(
+                  'Answer: ',
+                  style: TextStyle(color: Colors.black),
+                ),
+                widget.answer == null
+                    ? Text('You have not answered yet')
+                    : Text(
+                        Accounts.digester(widget.answer, 56),
+                        style: TextStyle(color: Colors.black),
+                      )
+              ],
+            ),
+            title: Text(Accounts.digester(widget.question, 128)),
+          ),
         ),
       ),
     );

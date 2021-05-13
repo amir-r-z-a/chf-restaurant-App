@@ -70,4 +70,11 @@ class Accounts {
     }
     return false;
   }
+
+  static String digester(String str, int capacity) {
+    if (str.length < capacity) {
+      return str;
+    }
+    return str.substring(0, capacity - 3) + '...';
+  }
 }

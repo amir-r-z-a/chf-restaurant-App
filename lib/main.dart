@@ -116,7 +116,7 @@ void main() {
       ));
   restaurant.addComments(
       CommentTile(
-          'chera qazatoon inqad bade?',
+          'chera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad bade?',
           'Milk',
           Date('2021', '3', '5', '22', '12', '2'),
           '09121231212',

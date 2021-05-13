@@ -12,6 +12,7 @@ class DetailsCommentTile extends StatefulWidget {
   static String point;
   static Date date;
   static String id;
+  static Function function;
 
   @override
   _DetailsCommentTileState createState() => _DetailsCommentTileState();
@@ -43,15 +44,14 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                     child: Column(
                       children: [
                         Expanded(
-                            flex: 1,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                              child: Row(
-                                children: [
-                                  Expanded(child: Text("Question : "))
-                                ],
-                              ),
-                            )),
+                          flex: 1,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                            child: Row(
+                              children: [Expanded(child: Text("Question : "))],
+                            ),
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -68,16 +68,20 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                                 children: [
                                   Expanded(
                                     child: Row(children: [
-                                      Text("Answer : "),
-                                      Text(DetailsCommentTile.answer != null
-                                          ? DetailsCommentTile.answer
-                                          : 'You have not answered yet')
+                                      Expanded(
+                                        child: Text("Answer: " +
+                                            (DetailsCommentTile.answer != null
+                                                ? DetailsCommentTile.answer
+                                                : 'You have not answered yet')),
+                                      )
                                     ]),
                                   )
                                 ],
                               ),
                             )),
                         ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                primary: Theme.of(context).primaryColor),
                             onPressed: () {
                               showModalBottomSheet(
                                 context: context,
@@ -91,12 +95,15 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                                             Padding(
                                               padding:
                                                   const EdgeInsets.all(10.0),
-                                              child: MyTextFormField(
-                                                'Reply',
-                                                index: 8,
-                                              ),
+                                              child: MyTextFormField('Reply',
+                                                  index: 8,
+                                                  initial: DetailsCommentTile
+                                                      .answer),
                                             ),
                                             ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                  primary: Theme.of(context)
+                                                      .primaryColor),
                                               onPressed: () {
                                                 setState(() {
                                                   if (_formkey.currentState
@@ -112,6 +119,8 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                                                                 .reply);
                                                     DetailsCommentTile.answer =
                                                         MyTextFormField.reply;
+                                                    DetailsCommentTile
+                                                        .function();
                                                     Navigator.pop(context);
                                                   }
                                                 });
@@ -126,7 +135,7 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                                 },
                               );
                             },
-                            child: Text("reply : "))
+                            child: Text("Reply"))
                       ],
                     ),
                   ),

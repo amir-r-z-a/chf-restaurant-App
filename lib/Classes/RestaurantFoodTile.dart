@@ -167,11 +167,16 @@ class _RestaurantFoodTileState extends State<RestaurantFoodTile> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.name),
+                  Text(Accounts.digester(widget.name,
+                      MediaQuery.of(context).size.width.floor() - 372)),
                   Padding(padding: EdgeInsets.all(3)),
-                  Text(widget.desc == null ? ' ' : widget.desc),
+                  Text(Accounts.digester(
+                      widget.desc == null ? ' ' : widget.desc,
+                      MediaQuery.of(context).size.width.floor() - 372)),
                   Padding(padding: EdgeInsets.all(13)),
-                  Text('Price: ' + '\$' + widget.price.toString()),
+                  Text(Accounts.digester(
+                      'Price: ' + '\$' + widget.price.toString(),
+                      MediaQuery.of(context).size.width.floor() - 372)),
                 ],
               ),
             ]),
