@@ -34,6 +34,7 @@ class Restaurant {
   int _sumNumberOfFoods;
   int _sumOnlineNumberOfFoods;
   int _sumCashNumberOfFoods;
+  Map discountCode = {5: [], 10: [], 25: [], 50: [], 100: []};
 
   // Location _location;
 
@@ -351,6 +352,67 @@ class Restaurant {
     }
     sumNumberOfFoods = sumCashNumberOfFoods + sumOnlineNumberOfFoods;
   }
+
+  String discountCodeCalculator(int discount) {
+    String tag;
+    if (discount == 5) {
+      tag = 'F';
+    } else if (discount == 10) {
+      tag = 'T';
+    } else if (discount == 25) {
+      tag = 'Q';
+    } else if (discount == 50) {
+      tag = 'H';
+    } else if (discount == 100) {
+      tag = 'X';
+    }
+    bool flag;
+    String randomCode;
+    do {
+      flag = false;
+      String rand = '';
+      for (int i = 0; i < 6; i++) {
+        rand += String.fromCharCode(Random().nextInt(25) + 65);
+      }
+      randomCode = '#' +
+          tag +
+          name.substring(0, 1) +
+          rand +
+          type.toString().substring(0, 1);
+      for (int i = 0; i < discountCode[discount].length; i++) {
+        if (discountCode[discount][i] == randomCode) {
+          flag = true;
+          break;
+        }
+      }
+    } while (flag);
+    return randomCode;
+  }
+
+  //String ordersIDGenerator(
+  //       RestaurantActiveOrderTile restaurantActiveOrderTile) {
+  //     bool flag;
+  //     String randomID;
+  //     do {
+  //       flag = false;
+  //       randomID = '#' +
+  //           String.fromCharCode(
+  //               restaurantActiveOrderTile.clientName.codeUnitAt(0)) +
+  //           String.fromCharCode(
+  //               restaurantActiveOrderTile.clientLastName.codeUnitAt(0)) +
+  //           restaurantActiveOrderTile.clientPhoneNumber.substring(
+  //               restaurantActiveOrderTile.clientPhoneNumber.length - 4) +
+  //           '-' +
+  //           (Random().nextInt(8999) + 1000).toString();
+  //       for (int i = 0; i < getActiveOrdersLength(); i++) {
+  //         if (activeOrders[i].id == randomID) {
+  //           flag = true;
+  //           break;
+  //         }
+  //       }
+  //     } while (flag);
+  //     return randomID;
+  //   }
 
   // static int getNumberOfOrderFood(Map input) {
   //   String str = json.encode(input);

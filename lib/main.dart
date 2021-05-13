@@ -96,6 +96,7 @@ void main() {
   Restaurant restaurant = Restaurant(
       'name1', '09198612878', 'password1', 'addres1', RestaurantTypes.Cafe);
   Accounts.addAccount(restaurant);
+  print(Accounts.accounts[Accounts.currentAccount].discountCodeCalculator(25));
   restaurant.addTabBarTitle(
       'Cafe',
       RestaurantFoodTile(
