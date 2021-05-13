@@ -63,7 +63,7 @@ class Accounts {
   }
 
   static bool validEmail(String input) {
-    RegExp regEmail = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+    RegExp regEmail = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$",
         multiLine: false, caseSensitive: false);
     if (!regEmail.hasMatch(input)) {
       return true;
