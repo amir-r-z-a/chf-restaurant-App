@@ -28,58 +28,37 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
         centerTitle: true,
         title: Text("Comment Details"),
       ),
-      body: Container(
-        margin: EdgeInsets.all(10),
-        child: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    height: (MediaQuery.of(context).size.height) - 120,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(border: Border.all()),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                            child: Row(
-                              children: [Expanded(child: Text("Question : "))],
-                            ),
-                          ),
+      body: Column(children: [
+        Container(
+          margin: EdgeInsets.all(10),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 10),
+                  height: (MediaQuery.of(context).size.height) / 3 + 70,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(border: Border.all()),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 10, 8, 0),
+                        child: Row(
+                          children: [Expanded(child: Text("Question : "))],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Expanded(child: Text(DetailsCommentTile.question))
-                            ],
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Expanded(child: Text(DetailsCommentTile.question))
+                          ],
                         ),
-                        Expanded(
-                            flex: 3,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Row(children: [
-                                      Expanded(
-                                        child: Text("Answer: " +
-                                            (DetailsCommentTile.answer != null
-                                                ? DetailsCommentTile.answer
-                                                : 'You have not answered yet')),
-                                      )
-                                    ]),
-                                  )
-                                ],
-                              ),
-                            )),
-                        ElevatedButton(
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 150, 0, 0),
+                        child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 primary: Theme.of(context).primaryColor),
                             onPressed: () {
@@ -135,16 +114,51 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                                 },
                               );
                             },
-                            child: Text("Reply"))
-                      ],
-                    ),
+                            child: Text("Reply")),
+                      )
+                    ],
                   ),
-                ],
-              )
-            ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 10),
+                  height: (MediaQuery.of(context).size.height) / 3,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(border: Border.all()),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                        child: Container(
+                          margin: EdgeInsets.only(top: 10),
+                          child: Row(
+                            children: [Expanded(child: Text("Answer : "))],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Row(children: [
+                                Expanded(
+                                  child: Text((DetailsCommentTile.answer != null
+                                      ? DetailsCommentTile.answer
+                                      : 'You have not answered yet')),
+                                )
+                              ]),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
+      ]),
     );
   }
 }
