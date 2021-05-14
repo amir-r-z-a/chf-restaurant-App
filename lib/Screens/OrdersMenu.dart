@@ -83,13 +83,11 @@ class _OrdersMenuState extends State<OrdersMenu> {
                               bool flag = true;
                               key1.currentState.save();
                               RestaurantFoodTile food = RestaurantFoodTile(
-                                MyTextFormField.foodName,
-                                MyTextFormField.foodPrice,
-                                true,
-                                MyTextFormField.foodCategory,
-                                desc: MyTextFormField.foodDesc,
-                              );
-
+                                  MyTextFormField.foodName,
+                                  MyTextFormField.foodPrice,
+                                  true,
+                                  MyTextFormField.foodCategory,
+                                  desc: MyTextFormField.foodDesc);
                               for (int i = 0;
                                   i <
                                       Accounts.accounts[Accounts.currentAccount]
