@@ -9,19 +9,17 @@ class RestaurantFoodTile extends StatefulWidget {
   String desc;
   bool _foodStatus;
   Image _foodImage;
+  int orderCount;
   static Function function;
+
+  RestaurantFoodTile(this._name, this._price, this._foodStatus, this._category,
+      {this.desc,this.orderCount=0});
 
   String get name => _name;
 
   set name(String value) {
     _name = value;
   }
-
-  RestaurantFoodTile(this._name, this._price, this._foodStatus, this._category,
-      {this.desc});
-
-  @override
-  _RestaurantFoodTileState createState() => _RestaurantFoodTileState();
 
   String get price => _price;
 
@@ -46,6 +44,9 @@ class RestaurantFoodTile extends StatefulWidget {
   set foodImage(Image value) {
     _foodImage = value;
   }
+
+  @override
+  _RestaurantFoodTileState createState() => _RestaurantFoodTileState();
 }
 
 class _RestaurantFoodTileState extends State<RestaurantFoodTile> {

@@ -12,15 +12,18 @@ import 'package:chfrestaurant/Screens/CommentsManagement.dart';
 import 'package:chfrestaurant/Screens/DetailsCommentTile.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantActiveOrderTile.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
+import 'package:chfrestaurant/Screens/DetailsTopTenFoodTile.dart';
 import 'package:chfrestaurant/Screens/MainMenuScreen.dart';
 import 'package:chfrestaurant/Screens/OrdersHistoryScreen.dart';
 import 'package:chfrestaurant/Screens/OrdersMenu.dart';
 import 'package:chfrestaurant/Screens/ProfileScreen.dart';
 import 'package:chfrestaurant/Screens/SignInScreen.dart';
 import 'package:chfrestaurant/Screens/SignUpScreen.dart';
+import 'package:chfrestaurant/Screens/TopTenFoodsScreen.dart';
 import 'package:flutter/material.dart';
 
 //now is: Date('2021', '3', '12', '4', '22', '23')
+// Date(DateTime(DateTime.now().day).toString()
 
 class MyApp extends StatefulWidget {
   @override
@@ -47,10 +50,12 @@ class _MyAppState extends State<MyApp> {
           '/CommentsManagements': (context) => CommentsManagement(),
           '/DetailsCommentTile': (context) => DetailsCommentTile(),
           '/CalculatorScreen': (context) => CalculatorScreen(),
+          '/DetailsTopTenFoodTile': (context) => DetailsTopTenFoodTile(),
         },
-        home: SignInScreen() /*ActiveOrdersScreen()*/
-            /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
-            /*MainMenuScreen()*/ /*RestaurantActiveOrderTile([
+        home:
+            TopTenFoodsScreen() /*OrdersMenu()*/ /*SignInScreen()*/ /*ActiveOrdersScreen()*/
+        /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
+        /*MainMenuScreen()*/ /*RestaurantActiveOrderTile([
           Food(
             'Tea',
             '25',
@@ -77,16 +82,12 @@ class _MyAppState extends State<MyApp> {
             "ghar", "alisadr", "#12345")*/
         // DetailsRestaurantOrderTile()
         // DetailsCommentTile()
-        /*CommentsManagement()*/ /*OrdersMenu()*/ /*SignInScreen()*/ /*FoodTile(
-          'Egg',
-          28,
-          true,
-          desc: 'xx',
-        )*/
-        /*DetailsRestaurantFoodTile(
-        'Egg',
-        28,
-        desc: 'xx',
+        /*CommentsManagement()*/ /*OrdersMenu()*/ /*SignInScreen()*/ /*RestaurantFoodTile(
+        'Hot Dog',
+        '25',
+        true,
+        'Cafe',
+        desc: 'desc',
       ),*/
         );
   }
@@ -96,7 +97,6 @@ void main() {
   Restaurant restaurant = Restaurant(
       'name1', '09198612878', 'password1', 'addres1', RestaurantTypes.Cafe);
   Accounts.addAccount(restaurant);
-  print(Accounts.accounts[Accounts.currentAccount].discountCodeCalculator(25));
   restaurant.addTabBarTitle(
       'Cafe',
       RestaurantFoodTile(
@@ -112,9 +112,27 @@ void main() {
         'Hot Dog',
         '25',
         true,
-        'Cafe',
+        'Fast Food',
         desc: 'desc',
       ));
+  restaurant.addTabBarViewElements(
+      RestaurantFoodTile(
+        'Milk',
+        '25',
+        true,
+        'Cafe',
+        desc: 'desc',
+      ),
+      1);
+  restaurant.addTabBarViewElements(
+      RestaurantFoodTile(
+        'Pizza',
+        '25',
+        true,
+        'Fast Food',
+        desc: 'desc',
+      ),
+      2);
   restaurant.addComments(
       CommentTile(
           'chera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad bade?',
@@ -148,112 +166,14 @@ void main() {
       desc: 'desc',
     ),
     Food(
-      'Tea',
+      'Pizza',
       '25',
       true,
-      'Cafe',
+      'Fast Food',
       desc: 'desc',
     ),
     Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'pizza',
-      '25',
-      true,
-      'FastFood',
-      desc: 'desc',
-    ),
-    Food(
-      'milk',
+      'Milk',
       '25',
       true,
       'Cafe',
@@ -263,53 +183,31 @@ void main() {
     3,
     4,
     5,
-    6,
-    7,
-    8,
-    9,
-    2,
-    1,
-    2,
-    1,
-    2,
-    1,
-    2,
-    2,
-    2,
-    2
   ], Date('2021', '3', '11', '1', '28', '29'), "09185452060", "hamadan", "ghar",
       "alisadr", false));
-
   restaurant.addOrder(RestaurantActiveOrderTile([
     Food(
-      'arman',
+      'Hot Dog',
       '25',
       true,
-      'arman',
+      'Fast Food',
       desc: 'desc',
     ),
     Food(
-      'amireza',
+      'Milk',
       '25',
       true,
-      'amireza',
+      'Cafe',
       desc: 'desc',
     ),
-    Food(
-      'armannnnnnn',
-      '25',
-      true,
-      'armannnnnnn',
-      desc: 'desc',
-    )
   ], [
     6,
     9,
-    8
   ], Date('2021', '3', '5', '22', '12', '2'), "09185452060", "hamadan", "arman",
       "shiraz", true));
   // print(Accounts.accounts[Accounts.currentAccount].activeOrders[0].foods);
   // print(DetailsRestaurantOrderTile.foods.length);
+  print(Accounts.accounts[Accounts.currentAccount].discountCodeCalculator(25));
   print(Accounts.currentAccount);
   print(Accounts.accounts.length);
   print(restaurant.tabBarTitle);
@@ -320,72 +218,3 @@ void main() {
   //     'name2', 09121111111, 'password2', 'addres2', RestaurantTypes.Other));
   runApp(MyApp());
 }
-
-// class MyApp extends StatefulWidget {
-//   @override
-//   _MyAppState createState() => _MyAppState();
-// }
-//
-// class _MyAppState extends State<MyApp> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//         title: "ChFood",
-//         theme: ThemeData(primaryColor: const Color.fromRGBO(248, 95, 106, 1)),
-//         routes: {
-//           '/SignInScreen': (context) => SignInScreen(),
-//           '/SignUpScreen': (context) => SignUpScreen(),
-//           '/DetailsFoodTile': (context) => DetailsRestaurantFoodTile(),
-//           '/MainMenuScreen': (context) => MainMenuScreen(),
-//           '/ProfileScreen': (context) => ProfileScreen(),
-//           '/OrdersMenu': (context) => OrdersMenu(),
-//           '/DetailsRestaurantActiveOrderTiles': (context) =>
-//               DetailsRestaurantActiveOrderTile(),
-//           '/OrdersHistoryScreen': (context) => OrdersHistoryScreen(),
-//           '/ActiveOrdersScreen': (context) => ActiveOrdersScreen(),
-//           '/CommentsManagements': (context) => CommentsManagement(),
-//           '/DetailsCommentTile': (context) => DetailsCommentTile(),
-//         },
-//         home: /*SignInScreen()*/ /*ActiveOrdersScreen()*/
-//         CalculatorScreen() /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
-//         /*MainMenuScreen()*/ /*RestaurantActiveOrderTile([
-//           Food(
-//             'Tea',
-//             '25',
-//             true,
-//             desc: 'desc',
-//           ),
-//           Food(
-//             'pizza',
-//             '25',
-//             true,
-//             desc: 'desc',
-//           ),
-//           Food(
-//             'milk',
-//             '25',
-//             true,
-//             desc: 'desc',
-//           )
-//         ], [
-//           3,
-//           4,
-//           5
-//         ], Date('2021', '3', '7', '20', '20', '20'), "09185452060", "hamadan",
-//             "ghar", "alisadr", "#12345")*/
-//         // DetailsRestaurantOrderTile()
-//         // DetailsCommentTile()
-//         /*CommentsManagement()*/ /*OrdersMenu()*/ /*SignInScreen()*/ /*FoodTile(
-//           'Egg',
-//           28,
-//           true,
-//           desc: 'xx',
-//         )*/
-//         /*DetailsRestaurantFoodTile(
-//         'Egg',
-//         28,
-//         desc: 'xx',
-//       ),*/
-//         );
-//   }
-// }

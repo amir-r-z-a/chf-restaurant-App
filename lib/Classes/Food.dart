@@ -8,8 +8,10 @@ class Food {
   bool _foodStatus;
   Image _foodImage;
   String _category;
+  int orderCount = 0;
 
-  Food(this._name, this._price, this._foodStatus, this._category, {this.desc});
+  Food(this._name, this._price, this._foodStatus, this._category,
+      {this.desc, this.orderCount});
 
   String get name => _name;
 

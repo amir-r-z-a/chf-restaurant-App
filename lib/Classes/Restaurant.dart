@@ -8,6 +8,7 @@ import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantActiveOrderTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantInactiveOrderTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
+import 'package:chfrestaurant/Classes/TopTenFoodTile.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -35,6 +36,7 @@ class Restaurant {
   int _sumOnlineNumberOfFoods;
   int _sumCashNumberOfFoods;
   Map discountCode = {5: [], 10: [], 25: [], 50: [], 100: []};
+  List<TopTenFoodTile> topTenFoods = [];
 
   // Location _location;
 
@@ -60,12 +62,10 @@ class Restaurant {
   }
 
   void addTabBarViewElements(RestaurantFoodTile food, int i) {
-    listOfFood[0].add(Food(
-        food.name, food.price, food.foodStatus, food.category,
-        desc: food.desc));
-    listOfFood[i].add(Food(
-        food.name, food.price, food.foodStatus, food.category,
-        desc: food.desc));
+    Food food2 = Food(food.name, food.price, food.foodStatus, food.category,
+        desc: food.desc, orderCount: food.orderCount);
+    listOfFood[0].add(food2);
+    listOfFood[i].add(food2);
     restaurantTabBarView[0].add(food);
     restaurantTabBarView[i].add(food);
   }
@@ -168,6 +168,10 @@ class Restaurant {
     return restaurantComments.length;
   }
 
+  int getTopTenFoodsLength() {
+    return topTenFoods.length;
+  }
+
   void addOrder(RestaurantActiveOrderTile restaurantActiveOrderTile) {
     restaurantActiveOrderTile.sumPrice =
         sumPriceCalculator(restaurantActiveOrderTile);
@@ -175,6 +179,7 @@ class Restaurant {
         sumNumberOfFoodsCalculator(restaurantActiveOrderTile);
     restaurantActiveOrderTile.id = ordersIDGenerator(restaurantActiveOrderTile);
     activeOrders.add(restaurantActiveOrderTile);
+    topTenCalculator(restaurantActiveOrderTile);
   }
 
   void inactiveOrder(String input) {
@@ -365,6 +370,8 @@ class Restaurant {
       tag = 'H';
     } else if (discount == 100) {
       tag = 'X';
+    } else {
+      return 'Invalid';
     }
     bool flag;
     String randomCode;
@@ -378,7 +385,8 @@ class Restaurant {
           tag +
           name.substring(0, 1) +
           rand +
-          type.toString().substring(0, 1);
+          type.toString().substring(type.toString().indexOf('.') + 1,
+              type.toString().indexOf('.') + 2);
       for (int i = 0; i < discountCode[discount].length; i++) {
         if (discountCode[discount][i] == randomCode) {
           flag = true;
@@ -388,6 +396,60 @@ class Restaurant {
     } while (flag);
     discountCode[discount].add(randomCode);
     return randomCode;
+  }
+
+  void topTenCalculator(RestaurantActiveOrderTile restaurantActiveOrderTile) {
+    topTenFoods = [];
+    for (int k = 0; k < restaurantActiveOrderTile.foods.length; k++) {
+      for (int j = 0;
+          j < restaurantTabBarView[0].length && j < listOfFood[0].length;
+          j++) {
+        if (restaurantTabBarView[0][j].name ==
+                restaurantActiveOrderTile.foods[k].name &&
+            listOfFood[0][j].name == restaurantActiveOrderTile.foods[k].name) {
+          restaurantTabBarView[0][j].orderCount +=
+              restaurantActiveOrderTile.numberOfFoods[k];
+          listOfFood[0][j].orderCount +=
+              restaurantActiveOrderTile.numberOfFoods[k];
+        }
+      }
+    }
+    List<RestaurantFoodTile> arr = [];
+    for (int i = 0; i < restaurantTabBarView[0].length; i++) {
+      arr.add(RestaurantFoodTile(
+        restaurantTabBarView[0][i].name,
+        restaurantTabBarView[0][i].price,
+        restaurantTabBarView[0][i].foodStatus,
+        restaurantTabBarView[0][i].category,
+        desc: restaurantTabBarView[0][i].desc,
+        orderCount: restaurantTabBarView[0][i].orderCount,
+      ));
+    }
+    int n = arr.length;
+    for (int i = 0; i < n - 1; i++)
+      for (int j = 0; j < n - i - 1; j++)
+        if (arr[j].orderCount < arr[j + 1].orderCount) {
+          RestaurantFoodTile temp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = temp;
+        }
+    int len;
+    if (n < 10) {
+      len = n;
+    } else {
+      len = 10;
+    }
+    for (int i = 0; i < len; i++) {
+      topTenFoods.add(TopTenFoodTile(
+        arr[i].name,
+        arr[i].price,
+        arr[i].foodStatus,
+        arr[i].category,
+        i + 1,
+        desc: arr[i].desc,
+        orderCount: arr[i].orderCount,
+      ));
+    }
   }
 
   //String ordersIDGenerator(
