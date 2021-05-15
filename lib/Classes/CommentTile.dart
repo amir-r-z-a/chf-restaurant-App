@@ -88,7 +88,7 @@ class _CommentTileState extends State<CommentTile> {
               children: [
                 Text(widget.date.dateFormatter() +
                     '\n' +
-                    widget.foodName +
+                    Accounts.digester(widget.foodName, 50) +
                     '\n' +
                     widget.id +
                     '\n\n\n\n\n\n'),

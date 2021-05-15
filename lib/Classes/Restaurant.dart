@@ -500,6 +500,14 @@ class Restaurant {
     }
   }
 
+  void editCommentsName(String oldName, String name) {
+    for (int i = 0; i < restaurantComments[0].length; i++) {
+      if (restaurantComments[0][i].foodName == oldName) {
+        restaurantComments[0][i].foodName = name;
+      }
+    }
+  }
+
   //String ordersIDGenerator(
   //       RestaurantActiveOrderTile restaurantActiveOrderTile) {
   //     bool flag;

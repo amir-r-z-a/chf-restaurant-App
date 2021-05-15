@@ -12,6 +12,7 @@ class DetailsRestaurantFoodTile extends StatefulWidget {
   Function function;
   static Function topTenTile;
   static Function detailsTopTenFoods;
+  static Function commentsManagements;
 
   DetailsRestaurantFoodTile({this.function});
 
@@ -105,6 +106,9 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
                                         DetailsRestaurantFoodTile.name,
                                         DetailsRestaurantFoodTile.desc,
                                         DetailsRestaurantFoodTile.price);
+                                Accounts.accounts[Accounts.currentAccount]
+                                    .editCommentsName(oldName,
+                                        DetailsRestaurantFoodTile.name);
                                 if (DetailsRestaurantFoodTile
                                         .detailsTopTenFoods !=
                                     null) {
@@ -114,6 +118,12 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
                                 if (DetailsRestaurantFoodTile.topTenTile !=
                                     null) {
                                   DetailsRestaurantFoodTile.topTenTile();
+                                }
+                                if (DetailsRestaurantFoodTile
+                                        .commentsManagements !=
+                                    null) {
+                                  DetailsRestaurantFoodTile
+                                      .commentsManagements();
                                 }
                                 widget.function();
                                 Navigator.pop(context);
