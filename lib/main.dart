@@ -55,8 +55,8 @@ class _MyAppState extends State<MyApp> {
         },
         home:
             /*TopTenFoodsScreen()*/ /*OrdersMenu()*/ /*SignInScreen()*/ /*ActiveOrdersScreen()*/
-        /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
-        MainMenuScreen() /*RestaurantActiveOrderTile([
+            /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
+            MainMenuScreen() /*RestaurantActiveOrderTile([
           Food(
             'Tea',
             '25',
@@ -145,7 +145,7 @@ void main() {
   restaurant.addComments(
       CommentTile(
           'chera qazatoon inqad khoobe?',
-          'Tea',
+          'Milk',
           Date('2021', '3', '7', '20', '20', '20'),
           '09121231212',
           '09198612878'),

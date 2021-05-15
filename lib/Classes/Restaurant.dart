@@ -459,6 +459,7 @@ class Restaurant {
         for (int j = i; j < getTopTenFoodsLength(); j++) {
           topTenFoods[j].rank--;
         }
+        return;
       }
     }
   }
@@ -473,8 +474,6 @@ class Restaurant {
 
   void editTopTenFoodsElements(
       String oldName, String name, String desc, String price) {
-    print(name);
-    print(oldName);
     for (int i = 0; i < getTopTenFoodsLength(); i++) {
       if (topTenFoods[i].name == oldName) {
         topTenFoods[i].name = name;
@@ -504,6 +503,16 @@ class Restaurant {
     for (int i = 0; i < restaurantComments[0].length; i++) {
       if (restaurantComments[0][i].foodName == oldName) {
         restaurantComments[0][i].foodName = name;
+      }
+    }
+  }
+
+  void editActiveOrdersName(String oldName, String name) {
+    for (int i = 0; i < getActiveOrdersLength(); i++) {
+      for (int j = 0; j < activeOrders[i].foods.length; j++) {
+        if (activeOrders[i].foods[j].name == oldName) {
+          activeOrders[i].foods[j].name = name;
+        }
       }
     }
   }

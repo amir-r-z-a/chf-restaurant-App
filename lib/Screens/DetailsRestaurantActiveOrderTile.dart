@@ -2,6 +2,7 @@ import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Date.dart';
 import 'package:chfrestaurant/Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
+import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
 import 'package:flutter/material.dart';
 
 class DetailsRestaurantActiveOrderTile extends StatefulWidget {
@@ -29,8 +30,15 @@ class DetailsRestaurantActiveOrderTile extends StatefulWidget {
 
 class _DetailsRestaurantActiveOrderTileState
     extends State<DetailsRestaurantActiveOrderTile> {
+  void refreshPage() {
+    if (this.mounted) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    DetailsRestaurantFoodTile.activeOrders = refreshPage;
     return Scaffold(
       appBar: AppBar(
         title: Text("Details"),
@@ -101,8 +109,10 @@ class _DetailsRestaurantActiveOrderTileState
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(DetailsRestaurantActiveOrderTile
-                                    .foods[index].name),
+                                Text(Accounts.digester(
+                                    DetailsRestaurantActiveOrderTile
+                                        .foods[index].name,
+                                    10)),
                                 Text("\$" +
                                     DetailsRestaurantActiveOrderTile
                                         .foods[index].price),
