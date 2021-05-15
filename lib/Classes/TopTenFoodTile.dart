@@ -1,4 +1,6 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
+import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
 import 'package:chfrestaurant/Screens/DetailsTopTenFoodTile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -60,16 +62,19 @@ class TopTenFoodTile extends StatefulWidget {
 
 class _TopTenFoodTileState extends State<TopTenFoodTile> {
   void refreshPage() {
-    setState(() {
-      widget.name = DetailsTopTenFoodTile.name;
-      widget.desc = DetailsTopTenFoodTile.desc;
-      widget.price = DetailsTopTenFoodTile.price;
-      widget.foodStatus = DetailsTopTenFoodTile.foodStatus;
-    });
+    if (this.mounted) {
+      setState(() {
+        widget.name = DetailsTopTenFoodTile.name;
+        widget.desc = DetailsTopTenFoodTile.desc;
+        widget.price = DetailsTopTenFoodTile.price;
+        widget.foodStatus = DetailsTopTenFoodTile.foodStatus;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    DetailsRestaurantFoodTile.topTenTile = refreshPage;
     return GestureDetector(
       onTap: () {
         DetailsTopTenFoodTile.name = widget.name;

@@ -1,4 +1,6 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
+import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
 import 'package:flutter/material.dart';
 
 class TopTenFoodsScreen extends StatefulWidget {
@@ -7,8 +9,15 @@ class TopTenFoodsScreen extends StatefulWidget {
 }
 
 class _TopTenFoodsScreenState extends State<TopTenFoodsScreen> {
+  void refreshPage() {
+    if (this.mounted) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    RestaurantFoodTile.topTenFoods = refreshPage;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -17,8 +26,9 @@ class _TopTenFoodsScreenState extends State<TopTenFoodsScreen> {
       body: ListView(
         children: List.generate(
             Accounts.accounts[Accounts.currentAccount].getTopTenFoodsLength(),
-            (index) =>
-                Accounts.accounts[Accounts.currentAccount].topTenFoods[index]),
+            (index) {
+          return Accounts.accounts[Accounts.currentAccount].topTenFoods[index];
+        }),
       ),
     );
   }

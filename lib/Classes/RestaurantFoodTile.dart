@@ -11,9 +11,10 @@ class RestaurantFoodTile extends StatefulWidget {
   Image _foodImage;
   int orderCount;
   static Function function;
+  static Function topTenFoods;
 
   RestaurantFoodTile(this._name, this._price, this._foodStatus, this._category,
-      {this.desc,this.orderCount=0});
+      {this.desc, this.orderCount = 0});
 
   String get name => _name;
 
@@ -88,17 +89,13 @@ class _RestaurantFoodTileState extends State<RestaurantFoodTile> {
                 children: [
                   TextButton(
                     onPressed: () {
-                      print('--------------------------------------');
-                      print(Accounts.accounts[Accounts.currentAccount]
-                          .restaurantTabBarView);
-
                       Accounts.accounts[Accounts.currentAccount]
                           .deleteTabBarViewElements(widget.name);
-
-                      print(Accounts.accounts[Accounts.currentAccount]
-                          .restaurantTabBarView);
-                      print('--------------------------------------');
-
+                      Accounts.accounts[Accounts.currentAccount]
+                          .deleteTopTenFoodsElements(widget.name);
+                      if (RestaurantFoodTile.topTenFoods != null) {
+                        RestaurantFoodTile.topTenFoods();
+                      }
                       RestaurantFoodTile.function();
                       Navigator.pop(context);
                       if (flag) {
@@ -198,6 +195,8 @@ class _RestaurantFoodTileState extends State<RestaurantFoodTile> {
                         value: widget.foodStatus,
                         onChanged: (value) {
                           setState(() {
+                            Accounts.accounts[Accounts.currentAccount]
+                                .topTenFoodsSwitch(widget.name);
                             widget.foodStatus = !widget.foodStatus;
                           });
                         },

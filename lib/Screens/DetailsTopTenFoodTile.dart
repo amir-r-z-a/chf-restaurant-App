@@ -1,5 +1,6 @@
 import 'package:chfrestaurant/Classes/TopTenFoodTile.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
+import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
 import 'package:flutter/material.dart';
 
 class DetailsTopTenFoodTile extends StatefulWidget {
@@ -18,11 +19,14 @@ class _DetailsTopTenFoodTileState extends State<DetailsTopTenFoodTile> {
   var key1 = GlobalKey<FormState>();
 
   void refreshPage() {
-    setState(() {});
+    if (this.mounted) {
+      setState(() {});
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    DetailsRestaurantFoodTile.detailsTopTenFoods = refreshPage;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

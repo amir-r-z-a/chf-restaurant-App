@@ -51,11 +51,12 @@ class _MyAppState extends State<MyApp> {
           '/DetailsCommentTile': (context) => DetailsCommentTile(),
           '/CalculatorScreen': (context) => CalculatorScreen(),
           '/DetailsTopTenFoodTile': (context) => DetailsTopTenFoodTile(),
+          '/TopTenFoodsScreen': (context) => TopTenFoodsScreen(),
         },
         home:
-            TopTenFoodsScreen() /*OrdersMenu()*/ /*SignInScreen()*/ /*ActiveOrdersScreen()*/
+            /*TopTenFoodsScreen()*/ /*OrdersMenu()*/ /*SignInScreen()*/ /*ActiveOrdersScreen()*/
         /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
-        /*MainMenuScreen()*/ /*RestaurantActiveOrderTile([
+        MainMenuScreen() /*RestaurantActiveOrderTile([
           Food(
             'Tea',
             '25',

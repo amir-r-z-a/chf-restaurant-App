@@ -71,6 +71,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                 Navigator.pushNamed(context, '/MainMenuScreen');
               } else if (_currentSelected == 1) {
                 Navigator.pushNamed(context, '/ActiveOrdersScreen');
+              } else {
+                Navigator.pushNamed(context, '/TopTenFoodsScreen');
               }
             });
           },

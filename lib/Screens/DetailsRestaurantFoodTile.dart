@@ -1,3 +1,4 @@
+import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,8 @@ class DetailsRestaurantFoodTile extends StatefulWidget {
   static bool foodStatus;
   static Function deleteFunction;
   Function function;
+  static Function topTenTile;
+  static Function detailsTopTenFoods;
 
   DetailsRestaurantFoodTile({this.function});
 
@@ -83,24 +86,42 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
                         ),
                         Padding(padding: EdgeInsets.all(10)),
                         ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                primary: Color.fromRGBO(248, 95, 106, 1)),
-                            onPressed: () {
-                              if (key1.currentState.validate()) {
-                                setState(() {
-                                  key1.currentState.save();
-                                  DetailsRestaurantFoodTile.name =
-                                      MyTextFormField.foodName;
-                                  DetailsRestaurantFoodTile.desc =
-                                      MyTextFormField.foodDesc;
-                                  DetailsRestaurantFoodTile.price =
-                                      MyTextFormField.foodPrice;
-                                  widget.function();
-                                  Navigator.pop(context);
-                                });
-                              }
-                            },
-                            child: Text('Save'))
+                          style: ElevatedButton.styleFrom(
+                              primary: Color.fromRGBO(248, 95, 106, 1)),
+                          onPressed: () {
+                            if (key1.currentState.validate()) {
+                              setState(() {
+                                key1.currentState.save();
+                                String oldName = DetailsRestaurantFoodTile.name;
+                                DetailsRestaurantFoodTile.name =
+                                    MyTextFormField.foodName;
+                                DetailsRestaurantFoodTile.desc =
+                                    MyTextFormField.foodDesc;
+                                DetailsRestaurantFoodTile.price =
+                                    MyTextFormField.foodPrice;
+                                Accounts.accounts[Accounts.currentAccount]
+                                    .editTopTenFoodsElements(
+                                        oldName,
+                                        DetailsRestaurantFoodTile.name,
+                                        DetailsRestaurantFoodTile.desc,
+                                        DetailsRestaurantFoodTile.price);
+                                if (DetailsRestaurantFoodTile
+                                        .detailsTopTenFoods !=
+                                    null) {
+                                  DetailsRestaurantFoodTile
+                                      .detailsTopTenFoods();
+                                }
+                                if (DetailsRestaurantFoodTile.topTenTile !=
+                                    null) {
+                                  DetailsRestaurantFoodTile.topTenTile();
+                                }
+                                widget.function();
+                                Navigator.pop(context);
+                              });
+                            }
+                          },
+                          child: Text('Save'),
+                        )
                       ],
                     ),
                   ),
@@ -139,6 +160,8 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
                   value: DetailsRestaurantFoodTile.foodStatus,
                   onChanged: (value) {
                     setState(() {
+                      Accounts.accounts[Accounts.currentAccount]
+                          .topTenFoodsSwitch(DetailsRestaurantFoodTile.name);
                       DetailsRestaurantFoodTile.foodStatus =
                           !DetailsRestaurantFoodTile.foodStatus;
                     });

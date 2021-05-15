@@ -452,6 +452,54 @@ class Restaurant {
     }
   }
 
+  void deleteTopTenFoodsElements(String input) {
+    for (int i = 0; i < getTopTenFoodsLength(); i++) {
+      if (topTenFoods[i].name == input) {
+        topTenFoods.removeAt(i);
+        for (int j = i; j < getTopTenFoodsLength(); j++) {
+          topTenFoods[j].rank--;
+        }
+      }
+    }
+  }
+
+  void topTenFoodsSwitch(String input) {
+    for (int i = 0; i < getTopTenFoodsLength(); i++) {
+      if (topTenFoods[i].name == input) {
+        topTenFoods[i].foodStatus = !topTenFoods[i].foodStatus;
+      }
+    }
+  }
+
+  void editTopTenFoodsElements(
+      String oldName, String name, String desc, String price) {
+    print(name);
+    print(oldName);
+    for (int i = 0; i < getTopTenFoodsLength(); i++) {
+      if (topTenFoods[i].name == oldName) {
+        topTenFoods[i].name = name;
+        topTenFoods[i].desc = desc;
+        topTenFoods[i].price = price;
+        return;
+      }
+    }
+  }
+
+  void addNewTopTenFoodsElements(RestaurantFoodTile food) {
+    int len = getTopTenFoodsLength();
+    if (len < 10) {
+      topTenFoods.add(TopTenFoodTile(
+        food.name,
+        food.price,
+        food.foodStatus,
+        food.category,
+        len + 1,
+        desc: food.desc,
+        orderCount: food.orderCount,
+      ));
+    }
+  }
+
   //String ordersIDGenerator(
   //       RestaurantActiveOrderTile restaurantActiveOrderTile) {
   //     bool flag;

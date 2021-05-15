@@ -88,6 +88,8 @@ class _OrdersMenuState extends State<OrdersMenu> {
                                   true,
                                   MyTextFormField.foodCategory,
                                   desc: MyTextFormField.foodDesc);
+                              Accounts.accounts[Accounts.currentAccount]
+                                  .addNewTopTenFoodsElements(food);
                               for (int i = 0;
                                   i <
                                       Accounts.accounts[Accounts.currentAccount]
