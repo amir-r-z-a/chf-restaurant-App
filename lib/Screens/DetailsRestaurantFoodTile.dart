@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class DetailsRestaurantFoodTile extends StatefulWidget {
   static String name;
@@ -32,7 +35,18 @@ class DetailsRestaurantFoodTile extends StatefulWidget {
 
 class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
   var key1 = GlobalKey<FormState>();
-
+  File _image;
+  final picker = ImagePicker();
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
