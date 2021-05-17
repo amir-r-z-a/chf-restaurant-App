@@ -1,4 +1,5 @@
 import 'package:chfrestaurant/Classes/Restaurant.dart';
+import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 
 class Accounts {
   static List<Restaurant> _accounts = List.empty(growable: true);
@@ -54,6 +55,19 @@ class Accounts {
     return false;
   }
 
+  static bool editAlreadyPhoneNumber(String input, String oldPhoneNumber) {
+    if (oldPhoneNumber == input) {
+      return false;
+    }
+    for (int i = 0; i < getLength(); i++) {
+      if (accounts[i].phoneNumber == input) {
+        return true;
+      }
+    }
+    accounts[currentAccount].phoneNumber = input;
+    return false;
+  }
+
   static bool foundPassword(String input) {
     if (accounts[currentAccount].password == input) {
       return false;
@@ -63,7 +77,7 @@ class Accounts {
   }
 
   static bool validEmail(String input) {
-    RegExp regEmail = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$",
+    RegExp regEmail = new RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$",
         multiLine: false, caseSensitive: false);
     if (!regEmail.hasMatch(input)) {
       return true;
@@ -76,5 +90,26 @@ class Accounts {
       return str;
     }
     return str.substring(0, capacity - 3) + '...';
+  }
+
+  static bool validPassword(String input, {bool confirmPassword = false}) {
+    RegExp regPassword =
+        new RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$", multiLine: false);
+    if (regPassword.hasMatch(input) && confirmPassword) {
+      MyTextFormField.password = input;
+    }
+    return !(regPassword.hasMatch(input));
+  }
+
+  static bool oldPassword(String input) {
+    return !(accounts[currentAccount].password == input);
+  }
+
+  static bool confirmPassword(String input) {
+    bool flag = MyTextFormField.password == input;
+    if (flag) {
+      accounts[currentAccount].password = input;
+    }
+    return !flag;
   }
 }

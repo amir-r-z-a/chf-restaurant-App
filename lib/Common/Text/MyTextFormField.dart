@@ -76,6 +76,12 @@ class MyTextFormField extends StatelessWidget {
           } else if (Accounts.alreadyPhoneNumber(value)) {
             return 'Your phone number is already registered';
           }
+        } else if (regex == 'PNEdit') {
+          if (Accounts.validPhoneNumber(value)) {
+            return 'Your phone number is not valid';
+          } else if (Accounts.editAlreadyPhoneNumber(value, initial)) {
+            return 'Your phone number is already registered';
+          }
         } else if (regex == 'Category' &&
             Accounts.accounts[Accounts.currentAccount].validCategory(value)) {
           return 'Your category could not be All';
