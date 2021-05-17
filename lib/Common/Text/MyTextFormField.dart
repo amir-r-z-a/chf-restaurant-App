@@ -67,7 +67,7 @@ class MyTextFormField extends StatelessWidget {
       validator: (String value) {
         // print(value);
         if (value == null || value.isEmpty) {
-          return "Please enter something";
+          return "Please enter something"; /*"You must fill this box"*/
         } else if (regex == 'PNSignIn' && Accounts.foundPhoneNumber(value)) {
           return "Your phone number is not found";
         } else if (regex == 'PNSignUp') {
