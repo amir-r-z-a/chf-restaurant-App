@@ -58,72 +58,137 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: true,
         title: Text("Profile"),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+      body: ListView(
+        children: [
+          Padding(padding: EdgeInsets.all(10)),
+          Column(
             children: [
               Container(
                 height: 200,
                 width: 200,
-                margin: EdgeInsets.fromLTRB(50, 0, 50, 50),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.pink),
+                  border: Border.all(),
                   borderRadius: BorderRadius.circular(100),
                 ),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    getImage();
-                  },
-                  child: Text("pick image")),
-              Column(
-                children: [
-                  Container(
-                    height: 80,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        child: Expanded(
-                          child: Form(
-                            key: _formkey,
-                            child: Column(
-                              children: [
-                                MyTextFormField(
-                                  "Phone number",
-                                  index: 2,
-                                  addToAccounts: true,
-                                  initial: Accounts
-                                      .accounts[Accounts.currentAccount]
-                                      .phoneNumber,
-                                ),
-                                MyTextFormField(
-                                  "Name : ",
-                                  index: 1,
-                                  addToAccounts: true,
-                                  initial: Accounts
-                                      .accounts[Accounts.currentAccount].name,
-                                ),
-                                MyTextFormField(
-                                  "Email : ",
-                                  index: 7,
-                                  addToAccounts: true,
-                                  initial: Accounts
-                                      .accounts[Accounts.currentAccount].name,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              TextButton(
+                onPressed: () => getImage(),
+                child: Text(
+                  'Set New Photo',
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                ),
+              )
             ],
           ),
-        ),
+          Padding(padding: EdgeInsets.all(5)),
+          Form(
+            key: _formkey,
+            child: Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Personal',
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                  ),
+                  MyTextFormField('Name'),
+                  MyTextFormField('Phone Number'),
+                  MyTextFormField('Email'),
+                  Padding(padding: EdgeInsets.all(15)),
+                  Text(
+                    'Password',
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                  ),
+                  MyTextFormField('Old Password'),
+                  MyTextFormField('New Password'),
+                  MyTextFormField('Confirm Password'),
+                ],
+              ),
+            ),
+          ),
+          Padding(padding: EdgeInsets.all(7)),
+          Container(
+            margin: EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Map',
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                ),
+                Padding(padding: EdgeInsets.all(150)),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 }
+
+//Center(
+//         child: SingleChildScrollView(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Container(
+//                 height: 200,
+//                 width: 200,
+//                 margin: EdgeInsets.fromLTRB(50, 0, 50, 50),
+//                 decoration: BoxDecoration(
+//                   border: Border.all(color: Colors.pink),
+//                   // borderRadius: BorderRadius.circular(100),
+//                 ),
+//               ),
+//               ElevatedButton(
+//                   onPressed: () {
+//                     getImage();
+//                   },
+//                   child: Text("pick image")),
+//               Column(
+//                 children: [
+//                   Container(
+//                     height: 80,
+//                     child: Padding(
+//                       padding: const EdgeInsets.all(10.0),
+//                       child: Container(
+//                         child: Expanded(
+//                           child: Form(
+//                             key: _formkey,
+//                             child: Column(
+//                               children: [
+//                                 MyTextFormField(
+//                                   "Phone number",
+//                                   index: 2,
+//                                   addToAccounts: true,
+//                                   initial: Accounts
+//                                       .accounts[Accounts.currentAccount]
+//                                       .phoneNumber,
+//                                 ),
+//                                 MyTextFormField(
+//                                   "Name : ",
+//                                   index: 1,
+//                                   addToAccounts: true,
+//                                   initial: Accounts
+//                                       .accounts[Accounts.currentAccount].name,
+//                                 ),
+//                                 MyTextFormField(
+//                                   "Email : ",
+//                                   index: 7,
+//                                   addToAccounts: true,
+//                                   initial: Accounts
+//                                       .accounts[Accounts.currentAccount].name,
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         ),
