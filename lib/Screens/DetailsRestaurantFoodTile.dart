@@ -20,6 +20,7 @@ class DetailsRestaurantFoodTile extends StatefulWidget {
 
   DetailsRestaurantFoodTile({this.function});
 
+  //chera ba constructor nashod? field haye static ham nemishod ba constructor meqdar dad
   // DetailsFoodTile({String name, double price, bool status, String desc}) {
   //   print(name);
   //   DetailsFoodTile.name = (name != null ? name : ' ');
@@ -37,6 +38,7 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
   var key1 = GlobalKey<FormState>();
   File _image;
   final picker = ImagePicker();
+
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
     setState(() {
@@ -47,6 +49,7 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -172,9 +175,20 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
               height: 370,
               width: 370,
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black, width: 1)),
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(10)),
             ),
-            Padding(padding: EdgeInsets.all(10)),
+            TextButton(
+              child: Text(
+                'Set New Photo',
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
+              onPressed: () => getImage(),
+            ),
+            // Padding(padding: EdgeInsets.all(5)),
             Text(
               DetailsRestaurantFoodTile.name,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
@@ -182,53 +196,62 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
             Text(DetailsRestaurantFoodTile.desc),
             Padding(padding: EdgeInsets.all(3)),
             Text('Price: ' + '\$' + DetailsRestaurantFoodTile.price.toString()),
+            Padding(padding: EdgeInsets.all(5)),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Switch(
-                  inactiveThumbColor: Colors.red,
-                  inactiveTrackColor: Colors.red,
-                  activeTrackColor: Color.fromRGBO(0, 181, 0, 1),
-                  activeColor: Color.fromRGBO(0, 181, 0, 1),
-                  value: DetailsRestaurantFoodTile.foodStatus,
-                  onChanged: (value) {
-                    setState(() {
-                      Accounts.accounts[Accounts.currentAccount]
-                          .topTenFoodsSwitch(DetailsRestaurantFoodTile.name);
-                      DetailsRestaurantFoodTile.foodStatus =
-                          !DetailsRestaurantFoodTile.foodStatus;
-                    });
-                    widget.function();
+                GestureDetector(
+                  onTap: () {
+                    return DetailsRestaurantFoodTile.deleteFunction(true);
                   },
-                ),
-                Text(
-                  DetailsRestaurantFoodTile.foodStatus ? 'Active' : 'Inactive',
-                  style: TextStyle(
-                      color: DetailsRestaurantFoodTile.foodStatus
-                          ? Colors.green
-                          : Colors.red,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            GestureDetector(
-              onTap: () {
-                return DetailsRestaurantFoodTile.deleteFunction(true);
-              },
-              child: Container(
-                height: 25,
-                width: 70,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  border: Border.all(width: 0.7, color: Colors.black),
-                ),
-                child: Center(
-                  child: Text(
-                    'Delete',
-                    style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold),
+                  child: Container(
+                    height: 25,
+                    width: 70,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7),
+                      border: Border.all(width: 0.7, color: Colors.black),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Delete',
+                        style: TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                Row(
+                  children: [
+                    Switch(
+                      inactiveThumbColor: Colors.red,
+                      inactiveTrackColor: Colors.red,
+                      activeTrackColor: Color.fromRGBO(0, 181, 0, 1),
+                      activeColor: Color.fromRGBO(0, 181, 0, 1),
+                      value: DetailsRestaurantFoodTile.foodStatus,
+                      onChanged: (value) {
+                        setState(() {
+                          Accounts.accounts[Accounts.currentAccount]
+                              .topTenFoodsSwitch(
+                                  DetailsRestaurantFoodTile.name);
+                          DetailsRestaurantFoodTile.foodStatus =
+                              !DetailsRestaurantFoodTile.foodStatus;
+                        });
+                        widget.function();
+                      },
+                    ),
+                    Text(
+                      DetailsRestaurantFoodTile.foodStatus
+                          ? 'Active'
+                          : 'Inactive',
+                      style: TextStyle(
+                          color: DetailsRestaurantFoodTile.foodStatus
+                              ? Colors.green
+                              : Colors.red,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),
