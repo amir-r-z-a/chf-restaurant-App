@@ -79,7 +79,7 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
             child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(30, 20, 0, 0),
+                  margin: EdgeInsets.fromLTRB(30, 4, 0, 0),
                   child: Row(
                     children: [
                       GestureDetector(
