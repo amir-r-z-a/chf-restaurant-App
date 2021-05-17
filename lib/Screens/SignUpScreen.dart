@@ -75,7 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                         validator: (String entereddate) {
                           if (entereddate.isEmpty || entereddate == null) {
-                            return "you must fill this box";
+                            return "You must fill this box";
                           }
                           if (!(regPassword.hasMatch(entereddate))) {
                             return 'Your password should contain at least one number and one letter';
