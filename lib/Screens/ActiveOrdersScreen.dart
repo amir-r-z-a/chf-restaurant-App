@@ -17,10 +17,6 @@ class _ActiveOrdersScreenState extends State<ActiveOrdersScreen> {
     return DefaultTabController(
       length: Accounts.accounts[Accounts.currentAccount].getTabBarTitleLength(),
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text('Active Orders'),
-        ),
         body: ListView(
           children: List.generate(
             Accounts.accounts[Accounts.currentAccount].getActiveOrdersLength(),

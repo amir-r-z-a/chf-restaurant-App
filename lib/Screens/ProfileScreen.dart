@@ -3,6 +3,7 @@ import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+
 class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -11,9 +12,10 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool _isObscure = true;
   RegExp regPassword =
-  new RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$", multiLine: false);
+      new RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$", multiLine: false);
   File _image;
   final picker = ImagePicker();
+
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
@@ -25,26 +27,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
       }
     });
   }
+
   TextEditingController _editingController;
   String initialText = Accounts.accounts[Accounts.currentAccount].name;
+
   @override
   void initState() {
     super.initState();
     _editingController = TextEditingController(text: initialText);
-  }@override
+  }
+
+  @override
   void dispose() {
     _editingController.dispose();
     super.dispose();
   }
+
   var _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(onTap: () {
-          Navigator.pop(context);
-          Navigator.pop(context);
-        },child: Icon(Icons.arrow_back)),
+        leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back)),
         centerTitle: true,
         title: Text("Profile"),
       ),
@@ -56,16 +66,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Container(
                 height: 200,
                 width: 200,
-                margin:EdgeInsets.fromLTRB(50, 0, 50, 50),
+                margin: EdgeInsets.fromLTRB(50, 0, 50, 50),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.pink),
-                   borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(100),
                 ),
               ),
-              ElevatedButton(onPressed:(){
-                getImage() ;
-              },
-                  child: Text ("pick image")),
+              ElevatedButton(
+                  onPressed: () {
+                    getImage();
+                  },
+                  child: Text("pick image")),
               Column(
                 children: [
                   Container(
@@ -79,22 +90,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: Column(
                               children: [
                                 MyTextFormField(
-                                  "Phone number" ,
+                                  "Phone number",
                                   index: 2,
                                   addToAccounts: true,
-                                  initial: Accounts.accounts[Accounts.currentAccount].phoneNumber,
+                                  initial: Accounts
+                                      .accounts[Accounts.currentAccount]
+                                      .phoneNumber,
                                 ),
                                 MyTextFormField(
-                                  "Name : " ,
+                                  "Name : ",
                                   index: 1,
                                   addToAccounts: true,
-                                  initial: Accounts.accounts[Accounts.currentAccount].name,
+                                  initial: Accounts
+                                      .accounts[Accounts.currentAccount].name,
                                 ),
                                 MyTextFormField(
-                                  "Email : " ,
+                                  "Email : ",
                                   index: 7,
                                   addToAccounts: true,
-                                  initial: Accounts.accounts[Accounts.currentAccount].name,
+                                  initial: Accounts
+                                      .accounts[Accounts.currentAccount].name,
                                 ),
                               ],
                             ),
@@ -105,13 +120,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ],
               ),
-
             ],
           ),
-
         ),
       ),
     );
   }
 }
-

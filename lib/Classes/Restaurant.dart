@@ -21,7 +21,6 @@ class Restaurant {
   Map _tabBarTitle = {0: 'All'};
   Map _restaurantTabBarView = {0: []};
   Map _listOfFood = {0: []};
-  Map _clientTabBarView = {0: []};
   double _workingRadius = 10;
   double _point;
   String _email;
@@ -621,12 +620,6 @@ class Restaurant {
 
   set restaurantComments(Map value) {
     _restaurantComments = value;
-  }
-
-  Map get clientTabBarView => _clientTabBarView;
-
-  set clientTabBarView(Map value) {
-    _clientTabBarView = value;
   }
 
   List<RestaurantActiveOrderTile> get activeOrders => _activeOrders;

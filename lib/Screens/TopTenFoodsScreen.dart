@@ -19,10 +19,6 @@ class _TopTenFoodsScreenState extends State<TopTenFoodsScreen> {
   Widget build(BuildContext context) {
     RestaurantFoodTile.topTenFoods = refreshPage;
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Top Ten Foods'),
-      ),
       body: ListView(
         children: List.generate(
             Accounts.accounts[Accounts.currentAccount].getTopTenFoodsLength(),
