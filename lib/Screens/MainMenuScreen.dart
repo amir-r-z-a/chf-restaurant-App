@@ -87,17 +87,14 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',
-                backgroundColor: Colors.red,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.local_restaurant_sharp),
                 label: 'Orders',
-                backgroundColor: Colors.green,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.dashboard_outlined),
                 label: 'DashBoard',
-                backgroundColor: Colors.purple,
               ),
             ],
           ),
