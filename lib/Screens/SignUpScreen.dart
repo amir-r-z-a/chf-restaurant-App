@@ -2,6 +2,7 @@ import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
 import 'package:chfrestaurant/Common/Text/GrayText.dart';
+import 'package:chfrestaurant/Common/Text/MyPassFormField.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:chfrestaurant/Common/Text/TitleText.dart';
 import 'package:chfrestaurant/Common/Text/WhiteText.dart';
@@ -16,9 +17,6 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   var _formkey = GlobalKey<FormState>();
   int selectedRadio;
-  bool _isObscure = true;
-  RegExp regPassword =
-      new RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$", multiLine: false);
 
   setSelectedRadio(int val) {
     setState(() {
@@ -69,50 +67,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         regex: 'PNSignUp',
                       ),
                       Padding(padding: EdgeInsets.all(15)),
-                      TextFormField(
-                        onSaved: (String value) {
-                          MyTextFormField.password = value;
-                        },
-                        validator: (String entereddate) {
-                          if (entereddate.isEmpty || entereddate == null) {
-                            return "you must fill this box";
-                          }
-                          if (!(regPassword.hasMatch(entereddate))) {
-                            return 'Your password should contain at least one number and one letter';
-                          }
-                          return null;
-                        },
-                        obscureText: _isObscure,
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: Color.fromRGBO(248, 95, 106, 1),
-                                  width: 2.0)),
-                          errorStyle: TextStyle(
-                            color: Color.fromRGBO(248, 95, 106, 1),
-                          ),
-                          suffixIcon: IconButton(
-                            color: Color.fromRGBO(248, 95, 106, 1),
-                            onPressed: () {
-                              setState(() {
-                                _isObscure = !_isObscure;
-                              });
-                            },
-                            icon: Icon(_isObscure
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                          ),
-                          labelText: "Password",
-                          labelStyle: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(248, 95, 106, 1)),
-                          hintText: "Your password ",
-                          hintStyle: TextStyle(
-                            fontSize: 16,
-                            color: Color.fromRGBO(209, 214, 219, 1),
-                          ),
-                        ),
+                      MyPassFormField(
+                        'Password',
+                        regex: 'PassSignUp',
+                        hint: 'Your password',
                       ),
                       Padding(padding: EdgeInsets.all(15)),
                       MyTextFormField(

@@ -15,7 +15,7 @@ import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
 import 'package:chfrestaurant/Screens/DetailsTopTenFoodTile.dart';
 import 'package:chfrestaurant/Screens/MainMenuScreen.dart';
 import 'package:chfrestaurant/Screens/OrdersHistoryScreen.dart';
-import 'package:chfrestaurant/Screens/OrdersMenu.dart';
+import 'package:chfrestaurant/Screens/MenuEdition.dart';
 import 'package:chfrestaurant/Screens/ProfileScreen.dart';
 import 'package:chfrestaurant/Screens/SignInScreen.dart';
 import 'package:chfrestaurant/Screens/SignUpScreen.dart';
@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
           '/DetailsFoodTile': (context) => DetailsRestaurantFoodTile(),
           '/MainMenuScreen': (context) => MainMenuScreen(),
           '/ProfileScreen': (context) => ProfileScreen(),
-          '/OrdersMenu': (context) => OrdersMenu(),
+          '/MenuEdition': (context) => MenuEdition(),
           '/DetailsRestaurantActiveOrderTiles': (context) =>
               DetailsRestaurantActiveOrderTile(),
           '/OrdersHistoryScreen': (context) => OrdersHistoryScreen(),
@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
           '/TopTenFoodsScreen': (context) => TopTenFoodsScreen(),
         },
         home:
-            /*TopTenFoodsScreen()*/ /*OrdersMenu()*/ /*SignInScreen()*/ /*ActiveOrdersScreen()*/
+            /*TopTenFoodsScreen()*/ /*MenuEdition()*/ /*SignInScreen()*/ /*ActiveOrdersScreen()*/
             /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
             MainMenuScreen() /*RestaurantActiveOrderTile([
           Food(

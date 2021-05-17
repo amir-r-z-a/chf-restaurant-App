@@ -84,7 +84,7 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, '/OrdersMenu');
+                          Navigator.pushNamed(context, '/MenuEdition');
                         },
                         child: Container(
                           child: Row(

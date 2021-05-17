@@ -1,5 +1,6 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Common/Text/GrayText.dart';
+import 'package:chfrestaurant/Common/Text/MyPassFormField.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:chfrestaurant/Common/Text/SignInUpText.dart';
 import 'package:chfrestaurant/Common/Text/TitleText.dart';
@@ -15,7 +16,6 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   var key1 = GlobalKey<FormState>();
-  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -36,42 +36,10 @@ class _SignInScreenState extends State<SignInScreen> {
                   regex: 'PNSignIn',
                 ),
                 Padding(padding: EdgeInsets.all(10)),
-                TextFormField(
-                  validator: (String value) {
-                    if (value.isEmpty || value == null) {
-                      return "Please enter something";
-                    } else if (Accounts.foundPassword(value)) {
-                      return "Your password is not correct";
-                    }
-                    return null;
-                  },
-                  obscureText: _isObscure,
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      color: Color.fromRGBO(248, 95, 106, 1),
-                      onPressed: () {
-                        setState(() {
-                          _isObscure = !_isObscure;
-                        });
-                      },
-                      icon: Icon(
-                          _isObscure ? Icons.visibility : Icons.visibility_off),
-                    ),
-                    labelText: "Password",
-                    labelStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(248, 95, 106, 1),
-                    ),
-                    hintText: "Your password ",
-                    hintStyle: TextStyle(
-                      fontSize: 16,
-                      color: Color.fromRGBO(209, 214, 219, 1),
-                    ),
-                    errorStyle: TextStyle(
-                      color: Color.fromRGBO(248, 95, 106, 1),
-                    ),
-                  ),
+                MyPassFormField(
+                  'Password',
+                  regex: 'PassSignIn',
+                  hint: 'Your password',
                 ),
                 Padding(padding: EdgeInsets.all(10)),
                 ElevatedButton(
