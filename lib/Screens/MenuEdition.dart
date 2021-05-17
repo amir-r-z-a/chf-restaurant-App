@@ -4,12 +4,12 @@ import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantActiveOrderTile.dart';
 import 'package:flutter/material.dart';
 
-class OrdersMenu extends StatefulWidget {
+class MenuEdition extends StatefulWidget {
   @override
-  _OrdersMenuState createState() => _OrdersMenuState();
+  _MenuEditionState createState() => _MenuEditionState();
 }
 
-class _OrdersMenuState extends State<OrdersMenu> {
+class _MenuEditionState extends State<MenuEdition> {
   var key1 = GlobalKey<FormState>();
 
   void refreshPage() {

@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
           '/DetailsFoodTile': (context) => DetailsRestaurantFoodTile(),
           '/MainMenuScreen': (context) => MainMenuScreen(),
           '/ProfileScreen': (context) => ProfileScreen(),
-          '/OrdersMenu': (context) => OrdersMenu(),
+          '/MenuEdition': (context) => MenuEdition(),
           '/DetailsRestaurantActiveOrderTiles': (context) =>
               DetailsRestaurantActiveOrderTile(),
           '/OrdersHistoryScreen': (context) => OrdersHistoryScreen(),
