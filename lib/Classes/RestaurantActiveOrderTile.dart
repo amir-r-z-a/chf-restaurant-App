@@ -88,7 +88,6 @@ class RestaurantActiveOrderTile extends StatefulWidget {
     _id = value;
   }
 
-
   List get numberOfFoods => _numberOfFoods;
 
   set numberOfFoods(List value) {
@@ -107,7 +106,6 @@ class RestaurantActiveOrderTile extends StatefulWidget {
     _onlinePayment = value;
   }
 
-
   int get sumNumberOfFoods => _sumNumberOfFoods;
 
   set sumNumberOfFoods(int value) {
@@ -120,7 +118,7 @@ class RestaurantActiveOrderTile extends StatefulWidget {
 }
 
 class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
-  List panelItems = ["active", "unActive", "finished"];
+  List panelItems = ["In progress", "Delivery", "Finished"];
 
   void refreshPage() {
     setState(() {});
@@ -153,9 +151,6 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
                             .inactiveOrder(widget.id);
                         RestaurantActiveOrderTile.function();
                         Navigator.pop(context);
-                        // if (flag) {
-                        //   Navigator.pop(context);
-                        // }
                       },
                       child: Text(
                         'OK',
@@ -240,9 +235,11 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
                         value: widget._orderStatus,
                         onChanged: (newValue) {
                           setState(() {
+                            String lastOrderStatus = widget.orderStatus;
                             widget._orderStatus = newValue;
-                            if (widget.orderStatus == 'finished') {
-                              return finishedOrder();
+                            if (widget.orderStatus == 'Finished') {
+                              finishedOrder();
+                              widget.orderStatus = lastOrderStatus;
                             }
                           });
                         },
