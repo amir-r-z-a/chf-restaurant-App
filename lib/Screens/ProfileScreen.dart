@@ -119,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   MyTextFormField(
                     'Email',
-                    index: 7,
+                    index: 8,
                     addToAccounts: true,
                     initial: Accounts.accounts[Accounts.currentAccount].email,
                     regex: 'Email',

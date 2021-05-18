@@ -76,25 +76,11 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
                           regex: 'FoodName',
                           initial: DetailsRestaurantFoodTile.name,
                         ),
-                        TextFormField(
-                          initialValue: DetailsRestaurantFoodTile.desc,
-                          onSaved: (String value) =>
-                              MyTextFormField.foodDesc = value,
-                          decoration: InputDecoration(
-                            errorStyle: TextStyle(
-                              color: Color.fromRGBO(248, 95, 106, 1),
-                            ),
-                            labelText: 'Desc',
-                            labelStyle: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromRGBO(248, 95, 106, 1)),
-                            hintText: 'New desc',
-                            hintStyle: TextStyle(
-                              fontSize: 16,
-                              color: Color.fromRGBO(209, 214, 219, 1),
-                            ),
-                          ),
+                        MyTextFormField(
+                          'Desc',
+                          index: 7,
+                          initial: DetailsRestaurantFoodTile.desc,
+                          hint: 'New desc',
                         ),
                         MyTextFormField(
                           'Price',
