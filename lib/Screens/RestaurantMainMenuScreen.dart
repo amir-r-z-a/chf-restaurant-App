@@ -52,7 +52,8 @@ class _customListTileState extends State<customListTile> {
 
 class RestaurantMainMenuScreen extends StatefulWidget {
   @override
-  _RestaurantMainMenuScreenState createState() => _RestaurantMainMenuScreenState();
+  _RestaurantMainMenuScreenState createState() =>
+      _RestaurantMainMenuScreenState();
 }
 
 class _RestaurantMainMenuScreenState extends State<RestaurantMainMenuScreen> {
