@@ -17,8 +17,8 @@ import 'package:chfrestaurant/Screens/RestaurantMainMenuScreen.dart';
 import 'package:chfrestaurant/Screens/OrdersHistoryScreen.dart';
 import 'package:chfrestaurant/Screens/MenuEdition.dart';
 import 'package:chfrestaurant/Screens/ProfileScreen.dart';
-import 'package:chfrestaurant/Screens/SignInScreen.dart';
-import 'package:chfrestaurant/Screens/SignUpScreen.dart';
+import 'package:chfrestaurant/Screens/RestaurantSignInScreen.dart';
+import 'package:chfrestaurant/Screens/RestaurantSignUpScreen.dart';
 import 'package:chfrestaurant/Screens/TopTenFoodsScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -37,8 +37,8 @@ class _MyAppState extends State<MyApp> {
         title: "CHFood",
         theme: ThemeData(primaryColor: const Color.fromRGBO(248, 95, 106, 1)),
         routes: {
-          '/SignInScreen': (context) => SignInScreen(),
-          '/SignUpScreen': (context) => SignUpScreen(),
+          '/SignInScreen': (context) => RestaurantSignInScreen(),
+          '/SignUpScreen': (context) => RestaurantSignUpScreen(),
           '/DetailsFoodTile': (context) => DetailsRestaurantFoodTile(),
           '/MainMenuScreen': (context) => RestaurantMainMenuScreen(),
           '/ProfileScreen': (context) => ProfileScreen(),

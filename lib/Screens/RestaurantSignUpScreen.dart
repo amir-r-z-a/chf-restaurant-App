@@ -9,12 +9,12 @@ import 'package:chfrestaurant/Common/Text/WhiteText.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatefulWidget {
+class RestaurantSignUpScreen extends StatefulWidget {
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _RestaurantSignUpScreenState createState() => _RestaurantSignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _RestaurantSignUpScreenState extends State<RestaurantSignUpScreen> {
   var _formkey = GlobalKey<FormState>();
   int selectedRadio;
 
