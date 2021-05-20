@@ -1,6 +1,6 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
-import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/RestaurantTypes.dart';
 import 'package:flutter/material.dart';
 
 class MyTextFormField extends StatelessWidget {

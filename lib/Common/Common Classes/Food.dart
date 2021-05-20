@@ -1,3 +1,4 @@
+import 'package:chfrestaurant/Common/Common%20Classes/CommentTile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,10 +9,15 @@ class Food {
   bool _foodStatus;
   Image _foodImage;
   String _category;
-  int orderCount = 0;
+  List<CommentTile> foodComments;
 
-  Food(this._name, this._price, this._foodStatus, this._category,
-      {this.desc, this.orderCount});
+  Food(
+    this._name,
+    this._price,
+    this._foodStatus,
+    this._category, {
+    this.desc,
+  });
 
   String get name => _name;
 

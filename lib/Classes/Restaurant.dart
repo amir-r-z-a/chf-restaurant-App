@@ -1,13 +1,13 @@
 import 'dart:math';
 
-import 'package:chfrestaurant/Classes/CommentTile.dart';
-import 'package:chfrestaurant/Classes/Date.dart';
-import 'package:chfrestaurant/Classes/Food.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/CommentTile.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/Date.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Order.dart';
 import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantActiveOrderTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantInactiveOrderTile.dart';
-import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/RestaurantTypes.dart';
 import 'package:chfrestaurant/Classes/TopTenFoodTile.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
 import 'package:flutter/cupertino.dart';
@@ -61,8 +61,13 @@ class Restaurant {
   }
 
   void addTabBarViewElements(RestaurantFoodTile food, int i) {
-    Food food2 = Food(food.name, food.price, food.foodStatus, food.category,
-        desc: food.desc, orderCount: food.orderCount);
+    Food food2 = Food(
+      food.name,
+      food.price,
+      food.foodStatus,
+      food.category,
+      desc: food.desc,
+    );
     listOfFood[0].add(food2);
     listOfFood[i].add(food2);
     restaurantTabBarView[0].add(food);
@@ -407,8 +412,6 @@ class Restaurant {
                 restaurantActiveOrderTile.foods[k].name &&
             listOfFood[0][j].name == restaurantActiveOrderTile.foods[k].name) {
           restaurantTabBarView[0][j].orderCount +=
-              restaurantActiveOrderTile.numberOfFoods[k];
-          listOfFood[0][j].orderCount +=
               restaurantActiveOrderTile.numberOfFoods[k];
         }
       }

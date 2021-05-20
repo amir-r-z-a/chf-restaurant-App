@@ -1,11 +1,11 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
-import 'package:chfrestaurant/Classes/CommentTile.dart';
-import 'package:chfrestaurant/Classes/Date.dart';
-import 'package:chfrestaurant/Classes/Food.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/CommentTile.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/Date.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Classes/RestaurantActiveOrderTile.dart';
 import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
-import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/RestaurantTypes.dart';
 import 'package:chfrestaurant/Screens/ActiveOrdersScreen.dart';
 import 'package:chfrestaurant/Screens/CalculatorScreen.dart';
 import 'package:chfrestaurant/Screens/CommentsManagement.dart';

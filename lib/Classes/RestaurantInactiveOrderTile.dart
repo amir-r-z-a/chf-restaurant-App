@@ -1,5 +1,5 @@
-import 'package:chfrestaurant/Classes/Date.dart';
-import 'package:chfrestaurant/Classes/Food.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/Date.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantActiveOrderTile.dart';
 import 'package:flutter/material.dart';

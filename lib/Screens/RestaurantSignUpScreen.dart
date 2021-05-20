@@ -1,6 +1,6 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
-import 'package:chfrestaurant/Classes/RestaurantTypes.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/RestaurantTypes.dart';
 import 'package:chfrestaurant/Common/Text/GrayText.dart';
 import 'package:chfrestaurant/Common/Text/MyPassFormField.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
