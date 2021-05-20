@@ -57,16 +57,18 @@ class MyTextFormField extends StatelessWidget {
         } else if (index == 6) {
           foodPrice = value;
         } else if (index == 7) {
+          foodDesc = value;
+        } else if (index == 8) {
           addToAccounts
               ? Accounts.accounts[Accounts.currentAccount].email = value
               : email = value;
-        } else if (index == 8) {
+        } else if (index == 9) {
           reply = value;
         }
       },
       validator: (String value) {
         // print(value);
-        if (value == null || value.isEmpty) {
+        if ((index != 7 && index != 9) && (value == null || value.isEmpty)) {
           return "Please enter something"; /*"You must fill this box"*/
         } else if (regex == 'PNSignIn' && Accounts.foundPhoneNumber(value)) {
           return "Your phone number is not found";

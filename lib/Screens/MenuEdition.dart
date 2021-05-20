@@ -49,24 +49,10 @@ class _MenuEditionState extends State<MenuEdition> {
                         hint: 'Your name',
                         regex: 'FoodName',
                       ),
-                      TextFormField(
-                        onSaved: (String value) =>
-                            MyTextFormField.foodDesc = value,
-                        decoration: InputDecoration(
-                          errorStyle: TextStyle(
-                            color: Color.fromRGBO(248, 95, 106, 1),
-                          ),
-                          labelText: 'Desc',
-                          labelStyle: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(248, 95, 106, 1)),
-                          hintText: 'Your desc',
-                          hintStyle: TextStyle(
-                            fontSize: 16,
-                            color: Color.fromRGBO(209, 214, 219, 1),
-                          ),
-                        ),
+                      MyTextFormField(
+                        'Desc',
+                        index: 7,
+                        hint: 'Your desc',
                       ),
                       MyTextFormField(
                         'Price',

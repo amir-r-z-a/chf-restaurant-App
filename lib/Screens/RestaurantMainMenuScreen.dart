@@ -50,12 +50,13 @@ class _customListTileState extends State<customListTile> {
   }
 }
 
-class MainMenuScreen extends StatefulWidget {
+class RestaurantMainMenuScreen extends StatefulWidget {
   @override
-  _MainMenuScreenState createState() => _MainMenuScreenState();
+  _RestaurantMainMenuScreenState createState() =>
+      _RestaurantMainMenuScreenState();
 }
 
-class _MainMenuScreenState extends State<MainMenuScreen> {
+class _RestaurantMainMenuScreenState extends State<RestaurantMainMenuScreen> {
   int _currentSelected = 0;
   String appBarText = 'Main Menu';
   List<Widget> screen = [

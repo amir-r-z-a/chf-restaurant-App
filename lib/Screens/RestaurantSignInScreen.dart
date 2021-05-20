@@ -9,12 +9,12 @@ import 'package:chfrestaurant/Screens/ProfileScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatefulWidget {
+class RestaurantSignInScreen extends StatefulWidget {
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  _RestaurantSignInScreenState createState() => _RestaurantSignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _RestaurantSignInScreenState extends State<RestaurantSignInScreen> {
   var key1 = GlobalKey<FormState>();
 
   @override

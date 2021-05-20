@@ -75,7 +75,7 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                                               padding:
                                                   const EdgeInsets.all(10.0),
                                               child: MyTextFormField('Reply',
-                                                  index: 8,
+                                                  index: 9,
                                                   initial: DetailsCommentTile
                                                       .answer),
                                             ),
@@ -142,9 +142,11 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                             Expanded(
                               child: Row(children: [
                                 Expanded(
-                                  child: Text((DetailsCommentTile.answer != null
-                                      ? DetailsCommentTile.answer
-                                      : 'You have not answered yet')),
+                                  child: Text(
+                                      (DetailsCommentTile.answer != null &&
+                                              DetailsCommentTile.answer != ''
+                                          ? DetailsCommentTile.answer
+                                          : 'You have not answered yet')),
                                 )
                               ]),
                             )

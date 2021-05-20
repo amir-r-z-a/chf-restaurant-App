@@ -96,7 +96,7 @@ class _CommentTileState extends State<CommentTile> {
                   'Answer: ',
                   style: TextStyle(color: Colors.black),
                 ),
-                widget.answer == null
+                widget.answer == null || widget.answer == ''
                     ? Text('You have not answered yet')
                     : Text(
                         Accounts.digester(widget.answer, 56),
