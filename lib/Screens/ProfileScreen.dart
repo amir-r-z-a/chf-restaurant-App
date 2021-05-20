@@ -1,4 +1,6 @@
 import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong/latlong.dart';
 import 'package:chfrestaurant/Common/Text/MyPassFormField.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatefulWidget {
+ static List<LatLng> tappedPoints = [];
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -49,6 +52,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var markers = ProfileScreen.tappedPoints.map((latlng) {
+      return Marker(
+        width: 80.0,
+        height: 80.0,
+        point: latlng,
+        builder: (ctx) => Container(
+          child: Icon(Icons.location_on,size: 50,color: Colors.red,),
+        ),
+      );
+    }).toList();
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
@@ -181,8 +194,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   'Map',
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
-                Padding(padding: EdgeInsets.all(150)),
-                Container(
+                Padding(padding: EdgeInsets.all(20)),
+                Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: Text('Hold to add pins'),
+                    ),
+                    SizedBox(
+                      height: 500,
+                      child: FlutterMap(
+                        options: MapOptions(
+                            center: LatLng(35.715298, 51.404343),
+                            zoom: 13.0,
+                            onLongPress: _handleTap
+                        ),
+                        layers: [
+                          TileLayerOptions(
+                            urlTemplate:
+                            "https://api.mapbox.com/styles/v1/amirrza/ckov1rtrs059m17p8xugrutr4/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYW1pcnJ6YSIsImEiOiJja292MW0zeGwwNDN1MnBwYzlhbDVyOHByIn0.Mwa8L0WNjyIKc-v32nKOhQ",
+                          ),
+                          MarkerLayerOptions(markers: markers)
+                        ],
+                      ),
+                    ),
+                    // ElevatedButton(onPressed: ()=> print(ProfileScreen.tappedPoints), child: Text("save"))
+                  ],
                 )
               ],
             ),
@@ -190,6 +227,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+  void _handleTap(LatLng latlng) {
+    setState(() {
+      if(ProfileScreen.tappedPoints.isEmpty){
+        ProfileScreen.tappedPoints.add(latlng);
+      }
+      else{
+        ProfileScreen.tappedPoints.clear();
+        ProfileScreen.tappedPoints.add(latlng);
+      }
+    });
   }
 }
 
