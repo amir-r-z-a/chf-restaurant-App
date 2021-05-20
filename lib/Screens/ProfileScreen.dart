@@ -182,6 +182,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 Padding(padding: EdgeInsets.all(150)),
+                Container(
+                )
               ],
             ),
           ],
