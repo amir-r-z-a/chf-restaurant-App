@@ -199,6 +199,7 @@ class _MenuEditionState extends State<MenuEdition> {
 //hame jaye barname TextFormField hash vaqti jomle ziad type mikonim biad khat paiin
 //samte raste MyTextFormFielde Radius of works Text(km) neveshte shavad
 //khoondan comment haye hame class ha va screen ha
+//comment haye qabl 30 rooz ham betavanad bebinad(mahdoodiat zamani nadashte bashad va har che qadr khast be aqab beravad)
 
 //add kardan tag(entekhab chand menu ba ham)
 
