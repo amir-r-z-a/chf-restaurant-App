@@ -68,7 +68,8 @@ class MyTextFormField extends StatelessWidget {
       },
       validator: (String value) {
         // print(value);
-        if ((index != 7 && index != 9) && (value == null || value.isEmpty)) {
+        if ((index != 7 && index != 8 && index != 9) &&
+            (value == null || value.isEmpty)) {
           return "Please enter something"; /*"You must fill this box"*/
         } else if (regex == 'PNSignIn' && Accounts.foundPhoneNumber(value)) {
           return "Your phone number is not found";
@@ -92,7 +93,10 @@ class MyTextFormField extends StatelessWidget {
         } else if (regex == 'FoodName' &&
             Accounts.accounts[Accounts.currentAccount].validFood(value)) {
           return 'Your food was already added in one of category';
-        } else if (regex == 'Email' && Accounts.validEmail(value)) {
+        } else if (regex == 'Email' &&
+            value != '' &&
+            value != null &&
+            Accounts.validEmail(value)) {
           return 'Your email is not valid';
         }
         return null;

@@ -28,7 +28,7 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
         centerTitle: true,
         title: Text("Comment Details"),
       ),
-      body: Column(children: [
+      body: ListView(children: [
         Container(
           margin: EdgeInsets.all(10),
           child: SingleChildScrollView(

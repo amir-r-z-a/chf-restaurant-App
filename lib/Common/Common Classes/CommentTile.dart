@@ -14,7 +14,7 @@ class CommentTile extends StatefulWidget {
   String _id;
 
   CommentTile(this._question, this._foodName, this._date,
-      this._clientPhoneNumber, this._destinationRestaurant,
+      this._clientPhoneNumber, this._destinationRestaurant, this._id,
       {this.answer});
 
   String get question => _question;

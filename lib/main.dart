@@ -16,7 +16,7 @@ import 'package:chfrestaurant/Screens/DetailsTopTenFoodTile.dart';
 import 'package:chfrestaurant/Screens/RestaurantMainMenuScreen.dart';
 import 'package:chfrestaurant/Screens/OrdersHistoryScreen.dart';
 import 'package:chfrestaurant/Screens/MenuEdition.dart';
-import 'package:chfrestaurant/Screens/ProfileScreen.dart';
+import 'package:chfrestaurant/Screens/RestaurantProfileScreen.dart';
 import 'package:chfrestaurant/Screens/RestaurantSignInScreen.dart';
 import 'package:chfrestaurant/Screens/RestaurantSignUpScreen.dart';
 import 'package:chfrestaurant/Screens/TopTenFoodsScreen.dart';
@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
           '/SignUpScreen': (context) => RestaurantSignUpScreen(),
           '/DetailsFoodTile': (context) => DetailsRestaurantFoodTile(),
           '/MainMenuScreen': (context) => RestaurantMainMenuScreen(),
-          '/ProfileScreen': (context) => ProfileScreen(),
+          '/ProfileScreen': (context) => RestaurantProfileScreen(),
           '/MenuEdition': (context) => MenuEdition(),
           '/DetailsRestaurantActiveOrderTiles': (context) =>
               DetailsRestaurantActiveOrderTile(),
@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
           '/TopTenFoodsScreen': (context) => TopTenFoodsScreen(),
         },
         home:
-            /*TopTenFoodsScreen()*/ /*MenuEdition()*/ /*SignInScreen()*/ /*ActiveOrdersScreen()*/
+            /*TopTenFoodsScreen()*/ /*MenuEdition()*/ /*RestaurantSignInScreen()*/ /*ActiveOrdersScreen()*/
             /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
             RestaurantMainMenuScreen() /*RestaurantActiveOrderTile([
           Food(
@@ -140,7 +140,8 @@ void main() {
           'Milk',
           Date('2021', '3', '5', '22', '12', '2'),
           '09121231212',
-          '09198612878'),
+          '09198612878',
+          '#T2878-742'),
       1);
   restaurant.addComments(
       CommentTile(
@@ -148,7 +149,8 @@ void main() {
           'Milk',
           Date('2021', '3', '7', '20', '20', '20'),
           '09121231212',
-          '09198612878'),
+          '09198612878',
+          'T2878-991'),
       1);
   restaurant.addComments(
       CommentTile(
@@ -156,7 +158,8 @@ void main() {
           'Hot Dog',
           Date('2021', '3', '11', '1', '28', '29'),
           '09121231212',
-          '09198612878'),
+          '09198612878',
+          'T2878-114'),
       2);
   restaurant.addOrder(RestaurantActiveOrderTile([
     Food(

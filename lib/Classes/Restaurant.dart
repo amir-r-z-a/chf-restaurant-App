@@ -139,7 +139,7 @@ class Restaurant {
   }
 
   void addComments(CommentTile comment, int i) {
-    comment.id = commentsIDGenerator(comment);
+    // comment.id = commentsIDGenerator(comment);
     restaurantComments[0].add(comment);
     restaurantComments[i].add(comment);
   }
@@ -250,33 +250,33 @@ class Restaurant {
     return randomID;
   }
 
-  String commentsIDGenerator(CommentTile commentTile) {
-    bool flag;
-    String randomID;
-    do {
-      flag = false;
-      bool key = false;
-      randomID = '#' +
-          String.fromCharCode(commentTile.foodName.codeUnitAt(0)) +
-          commentTile.clientPhoneNumber
-              .substring(commentTile.clientPhoneNumber.length - 4) +
-          '-' +
-          (Random().nextInt(89) + 10).toString();
-      for (int i = 0; i < getRestaurantCommentsLength(); i++) {
-        for (int j = 0; j < restaurantComments[i].length; j++) {
-          if (restaurantComments[i][j].id == randomID) {
-            flag = true;
-            key = true;
-            break;
-          }
-          if (key) {
-            break;
-          }
-        }
-      }
-    } while (flag);
-    return randomID;
-  }
+  // String commentsIDGenerator(CommentTile commentTile) {
+  //   bool flag;
+  //   String randomID;
+  //   do {
+  //     flag = false;
+  //     bool key = false;
+  //     randomID = '#' +
+  //         String.fromCharCode(commentTile.foodName.codeUnitAt(0)) +
+  //         commentTile.clientPhoneNumber
+  //             .substring(commentTile.clientPhoneNumber.length - 4) +
+  //         '-' +
+  //         (Random().nextInt(89) + 10).toString();
+  //     for (int i = 0; i < getRestaurantCommentsLength(); i++) {
+  //       for (int j = 0; j < restaurantComments[i].length; j++) {
+  //         if (restaurantComments[i][j].id == randomID) {
+  //           flag = true;
+  //           key = true;
+  //           break;
+  //         }
+  //         if (key) {
+  //           break;
+  //         }
+  //       }
+  //     }
+  //   } while (flag);
+  //   return randomID;
+  // }
 
   void calculator({int input = 0}) {
     onlineSell = 0;

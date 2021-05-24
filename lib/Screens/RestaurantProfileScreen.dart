@@ -7,13 +7,15 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
-class ProfileScreen extends StatefulWidget {
- static List<LatLng> tappedPoints = [];
+class RestaurantProfileScreen extends StatefulWidget {
+  static List<LatLng> tappedPoints = [];
+
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  _RestaurantProfileScreenState createState() =>
+      _RestaurantProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
   bool _isObscure = true;
   RegExp regPassword =
       new RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$", multiLine: false);
@@ -48,17 +50,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   var _formkey = GlobalKey<FormState>();
-  var _key = GlobalKey<FormState>();
+  var _key1 = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    var markers = ProfileScreen.tappedPoints.map((latlng) {
+    var markers = RestaurantProfileScreen.tappedPoints.map((latlng) {
       return Marker(
         width: 80.0,
         height: 80.0,
         point: latlng,
         builder: (ctx) => Container(
-          child: Icon(Icons.location_on,size: 50,color: Colors.red,),
+          child: Icon(
+            Icons.location_on,
+            size: 50,
+            color: Colors.red,
+          ),
         ),
       );
     }).toList();
@@ -77,7 +83,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         margin: EdgeInsets.all(10),
         child: ListView(
           children: [
-            Padding(padding: EdgeInsets.all(10)),
+            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
             Column(
               children: [
                 Container(
@@ -99,7 +105,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             Padding(padding: EdgeInsets.all(5)),
             Form(
-              key: _key,
+              key: _key1,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -127,7 +133,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     'Address',
                     index: 3,
                     addToAccounts: true,
-                    initial: Accounts.accounts[Accounts.currentAccount].name,
+                    initial: Accounts.accounts[Accounts.currentAccount].address,
                     hint: 'Edit Your Address',
                   ),
                   MyTextFormField(
@@ -138,10 +144,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     regex: 'Email',
                     hint: 'Edit Your Email',
                   ),
-                  Padding(padding: EdgeInsets.all(15)),
+                  Padding(padding: EdgeInsets.all(10)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {
+                            if (_key1.currentState.validate()) {
+                              _key1.currentState.save();
+                              print('Features was changed');
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                              primary: Theme.of(context).primaryColor),
+                          child: Text('Save'))
+                    ],
+                  ),
                 ],
               ),
             ),
+            Padding(padding: EdgeInsets.all(15)),
             Form(
               key: _formkey,
               child: Column(
@@ -166,14 +188,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     regex: 'PassEdit3',
                     hint: 'Your confirm Password',
                   ),
-                  Padding(padding: EdgeInsets.all(5)),
+                  Padding(padding: EdgeInsets.all(10)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
                         onPressed: () {
                           if (_formkey.currentState.validate()) {
-                            _formkey.currentState.save();
+                            setState(() {
+                              _formkey.currentState.save();
+                            });
                             print('Yor password was changed');
                           }
                         },
@@ -182,7 +206,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             primary: Theme.of(context).primaryColor),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -191,7 +215,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Map',
+                  'Location',
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 Padding(padding: EdgeInsets.all(20)),
@@ -207,12 +231,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         options: MapOptions(
                             center: LatLng(35.715298, 51.404343),
                             zoom: 13.0,
-                            onLongPress: _handleTap
-                        ),
+                            onLongPress: _handleTap),
                         layers: [
                           TileLayerOptions(
                             urlTemplate:
-                            "https://api.mapbox.com/styles/v1/amirrza/ckov1rtrs059m17p8xugrutr4/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYW1pcnJ6YSIsImEiOiJja292MW0zeGwwNDN1MnBwYzlhbDVyOHByIn0.Mwa8L0WNjyIKc-v32nKOhQ",
+                                "https://api.mapbox.com/styles/v1/amirrza/ckov1rtrs059m17p8xugrutr4/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYW1pcnJ6YSIsImEiOiJja292MW0zeGwwNDN1MnBwYzlhbDVyOHByIn0.Mwa8L0WNjyIKc-v32nKOhQ",
                           ),
                           MarkerLayerOptions(markers: markers)
                         ],
@@ -228,14 +251,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+
   void _handleTap(LatLng latlng) {
     setState(() {
-      if(ProfileScreen.tappedPoints.isEmpty){
-        ProfileScreen.tappedPoints.add(latlng);
-      }
-      else{
-        ProfileScreen.tappedPoints.clear();
-        ProfileScreen.tappedPoints.add(latlng);
+      if (RestaurantProfileScreen.tappedPoints.isEmpty) {
+        RestaurantProfileScreen.tappedPoints.add(latlng);
+      } else {
+        RestaurantProfileScreen.tappedPoints.clear();
+        RestaurantProfileScreen.tappedPoints.add(latlng);
       }
     });
   }

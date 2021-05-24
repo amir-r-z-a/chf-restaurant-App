@@ -5,7 +5,7 @@ import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:chfrestaurant/Common/Text/SignInUpText.dart';
 import 'package:chfrestaurant/Common/Text/TitleText.dart';
 import 'package:chfrestaurant/Common/Text/WhiteText.dart';
-import 'package:chfrestaurant/Screens/ProfileScreen.dart';
+import 'package:chfrestaurant/Screens/RestaurantProfileScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -112,7 +112,15 @@ class _RestaurantMainMenuScreenState extends State<RestaurantMainMenuScreen> {
               customListTile(Icons.person, 'Profile',
                   () => {Navigator.pushNamed(context, '/ProfileScreen')}),
               customListTile(Icons.phone, 'Contact Us', () => {}),
-              customListTile(Icons.logout, "Log Out", () => {}),
+              customListTile(
+                Icons.logout,
+                "Log Out",
+                () {
+                  Navigator.popUntil(
+                      context, ModalRoute.withName('/SignInScreen'));
+                  Navigator.pushNamed(context, '/SignInScreen');
+                },
+              ),
             ],
           )),
           appBar: AppBar(
