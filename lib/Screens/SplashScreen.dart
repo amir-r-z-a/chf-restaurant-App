@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 class SplashScreen extends StatefulWidget {
@@ -6,6 +8,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  void initState() {
+    super.initState();
+    //TODO complete navigator
+    // Timer(Duration(seconds: 5), () => Navigator.pushNamed(context, "MyApp"));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,33 +20,23 @@ class _SplashScreenState extends State<SplashScreen> {
         fit: StackFit.expand,
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(color: Color(0xfff85f6a)),
+            decoration: BoxDecoration(color: Color(0xff2E765E)),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Expanded(
-                  //flex: ,
-                  child: Container(
-                    margin: EdgeInsets.only(top: 60),
-                      child: Text("Chamir",style: TextStyle(fontFamily:'Regular' , fontSize: 50,color: Color(0xff1e2a78) ))
-                  )
-              ),
               Expanded(
                 flex: 2,
                 child: Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircleAvatar(
-                        radius: 50,
-                        backgroundColor: Colors.blue,
-                        child: Icon(Icons.fastfood_outlined,size: 60,color: Color(0xff1e2a78),),
-                      ),
                       Padding(
-                        padding: EdgeInsets.only(top: 30),
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          child: Image.asset("assets/images/5.png"),
+                        ),
                       ),
-                      Text("CHF",style: TextStyle(fontFamily:'Regular' , fontSize: 25,color: Color(0xff1e2a78) ),)
                     ],
                   ),
                 ),
@@ -50,11 +47,11 @@ class _SplashScreenState extends State<SplashScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.pink) ,
-                      backgroundColor: Color(0xff1e2a78),
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.red) ,
+                      backgroundColor: Color(0xffF1CCD7),
                     ),
                     Padding(padding: EdgeInsets.only(top: 20)),
-                    Text("Find Your Meals Here",style: TextStyle(fontFamily:'Regular' , fontSize: 20),)
+                    Text("Find Your Meals Here",style: TextStyle(fontFamily:'HotPizza' , fontSize: 15),)
                   ],
                 ),
               )
