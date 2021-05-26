@@ -10,8 +10,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
-    //TODO complete navigator
-    // Timer(Duration(seconds: 5), () => Navigator.pushNamed(context, "MyApp"));
+    Timer(Duration(seconds: 5), () => Navigator.pushNamed(context, "/SignInScreen"));
   }
   @override
   Widget build(BuildContext context) {
