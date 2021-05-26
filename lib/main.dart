@@ -19,6 +19,7 @@ import 'package:chfrestaurant/Screens/MenuEdition.dart';
 import 'package:chfrestaurant/Screens/RestaurantProfileScreen.dart';
 import 'package:chfrestaurant/Screens/RestaurantSignInScreen.dart';
 import 'package:chfrestaurant/Screens/RestaurantSignUpScreen.dart';
+import 'package:chfrestaurant/Screens/SplashScreen.dart';
 import 'package:chfrestaurant/Screens/TopTenFoodsScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -54,9 +55,10 @@ class _MyAppState extends State<MyApp> {
           '/TopTenFoodsScreen': (context) => TopTenFoodsScreen(),
         },
         home:
+        SplashScreen()
             /*TopTenFoodsScreen()*/ /*MenuEdition()*/ /*RestaurantSignInScreen()*/ /*ActiveOrdersScreen()*/
             /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
-            RestaurantMainMenuScreen() /*RestaurantActiveOrderTile([
+            /*RestaurantMainMenuScreen()*/ /*RestaurantActiveOrderTile([
           Food(
             'Tea',
             '25',

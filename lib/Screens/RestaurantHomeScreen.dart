@@ -114,9 +114,9 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 20, 30, 0),
+                  margin: EdgeInsets.fromLTRB(30, 20, 30, 0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
                         onTap: () {
@@ -124,6 +124,7 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                         },
                         child: Container(
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
                                 margin: EdgeInsets.only(left: 20),
@@ -136,6 +137,7 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                                 ),
                                 margin: EdgeInsets.only(left: 20),
                               ),
+
                             ],
                           ),
                           decoration: BoxDecoration(
@@ -146,13 +148,23 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                           height: 120,
                         ),
                       ),
+                      Container(
+                        child: Image.asset("assets/images/4.png"),
+                        height: 120,
+                        width: 160,
+                      )
                     ],
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(30, 20, 0, 0),
+                  margin: EdgeInsets.fromLTRB(30, 20, 30, 0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Container(
+                        child: Image.asset("assets/images/3.png"),
+                        width: 180 ,
+                      ),
                       GestureDetector(
                         onTap: () {
                           Accounts.accounts[Accounts.currentAccount]
@@ -190,9 +202,9 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 20, 30, 0),
+                  margin: EdgeInsets.fromLTRB(30, 20, 30, 0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
                         onTap: () {
@@ -222,6 +234,9 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                           height: 120,
                         ),
                       ),
+                      Container(
+                        child: Image.asset("assets/images/2.png"),
+                      )
                     ],
                   ),
                 )
