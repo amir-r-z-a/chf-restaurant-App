@@ -185,7 +185,7 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                             children: [
                               Container(
                                 margin: EdgeInsets.only(left: 50),
-                                child: Text("Calculator",
+                                child: Text("Accounting",
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,

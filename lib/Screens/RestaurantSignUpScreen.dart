@@ -1,3 +1,5 @@
+
+
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Common/Common%20Classes/RestaurantTypes.dart';
@@ -8,7 +10,7 @@ import 'package:chfrestaurant/Common/Text/TitleText.dart';
 import 'package:chfrestaurant/Common/Text/WhiteText.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:date_time_picker/date_time_picker.dart';
 class RestaurantSignUpScreen extends StatefulWidget {
   @override
   _RestaurantSignUpScreenState createState() => _RestaurantSignUpScreenState();
@@ -73,6 +75,88 @@ class _RestaurantSignUpScreenState extends State<RestaurantSignUpScreen> {
                         regex: 'PassSignUp',
                         hint: 'Your password',
                       ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox
+                            (
+                            width: 150,
+                            child: DateTimePicker(
+                              style: TextStyle(color:Color.fromRGBO(248, 95, 106, 1), ),
+                              type: DateTimePickerType.time,
+                              icon: Icon(Icons.watch_later_outlined),
+                              timeLabelText: "Hour",
+                              decoration: InputDecoration(
+                                labelText:" Entrance Time",
+                                counterStyle: TextStyle(
+                                  color: Color.fromRGBO(248, 95, 106, 1),
+                                ),
+                                labelStyle: TextStyle(
+                                  color: Color.fromRGBO(248, 95, 106, 1),
+                                ),
+                                icon: Icon(Icons.watch_later_outlined),
+                                hoverColor:Color.fromRGBO(248, 95, 106, 1),
+                                focusColor: Color.fromRGBO(248, 95, 106, 1),
+                                fillColor: Color.fromRGBO(248, 95, 106, 1),
+                              ),
+                              cursorColor: Color.fromRGBO(248, 95, 106, 1),
+                              selectableDayPredicate: (date) {
+                                // Disable weekend days to select from the calendar
+                                if (date.weekday == 6 || date.weekday == 7) {
+                                  return false;
+                                }
+                                return true;
+                              },
+                              onChanged: (val) => print(val),
+                              validator: (val) {
+                                print(val);
+                                return null;
+                              },
+                              onSaved: (val) => print(val),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 150,
+                            child: DateTimePicker(
+                              style: TextStyle(color:Color.fromRGBO(248, 95, 106, 1), ),
+                              type: DateTimePickerType.time,
+                              icon: Icon(Icons.watch_later_outlined),
+                              timeLabelText: "Hour",
+                              decoration: InputDecoration(
+                                labelText:" leaving hour ",
+                                counterStyle: TextStyle(
+                                  color: Color.fromRGBO(248, 95, 106, 1),
+                                ),
+                                labelStyle: TextStyle(
+                                  color: Color.fromRGBO(248, 95, 106, 1),
+                                ),
+                                icon: Icon(Icons.watch_later),
+                                hoverColor:Color.fromRGBO(248, 95, 106, 1),
+                                focusColor: Color.fromRGBO(248, 95, 106, 1),
+                                fillColor: Color.fromRGBO(248, 95, 106, 1),
+                              ),
+                              cursorColor: Color.fromRGBO(248, 95, 106, 1),
+                              selectableDayPredicate: (date) {
+                                // Disable weekend days to select from the calendar
+                                if (date.weekday == 6 || date.weekday == 7) {
+                                  return false;
+                                }
+                                return true;
+                              },
+                              onChanged: (val) => print(val),
+                              validator: (val) {
+                                print(val);
+                                return null;
+                              },
+                              onSaved: (val) => print(val),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
                       // Padding(padding: EdgeInsets.all(15)),
                       // MyTextFormField(
                       //   "Address",

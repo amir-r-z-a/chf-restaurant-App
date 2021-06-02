@@ -54,9 +54,9 @@ class _MyAppState extends State<MyApp> {
           '/DetailsTopTenFoodTile': (context) => DetailsTopTenFoodTile(),
           '/TopTenFoodsScreen': (context) => TopTenFoodsScreen(),
         },
-        home: RestaurantMainMenuScreen()
+        home: /*RestaurantMainMenuScreen()*/
         // SplashScreen()
-        /*TopTenFoodsScreen()*/ /*MenuEdition()*/ /*RestaurantSignInScreen()*/ /*ActiveOrdersScreen()*/
+        /*TopTenFoodsScreen()*/ /*MenuEdition()*/ RestaurantSignInScreen() /*ActiveOrdersScreen()*/
         /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
         /*RestaurantMainMenuScreen()*/ /*RestaurantActiveOrderTile([
           Food(
