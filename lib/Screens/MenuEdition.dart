@@ -2,6 +2,7 @@ import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantActiveOrderTile.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MenuEdition extends StatefulWidget {
@@ -16,6 +17,139 @@ class _MenuEditionState extends State<MenuEdition> {
     setState(() {});
   }
 
+  void nullAddress(bool flag) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: Text(flag ? 'Address not added' : 'Radius of work not added'),
+        content: Container(
+          height: 120,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text('Unregistered ' +
+                  (flag ? 'address' : 'Radius of work') +
+                  ', Please register the address first'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    style: TextButton.styleFrom(
+                        primary: Theme.of(context).primaryColor),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/ProfileScreen'),
+                    child: Text(
+                      flag ? 'Add Address' : 'Add Radius of work',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                        primary: Theme.of(context).primaryColor),
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void addFood() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Form(
+          key: key1,
+          child: ListView(
+            padding: EdgeInsets.all(10),
+            children: [
+              Text(
+                'Add Food',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+              ),
+              MyTextFormField(
+                'Category',
+                index: 4,
+                hint: 'Your category',
+                regex: 'Category',
+              ),
+              MyTextFormField(
+                'Name',
+                index: 5,
+                hint: 'Your name',
+                regex: 'FoodName',
+              ),
+              MyTextFormField(
+                'Desc',
+                index: 7,
+                hint: 'Your desc',
+              ),
+              MyTextFormField(
+                'Price',
+                hint: 'Your price (example: 28.40)',
+                regex: 'Price',
+                index: 6,
+              ),
+              Padding(padding: EdgeInsets.all(10)),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).primaryColor),
+                  onPressed: () {
+                    if (key1.currentState.validate()) {
+                      bool flag = true;
+                      key1.currentState.save();
+                      RestaurantFoodTile food = RestaurantFoodTile(
+                          MyTextFormField.foodName,
+                          MyTextFormField.foodPrice,
+                          true,
+                          MyTextFormField.foodCategory,
+                          desc: MyTextFormField.foodDesc);
+                      Accounts.accounts[Accounts.currentAccount]
+                          .addNewTopTenFoodsElements(food);
+                      for (int i = 0;
+                          i <
+                              Accounts.accounts[Accounts.currentAccount]
+                                  .getTabBarTitleLength();
+                          i++) {
+                        if (Accounts.accounts[Accounts.currentAccount]
+                                .tabBarTitle[i] ==
+                            MyTextFormField.foodCategory) {
+                          Accounts.accounts[Accounts.currentAccount]
+                              .addTabBarViewElements(food, i);
+                          flag = false;
+                        }
+                      }
+                      if (flag) {
+                        Accounts.accounts[Accounts.currentAccount]
+                            .addTabBarTitle(MyTextFormField.foodCategory, food);
+
+                        print(Accounts.currentAccount);
+                        print(Accounts.accounts.length);
+                        print(Accounts
+                            .accounts[Accounts.currentAccount].tabBarTitle);
+                        print(Accounts.accounts[Accounts.currentAccount]
+                            .restaurantTabBarView);
+                      }
+                      setState(() {});
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: Text('Add'))
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -24,93 +158,12 @@ class _MenuEditionState extends State<MenuEdition> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromRGBO(248, 95, 106, 1),
           onPressed: () {
-            showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return Form(
-                  key: key1,
-                  child: ListView(
-                    padding: EdgeInsets.all(10),
-                    children: [
-                      Text(
-                        'Add Food',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 28),
-                      ),
-                      MyTextFormField(
-                        'Category',
-                        index: 4,
-                        hint: 'Your category',
-                        regex: 'Category',
-                      ),
-                      MyTextFormField(
-                        'Name',
-                        index: 5,
-                        hint: 'Your name',
-                        regex: 'FoodName',
-                      ),
-                      MyTextFormField(
-                        'Desc',
-                        index: 7,
-                        hint: 'Your desc',
-                      ),
-                      MyTextFormField(
-                        'Price',
-                        hint: 'Your price (example: 28.40)',
-                        regex: 'Price',
-                        index: 6,
-                      ),
-                      Padding(padding: EdgeInsets.all(10)),
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: Theme.of(context).primaryColor),
-                          onPressed: () {
-                            if (key1.currentState.validate()) {
-                              bool flag = true;
-                              key1.currentState.save();
-                              RestaurantFoodTile food = RestaurantFoodTile(
-                                  MyTextFormField.foodName,
-                                  MyTextFormField.foodPrice,
-                                  true,
-                                  MyTextFormField.foodCategory,
-                                  desc: MyTextFormField.foodDesc);
-                              Accounts.accounts[Accounts.currentAccount]
-                                  .addNewTopTenFoodsElements(food);
-                              for (int i = 0;
-                                  i <
-                                      Accounts.accounts[Accounts.currentAccount]
-                                          .getTabBarTitleLength();
-                                  i++) {
-                                if (Accounts.accounts[Accounts.currentAccount]
-                                        .tabBarTitle[i] ==
-                                    MyTextFormField.foodCategory) {
-                                  Accounts.accounts[Accounts.currentAccount]
-                                      .addTabBarViewElements(food, i);
-                                  flag = false;
-                                }
-                              }
-                              if (flag) {
-                                Accounts.accounts[Accounts.currentAccount]
-                                    .addTabBarTitle(
-                                        MyTextFormField.foodCategory, food);
-
-                                print(Accounts.currentAccount);
-                                print(Accounts.accounts.length);
-                                print(Accounts.accounts[Accounts.currentAccount]
-                                    .tabBarTitle);
-                                print(Accounts.accounts[Accounts.currentAccount]
-                                    .restaurantTabBarView);
-                              }
-                              setState(() {});
-                              Navigator.pop(context);
-                            }
-                          },
-                          child: Text('Add'))
-                    ],
-                  ),
-                );
-              },
-            );
+            (Accounts.accounts[Accounts.currentAccount].location == null ||
+                    Accounts.accounts[Accounts.currentAccount].radiusOfWork ==
+                        null)
+                ? nullAddress(
+                    Accounts.accounts[Accounts.currentAccount].location == null)
+                : addFood();
           },
           child: Icon(Icons.add),
         ),
@@ -201,6 +254,8 @@ class _MenuEditionState extends State<MenuEdition> {
 //samte raste MyTextFormFielde Radius of works Text(km) neveshte shavad
 //khoondan comment haye hame class ha va screen ha
 //comment haye qabl 30 rooz ham betavanad bebinad(mahdoodiat zamani nadashte bashad va har che qadr khast be aqab beravad)
+//hame alertDialog ha TextButton hash bold beshe
+//mirtavan map ra yek class kard ke har dafe lazem nabashad handle tap va addressButtonSheet ra copy paste kard
 
 //add kardan tag(entekhab chand menu ba ham)
 

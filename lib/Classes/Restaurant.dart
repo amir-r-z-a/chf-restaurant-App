@@ -11,6 +11,7 @@ import 'package:chfrestaurant/Common/Common%20Classes/RestaurantTypes.dart';
 import 'package:chfrestaurant/Classes/TopTenFoodTile.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:latlong/latlong.dart';
 
 class Restaurant {
   String _name;
@@ -21,7 +22,7 @@ class Restaurant {
   Map _tabBarTitle = {0: 'All'};
   Map _restaurantTabBarView = {0: []};
   Map _listOfFood = {0: []};
-  double _workingRadius = 10;
+  double _radiusOfWork;
   double _point;
   String _email;
   List<RestaurantInactiveOrderTile> _ordersHistory = [];
@@ -36,8 +37,7 @@ class Restaurant {
   int _sumCashNumberOfFoods;
   Map discountCode = {5: [], 10: [], 25: [], 50: [], 100: []};
   List<TopTenFoodTile> topTenFoods = [];
-
-  // Location _location;
+  LatLng _location;
 
   Restaurant(
       this._name, this._phoneNumber, this._password, this._address, this._type);
@@ -589,10 +589,10 @@ class Restaurant {
     _restaurantTabBarView = value;
   }
 
-  double get workingRadius => _workingRadius;
+  double get radiusOfWork => _radiusOfWork;
 
-  set workingRadius(double value) {
-    _workingRadius = value;
+  set radiusOfWork(double value) {
+    _radiusOfWork = value;
   }
 
   Image get profileImage => _profileImage;
@@ -601,11 +601,11 @@ class Restaurant {
     _profileImage = value;
   }
 
-// Location get location => _location;
-//
-// set location(Location value) {
-//   _location = value;
-// }
+  LatLng get location => _location;
+
+  set location(LatLng value) {
+    _location = value;
+  }
 
   double get point => _point;
 

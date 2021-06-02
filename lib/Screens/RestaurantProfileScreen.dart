@@ -130,13 +130,6 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                     hint: 'Edit Your Phone Number',
                   ),
                   MyTextFormField(
-                    'Address',
-                    index: 3,
-                    addToAccounts: true,
-                    initial: Accounts.accounts[Accounts.currentAccount].address,
-                    hint: 'Edit Your Address',
-                  ),
-                  MyTextFormField(
                     'Email',
                     index: 8,
                     addToAccounts: true,
@@ -218,7 +211,17 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                   'Location',
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
-                Padding(padding: EdgeInsets.all(20)),
+                Padding(padding: EdgeInsets.all(10)),
+                MyTextFormField(
+                  'Address',
+                  index: 3,
+                  addToAccounts: true,
+                  initial: Accounts.accounts[Accounts.currentAccount].address,
+                  hint: 'Edit Your Address',
+                ),
+                // Padding(padding: EdgeInsets.all(10)),
+                MyTextFormField('Radius of works'),
+                Padding(padding: EdgeInsets.all(10)),
                 Column(
                   children: [
                     Padding(
@@ -243,7 +246,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                     ),
                     // ElevatedButton(onPressed: ()=> print(ProfileScreen.tappedPoints), child: Text("save"))
                   ],
-                )
+                ),
               ],
             ),
           ],
@@ -260,6 +263,8 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
         RestaurantProfileScreen.tappedPoints.clear();
         RestaurantProfileScreen.tappedPoints.add(latlng);
       }
+      print(latlng);
+      Accounts.accounts[Accounts.currentAccount].location = latlng;
     });
   }
 }

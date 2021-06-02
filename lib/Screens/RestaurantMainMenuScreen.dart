@@ -104,10 +104,11 @@ class _RestaurantMainMenuScreenState extends State<RestaurantMainMenuScreen> {
             children: [
               DrawerHeader(
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                    Colors.orange,
-                    Colors.deepOrange,
-                  ])),
+                    gradient: LinearGradient(colors: [
+                      Colors.orange,
+                      Colors.deepOrange,
+                    ]),
+                  ),
                   child: Text('here is header')),
               customListTile(Icons.person, 'Profile',
                   () => {Navigator.pushNamed(context, '/ProfileScreen')}),

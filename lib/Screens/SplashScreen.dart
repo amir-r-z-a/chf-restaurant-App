@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -10,8 +11,10 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5), () => Navigator.pushNamed(context, "/SignInScreen"));
+    Timer(Duration(seconds: 5),
+        () => Navigator.pushNamed(context, "/SignInScreen"));
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,14 +49,17 @@ class _SplashScreenState extends State<SplashScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.red) ,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
                       backgroundColor: Color(0xffF1CCD7),
                     ),
                     Padding(padding: EdgeInsets.only(top: 20)),
-                    Text("Find Your Meals Here",style: TextStyle(fontFamily:'HotPizza' , fontSize: 15),)
+                    Text(
+                      "Find Your Meals Here",
+                      style: TextStyle(fontFamily: 'HotPizza', fontSize: 15),
+                    )
                   ],
                 ),
-              )
+              ),
             ],
           )
         ],

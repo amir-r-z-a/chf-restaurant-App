@@ -38,16 +38,17 @@ class _RestaurantSignUpScreenState extends State<RestaurantSignUpScreen> {
           child: Column(
             children: [
               Container(
-                  margin: EdgeInsets.fromLTRB(25, 30, 0, 0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Sign Up",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  )),
+                margin: EdgeInsets.fromLTRB(25, 30, 0, 0),
+                child: Row(
+                  children: [
+                    Text(
+                      "Sign Up",
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
               Container(
                 margin: EdgeInsets.all(30),
                 child: Form(
@@ -59,29 +60,32 @@ class _RestaurantSignUpScreenState extends State<RestaurantSignUpScreen> {
                         hint: "Your name",
                         index: 1,
                       ),
-                      Padding(padding: EdgeInsets.all(15)),
+                      Padding(padding: EdgeInsets.all(10)),
                       MyTextFormField(
                         "Phone number",
                         index: 2,
                         hint: "Your Phone number",
                         regex: 'PNSignUp',
                       ),
-                      Padding(padding: EdgeInsets.all(15)),
+                      Padding(padding: EdgeInsets.all(10)),
                       MyPassFormField(
                         'Password',
                         regex: 'PassSignUp',
                         hint: 'Your password',
                       ),
-                      Padding(padding: EdgeInsets.all(15)),
-                      MyTextFormField(
-                        "Address",
-                        hint: "Your Address",
-                        index: 3,
-                      ),
-                      Padding(padding: EdgeInsets.all(15)),
-                      MyTextFormField('Radius of works'),
+                      // Padding(padding: EdgeInsets.all(15)),
+                      // MyTextFormField(
+                      //   "Address",
+                      //   hint: "Your Address",
+                      //   index: 3,
+                      // ),
+
+                      // Padding(padding: EdgeInsets.all(15)),
+                      // MyTextFormField('Radius of works'),
+
                       // Padding(padding: EdgeInsets.all(15)),
                       //TimePicker for open and close
+
                       Padding(padding: EdgeInsets.all(10)),
                       Container(
                         margin: EdgeInsets.fromLTRB(0, 20, 166, 0),

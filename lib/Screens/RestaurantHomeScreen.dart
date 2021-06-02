@@ -62,10 +62,11 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
             children: [
               DrawerHeader(
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                    Colors.orange,
-                    Colors.deepOrange,
-                  ])),
+                    gradient: LinearGradient(colors: [
+                      Colors.orange,
+                      Colors.deepOrange,
+                    ]),
+                  ),
                   child: Text('here is header')),
               customListTile(Icons.person, 'Profile',
                   () => {Navigator.pushNamed(context, '/ProfileScreen')}),
@@ -137,7 +138,6 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                                 ),
                                 margin: EdgeInsets.only(left: 20),
                               ),
-
                             ],
                           ),
                           decoration: BoxDecoration(
@@ -163,7 +163,7 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                     children: [
                       Container(
                         child: Image.asset("assets/images/3.png"),
-                        width: 180 ,
+                        width: 180,
                       ),
                       GestureDetector(
                         onTap: () {
