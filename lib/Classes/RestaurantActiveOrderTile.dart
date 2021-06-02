@@ -3,6 +3,7 @@ import 'package:chfrestaurant/Common/Common%20Classes/Date.dart';
 import 'package:chfrestaurant/Common/Common%20Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantActiveOrderTile.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantActiveOrderTile extends StatefulWidget {
@@ -202,59 +203,161 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
         );
       },
       child: SizedBox(
-        height: 200,
-        child: Card(
-          child: ListTile(
-            title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(widget.clientName + "  " + widget.clientLastName),
-                  Text(widget.clientPhoneNumber),
-                ]),
-            subtitle: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Text(widget.id),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(widget.orderDate.dateFormatter()),
-                    Container(
-                      margin: EdgeInsets.only(top: 70),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(15)),
-                      child: DropdownButton(
-                        hint: Text("Order Status"),
-                        dropdownColor: Colors.grey,
-                        icon: Icon(Icons.arrow_drop_down),
-                        value: widget._orderStatus,
-                        onChanged: (newValue) {
-                          setState(() {
-                            String lastOrderStatus = widget.orderStatus;
-                            widget._orderStatus = newValue;
-                            if (widget.orderStatus == 'Finished') {
-                              finishedOrder();
-                              widget.orderStatus = lastOrderStatus;
-                            }
-                          });
-                        },
-                        items: panelItems.map((valueitem) {
-                          return DropdownMenuItem(
-                            value: valueitem,
-                            child: Text(valueitem),
-                          );
-                        }).toList(),
+        height: 250,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+          child: Card(
+            elevation: 10,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 220,
+              margin: EdgeInsets.all(12),
+              child: Card(
+                elevation: 7,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(left: 10),
+                              child: Padding(
+                                padding: EdgeInsets.only(left: 8),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Text(widget.clientName + "  " + widget.clientLastName,style: TextStyle(fontSize: 20),),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Icon(Icons.calendar_today),
+                                          Text(' ' +
+                                              widget.orderDate.dateFormatter().substring(
+                                                  0,
+                                                  widget.orderDate
+                                                      .dateFormatter()
+                                                      .indexOf(','))),
+                                          Icon(Icons.watch_later_outlined),
+                                          Text(widget.orderDate.dateFormatter().substring(
+                                              widget.orderDate
+                                                  .dateFormatter()
+                                                  .indexOf(',') +
+                                                  1)),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(Icons.location_on),
+                                        Text(widget.clientAddress),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    )
-                  ],
-                )
-              ],
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 30, 10, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 0),
+                              padding: EdgeInsets.all(5),
+                              child: DropdownButton(
+                                hint: Text("Order Status"),
+                                dropdownColor: Colors.grey,
+                                icon: Icon(Icons.arrow_drop_down),
+                                value: widget._orderStatus,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    String lastOrderStatus = widget.orderStatus;
+                                    widget._orderStatus = newValue;
+                                    if (widget.orderStatus == 'Finished') {
+                                      finishedOrder();
+                                      widget.orderStatus = lastOrderStatus;
+                                    }
+                                  });
+                                },
+                                items: panelItems.map((valueitem) {
+                                  return DropdownMenuItem(
+                                    value: valueitem,
+                                    child: Text(valueitem),
+                                  );
+                                }).toList(),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ),
+            // child: ListTile(
+            //   title: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: [
+            //         Text(widget.clientName + "  " + widget.clientLastName),
+            //         Text(widget.clientPhoneNumber),
+            //       ]),
+            //   subtitle: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Column(
+            //         children: [
+            //           Text(widget.id),
+            //         ],
+            //       ),
+            //       Column(
+            //         children: [
+            //           Text(widget.orderDate.dateFormatter()),
+            //           Container(
+            //             margin: EdgeInsets.only(top: 15),
+            //             padding: EdgeInsets.all(5),
+            //             child: DropdownButton(
+            //               hint: Text("Order Status"),
+            //               dropdownColor: Colors.grey,
+            //               icon: Icon(Icons.arrow_drop_down),
+            //               value: widget._orderStatus,
+            //               onChanged: (newValue) {
+            //                 setState(() {
+            //                   String lastOrderStatus = widget.orderStatus;
+            //                   widget._orderStatus = newValue;
+            //                   if (widget.orderStatus == 'Finished') {
+            //                     finishedOrder();
+            //                     widget.orderStatus = lastOrderStatus;
+            //                   }
+            //                 });
+            //               },
+            //               items: panelItems.map((valueitem) {
+            //                 return DropdownMenuItem(
+            //                   value: valueitem,
+            //                   child: Text(valueitem),
+            //                 );
+            //               }).toList(),
+            //             ),
+            //           )
+            //         ],
+            //       )
+            //     ],
+            //   ),
+            // ),
           ),
         ),
       ),

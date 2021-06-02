@@ -34,11 +34,13 @@ class _customListTileState extends State<customListTile> {
                   Icon(widget.icon),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      widget.text,
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  )
+                    child: Text(widget.text,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'HotPizza',
+                        )),
+                  ),
                 ],
               ),
               Icon(Icons.arrow_right),
@@ -105,11 +107,17 @@ class _RestaurantMainMenuScreenState extends State<RestaurantMainMenuScreen> {
               DrawerHeader(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(colors: [
-                      Colors.orange,
-                      Colors.deepOrange,
+                      Theme.of(context).primaryColor,
+                      Colors.deepOrange
                     ]),
                   ),
-                  child: Text('here is header')),
+                  child: Center(
+                    child: Container(
+                      child: Image.asset(
+                        "assets/images/6.png",
+                      ),
+                    ),
+                  )),
               customListTile(Icons.person, 'Profile',
                   () => {Navigator.pushNamed(context, '/ProfileScreen')}),
               customListTile(Icons.phone, 'Contact Us', () => {}),

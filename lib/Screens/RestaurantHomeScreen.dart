@@ -83,6 +83,11 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                   margin: EdgeInsets.fromLTRB(30, 4, 0, 0),
                   child: Row(
                     children: [
+                      Container(
+                        child: Image.asset("assets/images/7.png"),
+                        height: 120,
+                        width: 160,
+                      ),
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, '/MenuEdition');
@@ -91,22 +96,23 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                           child: Row(
                             children: [
                               Container(
-                                margin: EdgeInsets.only(left: 20),
-                                child: Text("Menu Edition"),
-                              ),
-                              Container(
-                                child: Icon(
-                                  Icons.edit_rounded,
-                                  size: 35,
-                                ),
-                                margin: EdgeInsets.only(left: 20),
+                                margin: EdgeInsets.only(left: 40),
+                                child: Text("Menu Edition",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'HotPizza',
+                                      shadows: <Shadow>[
+                                        Shadow(
+                                          offset: Offset(6, 4),
+                                          blurRadius: 2,
+                                          color: Colors.grey,
+                                        )
+                                      ],
+                                    )),
                               ),
                             ],
                           ),
-                          decoration: BoxDecoration(
-                              border: Border.all(width: 1, color: Colors.pink),
-                              borderRadius: const BorderRadius.all(
-                                  const Radius.circular(8))),
                           width: 170,
                           height: 120,
                         ),
@@ -129,21 +135,22 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                             children: [
                               Container(
                                 margin: EdgeInsets.only(left: 20),
-                                child: Text("Orders History"),
-                              ),
-                              Container(
-                                child: Icon(
-                                  Icons.edit_rounded,
-                                  size: 35,
-                                ),
-                                margin: EdgeInsets.only(left: 20),
+                                child: Text("Orders History",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'HotPizza',
+                                      shadows: <Shadow>[
+                                        Shadow(
+                                          offset: Offset(6, 4),
+                                          blurRadius: 2,
+                                          color: Colors.grey,
+                                        )
+                                      ],
+                                    )),
                               ),
                             ],
                           ),
-                          decoration: BoxDecoration(
-                              border: Border.all(width: 1, color: Colors.pink),
-                              borderRadius: const BorderRadius.all(
-                                  const Radius.circular(8))),
                           width: 170,
                           height: 120,
                         ),
@@ -177,22 +184,22 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                           child: Row(
                             children: [
                               Container(
-                                margin: EdgeInsets.only(left: 20),
-                                child: Text("Calculator"),
-                              ),
-                              Container(
-                                child: Icon(
-                                  Icons.edit_rounded,
-                                  size: 35,
-                                ),
-                                margin: EdgeInsets.only(left: 20),
+                                margin: EdgeInsets.only(left: 50),
+                                child: Text("Calculator",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'HotPizza',
+                                      shadows: <Shadow>[
+                                        Shadow(
+                                          offset: Offset(6, 4),
+                                          blurRadius: 2,
+                                          color: Colors.grey,
+                                        )
+                                      ],
+                                    )),
                               ),
                             ],
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 1, color: Colors.pink),
-                            borderRadius: const BorderRadius.all(
-                                const Radius.circular(8)),
                           ),
                           width: 170,
                           height: 120,
@@ -215,21 +222,22 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                             children: [
                               Container(
                                 margin: EdgeInsets.only(left: 20),
-                                child: Text("Comments"),
-                              ),
-                              Container(
-                                child: Icon(
-                                  Icons.edit_rounded,
-                                  size: 35,
-                                ),
-                                margin: EdgeInsets.only(left: 20),
+                                child: Text("Comments",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'HotPizza',
+                                      shadows: <Shadow>[
+                                        Shadow(
+                                          offset: Offset(6, 4),
+                                          blurRadius: 2,
+                                          color: Colors.grey,
+                                        )
+                                      ],
+                                    )),
                               ),
                             ],
                           ),
-                          decoration: BoxDecoration(
-                              border: Border.all(width: 1, color: Colors.pink),
-                              borderRadius: const BorderRadius.all(
-                                  const Radius.circular(8))),
                           width: 170,
                           height: 120,
                         ),
