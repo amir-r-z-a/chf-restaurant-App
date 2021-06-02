@@ -2,15 +2,12 @@
 
 A new Flutter application.
 
-## Getting Started
+this is an application for handeling resturants . 
 
-This project is a starting point for a Flutter application.
+here are some photos of this app .
 
-A few resources to get you started if this is your first Flutter project:
+#photos :
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+![Restaurant_photos2](https://user-images.githubusercontent.com/79783493/120555547-78321100-c410-11eb-88d3-0128d5024cc9.jpg)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
