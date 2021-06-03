@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: "CHFood",
-        theme: ThemeData(primaryColor: const Color.fromRGBO(248, 95, 106, 1)),
+        theme: ThemeData(primaryColor: const Color.fromRGBO(248, 95, 106, 1),),
         routes: {
           '/SignInScreen': (context) => RestaurantSignInScreen(),
           '/SignUpScreen': (context) => RestaurantSignUpScreen(),
@@ -54,9 +54,9 @@ class _MyAppState extends State<MyApp> {
           '/DetailsTopTenFoodTile': (context) => DetailsTopTenFoodTile(),
           '/TopTenFoodsScreen': (context) => TopTenFoodsScreen(),
         },
-        home: RestaurantMainMenuScreen()
-        // SplashScreen()
-        /*TopTenFoodsScreen()*/ /*MenuEdition()*/ /*RestaurantSignInScreen()*/ /*ActiveOrdersScreen()*/
+        home: /*RestaurantMainMenuScreen()*/
+            // SplashScreen()
+            /*TopTenFoodsScreen()*/ /*MenuEdition()*/ RestaurantSignInScreen() /*ActiveOrdersScreen()*/
         /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
         /*RestaurantMainMenuScreen()*/ /*RestaurantActiveOrderTile([
           Food(
