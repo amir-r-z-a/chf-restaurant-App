@@ -17,7 +17,7 @@ class MyTextFormField extends StatelessWidget {
   static String foodPrice;
 
   static String reply;
-
+  static double radiusOfWork ;
   String label;
   String hint;
   String regex;
@@ -69,6 +69,9 @@ class MyTextFormField extends StatelessWidget {
               : email = value;
         } else if (index == 9) {
           reply = value;
+        }
+        else if (index==10){
+          radiusOfWork = double.parse(value) ;
         }
       },
       validator: (String value) {

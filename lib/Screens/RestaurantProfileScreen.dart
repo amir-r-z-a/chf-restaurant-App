@@ -51,6 +51,7 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
 
   var _formkey = GlobalKey<FormState>();
   var _key1 = GlobalKey<FormState>();
+  var _key2=GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -212,15 +213,29 @@ class _RestaurantProfileScreenState extends State<RestaurantProfileScreen> {
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 Padding(padding: EdgeInsets.all(10)),
-                MyTextFormField(
-                  'Address',
-                  index: 3,
-                  addToAccounts: true,
-                  initial: Accounts.accounts[Accounts.currentAccount].address,
-                  hint: 'Edit Your Address',
-                ),
+                Form(
+                  key: _key2 ,
+                    child: Column(
+                  children: [
+                    MyTextFormField(
+                      'Address',
+                      index: 3,
+                      addToAccounts: true,
+                      initial: Accounts.accounts[Accounts.currentAccount].address,
+                      hint: 'Edit Your Address',
+                    ),
+                    MyTextFormField('Radius of works',index: 10,),
+                    ElevatedButton(onPressed: (){
+                      if(_key2.currentState.validate()){
+                        _key2.currentState.save();
+                        Accounts.accounts[Accounts.currentAccount].radiusOfWork = MyTextFormField.radiusOfWork ;
+                      }
+                    },
+                        style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
+                     child: Text("Save"))
+                  ],
+                )),
                 // Padding(padding: EdgeInsets.all(10)),
-                MyTextFormField('Radius of works'),
                 Padding(padding: EdgeInsets.all(10)),
                 Column(
                   children: [
