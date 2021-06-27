@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:search_page/search_page.dart';
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
@@ -352,7 +352,27 @@ class _MenuEditionState extends State<MenuEdition> {
           actions: <Widget>[
             Padding(
               padding: const EdgeInsets.only(right: 16.0),
-              child: Icon(Icons.search),
+              child: IconButton(
+                icon:Icon( Icons.search),
+                onPressed: (){
+                  print("s");
+                  showSearch(
+                      context: context,
+                      delegate: SearchPage<RestaurantFoodTile>(
+                          onQueryUpdate: (s) => print(s),
+                          searchLabel: 'Search people',
+                          suggestion: Center(
+                            child: Text('Filter restaurants by name'),
+                          ),
+                          failure:
+                          Center(child: Text('No restaurant found :(')),
+                          builder: (RestaurantFoodTile rs) =>
+                          rs ,
+                          filter: (RestaurantFoodTile rt) =>
+                          [rt.name],
+                          items:Accounts.accounts[Accounts.currentAccount].restaurantTabBarView[0]));
+                },
+              )
             ),
           ],
         ),

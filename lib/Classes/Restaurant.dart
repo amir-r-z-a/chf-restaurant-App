@@ -20,7 +20,7 @@ class Restaurant {
   String _address;
   RestaurantTypes _type;
   Map _tabBarTitle = {0: 'All'};
-  Map _restaurantTabBarView = {0: []};
+  Map <int , List<RestaurantFoodTile>>_restaurantTabBarView = {0: []};
   Map _listOfFood = {0: []};
   double _radiusOfWork;
   double _point;
@@ -97,13 +97,12 @@ class Restaurant {
     int len = getTabBarTitleLength();
     tabBarTitle[len] = title;
     listOfFood[len] = [];
-    restaurantTabBarView[len] = [];
+    restaurantTabBarView[len] = List<RestaurantFoodTile>();
     restaurantComments[len] = [];
     if (addFood) {
       addTabBarViewElements(food, len);
     }
   }
-
   bool validCategory(String input) {
     if (input == 'All' || input == 'all') {
       return true;
