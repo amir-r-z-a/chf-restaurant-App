@@ -206,62 +206,64 @@ class _RestaurantSignInScreenState extends State<RestaurantSignInScreen> {
   }
 
   void runMenu(Restaurant restaurant) async {
-    String listen = '';
-    await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
-      print('connected writer');
-      String write = 'RestaurantGetData-categories-' + MyApp.id;
-      write = (write.length + 11).toString() + ',Restaurant-' + write;
-      serverSocket.write(write);
-      serverSocket.flush();
-      print('write: ' + write);
-      print('connected listen');
-      serverSocket.listen((socket) {
-        listen = String.fromCharCodes(socket).trim().substring(2);
-      }).onDone(() async {
-        print("listen: " + listen);
-        if (listen != null && listen.isNotEmpty && listen != ' All') {
-          List<String> split = listen.split(', ');
-          for (int i = 1; i < split.length; i++) {
-            restaurant.addTabBarTitle(split[i], null, addFood: false);
-          }
-          String listenFood = '';
-          await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
-            print('connected writer');
-            String write = 'RestaurantGetData-menu-' + MyApp.id;
-            write = (write.length + 11).toString() + ',Restaurant-' + write;
-            serverSocket.write(write);
-            serverSocket.flush();
-            print('write: ' + write);
-            print('connected listen');
-            serverSocket.listen((socket) {
-              listenFood = String.fromCharCodes(socket).trim().substring(2);
-            }).onDone(() {
-              print("listen: " + listenFood);
-              if (listenFood != null && listenFood.isNotEmpty) {
-                List<String> menu = listenFood.split('\n');
-                for (int i = 0; i < menu.length; i++) {
-                  List<String> strings = menu[i].split(', ');
-                  List<String> firstString = strings[0].split(':');
-                  if (firstString[1] != 'All') {
-                    RestaurantFoodTile food = RestaurantFoodTile(
-                      firstString[2],
-                      strings[2],
-                      strings[3] == 'true',
-                      firstString[1],
-                      desc: (strings[1] == 'null' ? '' : strings[1]),
-                      orderCount: int.parse(strings[4]),
-                    );
-                    food.orderCount = int.parse(strings[4]);
-                    restaurant.addTabBarViewElements(
-                        food, split.indexOf(firstString[1]));
+    if (restaurant != null) {
+      String listen = '';
+      await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+        print('connected writer');
+        String write = 'RestaurantGetData-categories-' + MyApp.id;
+        write = (write.length + 11).toString() + ',Restaurant-' + write;
+        serverSocket.write(write);
+        serverSocket.flush();
+        print('write: ' + write);
+        print('connected listen');
+        serverSocket.listen((socket) {
+          listen = String.fromCharCodes(socket).trim().substring(2);
+        }).onDone(() async {
+          print("listen: " + listen);
+          if (listen != null && listen.isNotEmpty && listen != ' All') {
+            List<String> split = listen.split(', ');
+            for (int i = 1; i < split.length; i++) {
+              restaurant.addTabBarTitle(split[i], null, addFood: false);
+            }
+            String listenFood = '';
+            await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+              print('connected writer');
+              String write = 'RestaurantGetData-menu-' + MyApp.id;
+              write = (write.length + 11).toString() + ',Restaurant-' + write;
+              serverSocket.write(write);
+              serverSocket.flush();
+              print('write: ' + write);
+              print('connected listen');
+              serverSocket.listen((socket) {
+                listenFood = String.fromCharCodes(socket).trim().substring(2);
+              }).onDone(() {
+                print("listen: " + listenFood);
+                if (listenFood != null && listenFood.isNotEmpty) {
+                  List<String> menu = listenFood.split('\n');
+                  for (int i = 0; i < menu.length; i++) {
+                    List<String> strings = menu[i].split(', ');
+                    List<String> firstString = strings[0].split(':');
+                    if (firstString[1] != 'All') {
+                      RestaurantFoodTile food = RestaurantFoodTile(
+                        firstString[2],
+                        strings[2],
+                        strings[3] == 'true',
+                        firstString[1],
+                        desc: (strings[1] == 'null' ? '' : strings[1]),
+                        orderCount: int.parse(strings[4]),
+                      );
+                      food.orderCount = int.parse(strings[4]);
+                      restaurant.addTabBarViewElements(
+                          food, split.indexOf(firstString[1]));
+                    }
                   }
                 }
-              }
+              });
             });
-          });
-        }
+          }
+        });
       });
-    });
+    }
   }
 
   Restaurant start(String ans) {
@@ -300,6 +302,7 @@ class _RestaurantSignInScreenState extends State<RestaurantSignInScreen> {
       print('start');
       return restaurant;
     }
+    return null;
   }
 }
 //hint signup yekish bozorge yekish koochik
