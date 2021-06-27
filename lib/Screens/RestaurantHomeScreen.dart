@@ -1,4 +1,10 @@
+import 'dart:io';
+
 import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Classes/RestaurantInactiveOrderTile.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/Date.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/Food.dart';
+import 'package:chfrestaurant/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -53,28 +59,73 @@ class RestaurantHomeScreen extends StatefulWidget {
 }
 
 class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
+  void socketOrdersHistory(String listen) {
+    if (listen != 'invalid...invalid...invalid') {
+      Accounts.accounts[Accounts.currentAccount].ordersHistory = [];
+      List<String> split = listen.split('...');
+      List<String> data = split[0].split('\n');
+      List<String> foods = split[1].split('\n');
+      List<String> numbers = split[2].split('\n');
+      for (int i = 0; i < data.length; i++) {
+        List<String> foodsElements = foods[i].split('+');
+        List<Food> foodsAns = [];
+        for (int j = 0; j < foodsElements.length; j++) {
+          List<String> foodIndex = foodsElements[j].split(', ');
+          foodsAns.add(Food(foodIndex[1], foodIndex[3], true, foodIndex[0],
+              desc: foodIndex[2] == 'null' ? '' : foodIndex[2]));
+        }
+        List<String> numbersElements = numbers[i].split(', ');
+        List<int> numbersAns = [];
+        for (int j = 0; j < numbersElements.length; j++) {
+          numbersAns.add(int.parse(numbersElements[j]));
+        }
+        List<String> dataAns = data[i].split(', ');
+        List<String> dateElements = dataAns[5].split(':');
+        Accounts.accounts[Accounts.currentAccount].ordersHistory.add(
+            RestaurantInactiveOrderTile(
+                foodsAns,
+                numbersAns,
+                Date(
+                    dateElements[0].substring(dateElements[0].indexOf('(') + 1),
+                    dateElements[1],
+                    dateElements[2],
+                    dateElements[3],
+                    dateElements[4],
+                    dateElements[5].substring(0, dateElements[5].indexOf(')'))),
+                dataAns[2],
+                dataAns[3],
+                dataAns[1],
+                // _clientLastName,
+                dataAns[0],
+                double.parse(dataAns[7]),
+                dataAns[6] == 'true',
+                int.parse(dataAns[8])));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        drawer: Drawer(
-          child: ListView(
-            children: [
-              DrawerHeader(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Colors.orange,
-                      Colors.deepOrange,
-                    ]),
-                  ),
-                  child: Text('here is header')),
-              customListTile(Icons.person, 'Profile',
-                  () => {Navigator.pushNamed(context, '/ProfileScreen')}),
-              customListTile(Icons.phone, 'Contact Us', () => {}),
-              customListTile(Icons.logout, "Log Out", () => {}),
-            ],
-          ),
-        ),
+        // drawer: Drawer(
+        //   child: ListView(
+        //     children: [
+        //       DrawerHeader(
+        //           decoration: BoxDecoration(
+        //             gradient: LinearGradient(colors: [
+        //               Colors.orange,
+        //               Colors.deepOrange,
+        //             ]),
+        //           ),
+        //           child: Text('here is header')),
+        //       customListTile(Icons.person, 'Profile',
+        //           () => {Navigator.pushNamed(context, '/ProfileScreen')}),
+        //       customListTile(Icons.phone, 'Contact Us', () => {}),
+        //       customListTile(Icons.logout, "Log Out", () => {}),
+        //     ],
+        //   ),
+        // ),
         body: Container(
           child: SingleChildScrollView(
             child: Column(
@@ -126,8 +177,38 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/OrdersHistoryScreen');
+                        onTap: () async {
+                          String listen = '';
+                          await Socket.connect(MyApp.ip, 2442)
+                              .then((serverSocket) {
+                            print('connected writer');
+                            String write =
+                                'RestaurantOrders-RestaurantOrdersHistoryData-' +
+                                    MyApp.id +
+                                    '-' +
+                                    'RestaurantOrdersHistoryFoodNames-' +
+                                    MyApp.id +
+                                    '-' +
+                                    'RestaurantOrdersHistoryNumbers-' +
+                                    MyApp.id;
+                            write = (write.length + 11).toString() +
+                                ',Restaurant-' +
+                                write;
+                            serverSocket.write(write);
+                            serverSocket.flush();
+                            print('write: ' + write);
+                            print('connected listen');
+                            serverSocket.listen((socket) {
+                              listen = String.fromCharCodes(socket)
+                                  .trim()
+                                  .substring(2);
+                            }).onDone(() {
+                              print("listen: " + listen);
+                              socketOrdersHistory(listen);
+                              Navigator.pushNamed(
+                                  context, '/OrdersHistoryScreen');
+                            });
+                          });
                         },
                         child: Container(
                           child: Row(
@@ -173,12 +254,41 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                         width: 180,
                       ),
                       GestureDetector(
-                        onTap: () {
-                          Accounts.accounts[Accounts.currentAccount]
-                              .calculator();
-                          Accounts.accounts[Accounts.currentAccount]
-                              .sumNumberCalculator();
-                          Navigator.pushNamed(context, '/CalculatorScreen');
+                        onTap: () async {
+                          String listen = '';
+                          await Socket.connect(MyApp.ip, 2442)
+                              .then((serverSocket) {
+                            print('connected writer');
+                            String write =
+                                'RestaurantOrders-RestaurantOrdersHistoryData-' +
+                                    MyApp.id +
+                                    '-' +
+                                    'RestaurantOrdersHistoryFoodNames-' +
+                                    MyApp.id +
+                                    '-' +
+                                    'RestaurantOrdersHistoryNumbers-' +
+                                    MyApp.id;
+                            write = (write.length + 11).toString() +
+                                ',Restaurant-' +
+                                write;
+                            serverSocket.write(write);
+                            serverSocket.flush();
+                            print('write: ' + write);
+                            print('connected listen');
+                            serverSocket.listen((socket) {
+                              listen = String.fromCharCodes(socket)
+                                  .trim()
+                                  .substring(2);
+                            }).onDone(() {
+                              print("listen: " + listen);
+                              socketOrdersHistory(listen);
+                              Accounts.accounts[Accounts.currentAccount]
+                                  .calculator();
+                              Accounts.accounts[Accounts.currentAccount]
+                                  .sumNumberCalculator();
+                              Navigator.pushNamed(context, '/CalculatorScreen');
+                            });
+                          });
                         },
                         child: Container(
                           child: Row(

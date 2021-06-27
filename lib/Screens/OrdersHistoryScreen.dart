@@ -118,7 +118,7 @@ class _OrdersHistoryScreenState extends State<OrdersHistoryScreen> {
 
   Widget MyOnChip(String input, int index) {
     return FilterChip(
-      backgroundColor: Colors.blue,
+      backgroundColor: Theme.of(context).primaryColor,
       avatar: Icon(
         Icons.check,
         color: Colors.white,

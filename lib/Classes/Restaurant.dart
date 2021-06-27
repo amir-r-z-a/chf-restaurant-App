@@ -38,9 +38,11 @@ class Restaurant {
   Map discountCode = {5: [], 10: [], 25: [], 50: [], 100: []};
   List<TopTenFoodTile> topTenFoods = [];
   LatLng _location;
+  String open;
+  String close;
 
-  Restaurant(
-      this._name, this._phoneNumber, this._password, this._address, this._type);
+  Restaurant(this._name, this._phoneNumber, this._password, this.open,
+      this.close, this._type);
 
   int getTabBarTitleLength() {
     return tabBarTitle.length;
@@ -90,13 +92,16 @@ class Restaurant {
     }
   }
 
-  void addTabBarTitle(String title, RestaurantFoodTile food) {
+  void addTabBarTitle(String title, RestaurantFoodTile food,
+      {bool addFood = true}) {
     int len = getTabBarTitleLength();
     tabBarTitle[len] = title;
     listOfFood[len] = [];
     restaurantTabBarView[len] = [];
     restaurantComments[len] = [];
-    addTabBarViewElements(food, len);
+    if (addFood) {
+      addTabBarViewElements(food, len);
+    }
   }
 
   bool validCategory(String input) {
@@ -177,11 +182,11 @@ class Restaurant {
   }
 
   void addOrder(RestaurantActiveOrderTile restaurantActiveOrderTile) {
-    restaurantActiveOrderTile.sumPrice =
-        sumPriceCalculator(restaurantActiveOrderTile);
-    restaurantActiveOrderTile.sumNumberOfFoods =
-        sumNumberOfFoodsCalculator(restaurantActiveOrderTile);
-    restaurantActiveOrderTile.id = ordersIDGenerator(restaurantActiveOrderTile);
+    // restaurantActiveOrderTile.sumPrice =
+    //     sumPriceCalculator(restaurantActiveOrderTile);
+    // restaurantActiveOrderTile.sumNumberOfFoods =
+    //     sumNumberOfFoodsCalculator(restaurantActiveOrderTile);
+    // restaurantActiveOrderTile.id = ordersIDGenerator(restaurantActiveOrderTile);
     activeOrders.add(restaurantActiveOrderTile);
     topTenCalculator(restaurantActiveOrderTile);
   }
@@ -189,66 +194,66 @@ class Restaurant {
   void inactiveOrder(String input) {
     for (int i = 0; i < getActiveOrdersLength(); i++) {
       if (activeOrders[i].id == input) {
-        ordersHistory.add(RestaurantInactiveOrderTile(
-            activeOrders[i].foods,
-            activeOrders[i].numberOfFoods,
-            activeOrders[i].orderDate,
-            activeOrders[i].clientPhoneNumber,
-            activeOrders[i].clientAddress,
-            activeOrders[i].clientName,
-            activeOrders[i].clientLastName,
-            activeOrders[i].id,
-            activeOrders[i].sumPrice,
-            activeOrders[i].onlinePayment,
-            activeOrders[i].sumNumberOfFoods));
+        // ordersHistory.add(RestaurantInactiveOrderTile(
+        //     activeOrders[i].foods,
+        //     activeOrders[i].numberOfFoods,
+        //     activeOrders[i].orderDate,
+        //     activeOrders[i].clientPhoneNumber,
+        //     activeOrders[i].clientAddress,
+        //     activeOrders[i].clientName,
+        //     // activeOrders[i].clientLastName,
+        //     activeOrders[i].id,
+        //     activeOrders[i].sumPrice,
+        //     activeOrders[i].onlinePayment,
+        //     activeOrders[i].sumNumberOfFoods));
         activeOrders.removeAt(i);
       }
     }
   }
 
-  double sumPriceCalculator(
-      RestaurantActiveOrderTile restaurantActiveOrderTile) {
-    double sum = 0;
-    for (int i = 0; i < restaurantActiveOrderTile.foods.length; i++) {
-      sum += double.parse(restaurantActiveOrderTile.foods[i].price) *
-          restaurantActiveOrderTile.numberOfFoods[i];
-    }
-    return sum;
-  }
+  // double sumPriceCalculator(
+  //     RestaurantActiveOrderTile restaurantActiveOrderTile) {
+  //   double sum = 0;
+  //   for (int i = 0; i < restaurantActiveOrderTile.foods.length; i++) {
+  //     sum += double.parse(restaurantActiveOrderTile.foods[i].price) *
+  //         restaurantActiveOrderTile.numberOfFoods[i];
+  //   }
+  //   return sum;
+  // }
+  //
+  // int sumNumberOfFoodsCalculator(
+  //     RestaurantActiveOrderTile restaurantActiveOrderTile) {
+  //   int sum = 0;
+  //   for (int i = 0; i < restaurantActiveOrderTile.numberOfFoods.length; i++) {
+  //     sum += restaurantActiveOrderTile.numberOfFoods[i];
+  //   }
+  //   return sum;
+  // }
 
-  int sumNumberOfFoodsCalculator(
-      RestaurantActiveOrderTile restaurantActiveOrderTile) {
-    int sum = 0;
-    for (int i = 0; i < restaurantActiveOrderTile.numberOfFoods.length; i++) {
-      sum += restaurantActiveOrderTile.numberOfFoods[i];
-    }
-    return sum;
-  }
-
-  String ordersIDGenerator(
-      RestaurantActiveOrderTile restaurantActiveOrderTile) {
-    bool flag;
-    String randomID;
-    do {
-      flag = false;
-      randomID = '#' +
-          String.fromCharCode(
-              restaurantActiveOrderTile.clientName.codeUnitAt(0)) +
-          String.fromCharCode(
-              restaurantActiveOrderTile.clientLastName.codeUnitAt(0)) +
-          restaurantActiveOrderTile.clientPhoneNumber.substring(
-              restaurantActiveOrderTile.clientPhoneNumber.length - 4) +
-          '-' +
-          (Random().nextInt(8999) + 1000).toString();
-      for (int i = 0; i < getActiveOrdersLength(); i++) {
-        if (activeOrders[i].id == randomID) {
-          flag = true;
-          break;
-        }
-      }
-    } while (flag);
-    return randomID;
-  }
+  // String ordersIDGenerator(
+  //     RestaurantActiveOrderTile restaurantActiveOrderTile) {
+  //   bool flag;
+  //   String randomID;
+  //   do {
+  //     flag = false;
+  //     randomID = '#' +
+  //         String.fromCharCode(
+  //             restaurantActiveOrderTile.clientName.codeUnitAt(0)) +
+  //         String.fromCharCode(
+  //             restaurantActiveOrderTile.clientLastName.codeUnitAt(0)) +
+  //         restaurantActiveOrderTile.clientPhoneNumber.substring(
+  //             restaurantActiveOrderTile.clientPhoneNumber.length - 4) +
+  //         '-' +
+  //         (Random().nextInt(8999) + 1000).toString();
+  //     for (int i = 0; i < getActiveOrdersLength(); i++) {
+  //       if (activeOrders[i].id == randomID) {
+  //         flag = true;
+  //         break;
+  //       }
+  //     }
+  //   } while (flag);
+  //   return randomID;
+  // }
 
   // String commentsIDGenerator(CommentTile commentTile) {
   //   bool flag;

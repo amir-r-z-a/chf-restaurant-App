@@ -12,7 +12,8 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
   String _clientPhoneNumber;
   String _clientAddress;
   String _clientName;
-  String _clientLastName;
+
+  // String _clientLastName;
   String _id;
   double _sumPrice;
   int _sumNumberOfFoods;
@@ -27,7 +28,7 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
       this._clientPhoneNumber,
       this._clientAddress,
       this._clientName,
-      this._clientLastName,
+      // this._clientLastName,
       this._id,
       this._sumPrice,
       this._onlinePayment,
@@ -71,11 +72,11 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
     _clientName = value;
   }
 
-  String get clientLastName => _clientLastName;
-
-  set clientLastName(String value) {
-    _clientLastName = value;
-  }
+  // String get clientLastName => _clientLastName;
+  //
+  // set clientLastName(String value) {
+  //   _clientLastName = value;
+  // }
 
   String get id => _id;
 
@@ -112,7 +113,7 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         DetailsRestaurantActiveOrderTile.clientName = clientName;
-        DetailsRestaurantActiveOrderTile.clientLastName = clientLastName;
+        // DetailsRestaurantActiveOrderTile.clientLastName = clientLastName;
         DetailsRestaurantActiveOrderTile.clientAddress = clientAddress;
         DetailsRestaurantActiveOrderTile.clientPhoneNumber = clientPhoneNumber;
         DetailsRestaurantActiveOrderTile.foods = foods;
@@ -130,7 +131,7 @@ class RestaurantInactiveOrderTile extends StatelessWidget {
             title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(clientName + "  " + clientLastName),
+                  Text(clientName /* + "  " + clientLastName*/),
                   Text(clientPhoneNumber),
                 ]),
             subtitle: Row(

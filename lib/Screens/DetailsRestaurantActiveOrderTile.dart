@@ -15,7 +15,7 @@ class DetailsRestaurantActiveOrderTile extends StatefulWidget {
   static String clientPhoneNumber;
   static String clientAddress;
   static String clientName;
-  static String clientLastName;
+  // static String clientLastName;
   static String id;
   static double sumPrice;
   static int sumNumberOfFoods;
@@ -60,9 +60,9 @@ class _DetailsRestaurantActiveOrderTileState
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(DetailsRestaurantActiveOrderTile.clientName +
+                          Text(DetailsRestaurantActiveOrderTile.clientName /*+
                               " " +
-                              DetailsRestaurantActiveOrderTile.clientLastName),
+                              DetailsRestaurantActiveOrderTile.clientLastName*/),
                           Text(DetailsRestaurantActiveOrderTile
                               .clientPhoneNumber)
                         ],

@@ -1,11 +1,20 @@
+import 'dart:io';
+
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/RestaurantFoodTile.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantActiveOrderTile.dart';
+import 'package:chfrestaurant/Screens/RestaurantProfileScreen.dart';
+import 'package:chfrestaurant/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MenuEdition extends StatefulWidget {
+  // static List<String> tabBarTitle = [];
+
+  // static int tabBarTitleLength;
+
+  // static List<RestaurantFoodTile>
   @override
   _MenuEditionState createState() => _MenuEditionState();
 }
@@ -15,6 +24,92 @@ class _MenuEditionState extends State<MenuEdition> {
 
   void refreshPage() {
     setState(() {});
+  }
+
+  void navigateToProfileScreen() async {
+    String listen = '';
+    await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+      print('connected writer');
+      String write = 'RestaurantGetData-name-' + MyApp.id;
+      write = (write.length + 11).toString() + ',Restaurant-' + write;
+      serverSocket.write(write);
+      serverSocket.flush();
+      print('write: ' + write);
+      print('connected listen');
+      serverSocket.listen((socket) {
+        listen = String.fromCharCodes(socket).trim().substring(2);
+      }).onDone(() async {
+        print("listen: " + listen);
+        RestaurantProfileScreen.initialName = listen;
+        String listenEmail = '';
+        await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+          print('connected writer');
+          String write = 'RestaurantGetData-email-' + MyApp.id;
+          write = (write.length + 11).toString() + ',Restaurant-' + write;
+          serverSocket.write(write);
+          serverSocket.flush();
+          print('write: ' + write);
+          print('connected listen');
+          serverSocket.listen((socket) {
+            listenEmail = String.fromCharCodes(socket).trim().substring(2);
+          }).onDone(() async {
+            print("listen: " + listenEmail);
+            RestaurantProfileScreen.initialEmail = listenEmail;
+            if (RestaurantProfileScreen.initialEmail == 'null') {
+              RestaurantProfileScreen.initialEmail = '';
+            }
+            String listenAddress = '';
+            await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+              print('connected writer');
+              String write = 'RestaurantGetData-address-' + MyApp.id;
+              write = (write.length + 11).toString() + ',Restaurant-' + write;
+              serverSocket.write(write);
+              serverSocket.flush();
+              print('write: ' + write);
+
+              print('connected listen');
+              serverSocket.listen((socket) {
+                listenAddress =
+                    String.fromCharCodes(socket).trim().substring(2);
+              }).onDone(() async {
+                print("listen: " + listenAddress);
+                RestaurantProfileScreen.initialAddress = listenAddress;
+                if (RestaurantProfileScreen.initialAddress == 'null') {
+                  RestaurantProfileScreen.initialAddress = '';
+                }
+                String listenRadius = '';
+                await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+                  print('connected writer');
+                  String write = 'RestaurantGetData-radius-' + MyApp.id;
+                  write =
+                      (write.length + 11).toString() + ',Restaurant-' + write;
+                  serverSocket.write(write);
+                  serverSocket.flush();
+                  print('write: ' + write);
+                  print('connected listen');
+                  serverSocket.listen((socket) {
+                    listenRadius =
+                        String.fromCharCodes(socket).trim().substring(2);
+                  }).onDone(() {
+                    print("listen: " + listenRadius);
+                    RestaurantProfileScreen.initialRadius = listenRadius;
+                    if (RestaurantProfileScreen.initialRadius == 'null') {
+                      RestaurantProfileScreen.initialRadius = '';
+                    }
+                    print('success initialize');
+                    print('name: ' + RestaurantProfileScreen.initialName);
+                    print('email: ' + RestaurantProfileScreen.initialEmail);
+                    print('address: ' + RestaurantProfileScreen.initialAddress);
+                    print('radius: ' + RestaurantProfileScreen.initialRadius);
+                    Navigator.pushNamed(context, '/ProfileScreen');
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    });
   }
 
   void nullAddress(bool flag) {
@@ -30,15 +125,17 @@ class _MenuEditionState extends State<MenuEdition> {
             children: [
               Text('Unregistered ' +
                   (flag ? 'address' : 'Radius of work') +
-                  ', Please register the address first'),
+                  ', Please register' +
+                  (flag ? ' address' : 'Radius of work') +
+                  ' first'),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
                     style: TextButton.styleFrom(
                         primary: Theme.of(context).primaryColor),
-                    onPressed: () =>
-                        Navigator.pushNamed(context, '/ProfileScreen'),
+                    onPressed: () => navigateToProfileScreen()
+                    /*Navigator.pushNamed(context, '/ProfileScreen')*/,
                     child: Text(
                       flag ? 'Add Address' : 'Add Radius of work',
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -102,7 +199,7 @@ class _MenuEditionState extends State<MenuEdition> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       primary: Theme.of(context).primaryColor),
-                  onPressed: () {
+                  onPressed: () async {
                     if (key1.currentState.validate()) {
                       bool flag = true;
                       key1.currentState.save();
@@ -138,8 +235,35 @@ class _MenuEditionState extends State<MenuEdition> {
                         print(Accounts.accounts[Accounts.currentAccount]
                             .restaurantTabBarView);
                       }
-                      setState(() {});
-                      Navigator.pop(context);
+                      if (flag) {
+                        String listen = '';
+                        await Socket.connect(MyApp.ip, 2442)
+                            .then((serverSocket) {
+                          print('connected writer');
+                          String write = 'RestaurantMenuEdition-addCategory-' +
+                              MyApp.id +
+                              '-' +
+                              MyTextFormField.foodCategory;
+                          write = (write.length + 11).toString() +
+                              ',Restaurant-' +
+                              write;
+                          serverSocket.write(write);
+                          serverSocket.flush();
+                          print('write: ' + write);
+                          print('connected listen');
+                          serverSocket.listen((socket) {
+                            listen = String.fromCharCodes(socket)
+                                .trim()
+                                .substring(2);
+                          }).onDone(() {
+                            print("listen: " + listen);
+                            addServerFood();
+                          });
+                          // serverSocket.close();
+                        });
+                      } else {
+                        addServerFood();
+                      }
                     }
                   },
                   child: Text('Add'))
@@ -150,6 +274,40 @@ class _MenuEditionState extends State<MenuEdition> {
     );
   }
 
+  void addServerFood() async {
+    String listen = '';
+    await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+      print('connected writer');
+      String write = 'RestaurantMenuEdition-addFood-' +
+          MyApp.id +
+          '-' +
+          MyTextFormField.foodCategory +
+          '-' +
+          MyTextFormField.foodName +
+          '-' +
+          ((MyTextFormField.foodDesc == null ||
+                  MyTextFormField.foodDesc.isEmpty)
+              ? 'null'
+              : MyTextFormField.foodDesc) +
+          '-' +
+          MyTextFormField.foodPrice +
+          '-true-0';
+      write = (write.length + 11).toString() + ',Restaurant-' + write;
+      serverSocket.write(write);
+      serverSocket.flush();
+      print('write: ' + write);
+      print('connected listen');
+      serverSocket.listen((socket) {
+        listen = String.fromCharCodes(socket).trim().substring(2);
+      }).onDone(() {
+        print("listen: " + listen);
+        setState(() {});
+        Navigator.pop(context);
+      });
+      // serverSocket.close();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -158,10 +316,14 @@ class _MenuEditionState extends State<MenuEdition> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromRGBO(248, 95, 106, 1),
           onPressed: () {
-            (Accounts.accounts[Accounts.currentAccount].location == null ||
+            (Accounts.accounts[Accounts.currentAccount].address == null ||
+                    Accounts.accounts[Accounts.currentAccount].location ==
+                        null ||
                     Accounts.accounts[Accounts.currentAccount].radiusOfWork ==
                         null)
-                ? nullAddress(
+                ? nullAddress(Accounts
+                            .accounts[Accounts.currentAccount].address ==
+                        null ||
                     Accounts.accounts[Accounts.currentAccount].location == null)
                 : addFood();
           },
@@ -256,8 +418,15 @@ class _MenuEditionState extends State<MenuEdition> {
 //comment haye qabl 30 rooz ham betavanad bebinad(mahdoodiat zamani nadashte bashad va har che qadr khast be aqab beravad)
 //hame alertDialog ha TextButton hash bold beshe
 //mirtavan map ra yek class kard ke har dafe lazem nabashad handle tap va addressButtonSheet ra copy paste kard
+//zadan forget password
+//dar profileScreen vaqti password avaz mishavad balaye save success sabz biayad
+
+//profileScreen bayad joori bashad ke age masalan name null bood va email taqir karde bood email dar dataBase sabt shavad na inke email vabaste be null boodan name bashad
+//hamintor dar address va radiusOfWorks agar address por shode bood va radiusOfWorks khali bood va dokme save zade shavad bayad address ke por ast ra sabt karde va dar validator radiusOfWorks ke khali ast khata neshan dahad
+//baraye inkar bayad mesle locationChecker() dar profileScreen amal kard ke keyForm ha ro az ham joda karde va agar null bood error neshoon mide va nemifreste va agar null nabood mifreste
 
 //add kardan tag(entekhab chand menu ba ham)
+//vasat order agar qaza pak konad be moshkel mikhorim
 
 //ShapeDecoration(shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(20),side:BorderSide(color: Colors.green,) ))
 //FilterChip,RawChip

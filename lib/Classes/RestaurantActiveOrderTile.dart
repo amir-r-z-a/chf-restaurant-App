@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Common/Common%20Classes/Date.dart';
 import 'package:chfrestaurant/Common/Common%20Classes/Food.dart';
 import 'package:chfrestaurant/Classes/Restaurant.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantActiveOrderTile.dart';
+import 'package:chfrestaurant/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,19 +22,24 @@ class RestaurantActiveOrderTile extends StatefulWidget {
   String _clientPhoneNumber;
   String _clientAddress;
   String _clientName;
-  String _clientLastName;
+
+  // String _clientLastName;
   String _id;
   static Function function;
 
   RestaurantActiveOrderTile(
-      this._foods,
-      this._numberOfFoods,
-      this._orderDate,
-      this._clientPhoneNumber,
-      this._clientAddress,
-      this._clientName,
-      this._clientLastName,
-      this._onlinePayment);
+    this._foods,
+    this._numberOfFoods,
+    this._orderDate,
+    this._clientPhoneNumber,
+    this._clientAddress,
+    this._clientName,
+    // this._clientLastName,
+    this._id,
+    this._sumPrice,
+    this._onlinePayment,
+    this._sumNumberOfFoods,
+  );
 
   List get foods => _foods;
 
@@ -77,11 +85,11 @@ class RestaurantActiveOrderTile extends StatefulWidget {
     _clientName = value;
   }
 
-  String get clientLastName => _clientLastName;
-
-  set clientLastName(String value) {
-    _clientLastName = value;
-  }
+  // String get clientLastName => _clientLastName;
+  //
+  // set clientLastName(String value) {
+  //   _clientLastName = value;
+  // }
 
   String get id => _id;
 
@@ -147,11 +155,36 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         Accounts.accounts[Accounts.currentAccount]
                             .inactiveOrder(widget.id);
-                        RestaurantActiveOrderTile.function();
-                        Navigator.pop(context);
+                        String listen = '';
+                        await Socket.connect(MyApp.ip, 2442)
+                            .then((serverSocket) {
+                          print('connected writer');
+                          String write =
+                              'RestaurantOrders-RestaurantFinishedOrders-' +
+                                  MyApp.id +
+                                  '-' +
+                                  widget.id;
+                          write = (write.length + 11).toString() +
+                              ',Restaurant-' +
+                              write;
+                          serverSocket.write(write);
+                          serverSocket.flush();
+                          print('write: ' + write);
+                          print('connected listen');
+                          serverSocket.listen((socket) {
+                            listen = String.fromCharCodes(socket)
+                                .trim()
+                                .substring(2);
+                          }).onDone(() {
+                            print("listen: " + listen);
+                            RestaurantActiveOrderTile.function();
+                            Navigator.pop(context);
+                          });
+                          // serverSocket.close();
+                        });
                       },
                       child: Text(
                         'OK',
@@ -182,7 +215,7 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
     return GestureDetector(
       onTap: () {
         DetailsRestaurantActiveOrderTile.clientName = widget.clientName;
-        DetailsRestaurantActiveOrderTile.clientLastName = widget.clientLastName;
+        // DetailsRestaurantActiveOrderTile.clientLastName = widget.clientLastName;
         DetailsRestaurantActiveOrderTile.clientAddress = widget.clientAddress;
         DetailsRestaurantActiveOrderTile.clientPhoneNumber =
             widget.clientPhoneNumber;
@@ -228,31 +261,44 @@ class _RestaurantActiveOrderTileState extends State<RestaurantActiveOrderTile> {
                               child: Padding(
                                 padding: EdgeInsets.only(left: 8),
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
-                                        Text(widget.clientName + "  " + widget.clientLastName,style: TextStyle(fontSize: 20),),
+                                        Text(
+                                          widget
+                                              .clientName /* +
+                                              "  " +
+                                              widget.clientLastName*/
+                                          ,
+                                          style: TextStyle(fontSize: 20),
+                                        ),
                                       ],
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
                                           Icon(Icons.calendar_today),
                                           Text(' ' +
-                                              widget.orderDate.dateFormatter().substring(
-                                                  0,
-                                                  widget.orderDate
-                                                      .dateFormatter()
-                                                      .indexOf(','))),
-                                          Icon(Icons.watch_later_outlined),
-                                          Text(widget.orderDate.dateFormatter().substring(
                                               widget.orderDate
                                                   .dateFormatter()
-                                                  .indexOf(',') +
+                                                  .substring(
+                                                      0,
+                                                      widget.orderDate
+                                                          .dateFormatter()
+                                                          .indexOf(','))),
+                                          Icon(Icons.watch_later_outlined),
+                                          Text(widget.orderDate
+                                              .dateFormatter()
+                                              .substring(widget.orderDate
+                                                      .dateFormatter()
+                                                      .indexOf(',') +
                                                   1)),
                                         ],
                                       ),

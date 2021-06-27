@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
+import 'package:chfrestaurant/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class DetailsRestaurantFoodTile extends StatefulWidget {
+  static String category;
   static String name;
   static String desc;
   static String price;
@@ -93,11 +95,12 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               primary: Color.fromRGBO(248, 95, 106, 1)),
-                          onPressed: () {
+                          onPressed: () async {
                             if (key1.currentState.validate()) {
+                              String oldName = '';
                               setState(() {
                                 key1.currentState.save();
-                                String oldName = DetailsRestaurantFoodTile.name;
+                                oldName = DetailsRestaurantFoodTile.name;
                                 DetailsRestaurantFoodTile.name =
                                     MyTextFormField.foodName;
                                 DetailsRestaurantFoodTile.desc =
@@ -137,7 +140,45 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
                                   DetailsRestaurantFoodTile.activeOrders();
                                 }
                                 widget.function();
-                                Navigator.pop(context);
+                              });
+                              String listen = '';
+                              await Socket.connect(MyApp.ip, 2442)
+                                  .then((serverSocket) {
+                                print('connected writer');
+                                String write =
+                                    'RestaurantMenuEdition-editOther-' +
+                                        MyApp.id +
+                                        '-' +
+                                        DetailsRestaurantFoodTile.category +
+                                        '-' +
+                                        oldName +
+                                        '-' +
+                                        DetailsRestaurantFoodTile.name +
+                                        '-' +
+                                        ((DetailsRestaurantFoodTile.desc ==
+                                                    null ||
+                                                DetailsRestaurantFoodTile
+                                                    .desc.isEmpty)
+                                            ? 'null'
+                                            : DetailsRestaurantFoodTile.desc) +
+                                        '-' +
+                                        DetailsRestaurantFoodTile.price;
+                                write = (write.length + 11).toString() +
+                                    ',Restaurant-' +
+                                    write;
+                                serverSocket.write(write);
+                                serverSocket.flush();
+                                print('write: ' + write);
+                                print('connected listen');
+                                serverSocket.listen((socket) {
+                                  listen = String.fromCharCodes(socket)
+                                      .trim()
+                                      .substring(2);
+                                }).onDone(() {
+                                  print("listen: " + listen);
+                                  Navigator.pop(context);
+                                });
+                                // serverSocket.close();
                               });
                             }
                           },
@@ -214,7 +255,7 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
                       activeTrackColor: Color.fromRGBO(0, 181, 0, 1),
                       activeColor: Color.fromRGBO(0, 181, 0, 1),
                       value: DetailsRestaurantFoodTile.foodStatus,
-                      onChanged: (value) {
+                      onChanged: (value) async {
                         setState(() {
                           Accounts.accounts[Accounts.currentAccount]
                               .topTenFoodsSwitch(
@@ -223,6 +264,34 @@ class _DetailsRestaurantFoodTileState extends State<DetailsRestaurantFoodTile> {
                               !DetailsRestaurantFoodTile.foodStatus;
                         });
                         widget.function();
+                        String listen = '';
+                        await Socket.connect(MyApp.ip, 2442)
+                            .then((serverSocket) {
+                          print('connected writer');
+                          String write = 'RestaurantMenuEdition-editStatus-' +
+                              MyApp.id +
+                              '-' +
+                              DetailsRestaurantFoodTile.category +
+                              '-' +
+                              DetailsRestaurantFoodTile.name +
+                              '-' +
+                              DetailsRestaurantFoodTile.foodStatus.toString();
+                          write = (write.length + 11).toString() +
+                              ',Restaurant-' +
+                              write;
+                          serverSocket.write(write);
+                          serverSocket.flush();
+                          print('write: ' + write);
+                          print('connected listen');
+                          serverSocket.listen((socket) {
+                            listen = String.fromCharCodes(socket)
+                                .trim()
+                                .substring(2);
+                          }).onDone(() {
+                            print("listen: " + listen);
+                          });
+                          // serverSocket.close();
+                        });
                       },
                     ),
                     Text(

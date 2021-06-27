@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Classes/Request.dart';
 import 'package:chfrestaurant/Common/Common%20Classes/CommentTile.dart';
 import 'package:chfrestaurant/Common/Common%20Classes/Date.dart';
 import 'package:chfrestaurant/Common/Common%20Classes/Food.dart';
@@ -27,6 +30,10 @@ import 'package:flutter/material.dart';
 // Date(DateTime(DateTime.now().day).toString()
 
 class MyApp extends StatefulWidget {
+  static String id = '';
+  static String mode = 'LogOut';
+  static String ip = '192.168.1.7';
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -36,7 +43,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: "CHFood",
-        theme: ThemeData(primaryColor: const Color.fromRGBO(248, 95, 106, 1),),
+        theme: ThemeData(
+          primaryColor: const Color.fromRGBO(248, 95, 106, 1),
+        ),
         routes: {
           '/SignInScreen': (context) => RestaurantSignInScreen(),
           '/SignUpScreen': (context) => RestaurantSignUpScreen(),
@@ -96,132 +105,150 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-void main() {
-  Restaurant restaurant = Restaurant(
-      'name1', '09198612878', 'password1', 'addres1', RestaurantTypes.Cafe);
-  Accounts.addAccount(restaurant);
-  restaurant.addTabBarTitle(
-      'Cafe',
-      RestaurantFoodTile(
-        'Tea',
-        '25',
-        true,
-        'Cafe',
-        desc: 'desc',
-      ));
-  restaurant.addTabBarTitle(
-      'Fast Food',
-      RestaurantFoodTile(
-        'Hot Dog',
-        '25',
-        true,
-        'Fast Food',
-        desc: 'desc',
-      ));
-  restaurant.addTabBarViewElements(
-      RestaurantFoodTile(
-        'Milk',
-        '25',
-        true,
-        'Cafe',
-        desc: 'desc',
-      ),
-      1);
-  restaurant.addTabBarViewElements(
-      RestaurantFoodTile(
-        'Pizza',
-        '25',
-        true,
-        'Fast Food',
-        desc: 'desc',
-      ),
-      2);
-  restaurant.addComments(
-      CommentTile(
-          'chera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad bade?',
-          'Milk',
-          Date('2021', '3', '5', '22', '12', '2'),
-          '09121231212',
-          '09198612878',
-          '#T2878-742'),
-      1);
-  restaurant.addComments(
-      CommentTile(
-          'chera qazatoon inqad khoobe?',
-          'Milk',
-          Date('2021', '3', '7', '20', '20', '20'),
-          '09121231212',
-          '09198612878',
-          'T2878-991'),
-      1);
-  restaurant.addComments(
-      CommentTile(
-          'chera qazatoon inqad bade va khoobe?',
-          'Hot Dog',
-          Date('2021', '3', '11', '1', '28', '29'),
-          '09121231212',
-          '09198612878',
-          'T2878-114'),
-      2);
-  restaurant.addOrder(RestaurantActiveOrderTile([
-    Food(
-      'Tea',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-    Food(
-      'Pizza',
-      '25',
-      true,
-      'Fast Food',
-      desc: 'desc',
-    ),
-    Food(
-      'Milk',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    )
-  ], [
-    3,
-    4,
-    5,
-  ], Date('2021', '3', '11', '1', '28', '29'), "09185452060", "hamadan", "ghar",
-      "alisadr", false));
-  restaurant.addOrder(RestaurantActiveOrderTile([
-    Food(
-      'Hot Dog',
-      '25',
-      true,
-      'Fast Food',
-      desc: 'desc',
-    ),
-    Food(
-      'Milk',
-      '25',
-      true,
-      'Cafe',
-      desc: 'desc',
-    ),
-  ], [
-    6,
-    9,
-  ], Date('2021', '3', '5', '22', '12', '2'), "09185452060", "hamadan", "arman",
-      "shiraz", true));
+void main() async {
+  // Restaurant restaurant=Accounts.addAccount('name1', '09198612878', 'password1', '09:02', '21,23',
+  //     RestaurantTypes.Cafe.toString());
+  // restaurant.addTabBarTitle(
+  //     'Cafe',
+  //     RestaurantFoodTile(
+  //       'Tea',
+  //       '25',
+  //       true,
+  //       'Cafe',
+  //       desc: 'desc',
+  //     ));
+  // restaurant.addTabBarTitle(
+  //     'Fast Food',
+  //     RestaurantFoodTile(
+  //       'Hot Dog',
+  //       '25',
+  //       true,
+  //       'Fast Food',
+  //       desc: 'desc',
+  //     ));
+  // restaurant.addTabBarViewElements(
+  //     RestaurantFoodTile(
+  //       'Milk',
+  //       '25',
+  //       true,
+  //       'Cafe',
+  //       desc: 'desc',
+  //     ),
+  //     1);
+  // restaurant.addTabBarViewElements(
+  //     RestaurantFoodTile(
+  //       'Pizza',
+  //       '25',
+  //       true,
+  //       'Fast Food',
+  //       desc: 'desc',
+  //     ),
+  //     2);
+  // restaurant.addComments(
+  //     CommentTile(
+  //         'chera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad badechera qazatoon inqad bade?',
+  //         'Milk',
+  //         Date('2021', '3', '5', '22', '12', '2'),
+  //         '09121231212',
+  //         '09198612878',
+  //         '#T2878-742'),
+  //     1);
+  // restaurant.addComments(
+  //     CommentTile(
+  //         'chera qazatoon inqad khoobe?',
+  //         'Milk',
+  //         Date('2021', '3', '7', '20', '20', '20'),
+  //         '09121231212',
+  //         '09198612878',
+  //         'T2878-991'),
+  //     1);
+  // restaurant.addComments(
+  //     CommentTile(
+  //         'chera qazatoon inqad bade va khoobe?',
+  //         'Hot Dog',
+  //         Date('2021', '3', '11', '1', '28', '29'),
+  //         '09121231212',
+  //         '09198612878',
+  //         'T2878-114'),
+  //     2);
+  // restaurant.addOrder(RestaurantActiveOrderTile([
+  //   Food(
+  //     'Tea',
+  //     '25',
+  //     true,
+  //     'Cafe',
+  //     desc: 'desc',
+  //   ),
+  //   Food(
+  //     'Pizza',
+  //     '25',
+  //     true,
+  //     'Fast Food',
+  //     desc: 'desc',
+  //   ),
+  //   Food(
+  //     'Milk',
+  //     '25',
+  //     true,
+  //     'Cafe',
+  //     desc: 'desc',
+  //   )
+  // ], [
+  //   3,
+  //   4,
+  //   5,
+  // ], Date('2021', '3', '11', '1', '28', '29'), "09185452060", "hamadan", "ghar",
+  //     "alisadr", false));
+  // restaurant.addOrder(RestaurantActiveOrderTile([
+  //   Food(
+  //     'Hot Dog',
+  //     '25',
+  //     true,
+  //     'Fast Food',
+  //     desc: 'desc',
+  //   ),
+  //   Food(
+  //     'Milk',
+  //     '25',
+  //     true,
+  //     'Cafe',
+  //     desc: 'desc',
+  //   ),
+  // ], [
+  //   6,
+  //   9,
+  // ], Date('2021', '3', '5', '22', '12', '2'), "09185452060", "hamadan", "arman",
+  //     "shiraz", true));
   // print(Accounts.accounts[Accounts.currentAccount].activeOrders[0].foods);
   // print(DetailsRestaurantOrderTile.foods.length);
-  print(Accounts.accounts[Accounts.currentAccount].discountCodeCalculator(25));
-  print(Accounts.currentAccount);
-  print(Accounts.accounts.length);
-  print(restaurant.tabBarTitle);
-  print(restaurant.restaurantTabBarView);
-  print(restaurant.listOfFood);
-  print(restaurant.restaurantComments);
+  // print(Accounts.accounts[Accounts.currentAccount].discountCodeCalculator(25));
+  // print(Accounts.currentAccount);
+  // print(Accounts.accounts.length);
+  // print(restaurant.tabBarTitle);
+  // print(restaurant.restaurantTabBarView);
+  // print(restaurant.listOfFood);
+  // print(restaurant.restaurantComments);
   // Accounts.addAccount(Restaurant(
   //     'name2', 09121111111, 'password2', 'addres2', RestaurantTypes.Other));
+
+  // String listen = '';
+  // await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+  //   print('connected writer');
+  //   String write = 'RestaurantGetData-account-' + MyApp.id;
+  //   write = (write.length + 11).toString() + ',Restaurant-' + write;
+  //   serverSocket.write(write);
+  //   serverSocket.flush();
+  //   print('write: ' + write);
+  //   print('connected listen');
+  //   serverSocket.listen((socket) {
+  //     listen = String.fromCharCodes(socket).trim().substring(2);
+  //     print("listen: " + listen);
+  //   }).onDone(() {
+  //     SplashScreen.start(listen);
+  //     Accounts.key = true;
+  //     runApp(MyApp());
+  //   });
+  // });
   runApp(MyApp());
 }
 //comment

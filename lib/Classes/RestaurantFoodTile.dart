@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Screens/DetailsRestaurantFoodTile.dart';
+import 'package:chfrestaurant/main.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantFoodTile extends StatefulWidget {
@@ -88,7 +91,7 @@ class _RestaurantFoodTileState extends State<RestaurantFoodTile> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () {
+                    onPressed: () async {
                       Accounts.accounts[Accounts.currentAccount]
                           .deleteTabBarViewElements(widget.name);
                       Accounts.accounts[Accounts.currentAccount]
@@ -96,11 +99,35 @@ class _RestaurantFoodTileState extends State<RestaurantFoodTile> {
                       if (RestaurantFoodTile.topTenFoods != null) {
                         RestaurantFoodTile.topTenFoods();
                       }
+                      String listen = '';
                       RestaurantFoodTile.function();
-                      Navigator.pop(context);
-                      if (flag) {
-                        Navigator.pop(context);
-                      }
+                      await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+                        print('connected writer');
+                        String write = 'RestaurantMenuEdition-deleteFood-' +
+                            MyApp.id +
+                            '-' +
+                            widget.category +
+                            '-' +
+                            widget.name;
+                        write = (write.length + 11).toString() +
+                            ',Restaurant-' +
+                            write;
+                        serverSocket.write(write);
+                        serverSocket.flush();
+                        print('write: ' + write);
+                        print('connected listen');
+                        serverSocket.listen((socket) {
+                          listen =
+                              String.fromCharCodes(socket).trim().substring(2);
+                        }).onDone(() {
+                          print("listen: " + listen);
+                          Navigator.pop(context);
+                          if (flag) {
+                            Navigator.pop(context);
+                          }
+                        });
+                        // serverSocket.close();
+                      });
                     },
                     child: Text(
                       'Delete',
@@ -130,6 +157,7 @@ class _RestaurantFoodTileState extends State<RestaurantFoodTile> {
     return GestureDetector(
       onTap: () {
         DetailsRestaurantFoodTile.deleteFunction = deleteFunc;
+        DetailsRestaurantFoodTile.category = widget.category;
         DetailsRestaurantFoodTile.name = widget.name;
         DetailsRestaurantFoodTile.desc =
             widget.desc != null ? widget.desc : ' ';
@@ -193,11 +221,39 @@ class _RestaurantFoodTileState extends State<RestaurantFoodTile> {
                         activeTrackColor: Color.fromRGBO(0, 181, 0, 1),
                         activeColor: Color.fromRGBO(0, 181, 0, 1),
                         value: widget.foodStatus,
-                        onChanged: (value) {
+                        onChanged: (value) async {
                           setState(() {
                             Accounts.accounts[Accounts.currentAccount]
                                 .topTenFoodsSwitch(widget.name);
                             widget.foodStatus = !widget.foodStatus;
+                          });
+                          String listen = '';
+                          await Socket.connect(MyApp.ip, 2442)
+                              .then((serverSocket) {
+                            print('connected writer');
+                            String write = 'RestaurantMenuEdition-editStatus-' +
+                                MyApp.id +
+                                '-' +
+                                widget.category +
+                                '-' +
+                                widget.name +
+                                '-' +
+                                widget.foodStatus.toString();
+                            write = (write.length + 11).toString() +
+                                ',Restaurant-' +
+                                write;
+                            serverSocket.write(write);
+                            serverSocket.flush();
+                            print('write: ' + write);
+                            print('connected listen');
+                            serverSocket.listen((socket) {
+                              listen = String.fromCharCodes(socket)
+                                  .trim()
+                                  .substring(2);
+                            }).onDone(() {
+                              print("listen: " + listen);
+                            });
+                            // serverSocket.close();
                           });
                         },
                       ),

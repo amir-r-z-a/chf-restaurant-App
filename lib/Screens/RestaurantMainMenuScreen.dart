@@ -1,7 +1,14 @@
+import 'dart:io';
+
 import 'package:chfrestaurant/Classes/Accounts.dart';
+import 'package:chfrestaurant/Classes/RestaurantActiveOrderTile.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/Date.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/Food.dart';
 import 'package:chfrestaurant/Screens/ActiveOrdersScreen.dart';
 import 'package:chfrestaurant/Screens/RestaurantHomeScreen.dart';
+import 'package:chfrestaurant/Screens/RestaurantProfileScreen.dart';
 import 'package:chfrestaurant/Screens/TopTenFoodsScreen.dart';
+import 'package:chfrestaurant/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -34,12 +41,14 @@ class _customListTileState extends State<customListTile> {
                   Icon(widget.icon),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(widget.text,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'HotPizza',
-                        )),
+                    child: Text(
+                      widget.text,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'HotPizza',
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -74,17 +83,145 @@ class _RestaurantMainMenuScreenState extends State<RestaurantMainMenuScreen> {
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             currentIndex: _currentSelected,
-            onTap: (value) {
-              setState(() {
-                _currentSelected = value;
-                if (_currentSelected == 0) {
+            onTap: (value) async {
+              _currentSelected = value;
+              if (_currentSelected != 0) {
+                String listen = '';
+                await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+                  print('connected writer');
+                  String write = '';
+                  write += 'RestaurantOrders-RestaurantActiveOrdersData-' +
+                      MyApp.id +
+                      '-' +
+                      'RestaurantActiveOrdersFoodNames-' +
+                      MyApp.id +
+                      '-' +
+                      'RestaurantActiveOrdersNumbers-' +
+                      MyApp.id;
+                  write =
+                      (write.length + 11).toString() + ',Restaurant-' + write;
+                  serverSocket.write(write);
+                  serverSocket.flush();
+                  print('write: ' + write);
+                  print('connected listen');
+                  serverSocket.listen((socket) {
+                    listen = String.fromCharCodes(socket).trim().substring(2);
+                  }).onDone(() async {
+                    print("listen: " + listen);
+                    if (listen != 'invalid...invalid...invalid') {
+                      Accounts.accounts[Accounts.currentAccount].activeOrders =
+                          [];
+                      for (int i = 0;
+                          i <
+                              Accounts.accounts[Accounts.currentAccount]
+                                  .getTopTenFoodsLength();
+                          i++) {
+                        Accounts.accounts[Accounts.currentAccount]
+                            .topTenFoods[i].orderCount = 0;
+                      }
+                      for (int i = 0;
+                          i <
+                              Accounts.accounts[Accounts.currentAccount]
+                                  .restaurantTabBarView.length;
+                          i++) {
+                        for (int j = 0;
+                            j <
+                                Accounts.accounts[Accounts.currentAccount]
+                                    .restaurantTabBarView[i].length;
+                            j++) {
+                          Accounts.accounts[Accounts.currentAccount]
+                              .restaurantTabBarView[i][j].orderCount = 0;
+                        }
+                      }
+                      List<String> split = listen.split('...');
+                      List<String> data = split[0].split('\n');
+                      List<String> foods = split[1].split('\n');
+                      List<String> numbers = split[2].split('\n');
+                      for (int i = 0; i < data.length; i++) {
+                        List<String> foodsElements = foods[i].split('+');
+                        List<Food> foodsAns = [];
+                        for (int j = 0; j < foodsElements.length; j++) {
+                          List<String> foodIndex = foodsElements[j].split(', ');
+                          foodsAns.add(Food(
+                              foodIndex[1], foodIndex[3], true, foodIndex[0],
+                              desc:
+                                  foodIndex[2] == 'null' ? '' : foodIndex[2]));
+                        }
+                        List<String> numbersElements = numbers[i].split(', ');
+                        List<int> numbersAns = [];
+                        for (int j = 0; j < numbersElements.length; j++) {
+                          numbersAns.add(int.parse(numbersElements[j]));
+                        }
+                        List<String> dataAns = data[i].split(', ');
+                        List<String> dateElements = dataAns[5].split(':');
+                        Accounts.accounts[Accounts.currentAccount].addOrder(
+                            RestaurantActiveOrderTile(
+                                foodsAns,
+                                numbersAns,
+                                Date(
+                                    dateElements[0].substring(
+                                        dateElements[0].indexOf('(') + 1),
+                                    dateElements[1],
+                                    dateElements[2],
+                                    dateElements[3],
+                                    dateElements[4],
+                                    dateElements[5].substring(
+                                        0, dateElements[5].indexOf(')'))),
+                                dataAns[2],
+                                dataAns[3],
+                                dataAns[1],
+                                // _clientLastName,
+                                dataAns[0],
+                                double.parse(dataAns[7]),
+                                dataAns[6] == 'true',
+                                int.parse(dataAns[8])));
+                      }
+                    }
+                    listen = '';
+                    await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+                      write = '';
+                      write += 'RestaurantTopTenFoods-' + MyApp.id + '- {, ';
+                      for (int i = 0;
+                          i <
+                              Accounts.accounts[Accounts.currentAccount]
+                                  .getTopTenFoodsLength();
+                          i++) {
+                        write += Accounts.accounts[Accounts.currentAccount]
+                            .topTenFoods[i].name;
+                        write += ', ';
+                      }
+                      write += '}';
+                      print('connected writer');
+                      write = (write.length + 11).toString() +
+                          ',Restaurant-' +
+                          write;
+                      serverSocket.write(write);
+                      serverSocket.flush();
+                      print('write: ' + write);
+                      print('connected listen');
+                      serverSocket.listen((socket) {
+                        listen =
+                            String.fromCharCodes(socket).trim().substring(2);
+                      }).onDone(() {
+                        print("listen: " + listen);
+                        setState(() {
+                          if (_currentSelected == 1) {
+                            appBarText = 'Active Orders';
+                          } else {
+                            appBarText = 'Top Ten Foods';
+                          }
+                        });
+                      });
+                      // serverSocket.close();
+                    });
+                  });
+                  // serverSocket.close();
+                });
+              } else {
+                setState(() {
                   appBarText = 'Main Menu';
-                } else if (_currentSelected == 1) {
-                  appBarText = 'Active Orders';
-                } else {
-                  appBarText = 'Top Ten Foods';
-                }
-              });
+                });
+              }
             },
             items: [
               BottomNavigationBarItem(
@@ -105,26 +242,32 @@ class _RestaurantMainMenuScreenState extends State<RestaurantMainMenuScreen> {
               child: ListView(
             children: [
               DrawerHeader(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Theme.of(context).primaryColor,
-                      Colors.deepOrange
-                    ]),
-                  ),
-                  child: Center(
-                    child: Container(
-                      child: Image.asset(
-                        "assets/images/6.png",
-                      ),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                    Theme.of(context).primaryColor,
+                    Colors.deepOrange
+                  ]),
+                ),
+                child: Center(
+                  child: Container(
+                    child: Image.asset(
+                      "assets/images/6.png",
                     ),
-                  )),
-              customListTile(Icons.person, 'Profile',
-                  () => {Navigator.pushNamed(context, '/ProfileScreen')}),
+                  ),
+                ),
+              ),
+              customListTile(
+                  Icons.person, 'Profile', () => navigateToProfileScreen()),
               customListTile(Icons.phone, 'Contact Us', () => {}),
               customListTile(
                 Icons.logout,
                 "Log Out",
                 () {
+                  MyApp.id = '';
+                  MyApp.mode = 'LogOut';
+                  RestaurantProfileScreen.tappedPoints = [];
+                  Accounts.key = false;
+                  Accounts.currentAccount = 0;
                   Navigator.popUntil(
                       context, ModalRoute.withName('/SignInScreen'));
                   Navigator.pushNamed(context, '/SignInScreen');
@@ -138,6 +281,92 @@ class _RestaurantMainMenuScreenState extends State<RestaurantMainMenuScreen> {
           ),
           body: screen[_currentSelected]),
     );
+  }
+
+  void navigateToProfileScreen() async {
+    String listen = '';
+    await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+      print('connected writer');
+      String write = 'RestaurantGetData-name-' + MyApp.id;
+      write = (write.length + 11).toString() + ',Restaurant-' + write;
+      serverSocket.write(write);
+      serverSocket.flush();
+      print('write: ' + write);
+      print('connected listen');
+      serverSocket.listen((socket) {
+        listen = String.fromCharCodes(socket).trim().substring(2);
+      }).onDone(() async {
+        print("listen: " + listen);
+        RestaurantProfileScreen.initialName = listen;
+        String listenEmail = '';
+        await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+          print('connected writer');
+          String write = 'RestaurantGetData-email-' + MyApp.id;
+          write = (write.length + 11).toString() + ',Restaurant-' + write;
+          serverSocket.write(write);
+          serverSocket.flush();
+          print('write: ' + write);
+          print('connected listen');
+          serverSocket.listen((socket) {
+            listenEmail = String.fromCharCodes(socket).trim().substring(2);
+          }).onDone(() async {
+            print("listen: " + listenEmail);
+            RestaurantProfileScreen.initialEmail = listenEmail;
+            if (RestaurantProfileScreen.initialEmail == 'null') {
+              RestaurantProfileScreen.initialEmail = '';
+            }
+            String listenAddress = '';
+            await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+              print('connected writer');
+              String write = 'RestaurantGetData-address-' + MyApp.id;
+              write = (write.length + 11).toString() + ',Restaurant-' + write;
+              serverSocket.write(write);
+              serverSocket.flush();
+              print('write: ' + write);
+
+              print('connected listen');
+              serverSocket.listen((socket) {
+                listenAddress =
+                    String.fromCharCodes(socket).trim().substring(2);
+              }).onDone(() async {
+                print("listen: " + listenAddress);
+                RestaurantProfileScreen.initialAddress = listenAddress;
+                if (RestaurantProfileScreen.initialAddress == 'null') {
+                  RestaurantProfileScreen.initialAddress = '';
+                }
+                String listenRadius = '';
+                await Socket.connect(MyApp.ip, 2442).then((serverSocket) {
+                  print('connected writer');
+                  String write = 'RestaurantGetData-radius-' + MyApp.id;
+                  write =
+                      (write.length + 11).toString() + ',Restaurant-' + write;
+                  serverSocket.write(write);
+                  serverSocket.flush();
+                  print('write: ' + write);
+                  print('connected listen');
+                  serverSocket.listen((socket) {
+                    listenRadius =
+                        String.fromCharCodes(socket).trim().substring(2);
+                  }).onDone(() {
+                    print("listen: " + listenRadius);
+                    RestaurantProfileScreen.initialRadius = listenRadius;
+                    if (RestaurantProfileScreen.initialRadius == 'null') {
+                      RestaurantProfileScreen.initialRadius = '';
+                    }
+                    print('success initialize');
+                    print('name: ' + RestaurantProfileScreen.initialName);
+                    print('email: ' + RestaurantProfileScreen.initialEmail);
+                    print('address: ' + RestaurantProfileScreen.initialAddress);
+                    print('radius: ' + RestaurantProfileScreen.initialRadius);
+                    Navigator.pushNamed(context, '/ProfileScreen');
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    });
   }
 }
 
