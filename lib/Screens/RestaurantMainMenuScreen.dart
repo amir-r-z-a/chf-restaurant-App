@@ -159,13 +159,13 @@ class _RestaurantMainMenuScreenState extends State<RestaurantMainMenuScreen> {
                                 foodsAns,
                                 numbersAns,
                                 Date(
-                                    dateElements[0].substring(
+                                    year: dateElements[0].substring(
                                         dateElements[0].indexOf('(') + 1),
-                                    dateElements[1],
-                                    dateElements[2],
-                                    dateElements[3],
-                                    dateElements[4],
-                                    dateElements[5].substring(
+                                    month: dateElements[1],
+                                    day: dateElements[2],
+                                    hour: dateElements[3],
+                                    minute: dateElements[4],
+                                    second: dateElements[5].substring(
                                         0, dateElements[5].indexOf(')'))),
                                 dataAns[2],
                                 dataAns[3],
