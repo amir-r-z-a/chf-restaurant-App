@@ -66,10 +66,11 @@ class _MyAppState extends State<MyApp> {
           '/TopTenFoodsScreen': (context) => TopTenFoodsScreen(),
         },
         home:
-        ContactUsScreen()
+        // ContactUsScreen()
+      // DetailsRestaurantActiveOrderTile()
       /*RestaurantMainMenuScreen()*/
             // SplashScreen()
-            /*TopTenFoodsScreen()*/ /*MenuEdition()*/ /*RestaurantSignInScreen()*/ /*ActiveOrdersScreen()*/
+            /*TopTenFoodsScreen()*/ /*MenuEdition()*/ RestaurantSignInScreen() /*ActiveOrdersScreen()*/
         /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
         /*RestaurantMainMenuScreen()*/ /*RestaurantActiveOrderTile([
           Food(
@@ -110,6 +111,25 @@ class _MyAppState extends State<MyApp> {
 }
 
 void main() async {
+  String msg = "09198612878:id: {, question1, answer1, phoneNumberClient, foodName, Date(2021:12:01:12:13:1), destinationRestaurant, }" ;
+  List <String> msg1 = msg.split("\n");
+  for( var i = 0 ; i < msg1.length ;i++ ){
+    List <String> msg2 = msg1[i].split(", ") ;
+    String ResPhonNumber = msg1[i].substring(0,11);
+    String ID = msg2[0].substring(msg2[0].indexOf(":")+1,msg2[0].indexOf("{")-2);
+    String question = msg2[1] ;
+    String Answer = msg2[2] ;
+    String clientNumber = msg2 [3];
+    String foodname =  msg2[4];
+    List <String> date  = msg2[5].split(":");
+    String Year = date[0].substring(date[0].indexOf("(")+1);
+    String Month = date[1];
+    String Day = date[2];
+    String hour = date[3];
+    String minute = date[4];
+    String second = date[5];
+    String destinationRes = msg2[6];
+  }
   // Restaurant restaurant=Accounts.addAccount('name1', '09198612878', 'password1', '09:02', '21,23',
   //     RestaurantTypes.Cafe.toString());
   // restaurant.addTabBarTitle(
