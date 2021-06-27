@@ -296,9 +296,7 @@ class _RestaurantSignInScreenState extends State<RestaurantSignInScreen> {
       if (strings[9] != 'null') {
         restaurant.radiusOfWork = double.parse(strings[9]);
       }
-      if (strings[10] != 'null') {
-        restaurant.point = double.parse(strings[9]);
-      }
+      restaurant.point = double.parse(strings[10]);
       print('start');
       return restaurant;
     }
