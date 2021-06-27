@@ -28,6 +28,7 @@ dependencies:
   simple_animations: ^3.1.1
   date_time_picker: ^2.0.0
   search_page: ^2.0.0+1
+  animated_text_kit: ^4.2.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -58,6 +59,7 @@ flutter:
      - assets/images/6.png
      - assets/images/7.png
      - assets/images/9.jpg
+     - assets/images/back2.jpg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

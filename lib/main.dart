@@ -24,6 +24,7 @@ import 'package:chfrestaurant/Screens/RestaurantSignInScreen.dart';
 import 'package:chfrestaurant/Screens/RestaurantSignUpScreen.dart';
 import 'package:chfrestaurant/Screens/SplashScreen.dart';
 import 'package:chfrestaurant/Screens/TopTenFoodsScreen.dart';
+import 'package:chfrestaurant/Screens/contactUsScreen.dart';
 import 'package:flutter/material.dart';
 
 //now is: Date('2021', '3', '12', '4', '22', '23')
@@ -48,6 +49,7 @@ class _MyAppState extends State<MyApp> {
         ),
         routes: {
           '/SignInScreen': (context) => RestaurantSignInScreen(),
+          '/ContactUsScreen': (context) => ContactUsScreen(),
           '/SignUpScreen': (context) => RestaurantSignUpScreen(),
           '/DetailsFoodTile': (context) => DetailsRestaurantFoodTile(),
           '/MainMenuScreen': (context) => RestaurantMainMenuScreen(),
@@ -63,9 +65,11 @@ class _MyAppState extends State<MyApp> {
           '/DetailsTopTenFoodTile': (context) => DetailsTopTenFoodTile(),
           '/TopTenFoodsScreen': (context) => TopTenFoodsScreen(),
         },
-        home: /*RestaurantMainMenuScreen()*/
+        home:
+        ContactUsScreen()
+      /*RestaurantMainMenuScreen()*/
             // SplashScreen()
-            /*TopTenFoodsScreen()*/ /*MenuEdition()*/ RestaurantSignInScreen() /*ActiveOrdersScreen()*/
+            /*TopTenFoodsScreen()*/ /*MenuEdition()*/ /*RestaurantSignInScreen()*/ /*ActiveOrdersScreen()*/
         /*CalculatorScreen()*/ /*OrdersHistoryScreen()*/ /*CommentsManagement()*/
         /*RestaurantMainMenuScreen()*/ /*RestaurantActiveOrderTile([
           Food(

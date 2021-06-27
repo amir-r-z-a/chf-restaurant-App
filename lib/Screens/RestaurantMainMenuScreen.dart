@@ -258,7 +258,7 @@ class _RestaurantMainMenuScreenState extends State<RestaurantMainMenuScreen> {
               ),
               customListTile(
                   Icons.person, 'Profile', () => navigateToProfileScreen()),
-              customListTile(Icons.phone, 'Contact Us', () => {}),
+              customListTile(Icons.phone, 'Contact Us', () => {Navigator.pushNamed(context, "/ContactUsScreen")}),
               customListTile(
                 Icons.logout,
                 "Log Out",
