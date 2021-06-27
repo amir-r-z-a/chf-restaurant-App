@@ -40,143 +40,140 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
           Padding(padding: EdgeInsets.all(5)),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Card(
-              elevation: 10,
-              child: Container(
-                  margin: EdgeInsets.all(10),
-                  height: 350,
-                  width: 200,
-                  child: Container(
-                    margin: EdgeInsets.only(top: 20),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                                margin: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                                width: 350,
-                                child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 8),
-                                  child: Text("Orders Report : "),
-                                )),
-                          ],
-                        ),
-                        Container(
-                          decoration:
-                              BoxDecoration(border: Border(bottom: BorderSide())),
-                          margin: EdgeInsets.fromLTRB(16, 10, 16, 0),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Text("Subject"),
-                                  flex: 2,
-                                ),
-                                Expanded(
-                                  child: Text("Count"),
-                                  flex: 2,
-                                ),
-                                Expanded(child: Text("Price")),
-                              ],
+            child: Padding(
+              padding: const EdgeInsets.only(top: 50.0),
+              child: Card(
+                elevation: 10,
+                child: Container(
+                    margin: EdgeInsets.all(10),
+                    height: 350,
+                    width: 200,
+                    child: Container(
+                      margin: EdgeInsets.only(top: 20),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                                  width: 350,
+                                  child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(8, 0, 0, 8),
+                                    child: Text("Orders Report : "),
+                                  )),
+                            ],
+                          ),
+                          Container(
+                            decoration:
+                                BoxDecoration(border: Border(bottom: BorderSide())),
+                            margin: EdgeInsets.fromLTRB(16, 10, 16, 0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text("Subject"),
+                                    flex: 2,
+                                  ),
+                                  Expanded(
+                                    child: Text("Count"),
+                                    flex: 2,
+                                  ),
+                                  Expanded(child: Text("Price")),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Text("Online Sell"),
-                                  flex: 2,
-                                ),
-                                Expanded(
-                                  child: Text(Accounts
-                                      .accounts[Accounts.currentAccount]
-                                      .sumOnlineNumberOfFoods
-                                      .toString()),
-                                  flex: 2,
-                                ),
-                                Expanded(
-                                  child: Text('\$' +
-                                      Accounts.accounts[Accounts.currentAccount]
-                                          .onlineSell
-                                          .toString()),
-                                ),
-                              ],
+                          Container(
+                            margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text("Online Sell"),
+                                    flex: 2,
+                                  ),
+                                  Expanded(
+                                    child: Text(Accounts
+                                        .accounts[Accounts.currentAccount]
+                                        .sumOnlineNumberOfFoods
+                                        .toString()),
+                                    flex: 2,
+                                  ),
+                                  Expanded(
+                                    child: Text('\$' +
+                                        Accounts.accounts[Accounts.currentAccount]
+                                            .onlineSell
+                                            .toString()),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          decoration:
-                              BoxDecoration(border: Border(bottom: BorderSide())),
-                          margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Text("Cash Sell"),
-                                  flex: 2,
-                                ),
-                                Expanded(
-                                  child: Text(Accounts
-                                      .accounts[Accounts.currentAccount]
-                                      .sumCashNumberOfFoods
-                                      .toString()),
-                                  flex: 2,
-                                ),
-                                Expanded(
-                                  child: Text('\$' +
-                                      Accounts.accounts[Accounts.currentAccount]
-                                          .cashSell
-                                          .toString()),
-                                ),
-                              ],
+                          Container(
+                            decoration:
+                                BoxDecoration(border: Border(bottom: BorderSide())),
+                            margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text("Cash Sell"),
+                                    flex: 2,
+                                  ),
+                                  Expanded(
+                                    child: Text(Accounts
+                                        .accounts[Accounts.currentAccount]
+                                        .sumCashNumberOfFoods
+                                        .toString()),
+                                    flex: 2,
+                                  ),
+                                  Expanded(
+                                    child: Text('\$' +
+                                        Accounts.accounts[Accounts.currentAccount]
+                                            .cashSell
+                                            .toString()),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Text("Subject"),
-                                  flex: 2,
-                                ),
-                                Expanded(
-                                  child: Text(Accounts
-                                      .accounts[Accounts.currentAccount]
-                                      .sumNumberOfFoods
-                                      .toString()),
-                                  flex: 2,
-                                ),
-                                Expanded(
-                                  child: Text('\$' +
-                                      Accounts
-                                          .accounts[Accounts.currentAccount].sumSell
-                                          .toString()),
-                                ),
-                              ],
+                          Container(
+                            margin: EdgeInsets.fromLTRB(16, 20, 16, 0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text("Subject"),
+                                    flex: 2,
+                                  ),
+                                  Expanded(
+                                    child: Text(Accounts
+                                        .accounts[Accounts.currentAccount]
+                                        .sumNumberOfFoods
+                                        .toString()),
+                                    flex: 2,
+                                  ),
+                                  Expanded(
+                                    child: Text('\$' +
+                                        Accounts
+                                            .accounts[Accounts.currentAccount].sumSell
+                                            .toString()),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )),
+                        ],
+                      ),
+                    )),
+              ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.all(10),
-            height: 200,
-            width: 200,
-            decoration: BoxDecoration(border: Border.all()),
-          )
         ],
       ),
     );

@@ -45,110 +45,160 @@ class _DetailsRestaurantActiveOrderTileState
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.all(20),
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  Container(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(border: Border.all()),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(DetailsRestaurantActiveOrderTile.clientName /*+
-                              " " +
-                              DetailsRestaurantActiveOrderTile.clientLastName*/),
-                          Text(DetailsRestaurantActiveOrderTile
-                              .clientPhoneNumber)
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                      margin: EdgeInsets.only(top: 10),
-                      height: 100,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(border: Border.all()),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("address :     "),
-                            Expanded(
-                                child: Text(DetailsRestaurantActiveOrderTile
-                                    .clientAddress)),
-                          ],
+        child: Padding(
+          padding: const EdgeInsets.only(top: 15.0),
+          child: Container(
+            margin: EdgeInsets.all(20),
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    Card(
+                      elevation: 15,
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        // decoration: BoxDecoration(border: Border.all()),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(DetailsRestaurantActiveOrderTile.clientName ,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)/*+
+                                  " " +
+                                  DetailsRestaurantActiveOrderTile.clientLastName*/),
+                              Text(DetailsRestaurantActiveOrderTile
+                                  .clientPhoneNumber,style: TextStyle(fontSize: 16),)
+                            ],
+                          ),
                         ),
-                      )),
-                  Container(
-                    margin: EdgeInsets.only(top: 20),
-                    height: 50,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(border: Border.all()),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [Text("Name"), Text("Price"), Text("Count")],
                       ),
                     ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(border: Border.all()),
-                    child: Column(
-                      children: List.generate(
-                        DetailsRestaurantActiveOrderTile.foods.length,
-                        (index) => Card(
-                          child: ListTile(
-                            title: Row(
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child: Card(
+                        elevation: 10,
+                        child: Container(
+                            margin: EdgeInsets.only(top: 10),
+                            height: 100,
+                            width: MediaQuery.of(context).size.width,
+                            // decoration: BoxDecoration(border: Border.all()),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("address :     ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                                  Expanded(
+                                      child: Text(DetailsRestaurantActiveOrderTile
+                                          .clientAddress,style: TextStyle(fontSize: 16))),
+                                ],
+                              ),
+                            )),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Card(
+                        elevation: 10,
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          // decoration: BoxDecoration(border: Border.all()),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [Text("Name",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)), Text("Price",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)), Text("Count",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18))],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      // decoration: BoxDecoration(border: Border.all()),
+                      child: Column(
+                        children: List.generate(
+                          DetailsRestaurantActiveOrderTile.foods.length,
+                          (index) => Card(
+                            elevation: 10,
+                            child: ListTile(
+                              title: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(Accounts.digester(
+                                      DetailsRestaurantActiveOrderTile
+                                          .foods[index].name,
+                                      10),style: TextStyle(fontSize: 16)),
+                                  Text("\$" +
+                                      DetailsRestaurantActiveOrderTile
+                                          .foods[index].price,style: TextStyle(fontSize: 16)),
+                                  Text(DetailsRestaurantActiveOrderTile
+                                      .numberOfFoods[index]
+                                      .toString(),style: TextStyle(fontSize: 16)),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Card(
+                        elevation: 10,
+                        child: Container(
+                          // margin: EdgeInsets.only(top: 20),
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          // decoration: BoxDecoration(border: Border.all()),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(Accounts.digester(
-                                    DetailsRestaurantActiveOrderTile
-                                        .foods[index].name,
-                                    10)),
-                                Text("\$" +
-                                    DetailsRestaurantActiveOrderTile
-                                        .foods[index].price),
-                                Text(DetailsRestaurantActiveOrderTile
-                                    .numberOfFoods[index]
-                                    .toString()),
+                                Text('Sum: ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
+                                Text('\$' +
+                                    DetailsRestaurantActiveOrderTile.sumPrice
+                                        .toString(),style: TextStyle(fontSize: 16)),
+                                Text(DetailsRestaurantActiveOrderTile.sumNumberOfFoods
+                                    .toString(),style: TextStyle(fontSize: 16))
                               ],
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 20),
-                    height: 50,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(border: Border.all()),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Sum: '),
-                          Text('\$' +
-                              DetailsRestaurantActiveOrderTile.sumPrice
-                                  .toString()),
-                          Text(DetailsRestaurantActiveOrderTile.sumNumberOfFoods
-                              .toString())
-                        ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Card(
+                        elevation: 10,
+                        child: Container(
+                          // margin: EdgeInsets.only(top: 20),
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          // decoration: BoxDecoration(border: Border.all()),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Tracking Code : ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
+                                Text(DetailsRestaurantActiveOrderTile.id
+                                  //TODO
+                                ,style: TextStyle(fontSize: 16)),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
