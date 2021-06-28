@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Classes/RestaurantInactiveOrderTile.dart';
+import 'package:chfrestaurant/Common/Common%20Classes/CommentTile.dart';
 import 'package:chfrestaurant/Common/Common%20Classes/Date.dart';
 import 'package:chfrestaurant/Common/Common%20Classes/Food.dart';
 import 'package:chfrestaurant/main.dart';
@@ -86,12 +87,14 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                 foodsAns,
                 numbersAns,
                 Date(
-                    year : dateElements[0].substring(dateElements[0].indexOf('(') + 1),
-                   month : dateElements[1],
-                   day :dateElements[2],
-                    hour :dateElements[3],
-                   minute: dateElements[4],
-                    second: dateElements[5].substring(0, dateElements[5].indexOf(')'))),
+                    year: dateElements[0]
+                        .substring(dateElements[0].indexOf('(') + 1),
+                    month: dateElements[1],
+                    day: dateElements[2],
+                    hour: dateElements[3],
+                    minute: dateElements[4],
+                    second: dateElements[5]
+                        .substring(0, dateElements[5].indexOf(')'))),
                 dataAns[2],
                 dataAns[3],
                 dataAns[1],
@@ -324,8 +327,115 @@ class _RestaurantHomeScreenState extends State<RestaurantHomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/CommentsManagements');
+                        onTap: () async {
+                          String listen = '';
+                          await Socket.connect(MyApp.ip, 2442)
+                              .then((serverSocket) {
+                            print('connected writer');
+                            String write =
+                                'Comments-RestaurantComments-' + MyApp.id;
+                            write = (write.length + 7).toString() +
+                                ',Client-' +
+                                write;
+                            serverSocket.write(write);
+                            serverSocket.flush();
+                            print('write: ' + write);
+                            print('connected listen');
+                            serverSocket.listen((socket) {
+                              listen = String.fromCharCodes(socket)
+                                  .trim()
+                                  .substring(2);
+                            }).onDone(() {
+                              print("listen: " + listen);
+                              if (listen != null && listen.isNotEmpty) {
+                                Map test = {0: []};
+                                for (int u = 1;
+                                    u <
+                                        Accounts
+                                            .accounts[Accounts.currentAccount]
+                                            .restaurantComments
+                                            .length;
+                                    u++) {
+                                  test[u] = [];
+                                }
+                                Accounts.accounts[Accounts.currentAccount]
+                                    .restaurantComments = test;
+                                List<String> comments = listen.split('\n');
+                                for (int i = 0; i < comments.length; i++) {
+                                  List<String> commentElements =
+                                      comments[i].split(', ');
+                                  int index = 0;
+                                  for (int j = 1;
+                                      j <
+                                          Accounts
+                                              .accounts[Accounts.currentAccount]
+                                              .restaurantTabBarView
+                                              .length;
+                                      j++) {
+                                    for (int k = 0;
+                                        k <
+                                            Accounts
+                                                .accounts[
+                                                    Accounts.currentAccount]
+                                                .restaurantTabBarView[j]
+                                                .length;
+                                        k++) {
+                                      if (Accounts
+                                              .accounts[Accounts.currentAccount]
+                                              .restaurantTabBarView[j][k]
+                                              .name ==
+                                          commentElements[3]) {
+                                        index = j;
+                                      }
+                                    }
+                                  }
+                                  List<String> dateElements =
+                                      commentElements[5].split(':');
+                                  Date date = Date(
+                                      year: dateElements[0].substring(
+                                          dateElements[0].indexOf('(') + 1),
+                                      month: dateElements[1],
+                                      day: dateElements[2],
+                                      hour: dateElements[3],
+                                      minute: dateElements[4],
+                                      second: dateElements[5].substring(
+                                          0, dateElements[5].indexOf(')')));
+                                  print('index is: ' + index.toString());
+                                  for (int y = 0;
+                                      y < commentElements.length;
+                                      y++) {
+                                    print("element is: " + commentElements[y]);
+                                  }
+                                  Accounts.accounts[Accounts.currentAccount]
+                                      .addComments(
+                                          CommentTile(
+                                            commentElements[1],
+                                            commentElements[3],
+                                            date,
+                                            commentElements[0].substring(
+                                                0,
+                                                commentElements[0]
+                                                    .indexOf(':')),
+                                            commentElements[4],
+                                            commentElements[0].substring(
+                                                commentElements[0]
+                                                        .indexOf(':') +
+                                                    1,
+                                                commentElements[0]
+                                                    .lastIndexOf(':')),
+                                            answer:
+                                                (commentElements[2] == 'null'
+                                                    ? ''
+                                                    : commentElements[2]),
+                                          ),
+                                          index);
+                                }
+                              }
+                              Navigator.pushNamed(
+                                  context, '/CommentsManagements');
+                            });
+                            // serverSocket.close();
+                          });
                         },
                         child: Container(
                           child: Row(

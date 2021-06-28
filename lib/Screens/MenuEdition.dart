@@ -332,7 +332,7 @@ class _MenuEditionState extends State<MenuEdition> {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'Orders Menu',
+            'Menu Edition',
             style: TextStyle(fontSize: 16.0),
           ),
           bottom: TabBar(

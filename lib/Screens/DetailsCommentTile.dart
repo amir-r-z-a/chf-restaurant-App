@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:chfrestaurant/Classes/Accounts.dart';
 import 'package:chfrestaurant/Common/Common%20Classes/Date.dart';
 import 'package:chfrestaurant/Common/Text/MyTextFormField.dart';
+import 'package:chfrestaurant/main.dart';
 import 'package:flutter/material.dart';
 
 class DetailsCommentTile extends StatefulWidget {
@@ -83,7 +86,7 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                                               style: ElevatedButton.styleFrom(
                                                   primary: Theme.of(context)
                                                       .primaryColor),
-                                              onPressed: () {
+                                              onPressed: () async {
                                                 setState(() {
                                                   if (_formkey.currentState
                                                       .validate()) {
@@ -100,8 +103,40 @@ class _DetailsCommentTileState extends State<DetailsCommentTile> {
                                                         MyTextFormField.reply;
                                                     DetailsCommentTile
                                                         .function();
-                                                    Navigator.pop(context);
                                                   }
+                                                });
+                                                String listen = '';
+                                                await Socket.connect(
+                                                        MyApp.ip, 2442)
+                                                    .then((serverSocket) {
+                                                  print('connected writer');
+                                                  String write =
+                                                      'Comments-reply-' +
+                                                          MyApp.id +
+                                                          '-' +
+                                                          DetailsCommentTile
+                                                              .id +
+                                                          '-' +
+                                                          MyTextFormField.reply;
+                                                  write = (write.length + 7)
+                                                          .toString() +
+                                                      ',Client-' +
+                                                      write;
+                                                  serverSocket.write(write);
+                                                  serverSocket.flush();
+                                                  print('write: ' + write);
+                                                  print('connected listen');
+                                                  serverSocket.listen((socket) {
+                                                    listen =
+                                                        String.fromCharCodes(
+                                                                socket)
+                                                            .trim()
+                                                            .substring(2);
+                                                  }).onDone(() {
+                                                    print("listen: " + listen);
+                                                    Navigator.pop(context);
+                                                  });
+                                                  // serverSocket.close();
                                                 });
                                               },
                                               child: Text("Save"),
